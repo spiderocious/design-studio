@@ -368,7 +368,7 @@
   <header class="letterhead">
     <div>
       <h1 class="mark">Studio</h1>
-      <p class="lede">A playground for design systems. Each project below is a complete system — its own stance, its own voice, its own components — built from a feature list, a brand, a vision.</p>
+      <p class="lede">A playground for design systems. Each project below is a complete system, its own stance, its own voice, its own components, built from a feature list, a brand, a vision.</p>
     </div>
     <div class="meta">
       <strong>Curator</strong><br>
@@ -389,9 +389,6 @@
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input id="searchInput" placeholder="search by name, style, type…">
     </div>
-    <span class="new-btn" id="newBtn" title="Use /design-system-agent to start a new project">
-      <span class="plus">+</span> New project
-    </span>
   </div>
 
   <!-- SECTION CAP -->
@@ -408,9 +405,9 @@
 
   <!-- FOOTER -->
     <footer class="footer">
-    <span>Studio · a design-systems portfolio by Feranmi</span>
+    <span>Studio · a design-systems portfolio by <a href="https://devferanmi.xyz" target="_blank" rel="noopener">Feranmi</a></span>
     <span class="gap"></span>
-    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/spiderocious/design-studio" target="_blank" rel="noopener">GitHub</a>
   </footer>
 
   <script>
@@ -485,7 +482,7 @@
       }
 
       list.forEach(p => shelf.appendChild(plate(p)));
-      //shelf.appendChild(addPlate());
+      shelf.appendChild(addPlate());
 
       ctMeta.textContent = `${list.length} of ${projects.length}` + (q || activeFilter !== 'all' ? ' shown' : ' on the shelf');
     }
