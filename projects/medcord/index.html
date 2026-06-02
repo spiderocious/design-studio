@@ -144,6 +144,44 @@
   /* ---- Welcome ---- */
   .welcome-shell {
     height: 100%; overflow: auto; padding: 64px 88px;
+    background: var(--paper);
+  }
+  .welcome-shell h1 {
+    font-family: var(--serif);
+    font-size: 64px; font-weight: 500;
+    letter-spacing: -0.025em; line-height: 1.0;
+    margin: 0 0 20px; max-width: 16ch;
+  }
+  .welcome-shell .lede {
+    font-family: var(--serif); font-style: italic;
+    font-size: 20px; color: var(--ink-3);
+    line-height: 1.5; max-width: 60ch; margin: 0 0 48px;
+  }
+  .welcome-shell .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; max-width: 1000px;
+  }
+  .welcome-shell .card {
+    border: 1px solid var(--hair); padding: 24px;
+    background: var(--paper-deep);
+  }
+  .welcome-shell .card .ix {
+    font-family: var(--mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--ink-3); margin-bottom: 12px;
+  }
+  .welcome-shell .card h3 {
+    font-family: var(--serif); font-size: 19px; font-weight: 500;
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .welcome-shell .card p {
+    font-family: var(--sans); font-size: 13px;
+    color: var(--ink-3); line-height: 1.55; margin: 0;
+  }
+  .welcome-shell .foot {
+    font-family: var(--mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--ink-3); margin-top: 48px;
   }
 
 </style>
@@ -183,6 +221,7 @@
     </div>
     <div class="frame">
       <iframe id="preview" title="Medcord specimen"></iframe>
+      <div id="welcome-pane" style="display:none;height:100%;overflow:auto"></div>
     </div>
   </main>
 
@@ -233,11 +272,35 @@
     ]},
   ];
 
-  const WELCOME = ``;
+  const WELCOME = `
+    <div class="welcome-shell">
+      <h1>A record system that clinicians trust.</h1>
+      <p class="lede">Medcord is an enterprise hospital-management system — patients, staff, EMR, equipment. The stance is surgical paper: a warm bone canvas, apothecary green as the only accent, hairlines instead of shadows. Calm by default; alarming only when warranted.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="ix">Foundation</div>
+          <h3>The material</h3>
+          <p>Palette, type, geometry, motion. Serif for thinking, mono for the record number, one accent only. Critical-red is reserved for the life-threatening.</p>
+        </div>
+        <div class="card">
+          <div class="ix">Primitives &amp; data</div>
+          <h3>The instruments</h3>
+          <p>Buttons, inputs, the lab specimen, vitals and the MAR. Tabular figures everywhere a number carries clinical weight.</p>
+        </div>
+        <div class="card">
+          <div class="ix">Surfaces</div>
+          <h3>The scenes</h3>
+          <p>Start with the <strong>Patient banner</strong>, then the <strong>Bed board</strong> and <strong>EMR · chart open</strong>. Each is a real situation, not a catalogue of states.</p>
+        </div>
+      </div>
+      <div class="foot">St. Catherine's General · use the search to filter</div>
+    </div>
+  `;
   
   const nav = document.getElementById('nav');
   const filter = document.getElementById('filter');
   const iframe = document.getElementById('preview');
+  const welcomePane = document.getElementById('welcome-pane');
   const crumb = document.getElementById('crumb');
   const popout = document.getElementById('popout');
 
@@ -266,13 +329,20 @@
   function load(item, part) {
     currentFile = item.file;
     if (item.file) {
+      // Specimen: show the iframe, hide the welcome pane.
+      welcomePane.style.display = 'none';
+      iframe.style.display = 'block';
       iframe.src = item.file;
       popout.href = item.file;
       popout.style.opacity = '1';
       popout.style.pointerEvents = 'auto';
     } else {
+      // Welcome: render in-page so the parent stylesheet applies
+      // (an iframe srcdoc can't see this page's CSS).
       iframe.removeAttribute('src');
-      iframe.srcdoc = WELCOME;
+      iframe.style.display = 'none';
+      welcomePane.innerHTML = WELCOME;
+      welcomePane.style.display = 'block';
       popout.href = '#';
       popout.style.opacity = '0.4';
       popout.style.pointerEvents = 'none';

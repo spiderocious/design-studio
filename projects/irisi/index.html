@@ -236,6 +236,7 @@
     </div>
     <div class="frame">
       <iframe id="preview" title="Irisi specimen"></iframe>
+      <div id="welcome-pane" style="display:none;height:100%;overflow:auto"></div>
     </div>
   </main>
 
@@ -343,6 +344,7 @@
   const nav = document.getElementById('nav');
   const filter = document.getElementById('filter');
   const iframe = document.getElementById('preview');
+  const welcomePane = document.getElementById('welcome-pane');
   const crumb = document.getElementById('crumb');
   const popout = document.getElementById('popout');
 
@@ -371,13 +373,20 @@
   function load(item, part) {
     currentFile = item.file;
     if (item.file) {
+      // Specimen: show the iframe, hide the welcome pane.
+      welcomePane.style.display = 'none';
+      iframe.style.display = 'block';
       iframe.src = item.file;
       popout.href = item.file;
       popout.style.opacity = '1';
       popout.style.pointerEvents = 'auto';
     } else {
+      // Welcome: render in-page so the parent stylesheet applies
+      // (an iframe srcdoc can't see this page's CSS).
       iframe.removeAttribute('src');
-      iframe.srcdoc = WELCOME;
+      iframe.style.display = 'none';
+      welcomePane.innerHTML = WELCOME;
+      welcomePane.style.display = 'block';
       popout.href = '#';
       popout.style.opacity = '0.4';
       popout.style.pointerEvents = 'none';
