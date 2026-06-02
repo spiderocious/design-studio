@@ -4,7 +4,7 @@ A portfolio of complete, opinionated design systems, each built as its own
 worldview: one stance, one accent, one voice, real scenes instead of component
 grids.
 
-**Live:** _(add your Netlify URL here once deployed)_
+**Live:**  https://design-studio-system.netlify.app/
 
 Each project on the gallery is a full system — foundations (palette, type,
 geometry, motion), primitives, data-display, and at least three fully-designed
