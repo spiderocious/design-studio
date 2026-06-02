@@ -1,6 +1,6 @@
 # Studio
 
-A portfolio of complete, opinionated design systems — each built as its own
+A portfolio of complete, opinionated design systems, each built as its own
 worldview: one stance, one accent, one voice, real scenes instead of component
 grids.
 
