@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date &amp; time · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 0; overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+  .years { display:flex; gap:10px; flex-wrap:wrap; }
+  .yr { border:1px solid var(--edge-2); border-radius:12px; padding:14px 18px; cursor:pointer; min-width:120px; transition: border-color 120ms var(--ease), background 120ms var(--ease); }
+  .yr.sel { border-color: var(--clay-500); background: var(--clay-50); box-shadow: inset 0 0 0 1px var(--clay-500); }
+  .yr .y { font-family: var(--mono); font-size: 18px; font-weight: 500; }
+  .yr .lab { font-size: 11.5px; color: var(--ink-3); margin-top: 3px; }
+  .timeline { display:flex; align-items:center; gap:0; margin-top: 8px; }
+  .timeline .node { flex:1; text-align:center; position:relative; }
+  .timeline .node::before { content:""; position:absolute; top:9px; left:0; right:0; height:1px; background: var(--edge); z-index:0; }
+  .timeline .node:first-child::before { left:50%; }
+  .timeline .node:last-child::before { right:50%; }
+  .timeline .dot { width:18px; height:18px; border-radius:50%; background:var(--sheet); border:2px solid var(--edge-2); margin:0 auto 8px; position:relative; z-index:1; }
+  .timeline .dot.on { border-color: var(--clay-500); background: var(--clay-500); }
+  .timeline .dot.now { border-color: var(--clay-500); box-shadow: 0 0 0 4px var(--clay-100); }
+  .timeline .d { font-family: var(--mono); font-size: 11px; }
+  .timeline .t { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+  .deadline { display:flex; align-items:baseline; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">13 / 43</span>
+    <span class="ttl">Date &amp; time</span>
+    <span class="meta">Tax year · filing deadline</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:8px">TaxLens has no calendars to pick — it has a <em>tax year</em> to choose and a <em>filing deadline</em> to remind. Both are rendered as plain language with the date in mono, never as a date-picker grid.</p>
+
+  <!-- tax year picker -->
+  <div class="scene">
+    <div class="cap">tax year · which year are you computing</div>
+    <div class="body">
+      <div class="years">
+        <div class="yr sel"><div class="y">2026</div><div class="lab">NTA 2025 · the new law</div></div>
+        <div class="yr"><div class="y">2025</div><div class="lab">Old PITA · for comparison</div></div>
+        <div class="yr" style="opacity:.5"><div class="y">2027</div><div class="lab">Not yet available</div></div>
+      </div>
+      <p class="tiny" style="margin-top:14px">The new bands apply to income earned from <b class="mono">1 Jan 2026</b> onward.</p>
+    </div>
+  </div>
+
+  <!-- effective-date timeline -->
+  <div class="scene">
+    <div class="cap">timeline · when the new law took effect</div>
+    <div class="body">
+      <div class="timeline">
+        <div class="node"><div class="dot on"></div><div class="d">26 Jun 2025</div><div class="t">NTA 2025 signed</div></div>
+        <div class="node"><div class="dot now"></div><div class="d">1 Jan 2026</div><div class="t">In effect — new bands</div></div>
+        <div class="node"><div class="dot"></div><div class="d">31 Mar 2027</div><div class="t">2026 return due</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- filing deadline reminder -->
+  <div class="scene">
+    <div class="cap">deadline · plain-language reminder</div>
+    <div class="body">
+      <div class="deadline">
+        <div>
+          <div class="overline" style="margin-bottom:8px">Annual return — 2026 tax year</div>
+          <div class="serif" style="font-size:20px; color:var(--ink)">Due by <span class="mono" style="font-weight:500">31 March 2027</span></div>
+          <p class="tiny" style="margin-top:6px">Late filing penalty up to <span class="mono">₦100,000</span> (NTA Administration Act 2025).</p>
+        </div>
+        <span class="chip chip-info">10 months away</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

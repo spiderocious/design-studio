@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Cross-record patterns</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-bottom:16px; padding:18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  /* sharing */
+  .share-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--hair); }
+  .share-row:last-child { border-bottom:0; }
+  .share-row .nm { font-size:13px; }
+  .share-row .role { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .publink { display:flex; align-items:center; gap:8px; background:var(--paper-deep); border:1px solid var(--edge); border-radius:var(--r-sm); padding:7px 10px; font-family:var(--mono); font-size:11.5px; color:var(--ink-3); }
+  /* perms matrix */
+  .matrix { width:100%; border-collapse:collapse; }
+  .matrix th { font-family:var(--sans); font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-3); padding:7px 8px; text-align:center; }
+  .matrix th:first-child { text-align:left; }
+  .matrix td { padding:9px 8px; border-top:1px solid var(--hair); font-size:12.5px; text-align:center; }
+  .matrix td:first-child { text-align:left; font-weight:500; }
+  .yes { color:var(--ok); } .no { color:var(--ink-5); }
+  /* audit log */
+  .audit .a-row { display:grid; grid-template-columns:14px 1fr auto; gap:11px; align-items:start; padding:9px 0; border-bottom:1px solid var(--hair); position:relative; }
+  .audit .a-row:last-child { border-bottom:0; }
+  .audit .dot { width:7px; height:7px; border-radius:50%; background:var(--ink-4); margin-top:5px; }
+  .audit .dot.crit { background:var(--crit); }
+  .audit .txt { font-size:12.5px; line-height:1.45; }
+  .audit .txt .who { font-weight:600; }
+  .audit .txt .obj { font-family:var(--mono); font-size:11.5px; }
+  .audit .ts { font-family:var(--mono); font-size:10.5px; color:var(--ink-4); white-space:nowrap; }
+  /* AI assist (suggestion only) */
+  .assist { border:1px dashed var(--coral-edge); background:var(--coral-50); border-radius:var(--r-md); padding:13px 15px; }
+  .assist .ah { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--coral-700); }
+  .mention { font-family:var(--mono); font-size:12px; color:var(--coral-700); background:var(--coral-bg); border-radius:var(--r-xs); padding:1px 5px; }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">42 · V</span>
+    <span class="ttl">Cross-record patterns</span>
+    <span class="meta">sharing · permissions · audit · AI assist</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">The patterns that stitch the product together: sharing a dashboard, the role permission matrix, the audit log (where every irreversible action lands), and the AI-assist convention — Omoran <em>suggests</em>, never auto-acts.</p>
+
+  <div class="grid2">
+    <!-- Sharing -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Share a dashboard</span>
+      <div class="share-row"><span class="av av-sm av-coral">PM</span><span class="nm">You</span><span class="role">owner</span></div>
+      <div class="share-row"><span class="av av-sm">JK</span><span class="nm">Jordan K.</span><span class="role">can edit ▾</span></div>
+      <div class="share-row"><span class="av av-sm">RO</span><span class="nm">Rita O.</span><span class="role">view only ▾</span></div>
+      <div style="margin-top:14px">
+        <div class="overline" style="margin-bottom:8px">Public read-only link</div>
+        <div class="publink">🔗 omoran.io/d/acme-prod/a8f3… <span class="grow"></span><span style="color:var(--coral-700);cursor:pointer">Copy</span></div>
+      </div>
+    </div>
+
+    <!-- Permissions matrix -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Role permissions</span>
+      <table class="matrix">
+        <thead><tr><th>Capability</th><th>Owner</th><th>Member</th><th>Read-only</th></tr></thead>
+        <tbody>
+          <tr><td>View dashboards</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Build &amp; save queries</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+          <tr><td>Write SQL</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+          <tr><td>Rotate keys</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td>Delete user data</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td>Manage members</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Audit log -->
+  <div class="scene" style="margin-top:16px">
+    <span class="overline">Audit log · every key action, signed &amp; timestamped</span>
+    <div class="audit">
+      <div class="a-row"><span class="dot crit"></span><span class="txt"><span class="who">You</span> deleted all data for user <span class="obj">usr_8841</span> · 11,204 events <span class="pill pill-crit pill-sm" style="margin-left:6px">irreversible</span></span><span class="ts">19 May · 09:14</span></div>
+      <div class="a-row"><span class="dot crit"></span><span class="txt"><span class="who">You</span> rotated the public write key on <span class="obj">Prod</span> · 24h grace</span><span class="ts">19 May · 09:02</span></div>
+      <div class="a-row"><span class="dot"></span><span class="txt"><span class="who">Jordan K.</span> created cohort <span class="obj">pro_active_mobile</span></span><span class="ts">18 May · 16:40</span></div>
+      <div class="a-row"><span class="dot"></span><span class="txt"><span class="who">Rita O.</span> shared dashboard <span class="obj">Growth · weekly</span> via public link</span><span class="ts">18 May · 11:05</span></div>
+      <div class="a-row"><span class="dot"></span><span class="txt"><span class="who">You</span> changed data retention on <span class="obj">Staging</span> to 6 months</span><span class="ts">17 May · 14:22</span></div>
+    </div>
+  </div>
+
+  <!-- AI assist convention -->
+  <div class="scene">
+    <span class="overline">AI assist · suggestions only, never auto-actions</span>
+    <div class="assist">
+      <div class="ah"><span>✦</span> Omoran suggests</div>
+      <p class="iprose" style="font-size:14px;margin:0 0 12px">These <span class="mention">4,201</span> users all fired <b>add_to_cart</b> in their first session and skew mobile-pro. Want to save them as a cohort to track separately?</p>
+      <div class="row row-tight">
+        <button class="b b-sm b-primary">Save as cohort</button>
+        <button class="b b-sm b-quiet">Not now</button>
+        <span class="grow"></span>
+        <span class="mark">you decide · Omoran won't act on its own</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modals · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
+  .lbl { font-family:var(--mono); font-size:10px; color:var(--ink-4); margin-bottom:10px; letter-spacing:.04em; }
+  .stage { background:var(--paper-deep); border:1px solid var(--edge); border-radius:var(--r-card); padding:28px; display:grid; place-items:center; }
+  .modal { width:100%; max-width:420px; background:var(--sheet); border:1px solid var(--edge); border-radius:var(--r-card-lg); box-shadow:var(--shade-pop); overflow:hidden; }
+  .modal .m-body { padding:24px 26px; }
+  .modal .m-title { font-family:var(--serif); font-size:20px; font-weight:500; letter-spacing:-0.012em; margin:0 0 8px; }
+  .modal .m-text { font-size:13.5px; color:var(--ink-2); line-height:1.6; margin:0; }
+  .modal .m-foot { display:flex; justify-content:flex-end; gap:10px; padding:16px 26px; border-top:1px solid var(--hair); background:var(--paper); }
+  .modal.critical { border-color:var(--crit-edge); }
+  .modal.critical .m-head { background:var(--crit-bg); border-bottom:1px solid var(--crit-edge); padding:16px 26px; display:flex; align-items:center; gap:10px; }
+  .modal.critical .m-head .ic { color:var(--crit); }
+  .modal.critical .m-head .t { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--crit); }
+  .wipe-list { margin:14px 0 4px; padding:0; list-style:none; display:grid; gap:8px; }
+  .wipe-list li { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-2); }
+  .wipe-list li::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--crit); }
+
+  /* hold-to-confirm */
+  .hold { position:relative; overflow:hidden; }
+  .hold .ring { position:absolute; inset:0; background:var(--crit-deep); width:0; }
+  .hold.go .ring { width:100%; transition:width 1500ms linear; }
+  .hold .txt { position:relative; z-index:1; }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">40 / 43</span>
+    <span class="ttl">Modals</span>
+    <span class="meta">Confirm · the critical hold-to-confirm</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:22px">Most confirmations here are gentle — this is a low-stakes, no-account tool. But the one truly irreversible action (wiping the session) gets the full critical treatment: a cold-crimson header, an explicit list of what’s lost, and a deliberate <em>hold-to-confirm</em> so it can never be a stray click.</p>
+
+  <div class="grid">
+    <!-- ordinary confirm -->
+    <div>
+      <div class="lbl">ORDINARY · confirm a correction</div>
+      <div class="stage">
+        <div class="modal">
+          <div class="m-body">
+            <h3 class="m-title">Include these as business income?</h3>
+            <p class="m-text">We classified 3 credits totalling <b class="mono">₦297,500</b> as business income. They’ll be added to your taxable income.</p>
+          </div>
+          <div class="m-foot">
+            <button class="b b-quiet">Review again</button>
+            <button class="b b-primary">Yes, include them</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- leave / unsaved -->
+    <div>
+      <div class="lbl">SOFT · leaving with entries</div>
+      <div class="stage">
+        <div class="modal">
+          <div class="m-body">
+            <h3 class="m-title">Leave without seeing your result?</h3>
+            <p class="m-text">You’ve entered income but haven’t calculated yet. Nothing is stored, so leaving now discards what you typed.</p>
+          </div>
+          <div class="m-foot">
+            <button class="b b-quiet">Leave</button>
+            <button class="b b-primary">Stay &amp; calculate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE CRITICAL ONE -->
+    <div style="grid-column:1 / -1">
+      <div class="lbl" style="color:var(--crit)">CRITICAL · the one irreversible action — hold to confirm</div>
+      <div class="stage">
+        <div class="modal critical">
+          <div class="m-head">
+            <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+            <span class="t">Clear everything — can’t be undone</span>
+          </div>
+          <div class="m-body">
+            <h3 class="m-title">Clear all your data and start over?</h3>
+            <p class="m-text">TaxLens stores nothing on a server, so this permanently removes everything from this session:</p>
+            <ul class="wipe-list">
+              <li>Your entered income and reliefs</li>
+              <li>The uploaded bank statement and its 142 classified credits</li>
+              <li>Your computed result and the old-vs-new comparison</li>
+            </ul>
+            <p class="m-text" style="margin-top:14px">There is no recovery. Press and hold the button to confirm.</p>
+          </div>
+          <div class="m-foot">
+            <button class="b b-secondary">Keep my data</button>
+            <button class="b b-danger hold" id="holdBtn"><span class="ring"></span><span class="txt">Hold to clear everything</span></button>
+          </div>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:10px">The destructive button is solid cold-crimson <span class="mono">#A11212</span> — the <em>only</em> place in the whole system that colour appears. The clay primary never sits beside it.</p>
+    </div>
+  </div>
+
+  <script>
+    const b = document.getElementById('holdBtn');
+    let t;
+    const start = e => { e.preventDefault(); b.classList.add('go'); t = setTimeout(()=>{ b.querySelector('.txt').textContent='Cleared — starting over'; }, 1500); };
+    const stop  = () => { b.classList.remove('go'); clearTimeout(t); };
+    b.addEventListener('mousedown', start);
+    b.addEventListener('touchstart', start);
+    b.addEventListener('mouseup', stop); b.addEventListener('mouseleave', stop); b.addEventListener('touchend', stop);
+  </script>
+</div>
+</body>
+</html>

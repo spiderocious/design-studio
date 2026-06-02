@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Game catalogue</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .page-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+  .page-head .ttl {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: -0.03em; color: var(--ink); margin: 0 0 6px;
+  }
+  .page-head .sub { font-size: 14px; color: var(--ink-3); }
+  .page-head .right { font-size: 12px; color: var(--ink-3); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .filter-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .filter-row .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: var(--r-pill);
+    font-family: var(--sans); font-weight: 700; font-size: 12px;
+    background: var(--surface); color: var(--ink-2);
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .filter-row .chip.on { background: var(--ink); color: #fff; }
+  .filter-row .chip.casual.on    { background: var(--action); color: #fff; }
+  .filter-row .chip.brain.on     { background: var(--stage); color: #fff; }
+  .filter-row .chip.party.on     { background: var(--special); color: #fff; }
+  .filter-row .chip.immersive.on { background: var(--ink); color: #fff; }
+
+  .catalogue { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tile {
+    background: var(--surface); border-radius: 22px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .tile .t-top { padding: 18px 18px 14px; color: #fff; }
+  .tile.casual    .t-top { background: var(--action); }
+  .tile.brain     .t-top { background: var(--stage); }
+  .tile.party     .t-top { background: var(--special); }
+  .tile.immersive .t-top { background: var(--ink); }
+  .tile .t-id {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 32px; letter-spacing: -0.02em; line-height: 1;
+    opacity: 0.55; margin: 0 0 8px;
+  }
+  .tile .t-tag {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; opacity: 0.85; margin: 0 0 4px;
+  }
+  .tile .t-ttl {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 19px; letter-spacing: -0.005em; line-height: 1.1; margin: 0;
+  }
+  .tile .t-body {
+    padding: 12px 18px 18px;
+    display: flex; flex-direction: column; gap: 8px; flex: 1;
+  }
+  .tile .t-meta {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    color: var(--ink); letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tile .t-desc {
+    font-family: var(--sans); font-weight: 400; font-size: 13px;
+    color: var(--ink-3); line-height: 1.4; margin: 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Game catalogue (host phone)</p>
+
+  <div class="page-head">
+    <div>
+      <p class="ttl">Pick a game</p>
+      <p class="sub">19 games · the host's main canvas</p>
+    </div>
+    <div class="right">League mode · off</div>
+  </div>
+
+  <div class="filter-row">
+    <span class="chip on">All</span>
+    <span class="chip casual">Quick · Casual</span>
+    <span class="chip brain">Brain · Strategy</span>
+    <span class="chip party">Party · Social</span>
+    <span class="chip immersive">Immersive</span>
+  </div>
+
+  <div class="catalogue">
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">01</p><p class="t-tag">Quick</p><p class="t-ttl">Quizzes</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 8m</span><p class="t-desc">Multiple choice. Faster correct, more points.</p></div>
+    </div>
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">02</p><p class="t-tag">Quick</p><p class="t-ttl">Bible Quiz</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 8m</span><p class="t-desc">Scripture trivia with translation filters.</p></div>
+    </div>
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">03</p><p class="t-tag">Quick</p><p class="t-ttl">Spelling Fast</p></div>
+      <div class="t-body"><span class="t-meta">2–12 · 6m</span><p class="t-desc">Word read aloud. Type it before anyone else.</p></div>
+    </div>
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">06</p><p class="t-tag">Quick</p><p class="t-ttl">Word Bomb</p></div>
+      <div class="t-body"><span class="t-meta">3–10 · 8m</span><p class="t-desc">Type a word before the bomb explodes.</p></div>
+    </div>
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">07</p><p class="t-tag">Quick</p><p class="t-ttl">Scrambled Word</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 6m</span><p class="t-desc">Unscramble the word. Closest answers shown live.</p></div>
+    </div>
+    <div class="tile casual">
+      <div class="t-top"><p class="t-id">09</p><p class="t-tag">Quick</p><p class="t-ttl">Definition Race</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 6m</span><p class="t-desc">Read the definition, name the word.</p></div>
+    </div>
+    <div class="tile brain">
+      <div class="t-top"><p class="t-id">12</p><p class="t-tag">Brain</p><p class="t-ttl">Millionaire</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 15m</span><p class="t-desc">Climb the money ladder one question at a time.</p></div>
+    </div>
+    <div class="tile party">
+      <div class="t-top"><p class="t-id">13</p><p class="t-tag">Party</p><p class="t-ttl">Truth or Dare</p></div>
+      <div class="t-body"><span class="t-meta">2–12 · 10m</span><p class="t-desc">Pick a side. The room votes if you delivered.</p></div>
+    </div>
+    <div class="tile party">
+      <div class="t-top"><p class="t-id">14</p><p class="t-tag">Party</p><p class="t-ttl">Catch the Lie</p></div>
+      <div class="t-body"><span class="t-meta">3–10 · 10m</span><p class="t-desc">Two truths and a lie — find the fib.</p></div>
+    </div>
+    <div class="tile party">
+      <div class="t-top"><p class="t-id">15</p><p class="t-tag">Party</p><p class="t-ttl">Sketch & Guess</p></div>
+      <div class="t-body"><span class="t-meta">3–12 · 12m</span><p class="t-desc">Draw it. The room guesses what it is.</p></div>
+    </div>
+    <div class="tile party">
+      <div class="t-top"><p class="t-id">16</p><p class="t-tag">Party</p><p class="t-ttl">Hot Take Court</p></div>
+      <div class="t-body"><span class="t-meta">3–15 · 10m</span><p class="t-desc">Defend the indefensible. Funniest wins.</p></div>
+    </div>
+    <div class="tile immersive">
+      <div class="t-top"><p class="t-id">17</p><p class="t-tag">Immersive</p><p class="t-ttl">Investigation</p></div>
+      <div class="t-body"><span class="t-meta">2–8 · 30m</span><p class="t-desc">Read the file. Name the suspect.</p></div>
+    </div>
+    <div class="tile immersive">
+      <div class="t-top"><p class="t-id">18</p><p class="t-tag">Immersive</p><p class="t-ttl">Plead Your Case</p></div>
+      <div class="t-body"><span class="t-meta">AI · 2–10 · 12m</span><p class="t-desc">Argue your innocence. The AI rules.</p></div>
+    </div>
+    <div class="tile immersive">
+      <div class="t-top"><p class="t-id">19</p><p class="t-tag">Immersive</p><p class="t-ttl">Presentation</p></div>
+      <div class="t-body"><span class="t-meta">2–10 · 15m</span><p class="t-desc">Topic on screen. Defend it cold.</p></div>
+    </div>
+    <div class="tile casual" style="opacity: 0.55;">
+      <div class="t-top" style="background: var(--ink-4);"><p class="t-id">…</p><p class="t-tag">More</p><p class="t-ttl">5 more games</p></div>
+      <div class="t-body"><span class="t-meta">View all</span><p class="t-desc">Wordshot, Word Bomb variants, Synonyms, Antonyms, Missing Letters.</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

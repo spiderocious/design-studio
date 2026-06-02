@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buttons · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 0; overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 22px 24px; }
+  .toolbar { display:flex; align-items:center; gap:10px; flex-wrap: wrap; }
+  .toolbar .spacer { flex: 1; }
+  .modal-foot { display: flex; justify-content: flex-end; gap: 10px; }
+  .grid-ref { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:center; }
+  .grid-ref .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+
+  /* hold-to-confirm */
+  .hold { position: relative; overflow: hidden; }
+  .hold .ring { position:absolute; inset:0; background: var(--crit-deep); width:0; transition: width 1500ms linear; }
+  .hold .txt { position: relative; z-index:1; }
+  .hold.holding .ring { width: 100%; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">10 / 43</span>
+    <span class="ttl">Buttons</span>
+    <span class="meta">Clay primary · ghost destructive</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:8px">One filled clay primary per view, an outline secondary beside it, quiet text for the rest. The destructive action is deliberately <em>cooler and quieter</em> than the warm primary — ghost by default, solid cold-crimson only at the irreversible moment.</p>
+  <p class="scene-note">Buttons are shown where they actually live — the landing CTA, a result toolbar, a modal foot, the irreversible confirm. The state grid is at the very end, small.</p>
+
+  <!-- scene 1 — landing CTA -->
+  <div class="scene">
+    <div class="cap">scene · landing — choose how to start</div>
+    <div class="body">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+        <button class="b b-primary b-lg">Calculate my tax</button>
+        <button class="b b-secondary b-lg">Upload bank statement</button>
+        <button class="b b-link" style="font-size:15px">Try with sample data →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- scene 2 — result toolbar -->
+  <div class="scene">
+    <div class="cap">scene · result page — toolbar</div>
+    <div class="body">
+      <div class="toolbar">
+        <button class="b b-secondary b-sm">Edit income</button>
+        <button class="b b-secondary b-sm">Download PDF</button>
+        <span class="spacer"></span>
+        <button class="b b-quiet b-sm">Start over</button>
+        <button class="b b-danger-ghost b-sm">Clear all my data</button>
+      </div>
+      <p class="tiny" style="margin-top:12px">“Clear all my data” is a ghost — present but never shouting. It only turns solid crimson at the confirm step.</p>
+    </div>
+  </div>
+
+  <!-- scene 3 — modal foot -->
+  <div class="scene">
+    <div class="cap">scene · modal foot — confirm a correction</div>
+    <div class="body">
+      <p class="body" style="margin:0 0 18px; max-width:52ch">We classified 3 credits as <b>business income</b>. Confirm so we can include them in your computation.</p>
+      <div class="modal-foot">
+        <button class="b b-quiet">Review again</button>
+        <button class="b b-primary">Looks right — continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- scene 4 — the irreversible hold-to-confirm -->
+  <div class="scene">
+    <div class="cap">scene · the one irreversible action — hold to confirm</div>
+    <div class="body">
+      <p class="body" style="margin:0 0 6px; max-width:54ch">This wipes everything from this session — your income, the uploaded statement, and your computed result. Nothing is stored, so it cannot be recovered.</p>
+      <p class="tiny" style="margin:0 0 18px">Press and hold for a moment to confirm.</p>
+      <div class="modal-foot">
+        <button class="b b-secondary">Keep my data</button>
+        <button class="b b-danger hold" id="holdBtn"><span class="ring"></span><span class="txt">Hold to clear everything</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- reference grid (small, at the end) -->
+  <div class="break"><span class="lbl">reference — weights &amp; states</span></div>
+  <div class="grid-ref">
+    <span class="lbl">primary</span><span class="lbl">secondary</span><span class="lbl">quiet</span><span class="lbl">destructive (ghost)</span>
+    <button class="b b-primary">Calculate</button>
+    <button class="b b-secondary">Upload</button>
+    <button class="b b-quiet">Start over</button>
+    <button class="b b-danger-ghost">Clear data</button>
+
+    <span class="lbl">hover</span><span class="lbl">hover</span><span class="lbl">link</span><span class="lbl">destructive (solid)</span>
+    <button class="b b-primary" style="background:var(--clay-600);border-color:var(--clay-600)">Calculate</button>
+    <button class="b b-secondary" style="background:var(--paper-deep);border-color:var(--ink-3)">Upload</button>
+    <button class="b b-link">Learn how this works</button>
+    <button class="b b-danger">Clear everything</button>
+
+    <span class="lbl">focus ring</span><span class="lbl">disabled</span><span class="lbl">small</span><span class="lbl">large</span>
+    <button class="b b-primary" style="box-shadow:0 0 0 3px var(--clay-100),0 0 0 4px rgba(194,97,58,.45)">Calculate</button>
+    <button class="b b-primary" style="opacity:.45; cursor:not-allowed">Calculate</button>
+    <button class="b b-primary b-sm">Apply</button>
+    <button class="b b-primary b-lg">Calculate my tax</button>
+  </div>
+
+  <script>
+    // hold-to-confirm demo (visual only)
+    const btn = document.getElementById('holdBtn');
+    let t;
+    const start = () => { btn.classList.add('holding'); t = setTimeout(()=>{ btn.querySelector('.txt').textContent='Cleared'; }, 1500); };
+    const stop  = () => { btn.classList.remove('holding'); clearTimeout(t); };
+    btn.addEventListener('mousedown', start);
+    btn.addEventListener('touchstart', start, {passive:true});
+    btn.addEventListener('mouseup', stop);
+    btn.addEventListener('mouseleave', stop);
+    btn.addEventListener('touchend', stop);
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .field-label {
+    font-family: var(--sans); font-weight: 700; font-size: 13px;
+    color: var(--ink); margin: 0 0 8px;
+  }
+  .helper {
+    font-size: 12px; color: var(--ink-3); margin: 6px 0 0;
+  }
+  .helper.error { color: var(--danger-deep); }
+  .helper.success { color: var(--action-deep); }
+
+  .stack > * + * { margin-top: 18px; }
+  .scene {
+    background: var(--canvas);
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 16px;
+  }
+  .scene .card {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 24px;
+  }
+  .scene h3 {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink); margin: 0 0 4px;
+  }
+  .scene p.sub { font-size: 13px; color: var(--ink-3); margin: 0 0 18px; }
+
+  /* Room code input — six character monospace */
+  .roomcode-input {
+    width: 100%; max-width: 320px;
+    background: var(--surface);
+    border: 2px solid var(--ink-5);
+    border-radius: var(--r-input);
+    padding: 18px 22px;
+    font-family: var(--sans); font-weight: 800; font-size: 28px;
+    letter-spacing: 0.4em; text-align: center;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .roomcode-input:focus { outline: none; border-color: var(--action); }
+
+  /* Specialized — nickname input with avatar preview */
+  .nickname-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px; align-items: center;
+  }
+  .av-preview {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 22px;
+  }
+
+  /* Textarea (host's custom content) */
+  .textarea-demo {
+    width: 100%;
+    background: var(--surface);
+    border: 2px solid var(--mist-soft);
+    border-radius: var(--r-input);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 16px; font-weight: 500;
+    color: var(--ink);
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .textarea-demo:focus { outline: none; border-color: var(--action); }
+
+  /* In-game answer input — what the player types during Word Bomb */
+  .answer-input {
+    width: 100%;
+    background: var(--surface);
+    border: 2px solid var(--mist-soft);
+    border-radius: var(--r-input);
+    padding: 20px 22px;
+    font-family: var(--sans);
+    font-size: 22px; font-weight: 700;
+    color: var(--ink);
+  }
+  .answer-input:focus { outline: none; border-color: var(--action); }
+  .answer-input.correct { border-color: var(--action); background: var(--action-soft); }
+  .answer-input.wrong { border-color: var(--danger); background: var(--danger-soft); }
+
+  /* State reference */
+  .state-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    padding: 14px;
+    background: var(--canvas);
+    border-radius: 14px;
+  }
+  .state-grid .cell {
+    background: var(--surface);
+    padding: 14px;
+    border-radius: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .state-grid .cell .lbl {
+    font-family: var(--sans); font-weight: 800; font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .state-grid .cell .mini-input {
+    background: var(--surface); border: 2px solid var(--mist-soft);
+    border-radius: 12px; padding: 8px 10px;
+    font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--ink);
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Inputs</h1>
+  <p class="lede">Two-pixel borders, 16px radius, generous padding. The default is Nunito 17px — large enough to type confidently on a phone. Focus is <strong>Action Green</strong>; error is <strong>Tomato Red</strong>. The hero inputs in this product are: <em>room code</em> (join flow), <em>nickname</em> (lobby), and <em>answer</em> (in-game).</p>
+
+  <!-- =========================================
+       Scene 1: the join flow — room code + nickname
+       ========================================= -->
+  <div class="scene">
+    <div class="card">
+      <h3>Join the room</h3>
+      <p class="sub">Player phone · the first input new players touch.</p>
+
+      <div class="stack">
+        <div>
+          <p class="field-label">Room code</p>
+          <input class="roomcode-input" value="GBE-4ZK" />
+          <p class="helper">Six characters. We've removed the easy-to-confuse ones (O, 0, I, 1).</p>
+        </div>
+
+        <div>
+          <p class="field-label">Nickname</p>
+          <div class="nickname-row">
+            <div class="av-preview">F</div>
+            <input class="input" value="Funmi" />
+          </div>
+          <p class="helper">Anything works. Emojis allowed, swearing isn't.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px; display: flex; gap: 10px;">
+        <button class="btn btn-primary">Join Friday game night</button>
+        <button class="btn btn-ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       Scene 2: in-game answer input
+       ========================================= -->
+  <div class="scene">
+    <div class="card" style="text-align: center;">
+      <p style="font-family: var(--sans); font-weight: 800; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px;">It's your turn</p>
+      <p style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft); font-weight: 600; font-size: 24px; color: var(--ink); margin: 0 0 16px;">Foods · starts with A</p>
+      <input class="answer-input" placeholder="Type a word" autofocus />
+      <p class="helper" style="text-align: center; margin-top: 12px;">04 seconds left — bomb gets faster every round.</p>
+    </div>
+  </div>
+
+  <!-- =========================================
+       Scene 3: host config — textarea for custom content
+       ========================================= -->
+  <div class="scene">
+    <div class="card">
+      <h3>Custom quiz deck</h3>
+      <p class="sub">Host config · paste one question per line.</p>
+      <textarea class="textarea-demo" placeholder="Type your questions here, one per line…">Which Lagos market is the largest in West Africa?
+Who wrote Things Fall Apart?
+What's the currency code for the Naira?</textarea>
+      <p class="helper">15 questions detected · save as deck?</p>
+    </div>
+  </div>
+
+  <!-- =========================================
+       States reference — small at the end
+       ========================================= -->
+  <div class="section">
+    <p class="group-h">Input state reference</p>
+    <p style="margin: -8px 0 14px; font-size: 13px; color: var(--ink-3);">Default · focused · error · disabled.</p>
+    <div class="state-grid">
+      <div class="cell">
+        <input class="mini-input" placeholder="placeholder" />
+        <span class="lbl">default</span>
+      </div>
+      <div class="cell">
+        <input class="mini-input" value="typing…" style="border-color: var(--action); background: var(--surface);" />
+        <span class="lbl">focused</span>
+      </div>
+      <div class="cell">
+        <input class="mini-input" value="missing" style="border-color: var(--danger);" />
+        <span class="lbl">error</span>
+      </div>
+      <div class="cell">
+        <input class="mini-input" value="locked" disabled style="background: var(--mist-soft); color: var(--ink-3);" />
+        <span class="lbl">disabled</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

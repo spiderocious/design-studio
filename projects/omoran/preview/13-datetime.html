@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Date & time</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); margin-bottom: 16px; padding: 18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  .cal { width: 280px; }
+  .cal-h { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .cal-h .m { font-family:var(--sans); font-weight:600; font-size:13px; }
+  .cal-h button { border:1px solid var(--edge-2); background:var(--panel); border-radius:var(--r-xs); width:26px; height:26px; cursor:pointer; }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+  .cal-grid .dow { font-family:var(--mono); font-size:9.5px; color:var(--ink-4); text-align:center; padding:4px 0; }
+  .cal-grid .d { font-family:var(--mono); font-size:12px; text-align:center; padding:6px 0; border-radius:var(--r-xs); cursor:pointer; }
+  .cal-grid .d:hover { background:var(--paper-deep); }
+  .cal-grid .d.range { background:var(--coral-bg); border-radius:0; }
+  .cal-grid .d.start { background:var(--coral-500); color:#fff; border-radius:var(--r-xs) 0 0 var(--r-xs); }
+  .cal-grid .d.end { background:var(--coral-500); color:#fff; border-radius:0 var(--r-xs) var(--r-xs) 0; }
+  .cal-grid .d.mut { color:var(--ink-5); }
+  .preset { display:flex; flex-direction:column; gap:2px; padding-right:18px; border-right:1px solid var(--hair); }
+  .preset button { text-align:left; border:0; background:transparent; font-family:var(--sans); font-size:12.5px; color:var(--ink-2); padding:7px 10px; border-radius:var(--r-sm); cursor:pointer; }
+  .preset button:hover { background:var(--paper-deep); }
+  .preset button.on { background:var(--ink); color:var(--paper); font-weight:600; }
+  .sentence { font-family:var(--serif); font-size:16px; line-height:1.6; }
+  .sentence .pick { font-family:var(--mono); font-size:13px; background:var(--coral-bg); color:var(--coral-700); border:1px solid var(--coral-edge); border-radius:var(--r-xs); padding:1px 7px; cursor:pointer; }
+  .relrow { display:flex; align-items:center; gap:10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">13 · II</span>
+    <span class="ttl">Date &amp; time</span>
+    <span class="meta">ranges · windows · schedule-as-sentence</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">An analytics tool is mostly about <em>when</em>. The date-range picker leads with presets; the conversion window is a number-with-unit; the digest schedule reads as a plain sentence the user edits in place.</p>
+
+  <!-- Range picker with presets -->
+  <div class="scene">
+    <span class="overline">Date range · presets first</span>
+    <div style="display:flex;gap:24px">
+      <div class="preset">
+        <button>Today</button>
+        <button>Yesterday</button>
+        <button class="on">Last 7 days</button>
+        <button>Last 30 days</button>
+        <button>Last 90 days</button>
+        <button>This month</button>
+        <button>Custom…</button>
+      </div>
+      <div class="cal">
+        <div class="cal-h"><button>‹</button><span class="m">May 2026</span><button>›</button></div>
+        <div class="cal-grid">
+          <div class="dow">M</div><div class="dow">T</div><div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div><div class="dow">S</div>
+          <div class="d mut">28</div><div class="d mut">29</div><div class="d mut">30</div><div class="d">1</div><div class="d">2</div><div class="d">3</div><div class="d">4</div>
+          <div class="d">5</div><div class="d">6</div><div class="d">7</div><div class="d">8</div><div class="d">9</div><div class="d">10</div><div class="d">11</div>
+          <div class="d">12</div><div class="d start">13</div><div class="d range">14</div><div class="d range">15</div><div class="d range">16</div><div class="d range">17</div><div class="d range">18</div>
+          <div class="d end">19</div><div class="d">20</div><div class="d">21</div><div class="d">22</div><div class="d">23</div><div class="d">24</div><div class="d">25</div>
+          <div class="d">26</div><div class="d">27</div><div class="d">28</div><div class="d">29</div><div class="d">30</div><div class="d">31</div><div class="d mut">1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split-2">
+    <!-- Conversion window -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Conversion window</span>
+      <p class="muted" style="font-size:12.5px;margin:0 0 12px">How long a user has to complete the funnel after the first step.</p>
+      <div class="relrow">
+        <input class="f f-mono" value="7" style="max-width:80px" />
+        <div class="seg" style="display:inline-flex;border:1px solid var(--edge-2);border-radius:var(--r-sm);overflow:hidden">
+          <button style="border:0;background:var(--panel);font:600 12px var(--sans);padding:8px 12px;cursor:pointer;color:var(--ink-3);border-right:1px solid var(--edge)">hours</button>
+          <button style="border:0;background:var(--ink);color:var(--paper);font:600 12px var(--sans);padding:8px 12px;cursor:pointer">days</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Session boundary -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Session boundary</span>
+      <p class="muted" style="font-size:12.5px;margin:0 0 12px">A session ends after this much inactivity.</p>
+      <div class="relrow">
+        <input class="f f-mono" value="30" style="max-width:80px" />
+        <span class="muted">minutes of inactivity</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digest schedule as a sentence -->
+  <div class="scene" style="margin-top:16px">
+    <span class="overline">Digest schedule · reads as a sentence</span>
+    <p class="sentence">Send the analyst digest <span class="pick">weekly ▾</span> on <span class="pick">Monday ▾</span> at <span class="pick">8:00am ▾</span> to <span class="pick">the whole team ▾</span>, by <span class="pick">email ▾</span>.</p>
+  </div>
+</div>
+</body>
+</html>

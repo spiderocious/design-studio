@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Navigation shell</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .shell { display:grid; grid-template-columns:208px 1fr; border:1px solid var(--edge); border-radius:var(--r-lg); overflow:hidden; background:var(--panel); min-height:520px; }
+  /* rail */
+  .rail { background:var(--paper-deep); border-right:1px solid var(--edge); padding:14px 12px; display:flex; flex-direction:column; }
+  .brand { display:flex; align-items:center; gap:8px; padding:4px 8px 16px; }
+  .brand .wm { font-family:var(--mono); font-size:15px; font-weight:700; letter-spacing:-0.02em; }
+  .brand .wm .dot { color:var(--coral-500); }
+  .ws { display:flex; align-items:center; gap:8px; padding:8px; border:1px solid var(--edge); border-radius:var(--r-sm); background:var(--panel); margin-bottom:14px; cursor:pointer; }
+  .ws .av { width:22px; height:22px; font-size:9px; }
+  .ws .nm { font-size:12px; font-weight:600; }
+  .ws .ch { margin-left:auto; color:var(--ink-4); font-size:11px; }
+  .nav-g { margin-bottom:10px; }
+  .nav-g .gl { font-family:var(--mono); font-size:9px; color:var(--ink-4); letter-spacing:0.14em; text-transform:uppercase; padding:6px 8px 4px; }
+  .nav-i { display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:var(--r-sm); font-size:13px; color:var(--ink-2); cursor:pointer; }
+  .nav-i:hover { background:var(--panel); }
+  .nav-i.on { background:var(--coral-bg); color:var(--coral-700); font-weight:600; }
+  .nav-i .ic { width:15px; text-align:center; opacity:.75; }
+  .nav-i .badge { margin-left:auto; font-family:var(--mono); font-size:10px; background:var(--coral-500); color:#fff; border-radius:999px; padding:1px 6px; }
+  .rail-foot { margin-top:auto; padding-top:12px; border-top:1px solid var(--edge); }
+  /* topbar + stage */
+  .stage { display:flex; flex-direction:column; }
+  .topbar { display:flex; align-items:center; gap:12px; padding:11px 18px; border-bottom:1px solid var(--hair); }
+  .crumb { font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:0.04em; }
+  .crumb .cur { color:var(--ink); }
+  .cmdk-trigger { margin-left:auto; display:flex; align-items:center; gap:8px; border:1px solid var(--edge-2); border-radius:var(--r-sm); padding:6px 10px; color:var(--ink-4); font-size:12px; cursor:pointer; min-width:200px; }
+  .cmdk-trigger kbd { margin-left:auto; font-family:var(--mono); font-size:10px; background:var(--paper-deep); border:1px solid var(--edge); border-radius:3px; padding:1px 5px; }
+  .stage-b { padding:20px; flex:1; }
+  /* command palette overlay */
+  .cmdk { width:520px; margin:0 auto; box-shadow:var(--shade-pop); border:1px solid var(--edge); border-radius:var(--r-lg); background:var(--panel); overflow:hidden; }
+  .cmdk-f { display:flex; align-items:center; gap:10px; padding:13px 16px; border-bottom:1px solid var(--hair); }
+  .cmdk-f input { border:0; outline:0; flex:1; font:400 15px var(--sans); background:transparent; }
+  .cmdk-f .spark2 { color:var(--coral-500); }
+  .cmdk-sec { font-family:var(--mono); font-size:9.5px; color:var(--ink-4); letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px 4px; }
+  .cmdk-i { display:flex; align-items:center; gap:11px; padding:9px 16px; font-size:13px; cursor:pointer; }
+  .cmdk-i:hover, .cmdk-i.on { background:var(--coral-bg); }
+  .cmdk-i .ic { width:16px; text-align:center; color:var(--ink-3); }
+  .cmdk-i .nm b { color:var(--coral-700); }
+  .cmdk-i .k { margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--ink-4); }
+  .cmdk-i.ask { background:var(--ink); color:var(--paper); margin:6px; border-radius:var(--r-sm); }
+  .cmdk-i.ask .ic { color:var(--coral-400); }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">29 · III</span>
+    <span class="ttl">Navigation · shell · ⌘K</span>
+    <span class="meta">left rail · workspace switcher · ask-anywhere</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">The shell: a quiet left rail with the AI Insights badge surfacing what's new, a workspace/project switcher, and a command palette where <em>asking Omoran a question</em> is the very first action — the analyst is reachable from anywhere.</p>
+
+  <div class="shell">
+    <aside class="rail">
+      <div class="brand"><span class="wm">omoran<span class="dot">.</span></span></div>
+      <div class="ws"><span class="av av-coral">Ac</span><span class="nm">Acme · Prod</span><span class="ch">⇅</span></div>
+      <div class="nav-g">
+        <div class="nav-i on"><span class="ic">▤</span> Dashboard</div>
+        <div class="nav-i"><span class="ic">✦</span> Insights <span class="badge">3</span></div>
+        <div class="nav-i"><span class="ic">⊞</span> Explore</div>
+        <div class="nav-i"><span class="ic">⌖</span> Funnels</div>
+        <div class="nav-i"><span class="ic">↻</span> Retention</div>
+      </div>
+      <div class="nav-g">
+        <div class="gl">People</div>
+        <div class="nav-i"><span class="ic">○</span> Users</div>
+        <div class="nav-i"><span class="ic">≣</span> Sessions</div>
+        <div class="nav-i"><span class="ic">◐</span> Cohorts</div>
+      </div>
+      <div class="nav-g">
+        <div class="gl">System</div>
+        <div class="nav-i"><span class="ic">⊕</span> Alerts</div>
+        <div class="nav-i"><span class="ic">⚙</span> Settings</div>
+      </div>
+      <div class="rail-foot">
+        <div class="nav-i"><span class="ic">◉</span> SDK · <span style="color:var(--ok)">live</span> <span class="pulse" style="margin-left:2px"></span></div>
+      </div>
+    </aside>
+
+    <div class="stage">
+      <div class="topbar">
+        <span class="crumb">Acme · Prod <span style="color:var(--ink-5)">/</span> <span class="cur">Dashboard</span></span>
+        <div class="cmdk-trigger">⌕ Ask or jump to… <kbd>⌘K</kbd></div>
+      </div>
+      <div class="stage-b" style="background:var(--paper-deep);position:relative">
+        <!-- command palette shown open -->
+        <div class="cmdk" style="margin-top:8px">
+          <div class="cmdk-f"><span class="spark2">✦</span><input value="mobile checkout" /></div>
+          <div class="cmdk-i ask"><span class="ic">✦</span><span class="nm">Ask Omoran: “<b style="color:var(--coral-400)">mobile checkout</b> drop-off”</span><span class="k">⏎</span></div>
+          <div class="cmdk-sec">Events</div>
+          <div class="cmdk-i on"><span class="ic">▦</span><span class="nm"><b>checkout</b>_completed</span><span class="k">3,019</span></div>
+          <div class="cmdk-i"><span class="ic">▦</span><span class="nm">add_to_cart</span><span class="k">12,447</span></div>
+          <div class="cmdk-sec">Go to</div>
+          <div class="cmdk-i"><span class="ic">⌖</span><span class="nm">Funnel · signup → activation</span><span class="k">G F</span></div>
+          <div class="cmdk-i"><span class="ic">⚙</span><span class="nm">Settings · API keys</span><span class="k">G S</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

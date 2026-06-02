@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Motion</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 16px;
+  }
+
+  .demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  .demo-card {
+    background: var(--canvas);
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+  }
+  .demo-card .name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 18px; color: var(--ink); margin: 0;
+  }
+  .demo-card .spec {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+    margin: 4px 0 18px;
+  }
+  .demo-card .stage {
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .demo-card .play {
+    background: var(--surface); color: var(--ink); border: 0;
+    padding: 8px 16px; border-radius: var(--r-pill);
+    font-family: var(--sans); font-weight: 700; font-size: 12px;
+    cursor: pointer; letter-spacing: 0.02em;
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+  }
+  .demo-card .play:hover { background: var(--ink); color: #fff; }
+
+  /* Score increment animation */
+  @keyframes score-rise {
+    0%   { transform: translateY(20px); opacity: 0; }
+    20%  { transform: translateY(0); opacity: 1; }
+    80%  { transform: translateY(-12px); opacity: 1; }
+    100% { transform: translateY(-32px); opacity: 0; }
+  }
+  .score-bubble {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 26px; color: var(--accent-deep);
+    letter-spacing: -0.01em;
+  }
+  .score-bubble.run { animation: score-rise 300ms var(--ease-default) forwards; }
+
+  /* Timer pulse */
+  @keyframes timer-pulse {
+    0%, 100% { transform: scale(1); color: var(--danger); }
+    50% { transform: scale(1.08); color: var(--danger); }
+  }
+  .timer-num {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 56px; color: var(--ink); letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums; transition: color var(--t-fast) var(--ease-default);
+  }
+  .timer-num.run { animation: timer-pulse 800ms var(--ease-default) infinite; }
+
+  /* Wrong flash */
+  @keyframes wrong-flash {
+    0%, 100% { background: var(--surface); }
+    50% { background: var(--danger-soft); }
+  }
+  .input-demo {
+    width: 200px; padding: 14px 16px; border-radius: 16px;
+    background: var(--surface); border: 2px solid var(--ink-5);
+    font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--ink);
+    text-align: center; transition: border-color var(--t-fast) var(--ease-default);
+  }
+  .input-demo.wrong { border-color: var(--danger); animation: wrong-flash 200ms var(--ease-default) 1; }
+  .input-demo.right { border-color: var(--action); background: var(--action-soft); }
+
+  /* Card spring entry */
+  @keyframes spring-in {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .winner-card {
+    background: var(--accent); color: var(--ink);
+    border-radius: 16px;
+    padding: 16px 22px;
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 20px;
+    transform-origin: center;
+  }
+  .winner-card.run { animation: spring-in 350ms var(--ease-spring) forwards; }
+
+  /* Leaderboard reshuffle */
+  .reshuffle {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .reshuffle .lr {
+    display: grid; grid-template-columns: 24px 1fr auto;
+    align-items: center; gap: 10px;
+    padding: 10px 14px;
+    background: var(--canvas);
+    border-radius: 14px;
+    transition: transform 400ms var(--ease-spring), background 400ms var(--ease-default);
+  }
+  .reshuffle .lr .rank {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink-3);
+  }
+  .reshuffle .lr .name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .reshuffle .lr .score-c {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink);
+    font-size: 18px; letter-spacing: -0.01em;
+  }
+  .reshuffle.run .lr:nth-child(1) { transform: translateY(80px); background: var(--accent-soft); }
+  .reshuffle.run .lr:nth-child(2) { transform: translateY(-40px); }
+  .reshuffle.run .lr:nth-child(3) { transform: translateY(-40px); }
+
+  /* Principles */
+  .principles {
+    background: var(--canvas);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .principles li { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 8px; }
+  .principles li strong { color: var(--ink); font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Motion</h1>
+  <p class="lede">Alive but not chaotic. Default transitions are <strong>150–250ms</strong>. Spring physics earn their place on celebration moments only — a winner card bounces; a page transition does not. Every animation degrades gracefully on <code>prefers-reduced-motion</code>.</p>
+
+  <div class="section">
+    <p class="group-h">Tokens</p>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <p class="name">Fast</p>
+        <p class="spec">150ms · ease-default</p>
+        <div class="stage"></div>
+        <p style="font-size: 13px; color: var(--ink-3); margin: 0;">Hover, focus, button press.</p>
+      </div>
+      <div class="demo-card">
+        <p class="name">Default</p>
+        <p class="spec">250ms · ease-default</p>
+        <div class="stage"></div>
+        <p style="font-size: 13px; color: var(--ink-3); margin: 0;">Most state transitions.</p>
+      </div>
+      <div class="demo-card">
+        <p class="name">Celebration</p>
+        <p class="spec">400ms · ease-spring</p>
+        <div class="stage"></div>
+        <p style="font-size: 13px; color: var(--ink-3); margin: 0;">Round winners, leaderboard reshuffles.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Patterns</p>
+
+    <div class="demo-grid">
+      <div class="demo-card">
+        <p class="name">Score increment</p>
+        <p class="spec">+150 floats and fades</p>
+        <div class="stage">
+          <span class="score-bubble" id="scoreA">+150</span>
+        </div>
+        <button class="play" onclick="document.getElementById('scoreA').classList.remove('run'); void document.getElementById('scoreA').offsetWidth; document.getElementById('scoreA').classList.add('run');">Play</button>
+      </div>
+
+      <div class="demo-card">
+        <p class="name">Timer · last 5 seconds</p>
+        <p class="spec">Pulse, not shake</p>
+        <div class="stage">
+          <span class="timer-num" id="timerA">04</span>
+        </div>
+        <button class="play" onclick="document.getElementById('timerA').classList.toggle('run');">Toggle</button>
+      </div>
+
+      <div class="demo-card">
+        <p class="name">Wrong answer</p>
+        <p class="spec">200ms flash, no shake</p>
+        <div class="stage">
+          <input class="input-demo" id="inputA" value="amalo" />
+        </div>
+        <button class="play" onclick="const el=document.getElementById('inputA'); el.classList.remove('wrong'); void el.offsetWidth; el.classList.add('wrong');">Play</button>
+      </div>
+
+      <div class="demo-card">
+        <p class="name">Correct answer</p>
+        <p class="spec">250ms green flash</p>
+        <div class="stage">
+          <input class="input-demo" id="inputB" value="amala" />
+        </div>
+        <button class="play" onclick="const el=document.getElementById('inputB'); el.classList.toggle('right');">Toggle</button>
+      </div>
+
+      <div class="demo-card">
+        <p class="name">Winner reveal</p>
+        <p class="spec">350ms spring</p>
+        <div class="stage">
+          <div class="winner-card" id="winnerA">
+            <span style="font-size: 14px; font-weight: 700; color: var(--accent-deep); letter-spacing: 0.06em; text-transform: uppercase;">winner</span>
+            <span>Ada</span>
+          </div>
+        </div>
+        <button class="play" onclick="const el=document.getElementById('winnerA'); el.classList.remove('run'); void el.offsetWidth; el.classList.add('run');">Play</button>
+      </div>
+
+      <div class="demo-card">
+        <p class="name">Leaderboard reshuffle</p>
+        <p class="spec">400ms spring · the drama</p>
+        <div class="stage" style="height: auto; flex-direction: column;">
+          <div class="reshuffle" id="boardA" style="width: 100%;">
+            <div class="lr"><span class="rank">3</span><span class="name">Tobi</span><span class="score-c">1,180</span></div>
+            <div class="lr"><span class="rank">1</span><span class="name">Funmi</span><span class="score-c">940</span></div>
+            <div class="lr"><span class="rank">2</span><span class="name">Ada</span><span class="score-c">1,420</span></div>
+          </div>
+        </div>
+        <button class="play" style="margin-top: 12px;" onclick="document.getElementById('boardA').classList.toggle('run');">Toggle</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Principles</p>
+    <ul class="principles">
+      <li><strong>Snappy, not slow.</strong> Anything over 400ms feels sluggish in a party game.</li>
+      <li><strong>Spring for celebration only.</strong> Page transitions, hover, and ambient UI use ease-default.</li>
+      <li><strong>No punitive motion.</strong> Wrong answer flashes; it does not shake. The game encourages, never punishes.</li>
+      <li><strong>Reduced motion respected.</strong> Every non-essential animation gates behind <code>prefers-reduced-motion</code> and degrades to fade or no-motion.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

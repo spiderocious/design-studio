@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Editor cruft
+*.bak
+*.swp
+
+# Never publish process/scratch artifacts, even if a sync slips up.
+# (The publish script already excludes these, this is belt-and-suspenders.)
+**/_variations.html
+**/original-prompt.md
+notes/
+docs/
+CLAUDE.md

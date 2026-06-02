@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specialized inputs · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 0; overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+
+  .drop { border: 1.5px dashed var(--edge-2); border-radius: var(--r-card); padding: 38px 24px; text-align: center; background: var(--paper); transition: border-color 120ms var(--ease), background 120ms var(--ease); }
+  .drop:hover { border-color: var(--clay-400); background: var(--clay-50); }
+  .drop .ic { width: 44px; height: 44px; margin: 0 auto 14px; color: var(--clay-600); }
+  .drop .ttl { font-family: var(--serif); font-size: 19px; color: var(--ink); }
+  .drop .sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+
+  .file { display:flex; align-items:center; gap:14px; border:1px solid var(--edge); border-radius:12px; padding:14px 16px; }
+  .file .doc { width:38px; height:46px; border-radius:5px; background:var(--clay-50); border:1px solid var(--clay-200); display:grid; place-items:center; font-family:var(--mono); font-size:9px; color:var(--clay-700); flex-shrink:0; }
+  .file .meta { flex:1; }
+  .file .nm { font-size:13.5px; font-weight:600; }
+  .file .sz { font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-top:2px; }
+
+  .extract { width:100%; border-collapse:collapse; }
+  .extract th { text-align:left; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); padding:8px 10px; border-bottom:1px solid var(--edge); }
+  .extract td { padding:11px 10px; border-bottom:1px solid var(--hair-soft); font-size:13px; }
+  .extract td.amt-cell { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; }
+  .extract tr:last-child td { border-bottom:0; }
+  .clsf { display:inline-flex; align-items:center; }
+  .clsf select { font-family:var(--sans); font-size:12px; font-weight:600; border:1px solid var(--edge-2); border-radius:8px; padding:5px 8px; background:var(--sheet); color:var(--ink); }
+  .clsf select.warn { border-color: var(--warn-edge); background: var(--warn-bg); color: var(--warn); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">14 / 43</span>
+    <span class="ttl">Specialized inputs</span>
+    <span class="meta">Bank-statement upload &amp; review</span>
+  </div>
+
+  <p class="lede" style="max-width:64ch; margin-bottom:8px">The signature specialized flow: a Nigerian bank statement comes in as a PDF, the app extracts inflows and <em>classifies</em> them, and the visitor confirms or corrects before anything is computed. The human always has the last word on what counts as income.</p>
+
+  <!-- drop zone -->
+  <div class="scene">
+    <div class="cap">step 1 · drop your bank statement (PDF, 3–12 months)</div>
+    <div class="body">
+      <div class="drop">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0L8 8m4-4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        <div class="ttl">Drop your statement here</div>
+        <div class="sub">or <span class="b-link" style="font-weight:600;color:var(--clay-700)">browse files</span> · PDF only · processed in your browser, never stored</div>
+      </div>
+      <div class="file" style="margin-top:16px">
+        <div class="doc">PDF</div>
+        <div class="meta"><div class="nm">GTBank-statement-Jan-Jun-2026.pdf</div><div class="sz">1.4 MB · 6 months · 142 transactions</div></div>
+        <span class="chip chip-save chip-dot">Read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- extraction review -->
+  <div class="scene">
+    <div class="cap">step 2 · review what we found — correct anything wrong</div>
+    <div class="body">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px">
+        <p class="body" style="margin:0; max-width:44ch">We classified 142 credits. <b>3 need your eye</b> — we weren’t sure if they were income or transfers.</p>
+        <span class="chip chip-warn chip-dot">3 unclassified</span>
+      </div>
+      <table class="extract">
+        <thead><tr><th>Date</th><th>Narration</th><th style="text-align:right">Amount</th><th>Classified as</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">04 Feb</td><td>SALARY — ACME LTD</td><td class="amt-cell">₦540,000</td><td><span class="clsf"><select><option>Salary</option><option>Business</option><option>Transfer</option><option>Ignore</option></select></span></td></tr>
+          <tr><td class="mono">11 Feb</td><td>TRF FROM J. OKAFOR</td><td class="amt-cell">₦85,000</td><td><span class="clsf"><select class="warn"><option>Choose…</option><option>Salary</option><option selected>Business</option><option>Transfer</option><option>Ignore</option></select></span></td></tr>
+          <tr><td class="mono">22 Feb</td><td>POS REVERSAL</td><td class="amt-cell">₦12,400</td><td><span class="clsf"><select><option>Salary</option><option>Business</option><option>Transfer</option><option selected>Ignore</option></select></span></td></tr>
+        </tbody>
+      </table>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px">
+        <button class="b b-quiet">Back to upload</button>
+        <button class="b b-primary">Confirm &amp; compute</button>
+      </div>
+      <p class="disclaimer">Classification is a starting point, not a determination. <b>You decide what counts as income.</b> Nothing here is sent to a server.</p>
+    </div>
+  </div>
+
+  <!-- NIN field -->
+  <div class="scene">
+    <div class="cap">specialized · NIN (now your Tax ID) — optional, never stored</div>
+    <div class="body">
+      <div style="max-width:360px">
+        <div class="field"><span class="flabel">NIN — National Identity Number</span><input class="f f-mono" placeholder="•••• •••• •••" maxlength="13"></div>
+        <div class="sheet" style="margin-top:12px; background:var(--info-bg); border-color:var(--info-edge); padding:12px 14px; border-radius:12px">
+          <p class="tiny" style="margin:0; color:var(--info)"><b>Under the NTA 2025, your NIN is your Tax ID.</b> You don’t need a separate TIN. We don’t store it — it’s only used to label your downloaded PDF.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scene · AI follow-up · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  body { background: var(--paper); }
+  .frame { max-width: 860px; margin: 0 auto; padding: 0 0 60px; }
+  .topbar { display:flex; align-items:center; gap:14px; padding:0 32px; height:60px; border-bottom:1px solid var(--hair); }
+  .brand { display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:18px; font-weight:600; }
+  .brand .glyph { width:26px; height:26px; border-radius:7px; background:var(--clay-500); display:grid; place-items:center; color:#fff; font-size:13px; }
+  .topbar .spacer { flex:1; }
+  .scope { font-size:11.5px; color:var(--ink-3); }
+  .scope b { color:var(--ink-2); }
+
+  /* the result context strip the AI is grounded on */
+  .ctx { margin:20px 32px 0; background:var(--clay-50); border:1px solid var(--clay-200); border-radius:12px; padding:12px 16px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .ctx .lab { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--clay-800); }
+  .ctx .kv { font-size:12px; color:var(--ink-2); } .ctx .kv b { font-family:var(--mono); color:var(--ink); }
+
+  .thread { padding: 20px 32px; display:grid; gap:20px; }
+
+  .msg { display:grid; grid-template-columns:34px 1fr; gap:14px; }
+  .msg.user { grid-template-columns:1fr 34px; }
+  .msg.user .who { order:2; }
+  .avatar.assistant { width:34px; height:34px; font-size:15px; }
+  .ubub { background:var(--ink); color:#fff; border-radius:14px 14px 4px 14px; padding:12px 16px; font-size:14px; justify-self:end; max-width:80%; }
+  .uavatar { width:34px; height:34px; border-radius:50%; background:var(--paper-deep); border:1px solid var(--edge); display:grid; place-items:center; font-size:13px; color:var(--ink-3); }
+
+  .abub { font-size:14.5px; line-height:1.65; color:var(--ink-2); }
+  .abub p { margin:0 0 12px; }
+  .abub .answer-first { color:var(--ink); font-weight:500; }
+  .abub .num { font-family:var(--mono); color:var(--ink); }
+  .disc { font-size:11.5px; color:var(--ink-4); font-style:italic; margin-top:4px; }
+  .refusal { border-left:2px solid var(--info); background:var(--info-bg); border-radius:0 10px 10px 0; padding:12px 14px; color:var(--info); font-size:14px; line-height:1.6; }
+
+  .composer { margin:0 32px; border:1px solid var(--edge-2); border-radius:14px; background:var(--sheet); padding:10px 10px 10px 16px; display:flex; align-items:center; gap:10px; }
+  .composer input { flex:1; border:0; outline:0; font-size:14px; background:transparent; color:var(--ink); }
+  .composer .send { background:var(--clay-500); border:0; border-radius:10px; color:#fff; width:38px; height:38px; cursor:pointer; }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin:14px 32px 0; }
+  .sugg { font-size:12.5px; color:var(--ink-2); background:var(--sheet); border:1px solid var(--edge); border-radius:99px; padding:7px 13px; cursor:pointer; }
+  .sugg:hover { border-color:var(--clay-400); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="topbar">
+    <span class="brand"><span class="glyph">₦</span>Ask TaxLens</span>
+    <span class="spacer"></span>
+    <span class="scope">Scope: <b>personal income tax · NTA 2025</b> only</span>
+  </div>
+
+  <div class="ctx">
+    <span class="lab">Grounded on your result</span>
+    <span class="kv">Salary earner</span>
+    <span class="kv">taxable <b>₦5,640,000</b></span>
+    <span class="kv">tax <b>₦805,200</b></span>
+    <span class="kv">effective <b>12.4%</b></span>
+  </div>
+
+  <div class="thread">
+    <!-- Q1: why am I paying this -->
+    <div class="msg user"><div class="who"></div><div class="ubub">Why is my tax ₦805,200 when I earn ₦6.48m?</div><div class="uavatar">You</div></div>
+    <div class="msg"><span class="avatar assistant">T</span><div class="abub">
+      <p class="answer-first">Because most of your income is taxed below your top rate, and a chunk isn’t taxed at all.</p>
+      <p>Your gross is <span class="num">₦6,480,000</span>. After <span class="num">₦840,000</span> of reliefs (rent + pension), your taxable income is <span class="num">₦5,640,000</span>. That gets split across bands: the first <span class="num">₦800,000</span> is free, the next <span class="num">₦2,200,000</span> is taxed at 15% (<span class="num">₦330,000</span>), and the remaining <span class="num">₦2,640,000</span> at 18% (<span class="num">₦475,200</span>) — totalling <span class="num">₦805,200</span>.</p>
+      <div class="cite">
+        <div class="c-ref">NTA 2025 · Fourth Schedule</div>
+        <div class="c-text">“The first ₦800,000 of annual taxable income is charged at 0%; each higher rate applies only to income within its band.”</div>
+      </div>
+      <p class="disc">This is an explanation based on the NTA 2025 — not personalised tax advice.</p>
+    </div></div>
+
+    <!-- Q2: is X deductible (in scope, short) -->
+    <div class="msg user"><div class="who"></div><div class="ubub">Is my NHIS contribution deductible?</div><div class="uavatar">You</div></div>
+    <div class="msg"><span class="avatar assistant">T</span><div class="abub">
+      <p class="answer-first">Yes — NHIS contributions are deductible from your gross before the bands apply <span class="num">(NTA 2025, Fourth Schedule)</span>. You haven’t entered one yet, so it isn’t in your current result. Add it on the income step to see the effect.</p>
+    </div></div>
+
+    <!-- Q3: out of scope refusal -->
+    <div class="msg user"><div class="who"></div><div class="ubub">How much VAT should my small business charge?</div><div class="uavatar">You</div></div>
+    <div class="msg"><span class="avatar assistant">T</span><div class="abub">
+      <div class="refusal">That’s outside what I can help with — I’m focused on personal income tax under the Nigeria Tax Act 2025. For VAT, you’d want a tax consultant or the Nigeria Revenue Service directly.</div>
+    </div></div>
+
+    <!-- Q4: "what if I earned more" — guarded -->
+    <div class="msg user"><div class="who"></div><div class="ubub">What would I pay if I earned ₦10m instead?</div><div class="uavatar">You</div></div>
+    <div class="msg"><span class="avatar assistant">T</span><div class="abub">
+      <p class="answer-first">I can only explain the result you’ve already computed — I won’t generate a new tax figure here. Re-run the calculator with ₦10m to see that scenario, and I’ll happily walk you through it.</p>
+    </div></div>
+  </div>
+
+  <div class="chips">
+    <span class="sugg">Why is my effective rate lower than 18%?</span>
+    <span class="sugg">How was my rent relief calculated?</span>
+    <span class="sugg">Am I a Nigerian tax resident?</span>
+  </div>
+
+  <div style="height:16px"></div>
+  <div class="composer">
+    <input placeholder="Ask about your result… (personal income tax, NTA 2025)">
+    <button class="send">→</button>
+  </div>
+
+  <p class="disclaimer" style="padding:0 32px; max-width:none">TaxLens explains your computed result and cites the statute behind it. It never invents a figure or a section, and it always points you to a professional for complex situations. <b>Not tax advice.</b></p>
+</div>
+</body>
+</html>

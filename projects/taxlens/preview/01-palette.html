@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; }
+  .sw { aspect-ratio: 4/3; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid rgba(255,255,255,0.18); }
+  .sw:last-child { border-right: 0; }
+  .sw .nm { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.02em; }
+  .sw .hx { font-family: var(--mono); font-size: 10px; opacity: 0.72; margin-top: 2px; }
+  .frontis { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; margin-bottom: 44px; }
+  .proof { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 32px 34px; }
+  .reserved { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .rcell { border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; }
+  .rcell .cap { height: 56px; }
+  .rcell .lab { padding: 10px 12px; font-size: 12px; color: var(--ink-2); }
+  .rcell .lab b { display:block; color: var(--ink); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">01 / 43</span>
+    <span class="ttl">Palette</span>
+    <span class="meta">Clay on paper · light only</span>
+  </div>
+
+  <!-- frontispiece: the ink-on-paper proof -->
+  <div class="frontis">
+    <div>
+      <div class="eyebrow">The substance</div>
+      <div class="headline-xl" style="margin:14px 0 16px">Clay, paper,<br>and one cold red.</div>
+      <p class="lede" style="max-width:46ch">TaxLens is warm off-white with faintly-warm ink. A single clay accent carries every action and every result band. Red is colder than the clay on purpose — it never appears except for the one irreversible thing.</p>
+    </div>
+    <div class="proof">
+      <div class="overline" style="margin-bottom:14px">Estimated annual tax · NTA 2025</div>
+      <div class="amt amt-hero"><span class="ngn">₦</span>743,500</div>
+      <div style="margin-top:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+        <span class="chip chip-save chip-dot">You save ₦128,400</span>
+        <span class="est-badge">Estimate · NTA 2025</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- paper & ink -->
+  <div class="break"><span class="lbl">paper &amp; ink</span></div>
+  <div class="swatches">
+    <div class="sw" style="background:var(--paper);color:var(--ink)"><span class="nm">paper</span><span class="hx">#F6F4EF</span></div>
+    <div class="sw" style="background:var(--paper-deep);color:var(--ink)"><span class="nm">paper-deep</span><span class="hx">#EEEBE3</span></div>
+    <div class="sw" style="background:var(--sheet);color:var(--ink)"><span class="nm">sheet</span><span class="hx">#FFFFFF</span></div>
+    <div class="sw" style="background:var(--ink-3);color:#fff"><span class="nm">ink-3</span><span class="hx">#76726A</span></div>
+    <div class="sw" style="background:var(--ink);color:#fff"><span class="nm">ink</span><span class="hx">#1C1B18</span></div>
+  </div>
+
+  <!-- clay scale -->
+  <div class="break"><span class="lbl">clay — the single accent</span></div>
+  <div class="swatches">
+    <div class="sw" style="background:var(--clay-50);color:var(--clay-800)"><span class="nm">50</span><span class="hx">#FAF3EE</span></div>
+    <div class="sw" style="background:var(--clay-100);color:var(--clay-800)"><span class="nm">100</span><span class="hx">#F4E7DD</span></div>
+    <div class="sw" style="background:var(--clay-300);color:var(--clay-900)"><span class="nm">300</span><span class="hx">#D89E7E</span></div>
+    <div class="sw" style="background:var(--clay-500);color:#fff"><span class="nm">500 · brand</span><span class="hx">#C2613A</span></div>
+    <div class="sw" style="background:var(--clay-700);color:#fff"><span class="nm">700 · pressed</span><span class="hx">#8E4022</span></div>
+  </div>
+
+  <!-- reserved colours -->
+  <div class="break"><span class="lbl">reserved — each means one thing</span></div>
+  <p class="scene-note">Discipline is the point. Save is a calm sage (never a shouty green). Warn is amber. Critical is a <em>cold</em> crimson that can't be mistaken for the warm clay — and it appears only on the irreversible confirm. Info-slate carries statute notes.</p>
+  <div class="reserved">
+    <div class="rcell"><div class="cap" style="background:var(--save)"></div><div class="lab"><b>Save · #4F7A52</b>“You save ₦X.” Sage, calm.</div></div>
+    <div class="rcell"><div class="cap" style="background:var(--warn)"></div><div class="lab"><b>Warn · #9A6B16</b>Missing info, low confidence.</div></div>
+    <div class="rcell"><div class="cap" style="background:var(--crit)"></div><div class="lab"><b>Critical · #A11212</b>Irreversible only. Colder than clay.</div></div>
+    <div class="rcell"><div class="cap" style="background:var(--info)"></div><div class="lab"><b>Info · #3C5C7A</b>Statute notes. Not Bootstrap blue.</div></div>
+  </div>
+
+  <div class="disclaimer">TaxLens shows estimates under the Nigeria Tax Act 2025. <b>Not tax advice.</b> Figures are illustrative.</div>
+</div>
+</body>
+</html>

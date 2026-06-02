@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cards · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:18px; align-items:start; }
+  .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-4); margin: 24px 0 10px; letter-spacing:.04em; }
+  .stat { padding:20px 22px; }
+  .stat .k { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .stat .v { margin:10px 0 4px; }
+  .stat .d { font-size:12px; color:var(--ink-3); }
+  .relief { padding:18px 20px; }
+  .relief .r-top { display:flex; justify-content:space-between; align-items:baseline; }
+  .relief .nm { font-size:14px; font-weight:600; }
+  .relief .amt2 { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:15px; color:var(--clay-700); }
+  .relief .src { font-size:11.5px; color:var(--ink-3); margin-top:8px; line-height:1.45; }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">27 / 43</span>
+    <span class="ttl">Cards</span>
+    <span class="meta">Stat tile · relief card · result card</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:6px">Three card jobs: the <em>stat tile</em> (a single number with context), the <em>relief card</em> (what was deducted and why), and the <em>result card</em> (the hero, repeated from the variation pick). All hairline-bordered, no resting shadows.</p>
+
+  <div class="lbl">STAT TILES</div>
+  <div class="grid">
+    <div class="sheet stat"><div class="k">Annual tax</div><div class="v amt amt-xl"><span class="ngn">₦</span>805,200</div><div class="d">₦67,100 / month</div></div>
+    <div class="sheet stat"><div class="k">Effective rate</div><div class="v amt amt-xl">12.4<span class="ngn" style="font-size:16px">%</span></div><div class="d">Top band touched: 18%</div></div>
+    <div class="sheet stat" style="background:var(--save-bg); border-color:var(--save-edge)"><div class="k" style="color:var(--save)">You save</div><div class="v amt amt-xl" style="color:var(--save)"><span class="ngn">₦</span>128,400</div><div class="d">vs the old regime, per year</div></div>
+  </div>
+
+  <div class="lbl">RELIEF CARDS — what was deducted, and the statute it comes from</div>
+  <div class="grid">
+    <div class="sheet relief"><div class="r-top"><span class="nm">Rent relief</span><span class="amt2">₦360,000</span></div><div class="src">20% of ₦1,800,000 rent, capped at ₦500,000. <span class="mono">NTA 2025 · Fourth Schedule</span></div></div>
+    <div class="sheet relief"><div class="r-top"><span class="nm">Pension (PFA)</span><span class="amt2">₦480,000</span></div><div class="src">Fully deductible — approved Pension Fund Administrator. <span class="mono">Pension Reform Act</span></div></div>
+    <div class="sheet relief" style="border-style:dashed; opacity:.7"><div class="r-top"><span class="nm" style="color:var(--ink-3)">NHIS / NHF</span><span class="amt2" style="color:var(--ink-4)">₦0</span></div><div class="src">Not claimed — add a contribution to deduct it.</div></div>
+  </div>
+
+  <div class="lbl">RESULT CARD — the hero</div>
+  <div style="max-width:380px">
+    <div class="result">
+      <div class="r-top">
+        <div class="r-eyebrow">Estimated annual tax <span class="est-badge" style="height:18px">NTA 2025</span></div>
+        <div class="amt amt-hero"><span class="ngn">₦</span>805,200</div>
+        <div class="r-sub">Effective rate <b>12.4%</b> · ₦67,100/month · take-home <b>₦5,674,800</b></div>
+      </div>
+      <div class="r-body">
+        <div class="r-row"><span class="k">Taxable income</span><span class="v">₦5,640,000</span></div>
+        <div class="r-row"><span class="k">Reliefs applied</span><span class="v">₦840,000</span></div>
+        <div class="r-row"><span class="k">Tax-free band</span><span class="v">₦800,000</span></div>
+        <span class="chip chip-save chip-dot" style="margin-top:4px">You save ₦128,400 vs old regime</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

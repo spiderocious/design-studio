@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Natural-language query</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .wrap { max-width:900px; margin:0 auto; padding:30px 24px 80px; }
+  .askbar { display:flex; align-items:center; gap:12px; padding:10px 12px 10px 18px; border:1px solid var(--edge-2); border-radius:var(--r-pill); background:var(--panel); box-shadow:var(--shade-1); }
+  .askbar .spark2 { color:var(--coral-500); font-size:17px; }
+  .askbar input { border:0; outline:0; flex:1; font:400 16px var(--sans); background:transparent; }
+  .suggest { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .suggest .s { font-family:var(--sans); font-size:12px; color:var(--ink-3); background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-pill); padding:6px 12px; cursor:pointer; }
+  .suggest .s:hover { border-color:var(--ink-4); color:var(--ink); }
+  /* answer block */
+  .answer { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-top:24px; overflow:hidden; }
+  .ans-q { padding:16px 20px; border-bottom:1px solid var(--hair); display:flex; align-items:center; gap:10px; background:var(--panel-2); }
+  .ans-q .spark2 { color:var(--coral-500); }
+  .ans-q .qt { font-family:var(--serif); font-size:16px; font-style:italic; }
+  .ans-b { padding:20px; }
+  .ans-prose { font-family:var(--serif); font-size:16px; line-height:1.5; margin:0 0 18px; }
+  .ans-prose .num { font-family:var(--mono); font-weight:600; font-variant-numeric:tabular-nums; font-size:15px; }
+  .ans-prose b { font-weight:600; }
+  /* chart + table */
+  .funnel .step { display:grid; grid-template-columns:150px 1fr 90px; align-items:center; gap:12px; padding:5px 0; }
+  .funnel .step .lab { font-family:var(--mono); font-size:12px; }
+  .funnel .step .barwrap { background:var(--paper-deep); border-radius:var(--r-xs); height:24px; overflow:hidden; }
+  .funnel .step .bar { height:100%; background:var(--coral-500); }
+  .funnel .step .bar.haz { background:var(--hazard); }
+  .funnel .step .pct { font-family:var(--mono); font-size:12px; text-align:right; font-weight:600; }
+  /* SQL disclosure — always shown, never hidden */
+  .sql-block { border:1px solid var(--edge); border-radius:var(--r-md); overflow:hidden; margin-top:20px; }
+  .sql-h { display:flex; align-items:center; gap:8px; padding:9px 14px; background:var(--panel-2); border-bottom:1px solid var(--hair); }
+  .sql-h .lab { font-family:var(--mono); font-size:11px; color:var(--ink-2); font-weight:600; }
+  .sql-h .badge { font-family:var(--mono); font-size:9.5px; color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok-edge); border-radius:var(--r-xs); padding:2px 7px; letter-spacing:0.04em; }
+  .sql-block .sql { border-radius:0; }
+  .ans-foot { display:flex; align-items:center; gap:10px; padding:12px 20px; border-top:1px solid var(--hair); background:var(--panel-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stamp" style="border-bottom:none;margin-bottom:18px;padding-bottom:0">
+    <span class="num">32 · IV</span>
+    <span class="ttl">Ask Omoran</span>
+    <span class="meta">English in · answer + the exact SQL out</span>
+  </div>
+
+  <div class="askbar">
+    <span class="spark2">✦</span>
+    <input value="Where do mobile users drop off in the checkout funnel?" />
+    <button class="b b-primary">Ask →</button>
+  </div>
+  <div class="suggest">
+    <span class="s">What changed for mobile users this week?</span>
+    <span class="s">Which source converts best to paid?</span>
+    <span class="s">Show retention for the May 12 cohort</span>
+  </div>
+
+  <!-- the answer -->
+  <div class="answer">
+    <div class="ans-q"><span class="spark2">✦</span><span class="qt">“Where do mobile users drop off in the checkout funnel?”</span></div>
+    <div class="ans-b">
+      <p class="ans-prose">Mobile users hold steady through cart, then fall off hardest at the <b>payment step</b> — only <span class="num hl">38%</span> who reach payment complete it, against <span class="num">71%</span> on desktop. That single step accounts for most of this week's <span class="num">−18%</span> in completions.</p>
+
+      <div class="funnel">
+        <div class="step"><span class="lab">view_cart</span><div class="barwrap"><div class="bar" style="width:100%"></div></div><span class="pct">100%</span></div>
+        <div class="step"><span class="lab">begin_checkout</span><div class="barwrap"><div class="bar" style="width:81%"></div></div><span class="pct">81%</span></div>
+        <div class="step"><span class="lab">add_payment</span><div class="barwrap"><div class="bar" style="width:64%"></div></div><span class="pct">64%</span></div>
+        <div class="step"><span class="lab">checkout_completed</span><div class="barwrap"><div class="bar haz" style="width:24%"></div></div><span class="pct" style="color:var(--hazard-deep)">24%</span></div>
+      </div>
+
+      <!-- the receipt -->
+      <div class="sql-block">
+        <div class="sql-h">
+          <span class="lab">↳ this is the query I ran</span>
+          <span class="grow"></span>
+          <span class="badge">read-only</span>
+        </div>
+        <div class="sql"><span class="kw">SELECT</span> event, count(<span class="kw">DISTINCT</span> distinct_id) <span class="kw">AS</span> users
+<span class="kw">FROM</span> events
+<span class="kw">WHERE</span> event <span class="kw">IN</span> (<span class="st">'view_cart'</span>,<span class="st">'begin_checkout'</span>,<span class="st">'add_payment'</span>,<span class="st">'checkout_completed'</span>)
+  <span class="kw">AND</span> properties.device = <span class="st">'mobile'</span>
+  <span class="kw">AND</span> timestamp &gt; now() - <span class="nm">7</span>
+<span class="kw">GROUP BY</span> event <span class="kw">ORDER BY</span> users <span class="kw">DESC</span></div>
+      </div>
+    </div>
+    <div class="ans-foot">
+      <button class="b b-sm b-secondary">Edit SQL &amp; re-run</button>
+      <button class="b b-sm b-secondary">Save as widget</button>
+      <span class="grow"></span>
+      <span class="ifoot" style="border:0;margin:0;padding:0"><span class="grounded">grounded · 19,204 mobile sessions</span></span>
+    </div>
+  </div>
+
+  <p class="mark" style="margin-top:16px;max-width:62ch;line-height:1.6">The SQL is never hidden. If the question can't be answered from the schema — asking for revenue when no value is tracked — Omoran says so instead of inventing a number.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Cards, tiles, rows</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+
+  /* GAME CATALOGUE TILE — canonical version */
+  .catalogue { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tile {
+    background: var(--surface); border-radius: 22px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .tile .t-top { padding: 14px 14px 12px; color: #fff; }
+  .tile.casual    .t-top { background: var(--action); }
+  .tile.brain     .t-top { background: var(--stage); }
+  .tile.party     .t-top { background: var(--special); }
+  .tile.immersive .t-top { background: var(--ink); }
+  .tile .t-id {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 30px; letter-spacing: -0.02em; line-height: 1;
+    opacity: 0.55; margin: 0 0 6px;
+  }
+  .tile .t-tag {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; opacity: 0.85; margin: 0 0 4px;
+  }
+  .tile .t-ttl {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 17px; letter-spacing: -0.005em; line-height: 1.1; margin: 0;
+  }
+  .tile .t-body {
+    padding: 10px 14px 14px;
+    display: flex; flex-direction: column; gap: 6px; flex: 1;
+  }
+  .tile .t-meta {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .tile .t-desc {
+    font-family: var(--sans); font-weight: 400; font-size: 13px;
+    color: var(--ink-3); line-height: 1.35; margin: 0;
+  }
+
+  /* PLAYER ROW — warm canvas (initial lobby) */
+  .row-warm {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--canvas);
+    border-radius: 14px;
+  }
+  .row-warm + .row-warm { margin-top: 8px; }
+  .row-warm .name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .row-warm .meta-text { font-size: 11px; color: var(--ink-3); }
+  .av {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; flex-shrink: 0;
+  }
+  .av.b1 { background: var(--stage); }
+  .av.b2 { background: var(--special); }
+  .av.b3 { background: var(--info); color: var(--ink); }
+  .av.b4 { background: var(--accent); }
+  .av.b5 { background: var(--action); }
+  .av.b6 { background: var(--warn); color: var(--ink); }
+  .av.b7 { background: var(--danger); }
+
+  /* PLAYER ROW — ranked (post-game leaderboard) */
+  .row-ranked {
+    display: grid; grid-template-columns: 22px 36px 1fr auto;
+    align-items: center; gap: 10px;
+    padding: 10px 4px;
+  }
+  .row-ranked + .row-ranked { border-top: 1px dashed var(--ink-5); }
+  .row-ranked .rank {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink-3); text-align: right;
+  }
+  .row-ranked .rank.top { color: var(--accent-deep); }
+  .row-ranked .name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .row-ranked .score-cell {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 20px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .row-ranked .score-cell.win { color: var(--accent-deep); }
+
+  /* CARD sizes */
+  .card { background: var(--surface); border-radius: 20px; padding: 20px; }
+  .card-lg { background: var(--surface); border-radius: 28px; padding: 32px; }
+  .card-canvas { background: var(--canvas); border-radius: 20px; padding: 20px; }
+
+  .demo-shell {
+    background: var(--canvas);
+    border-radius: 22px;
+    padding: 22px;
+  }
+  .demo-shell > * + * { margin-top: 14px; }
+
+  .ttl-2 {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink); margin: 0;
+  }
+  .body-text { font-size: 14px; color: var(--ink-3); margin: 4px 0 0; }
+
+  /* League queue card (host dashboard) */
+  .league-queue {
+    background: var(--surface);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .league-queue .qh {
+    padding: 16px 20px;
+    background: var(--special-soft);
+    color: var(--special);
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .league-queue .qrow {
+    display: grid; grid-template-columns: 36px auto 1fr auto;
+    align-items: center; gap: 14px;
+    padding: 14px 20px;
+  }
+  .league-queue .qrow + .qrow { border-top: 1px dashed var(--ink-5); }
+  .league-queue .qrow .seq {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--canvas); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 14px;
+  }
+  .league-queue .qrow .g-id {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 20px; color: var(--special);
+    opacity: 0.7; letter-spacing: -0.02em; line-height: 1;
+  }
+  .league-queue .qrow .g-name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 17px; color: var(--ink);
+  }
+  .league-queue .qrow .g-meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .league-queue .qrow .g-weight {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.06em; color: var(--ink-3);
+    background: var(--canvas);
+    padding: 4px 10px; border-radius: var(--r-pill);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Cards · tiles · rows</h1>
+  <p class="lede">The data-display surfaces. Catalogue <strong>tiles</strong> carry game identity (category-tinted top, ID, title, description). <strong>Player rows</strong> have two registers: <em>warm canvas</em> for the empty lobby, <em>ranked</em> with Fraunces score for post-game. <strong>Cards</strong> at 20px (small) and 28px (large); <strong>canvas cards</strong> for nested zones.</p>
+
+  <!-- Tile -->
+  <div class="section">
+    <p class="group-h">Game catalogue tile · the signature data object</p>
+    <div class="catalogue">
+      <div class="tile casual">
+        <div class="t-top"><p class="t-id">06</p><p class="t-tag">Quick</p><p class="t-ttl">Word Bomb</p></div>
+        <div class="t-body"><span class="t-meta">3–10 · 8m</span><p class="t-desc">Type a word before the bomb explodes.</p></div>
+      </div>
+      <div class="tile brain">
+        <div class="t-top"><p class="t-id">12</p><p class="t-tag">Brain</p><p class="t-ttl">Millionaire</p></div>
+        <div class="t-body"><span class="t-meta">2–10 · 15m</span><p class="t-desc">Climb the money ladder one question at a time.</p></div>
+      </div>
+      <div class="tile party">
+        <div class="t-top"><p class="t-id">14</p><p class="t-tag">Party</p><p class="t-ttl">Catch the Lie</p></div>
+        <div class="t-body"><span class="t-meta">3–10 · 10m</span><p class="t-desc">Two truths and a lie — find the fib.</p></div>
+      </div>
+      <div class="tile casual">
+        <div class="t-top"><p class="t-id">01</p><p class="t-tag">Quick</p><p class="t-ttl">Quizzes</p></div>
+        <div class="t-body"><span class="t-meta">2–10 · 8m</span><p class="t-desc">Multiple choice. Faster correct, more points.</p></div>
+      </div>
+      <div class="tile party">
+        <div class="t-top"><p class="t-id">15</p><p class="t-tag">Party</p><p class="t-ttl">Sketch & Guess</p></div>
+        <div class="t-body"><span class="t-meta">3–12 · 12m</span><p class="t-desc">Draw it. The room guesses what it is.</p></div>
+      </div>
+      <div class="tile immersive">
+        <div class="t-top"><p class="t-id">18</p><p class="t-tag">Immersive</p><p class="t-ttl">Plead Your Case</p></div>
+        <div class="t-body"><span class="t-meta">AI · 2–10</span><p class="t-desc">Argue your innocence. The AI rules.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Warm rows -->
+  <div class="section">
+    <p class="group-h">Player row — warm canvas (initial lobby)</p>
+    <p style="font-size: 13px; color: var(--ink-3); margin: -8px 0 14px;">Used when there are no scores yet. Avatar · name · join time · state pill.</p>
+    <div>
+      <div class="row-warm"><div class="av">T</div><div><div class="name">Tobi</div><div class="meta-text">Joined 1m ago</div></div><span class="pill pill-action">Ready</span></div>
+      <div class="row-warm"><div class="av b2">A</div><div><div class="name">Ada</div><div class="meta-text">Joined 42s ago</div></div><span class="pill pill-action">Ready</span></div>
+      <div class="row-warm"><div class="av b3">F</div><div><div class="name">Funmi</div><div class="meta-text">Joined 12s ago</div></div><span class="pill pill-info">Choosing name</span></div>
+      <div class="row-warm" style="opacity: 0.55;"><div class="av" style="background: var(--ink-5); color: var(--ink-3);">+</div><div><div class="name" style="color: var(--ink-3);">Open seat</div><div class="meta-text">QR or GBE-4ZK</div></div></div>
+    </div>
+  </div>
+
+  <!-- Ranked rows -->
+  <div class="section">
+    <p class="group-h">Player row — ranked (post-game)</p>
+    <p style="font-size: 13px; color: var(--ink-3); margin: -8px 0 14px;">When a score exists. Rank · avatar · name · Fraunces score. Top rank tints to accent.</p>
+    <div>
+      <div class="row-ranked"><div class="rank top">1</div><div class="av b4">A</div><div class="name">Ada</div><div class="score-cell win">1,420</div></div>
+      <div class="row-ranked"><div class="rank">2</div><div class="av">T</div><div class="name">Tobi</div><div class="score-cell">1,180</div></div>
+      <div class="row-ranked"><div class="rank">3</div><div class="av b3">F</div><div class="name">Funmi</div><div class="score-cell">940</div></div>
+      <div class="row-ranked"><div class="rank">4</div><div class="av b2">K</div><div class="name">Kemi</div><div class="score-cell">720</div></div>
+    </div>
+  </div>
+
+  <!-- Card sizes -->
+  <div class="section">
+    <p class="group-h">Card sizes</p>
+    <div class="demo-shell">
+      <div class="card">
+        <h3 class="ttl-2">Small card · 20px radius</h3>
+        <p class="body-text">Used inside dense scenes — config option groups, modal bodies.</p>
+      </div>
+      <div class="card-lg">
+        <h3 class="ttl-2" style="font-size: 28px;">Large card · 28px radius</h3>
+        <p class="body-text">Hero scenes — the room card on the lobby, the celebration card on the post-game.</p>
+      </div>
+      <div class="card-canvas">
+        <h3 class="ttl-2">Canvas card · nested zone</h3>
+        <p class="body-text">For sub-zones inside a white card — preview rail stats, said-pill ground, etc.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- League queue (composed pattern) -->
+  <div class="section">
+    <p class="group-h">League queue · the most composed card in the system</p>
+    <p style="font-size: 13px; color: var(--ink-3); margin: -8px 0 14px;">When the host queues multiple games for a session. Header tints special (League is its own mode). Each row carries seat number, game ID, name, meta, and league-weight pill.</p>
+    <div class="league-queue">
+      <div class="qh">
+        <span>League queue · 3 games</span>
+        <span style="font-weight: 700; font-size: 11px; letter-spacing: 0.06em;">Est. 33 min</span>
+      </div>
+      <div class="qrow">
+        <span class="seq">1</span>
+        <span class="g-id">06</span>
+        <div><div class="g-name">Word Bomb</div><div class="g-meta">3 rounds · Mixed difficulty</div></div>
+        <span class="g-weight">×1</span>
+      </div>
+      <div class="qrow">
+        <span class="seq">2</span>
+        <span class="g-id">14</span>
+        <div><div class="g-name">Catch the Lie</div><div class="g-meta">Childhood theme · 2 reveals each</div></div>
+        <span class="g-weight">×2</span>
+      </div>
+      <div class="qrow">
+        <span class="seq">3</span>
+        <span class="g-id">15</span>
+        <div><div class="g-name">Sketch & Guess</div><div class="g-meta">Nigerian Food category · 5 rounds</div></div>
+        <span class="g-weight">×1</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

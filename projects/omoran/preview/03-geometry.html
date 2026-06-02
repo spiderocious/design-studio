@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Geometry</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .ruler { display: flex; align-items: flex-end; gap: 0; height: 80px; }
+  .ruler .u { border-left: 1px solid var(--edge-2); position: relative; height: 100%; }
+  .ruler .u span { position: absolute; bottom: -18px; left: 3px; font-family: var(--mono); font-size: 9px; color: var(--ink-4); }
+  .ruler .bar { background: var(--coral-bg); border: 1px solid var(--coral-edge); border-radius: var(--r-sm); height: 100%; }
+  .radii { display: flex; gap: 20px; align-items: flex-end; }
+  .radii .r { width: 80px; height: 80px; background: var(--panel); border: 1px solid var(--edge-2); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+  .radii .r span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .edges { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .edges .e { padding: 18px; border-radius: var(--r-md); }
+  .edges .e .nm { font-family: var(--sans); font-size: 13px; font-weight: 600; }
+  .edges .e .ds { font-size: 11.5px; color: var(--ink-3); margin-top: 4px; line-height: 1.5; }
+  .density .panel { padding: 0; overflow: hidden; }
+  .drow { display: grid; grid-template-columns: 22px 1fr 90px 80px; gap: 12px; align-items: center; border-bottom: 1px solid var(--hair); }
+  .drow:last-child { border-bottom: 0; }
+  .drow .tag { color: var(--ink-5); }
+  .comfortable .drow { padding: 13px 16px; }
+  .compact .drow { padding: 7px 16px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">03 · I</span>
+    <span class="ttl">Spacing &amp; geometry</span>
+    <span class="meta">3px soft frames · hairlines, not shadows</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 26px;">The dossier is built from hairline frames on a 4-pixel grid. Corners are soft (3px default, 6px for cards) so the content — charts, tables, numbers — wins over the chrome. Shadows are reserved for things that float above the page: popovers and modals.</p>
+
+  <div class="break"><span class="lbl">4-px ruler</span></div>
+  <div class="ruler">
+    <div class="u" style="width:16px"><span>4</span></div>
+    <div class="u" style="width:32px"><span>8</span></div>
+    <div class="u" style="width:48px"><span>12</span></div>
+    <div class="u" style="width:64px"><span>16</span></div>
+    <div class="u" style="width:80px"><span>20</span></div>
+    <div class="u" style="width:96px"><span>24</span></div>
+    <div class="u" style="width:0"><div class="bar" style="width:0"></div></div>
+  </div>
+
+  <div class="break"><span class="lbl">Radius lineup</span></div>
+  <div class="radii">
+    <div class="r" style="border-radius:2px"><span>2 · xs</span></div>
+    <div class="r" style="border-radius:3px"><span>3 · default</span></div>
+    <div class="r" style="border-radius:4px"><span>4 · row</span></div>
+    <div class="r" style="border-radius:6px"><span>6 · card</span></div>
+    <div class="r" style="border-radius:9999px;width:80px"><span>pill</span></div>
+  </div>
+
+  <div class="break"><span class="lbl">Edge taxonomy</span></div>
+  <div class="edges">
+    <div class="e" style="background:var(--panel);border:1px solid var(--edge)">
+      <div class="nm">Hairline frame</div>
+      <div class="ds">The default. Every panel, tile, row. 1px <code>--edge</code>.</div>
+    </div>
+    <div class="e" style="background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--coral-500)">
+      <div class="nm">Accent edge</div>
+      <div class="ds">3px coral left-rule marks an AI insight worth attention.</div>
+    </div>
+    <div class="e" style="background:var(--panel);border:1px solid var(--edge);box-shadow:var(--shade-pop)">
+      <div class="nm">Float shadow</div>
+      <div class="ds">Reserved. Popovers &amp; modals only — the one time we lift off the page.</div>
+    </div>
+  </div>
+
+  <div class="break"><span class="lbl">Density — same row, two pitches</span></div>
+  <div class="split-2 density">
+    <div>
+      <div class="overline" style="margin-bottom:8px">Comfortable · dashboards</div>
+      <div class="panel comfortable">
+        <div class="drow"><span class="tag">01</span><span class="ename">page_view</span><span class="count">412,880</span><span class="delta delta-up delta-bare">+6%</span></div>
+        <div class="drow"><span class="tag">02</span><span class="ename">session_start</span><span class="count">88,204</span><span class="delta delta-up delta-bare">+1%</span></div>
+        <div class="drow"><span class="tag">03</span><span class="ename">checkout_completed</span><span class="count">3,019</span><span class="delta delta-anom delta-bare">−18%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="overline" style="margin-bottom:8px">Compact · the events explorer</div>
+      <div class="panel compact">
+        <div class="drow"><span class="tag">01</span><span class="ename">page_view</span><span class="count">412,880</span><span class="delta delta-up delta-bare">+6%</span></div>
+        <div class="drow"><span class="tag">02</span><span class="ename">session_start</span><span class="count">88,204</span><span class="delta delta-up delta-bare">+1%</span></div>
+        <div class="drow"><span class="tag">03</span><span class="ename">checkout_completed</span><span class="count">3,019</span><span class="delta delta-anom delta-bare">−18%</span></div>
+        <div class="drow"><span class="tag">04</span><span class="ename">add_to_cart</span><span class="count">12,447</span><span class="delta delta-up delta-bare">+3%</span></div>
+        <div class="drow"><span class="tag">05</span><span class="ename">signup_started</span><span class="count">6,902</span><span class="delta delta-flat delta-bare">0%</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

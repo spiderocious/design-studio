@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tables · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .filterbar { display:flex; align-items:center; gap:10px; padding:14px 20px; border-bottom:1px solid var(--hair); flex-wrap:wrap; }
+  .filterbar .spacer { flex:1; }
+  .tbl { width:100%; border-collapse:collapse; }
+  .tbl th { text-align:left; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); padding:10px 20px; border-bottom:1px solid var(--edge); }
+  .tbl th.r, .tbl td.r { text-align:right; }
+  .tbl td { padding:13px 20px; border-bottom:1px solid var(--hair-soft); font-size:13.5px; vertical-align:middle; }
+  .tbl tr:last-child td { border-bottom:0; }
+  .tbl td.amt-cell { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  .tbl tr.sel { background: var(--clay-50); }
+  .selbar { display:flex; align-items:center; gap:14px; padding:12px 20px; background:var(--clay-50); border-bottom:1px solid var(--clay-200); }
+  .selbar .n { font-size:13px; font-weight:600; }
+  .foot { padding:12px 20px; border-top:1px solid var(--edge); display:flex; justify-content:space-between; align-items:center; }
+  .foot .total { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:15px; font-weight:500; }
+  .ribbon { display:inline-block; font-family:var(--mono); font-size:10px; padding:1px 6px; border-radius:4px; }
+  .ribbon.sal { background:var(--clay-100); color:var(--clay-800); }
+  .ribbon.biz { background:var(--info-bg); color:var(--info); }
+  .ribbon.tr  { background:var(--paper-deep); color:var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">20 / 43</span>
+    <span class="ttl">Tables</span>
+    <span class="meta">Extracted inflows · classify &amp; sum</span>
+  </div>
+
+  <p class="lede" style="max-width:64ch; margin-bottom:18px">The one real table in TaxLens is the list of credits pulled from a bank statement. It needs filtering, multi-select for bulk re-classification, and a running total in the foot — because the sum <em>is</em> the income figure that gets taxed.</p>
+
+  <div class="scene">
+    <div class="cap">worklist · inflows from GTBank-statement-Jan-Jun-2026.pdf</div>
+
+    <div class="filterbar">
+      <span class="chip chip-paper">All 142</span>
+      <span class="chip chip-clay">Salary · 6</span>
+      <span class="chip chip-info">Business · 23</span>
+      <span class="chip chip-paper">Transfers · 110</span>
+      <span class="chip chip-warn chip-dot">Unclassified · 3</span>
+      <span class="spacer"></span>
+      <div class="money" style="width:200px"><span class="naira" style="left:12px">⌕</span><input class="f f-sm" placeholder="Search narration" style="padding-left:30px"></div>
+    </div>
+
+    <div class="selbar">
+      <span class="check on"></span>
+      <span class="n">2 selected</span>
+      <button class="b b-secondary b-sm">Reclassify as Business</button>
+      <button class="b b-quiet b-sm">Ignore</button>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th style="width:36px"></th><th>Date</th><th>Narration</th><th>Class</th><th class="r">Amount</th></tr></thead>
+      <tbody>
+        <tr class="sel"><td><span class="check on"></span></td><td class="mono">04 Feb 2026</td><td>SALARY — ACME LTD</td><td><span class="ribbon sal">SALARY</span></td><td class="amt-cell r">₦540,000</td></tr>
+        <tr class="sel"><td><span class="check on"></span></td><td class="mono">04 Mar 2026</td><td>SALARY — ACME LTD</td><td><span class="ribbon sal">SALARY</span></td><td class="amt-cell r">₦540,000</td></tr>
+        <tr><td><span class="check"></span></td><td class="mono">11 Feb 2026</td><td>TRF FROM J. OKAFOR — design work</td><td><span class="ribbon biz">BUSINESS</span></td><td class="amt-cell r">₦85,000</td></tr>
+        <tr><td><span class="check"></span></td><td class="mono">19 Feb 2026</td><td>PAYSTACK PAYOUT</td><td><span class="ribbon biz">BUSINESS</span></td><td class="amt-cell r">₦212,500</td></tr>
+        <tr><td><span class="check"></span></td><td class="mono">22 Feb 2026</td><td>TRF FROM MUM</td><td><span class="ribbon tr">TRANSFER</span></td><td class="amt-cell r" style="color:var(--ink-4)">₦40,000</td></tr>
+        <tr><td><span class="check"></span></td><td class="mono">28 Feb 2026</td><td>UNKNOWN CREDIT — REF 8841</td><td><span class="chip chip-warn" style="height:20px;font-size:11px">Unclassified</span></td><td class="amt-cell r">₦150,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="foot">
+      <span class="tiny">Counted as income: salary + business. Transfers &amp; ignored credits excluded.</span>
+      <span>Income total <span class="total">₦6,480,000</span> <span class="amt-unit">/yr</span></span>
+    </div>
+  </div>
+
+  <p class="scene-note">Density: rows are 47px — packed enough to scan a statement, roomy enough to tap on mobile (where this collapses to stacked cards, narration on top, amount + class chip below).</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scene · Tax result · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  body { background: var(--paper); }
+  .frame { max-width: 1180px; margin: 0 auto; padding: 0 0 80px; }
+  .topbar { display:flex; align-items:center; gap:18px; padding:0 40px; height:64px; border-bottom:1px solid var(--hair); }
+  .brand { display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:20px; font-weight:600; letter-spacing:-0.01em; }
+  .brand .glyph { width:28px; height:28px; border-radius:8px; background:var(--clay-500); display:grid; place-items:center; color:#fff; font-size:14px; }
+  .brand .ng { font-size:11px; font-weight:600; color:var(--ink-4); letter-spacing:.08em; align-self:center; }
+  .topbar .spacer { flex:1; }
+  .topbar .tool { display:flex; gap:8px; }
+
+  .wrap { display:grid; grid-template-columns: 1.15fr 0.85fr; gap:24px; padding: 32px 40px 0; align-items:start; }
+
+  /* hero column */
+  .hero-result { background:var(--sheet); border:1px solid var(--edge); border-radius:var(--r-card-lg); overflow:hidden; }
+  .hr-top { padding:30px 32px 26px; background:var(--clay-50); border-bottom:1px solid var(--hair); }
+  .hr-eyebrow { display:flex; align-items:center; gap:10px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--clay-800); margin-bottom:16px; }
+  .hr-sub { font-size:14px; color:var(--ink-2); margin-top:14px; }
+  .hr-sub b { font-weight:600; }
+  .hr-chips { display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+
+  .hr-body { padding:24px 32px 28px; }
+  .splitbar { display:flex; height:42px; border-radius:10px; overflow:hidden; border:1px solid var(--edge); margin-bottom:8px; }
+  .splitbar .seg { display:flex; flex-direction:column; justify-content:center; padding:0 12px; color:#fff; }
+  .splitbar .seg .pct { font-family:var(--mono); font-size:12px; font-weight:600; }
+  .splitbar .seg .a { font-size:10px; opacity:.85; white-space:nowrap; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; margin:10px 0 22px; }
+  .legend .li { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-3); }
+  .legend .sw { width:11px; height:11px; border-radius:3px; }
+
+  .ladder { border:1px solid var(--edge); border-radius:12px; overflow:hidden; }
+  .rung { display:grid; grid-template-columns:1fr 64px 96px; gap:14px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--hair-soft); }
+  .rung:last-child { border-bottom:0; }
+  .rung.exempt { background:var(--clay-50); }
+  .rung .nm { font-size:13px; } .rung .nm .s { display:block; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:1px; }
+  .rung .rate { font-family:var(--mono); font-size:13px; color:var(--clay-700); text-align:right; }
+  .rung .tax { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13px; text-align:right; }
+
+  /* side column */
+  .side { display:grid; gap:16px; }
+  .panel { background:var(--sheet); border:1px solid var(--edge); border-radius:var(--r-card); padding:20px 22px; }
+  .panel .ph { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+  .kv { display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; border-bottom:1px solid var(--hair-soft); }
+  .kv:last-child { border-bottom:0; }
+  .kv .k { font-size:13px; color:var(--ink-2); }
+  .kv .v { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13.5px; }
+  .save-panel { background:var(--save-bg); border-color:var(--save-edge); }
+  .ask { background:var(--ink); color:#fff; border-radius:var(--r-card); padding:20px 22px; }
+  .ask .h { font-family:var(--serif); font-size:18px; margin-bottom:6px; }
+  .ask p { font-size:13px; color:rgba(255,255,255,.72); margin:0 0 14px; line-height:1.5; }
+  .ask .ph2 { display:flex; gap:8px; }
+  .ask input { flex:1; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:10px; color:#fff; padding:0 12px; height:40px; font-size:13px; outline:none; }
+  .ask input::placeholder { color:rgba(255,255,255,.5); }
+  .ask .send { background:var(--clay-500); border:0; border-radius:10px; color:#fff; width:40px; height:40px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="topbar">
+    <span class="brand"><span class="glyph">₦</span>TaxLens<span class="ng">NG</span></span>
+    <span class="spacer"></span>
+    <div class="tool">
+      <button class="b b-secondary b-sm">Edit income</button>
+      <button class="b b-secondary b-sm">Download PDF</button>
+      <button class="b b-danger-ghost b-sm">Clear all my data</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <div class="hero-result">
+      <div class="hr-top">
+        <div class="hr-eyebrow">Your estimated annual tax <span class="est-badge" style="height:18px">NTA 2025</span></div>
+        <div class="amt amt-hero"><span class="ngn">₦</span>805,200</div>
+        <div class="hr-sub">That’s <b>₦67,100 a month</b>, an effective rate of <b>12.4%</b>, and you take home <b>₦5,674,800</b> a year.</div>
+        <div class="hr-chips">
+          <span class="chip chip-save chip-dot">You save ₦128,400 vs the old regime</span>
+          <span class="chip chip-clay chip-dot">First ₦800k tax-free</span>
+        </div>
+      </div>
+      <div class="hr-body">
+        <div class="overline" style="margin-bottom:12px">Your ₦5,640,000 taxable income, by band</div>
+        <div class="splitbar">
+          <div class="seg" style="flex:0 0 14.2%; background:var(--clay-300)"><span class="pct" style="color:var(--clay-900)">0%</span><span class="a" style="color:var(--clay-900)">₦800k</span></div>
+          <div class="seg" style="flex:0 0 39%; background:var(--clay-500)"><span class="pct">15%</span><span class="a">₦2.2m</span></div>
+          <div class="seg" style="flex:0 0 46.8%; background:var(--clay-700)"><span class="pct">18%</span><span class="a">₦2.64m</span></div>
+        </div>
+        <div class="legend">
+          <span class="li"><span class="sw" style="background:var(--clay-300)"></span>Tax-free</span>
+          <span class="li"><span class="sw" style="background:var(--clay-500)"></span>15% band</span>
+          <span class="li"><span class="sw" style="background:var(--clay-700)"></span>18% band</span>
+        </div>
+
+        <div class="ladder">
+          <div class="rung exempt"><div class="nm">First slice — exempt<span class="s">₦0 – ₦800,000</span></div><div class="rate">0%</div><div class="tax">₦0</div></div>
+          <div class="rung"><div class="nm">Second slice<span class="s">₦800k – ₦3m</span></div><div class="rate">15%</div><div class="tax">₦330,000</div></div>
+          <div class="rung"><div class="nm">Third slice<span class="s">₦3m – ₦5.64m</span></div><div class="rate">18%</div><div class="tax">₦475,200</div></div>
+        </div>
+
+        <p class="body" style="margin:16px 0 0; max-width:60ch"><span class="serif" style="font-size:15px">Why is your effective rate only 12.4% when you touch the 18% band?</span> Because each rate applies only to its own slice — and your first ₦800,000 is free.</p>
+      </div>
+    </div>
+
+    <!-- SIDE -->
+    <div class="side">
+      <div class="panel">
+        <div class="ph">Reliefs applied</div>
+        <div class="kv"><span class="k">Rent relief (20%, capped)</span><span class="v" style="color:var(--clay-700)">₦360,000</span></div>
+        <div class="kv"><span class="k">Pension (PFA)</span><span class="v" style="color:var(--clay-700)">₦480,000</span></div>
+        <div class="kv"><span class="k">NHIS / NHF / insurance</span><span class="v muted">₦0</span></div>
+        <div class="kv"><span class="k" style="font-weight:600;color:var(--ink)">Total reliefs</span><span class="v" style="font-weight:600">₦840,000</span></div>
+      </div>
+
+      <div class="panel save-panel">
+        <div class="ph" style="color:var(--save)">Vs the old regime</div>
+        <div class="kv" style="border-color:var(--save-edge)"><span class="k">Old PITA estimate</span><span class="v" style="color:var(--ink-2)">₦933,600</span></div>
+        <div class="kv" style="border-color:var(--save-edge)"><span class="k">New (NTA 2025)</span><span class="v">₦805,200</span></div>
+        <div class="kv"><span class="k" style="font-weight:600;color:var(--save)">You save</span><span class="v" style="font-weight:600;color:var(--save)">₦128,400 / yr</span></div>
+      </div>
+
+      <div class="ask">
+        <div class="h">Still unsure about a number?</div>
+        <p>Ask TaxLens. It explains your result and cites the law — it won’t guess.</p>
+        <div class="ph2"><input placeholder="e.g. Why is my rent relief only ₦360k?"><button class="send">→</button></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="disclaimer" style="padding:0 40px; max-width:none">Computed under the Nigeria Tax Act 2025 from the figures you entered. Every figure carries an <b>“Estimate · NTA 2025”</b> mark. This is <b>not tax advice</b> — for complex situations, see a Nigerian tax professional.</p>
+</div>
+</body>
+</html>

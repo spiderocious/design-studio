@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Word Bomb · configure</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+
+  .config-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 14px;
+  }
+  .config-stack { display: flex; flex-direction: column; gap: 12px; }
+
+  .head-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 22px;
+    background: var(--surface);
+    border-radius: var(--r-card);
+  }
+  .head-card .id-chip {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 38px; color: var(--action);
+    letter-spacing: -0.02em; line-height: 1;
+    width: 72px; height: 72px;
+    background: var(--canvas); border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .head-card .ttl {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 28px; color: var(--ink);
+    letter-spacing: -0.01em; line-height: 1.1; margin: 0;
+  }
+  .head-card .sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+  .head-card .head-desc {
+    font-size: 14px; color: var(--ink-3); margin-top: 6px;
+    font-family: var(--sans); font-weight: 400;
+  }
+
+  .group-card {
+    background: var(--surface); border-radius: var(--r-card);
+    padding: 20px 22px;
+  }
+  .group-head {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .group-label {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .group-status {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    color: var(--action-deep);
+  }
+
+  .opt-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; padding: 10px 0; gap: 14px;
+  }
+  .opt-row + .opt-row { border-top: 1px dashed var(--ink-5); }
+  .opt-row .opt-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .opt-row .opt-desc { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .opt-value {
+    font-family: var(--sans); font-weight: 800; font-size: 14px;
+    color: var(--ink); background: var(--canvas);
+    padding: 8px 14px; border-radius: var(--r-pill);
+  }
+
+  .preview-rail {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    align-self: start;
+    position: sticky;
+    top: 20px;
+  }
+  .preview-rail .label {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .preview-rail .preview-stat {
+    background: var(--canvas);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .preview-rail .preview-stat .k {
+    font-size: 12px; color: var(--ink-3); font-weight: 700;
+  }
+  .preview-rail .preview-stat .v {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 26px; color: var(--ink); margin-top: 4px;
+    letter-spacing: -0.01em; font-variant-numeric: tabular-nums;
+  }
+  .preview-rail .preview-stat .v small {
+    font-family: var(--sans); font-weight: 700; font-size: 13px;
+    color: var(--ink-3); letter-spacing: 0;
+    margin-left: 4px;
+  }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Word Bomb · configure (host phone)</p>
+
+  <div class="config-grid">
+    <div class="config-stack">
+      <div class="head-card">
+        <div class="id-chip">06</div>
+        <div>
+          <p class="ttl">Word Bomb</p>
+          <p class="sub">Quick · Casual · 3–10 players</p>
+          <p class="head-desc">Type a word before the bomb explodes.</p>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-head"><span class="group-label">Round</span><span class="group-status">3 set · all default</span></div>
+        <div class="opt-row"><div><div class="opt-name">Lives per player</div><div class="opt-desc">Wrong/timeout before elimination</div></div><span class="opt-value">3</span></div>
+        <div class="opt-row"><div><div class="opt-name">Bomb time</div><div class="opt-desc">Decays as rounds progress</div></div><div class="seg"><button>Fixed</button><button class="on">Decay</button></div></div>
+        <div class="opt-row"><div><div class="opt-name">Rounds</div></div><div class="seg"><button>1</button><button class="on">3</button><button>5</button></div></div>
+      </div>
+      <div class="group-card">
+        <div class="group-head"><span class="group-label">Content</span><span class="group-status">3 set</span></div>
+        <div class="opt-row"><div><div class="opt-name">Category mix</div><div class="opt-desc">12 of 24 selected · Nigerian foods, animals, world cities…</div></div><span class="opt-value">12 selected</span></div>
+        <div class="opt-row"><div><div class="opt-name">Difficulty</div></div><div class="seg"><button>Easy</button><button class="on">Mixed</button><button>Hard</button></div></div>
+        <div class="opt-row"><div><div class="opt-name">Rating</div></div><span class="opt-value">Family</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary">Start game</button>
+        <button class="btn btn-secondary">Use defaults</button>
+        <button class="btn btn-ghost">Back</button>
+      </div>
+    </div>
+
+    <div class="preview-rail">
+      <span class="label">This round</span>
+      <div class="preview-stat"><div class="k">Estimated</div><div class="v">~ 8<small>min</small></div></div>
+      <div class="preview-stat"><div class="k">First bomb</div><div class="v">07<small>s</small></div></div>
+      <div class="preview-stat"><div class="k">Eliminations available</div><div class="v">9<small>lives</small></div></div>
+      <div class="preview-stat"><div class="k">Estimated words</div><div class="v">~ 60</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

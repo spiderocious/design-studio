@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Type</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 780px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section-card {
+    background: var(--surface);
+    border-radius: 22px;
+    padding: 32px 36px;
+    margin-top: 16px;
+  }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 18px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 24px;
+    padding: 12px 0;
+    border-top: 1px dashed var(--ink-5);
+    align-items: baseline;
+  }
+  .row:first-of-type { border-top: 0; }
+  .row .spec {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .row .spec .sub-spec {
+    font-weight: 500; text-transform: none; letter-spacing: 0;
+    color: var(--ink-4); font-size: 10px; margin-top: 2px;
+  }
+
+  .display-xl {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 80px; line-height: 0.95;
+    letter-spacing: -0.04em; color: var(--ink); margin: 0;
+  }
+  .display-lg {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 56px; line-height: 1; letter-spacing: -0.03em;
+    color: var(--ink); margin: 0;
+  }
+  .display {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 40px; line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--ink); margin: 0;
+  }
+  .headline {
+    font-family: var(--serif); font-weight: 500;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 28px; line-height: 1.15; letter-spacing: -0.01em;
+    color: var(--ink); margin: 0;
+  }
+  .h2 { font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); margin: 0; line-height: 1.25; }
+  .body-lg { font-size: 17px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+  .body { font-size: 15px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+  .label {
+    font-family: var(--sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin: 0;
+  }
+  .button-spec {
+    font-family: var(--sans); font-size: 16px; font-weight: 700;
+    color: var(--ink); margin: 0;
+  }
+
+  .number-hero {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 92px; line-height: 0.95; letter-spacing: -0.04em;
+    color: var(--danger); margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .number-score {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 32px; color: var(--accent-deep); margin: 0;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  }
+  .number-id {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 30px; opacity: 0.55; color: var(--action); margin: 0;
+    letter-spacing: -0.02em; line-height: 1;
+  }
+
+  .pairing-card {
+    background: var(--canvas);
+    border-radius: 18px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .pairing-card .small { font-size: 12px; color: var(--ink-3); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;}
+  .pairing-card .ttl {
+    font-family: var(--serif); font-weight: 600; font-variation-settings: var(--fraunces-soft);
+    font-size: 28px; color: var(--ink); letter-spacing: -0.01em; margin: 0 0 8px;
+  }
+  .pairing-card .body-row { font-size: 15px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Type</h1>
+  <p class="lede">Two faces. <strong>Fraunces</strong> for the emotional weight — big numbers, headlines, game titles, celebration moments, the wordmark. <strong>Nunito</strong> does the operational work — every button, label, body line, row, pill. Fraunces never touches UI chrome. Tabular numerals are on by default everywhere; turn them off only if you mean to.</p>
+
+  <div class="section-card">
+    <p class="group-h">Display · Fraunces (soft 100, opsz 144)</p>
+    <div class="row"><div class="spec">DISPLAY-XL<div class="sub-spec">80 / 0.95 / −0.04em</div></div><p class="display-xl">Friday game night</p></div>
+    <div class="row"><div class="spec">DISPLAY-LG<div class="sub-spec">56 / 1 / −0.03em</div></div><p class="display-lg">Final scores</p></div>
+    <div class="row"><div class="spec">DISPLAY<div class="sub-spec">40 / 1.05 / −0.02em</div></div><p class="display">Pick a game</p></div>
+    <div class="row"><div class="spec">HEADLINE<div class="sub-spec">28 / 1.15 / −0.01em · weight 500</div></div><p class="headline">Word Bomb · configure</p></div>
+  </div>
+
+  <div class="section-card">
+    <p class="group-h">Operational · Nunito</p>
+    <div class="row"><div class="spec">H2<div class="sub-spec">20 / 1.25 / w700</div></div><p class="h2">Round</p></div>
+    <div class="row"><div class="spec">BODY-LG<div class="sub-spec">17 / 1.5 / w400</div></div><p class="body-lg">Type a word before the bomb explodes. Each correct answer earns time. Run the clock out, you lose a life.</p></div>
+    <div class="row"><div class="spec">BODY<div class="sub-spec">15 / 1.5 / w400</div></div><p class="body">Game ends when the timer expires or one player remains standing. Default duration 8 minutes.</p></div>
+    <div class="row"><div class="spec">BUTTON<div class="sub-spec">16 / w700 · +0.005em</div></div><p class="button-spec">Start game</p></div>
+    <div class="row"><div class="spec">LABEL<div class="sub-spec">12 / w700 · +0.12em · upper</div></div><p class="label">Round</p></div>
+  </div>
+
+  <div class="section-card">
+    <p class="group-h">Numerals — Fraunces tabular, every score and timer</p>
+    <div class="row"><div class="spec">HERO TIMER<div class="sub-spec">92 / 0.95 / −0.04em</div></div><p class="number-hero">04</p></div>
+    <div class="row"><div class="spec">SCORE<div class="sub-spec">32 / w600 / −0.02em</div></div><p class="number-score">1,420</p></div>
+    <div class="row"><div class="spec">GAME ID<div class="sub-spec">30 / w600 / opacity 0.55</div></div><p class="number-id">06</p></div>
+  </div>
+
+  <div class="section-card">
+    <p class="group-h">The pairing in context</p>
+    <div class="pairing-card">
+      <p class="small">Hero pattern · serif title + sans body</p>
+      <p class="ttl">A round of Word Bomb</p>
+      <p class="body-row">Three to ten players. Pass the bomb around the table, type a word in the category before it explodes. Three lives. Last player standing wins.</p>
+    </div>
+
+    <div class="pairing-card" style="background: var(--accent-soft);">
+      <p class="small" style="color: var(--accent-deep);">Celebration pattern · serif phrase + serif number</p>
+      <div style="display: flex; align-items: baseline; gap: 24px;">
+        <p style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft); font-weight: 600; font-size: 28px; color: var(--ink); margin: 0;">Ada wins with</p>
+        <p style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display); font-weight: 600; font-size: 56px; color: var(--accent-deep); margin: 0; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1;">1,420</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

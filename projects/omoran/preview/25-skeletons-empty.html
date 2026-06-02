@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Skeletons & empty</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-bottom:16px; padding:18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  .sk { background:linear-gradient(90deg,var(--paper-deep) 25%,#F3EFE6 50%,var(--paper-deep) 75%); background-size:200% 100%; animation:sh 1.3s infinite; border-radius:var(--r-xs); }
+  @keyframes sh { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .sk-row { display:grid; grid-template-columns:22px 1fr 80px 60px; gap:14px; align-items:center; padding:11px 0; border-bottom:1px solid var(--hair); }
+  .empty { text-align:center; padding:34px 20px; }
+  .empty .ic { font-size:26px; color:var(--ink-4); }
+  .empty .ttl { font-family:var(--serif); font-size:17px; margin:10px 0 4px; }
+  .empty .sub { font-size:12.5px; color:var(--ink-3); max-width:42ch; margin:0 auto 16px; line-height:1.5; }
+  .err { border-left:3px solid var(--crit); background:var(--crit-bg); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">25 · III</span>
+    <span class="ttl">Skeletons &amp; empty</span>
+    <span class="meta">loading mirrors layout · empty in serif · error in oxblood</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">Loading skeletons mirror the real layout so nothing jumps. Empty states speak in the analyst's serif voice — they teach the next step. Errors carry an oxblood leading edge.</p>
+
+  <!-- Skeleton mirroring the events table -->
+  <div class="scene">
+    <span class="overline">Loading · events explorer skeleton</span>
+    <div>
+      <div class="sk-row"><div class="sk" style="height:10px;width:14px"></div><div class="sk" style="height:12px;width:160px"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div></div>
+      <div class="sk-row"><div class="sk" style="height:10px;width:14px"></div><div class="sk" style="height:12px;width:130px"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div></div>
+      <div class="sk-row"><div class="sk" style="height:10px;width:14px"></div><div class="sk" style="height:12px;width:180px"></div><div class="sk" style="height:12px"></div><div class="sk" style="height:12px"></div></div>
+    </div>
+  </div>
+
+  <!-- AI insight skeleton -->
+  <div class="scene">
+    <span class="overline">Loading · the analyst is thinking</span>
+    <div class="insight" style="border-left-color:var(--edge-2)">
+      <div class="row" style="gap:8px;margin-bottom:12px"><span class="sk" style="height:18px;width:80px;border-radius:var(--r-sm)"></span><span class="mono" style="font-size:11px;color:var(--ink-4);margin-left:auto">analysing 28k events…</span></div>
+      <div class="sk" style="height:13px;width:100%;margin-bottom:7px"></div>
+      <div class="sk" style="height:13px;width:88%;margin-bottom:7px"></div>
+      <div class="sk" style="height:13px;width:54%"></div>
+    </div>
+  </div>
+
+  <div class="split-2">
+    <!-- Empty: no events yet -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Empty · no events yet</span>
+      <div class="empty">
+        <div class="ic">◷</div>
+        <div class="ttl">Waiting for your first event</div>
+        <div class="sub">Once the SDK sends an event from your site, it'll appear here within seconds. The indicator turns green the moment it arrives.</div>
+        <button class="b b-primary b-sm">View install snippet</button>
+      </div>
+    </div>
+
+    <!-- Empty: no insights -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Empty · not enough data for insights</span>
+      <div class="empty">
+        <div class="ic">✦</div>
+        <div class="ttl">The analyst needs more volume</div>
+        <div class="sub">Below 1,000 events a day, anomalies are mostly noise. We'll start surfacing insights once your traffic grows.</div>
+        <span class="pill pill-warn"><span class="dot"></span>low confidence</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="scene" style="margin-top:16px;padding:0">
+    <div class="insight err" style="border-radius:var(--r-lg)">
+      <div class="row" style="gap:9px;margin-bottom:8px"><span style="color:var(--crit)">⊘</span><span class="mono" style="font-size:11px;color:var(--crit);font-weight:600;letter-spacing:0.08em">QUERY FAILED</span></div>
+      <p class="iprose" style="font-size:14px;color:var(--ink-2)">The SQL referenced a column <code style="font-family:var(--mono);font-size:13px">revenue</code> that doesn't exist in <b>events</b>. Check the schema browser on the left, or ask in plain English instead.</p>
+      <div class="ifoot" style="border-top-color:var(--crit-edge)"><a class="show-query" style="color:var(--crit)">↳ view error detail</a><span class="grounded" style="color:var(--ink-3)">retry available</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

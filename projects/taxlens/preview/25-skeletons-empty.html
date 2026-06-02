@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skeletons &amp; empty · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; min-height: 200px; display:flex; flex-direction:column; justify-content:center; }
+  @keyframes shimmer { 0%{background-position:-200px 0} 100%{background-position:200px 0} }
+  .sk { background: linear-gradient(90deg, var(--paper-deep) 25%, #F4F1EA 50%, var(--paper-deep) 75%); background-size:400px 100%; animation: shimmer 1.3s infinite linear; border-radius:6px; }
+  .empty { text-align:center; }
+  .empty .ic { width:48px; height:48px; margin:0 auto 14px; color:var(--clay-400); }
+  .empty .ttl { font-family:var(--serif); font-size:20px; color:var(--ink); }
+  .empty .sub { font-size:13px; color:var(--ink-3); margin-top:6px; max-width:38ch; margin-left:auto; margin-right:auto; line-height:1.55; }
+  .err { border-left:3px solid var(--crit); background:var(--crit-bg); border-radius:0 12px 12px 0; padding:16px 18px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">25 / 43</span>
+    <span class="ttl">Skeletons &amp; empty</span>
+    <span class="meta">Loading · empty · error</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">Loading mirrors the result layout so nothing jumps. Empty states speak in the calm serif voice — they invite, they don’t scold. Errors get a single crimson leading edge, never a full red panel.</p>
+
+  <div class="grid">
+    <!-- skeleton result -->
+    <div class="scene">
+      <div class="cap">loading · computing your result</div>
+      <div class="body" style="justify-content:flex-start">
+        <div class="sk" style="height:14px; width:50%; margin-bottom:14px"></div>
+        <div class="sk" style="height:40px; width:70%; margin-bottom:20px"></div>
+        <div class="sk" style="height:34px; margin-bottom:8px"></div>
+        <div class="sk" style="height:34px; margin-bottom:8px"></div>
+        <div class="sk" style="height:34px; width:80%"></div>
+      </div>
+    </div>
+
+    <!-- empty: no income yet -->
+    <div class="scene">
+      <div class="cap">empty · nothing entered yet</div>
+      <div class="body">
+        <div class="empty">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>
+          <div class="ttl">Nothing to show yet</div>
+          <div class="sub">Enter your income or upload a statement, and your tax position will appear here.</div>
+          <button class="b b-primary" style="margin-top:16px">Try with sample data</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- empty: out of scope AI -->
+    <div class="scene">
+      <div class="cap">empty · AI has no answer in scope</div>
+      <div class="body">
+        <div class="empty">
+          <div class="ttl serif-i" style="font-size:18px; font-weight:400">“That’s outside what I can help with.”</div>
+          <div class="sub" style="margin-top:10px">TaxLens only explains personal income tax under the NTA 2025. For VAT or company tax, a tax consultant or the NRS can help.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- error -->
+    <div class="scene">
+      <div class="cap">error · couldn’t read the file</div>
+      <div class="body" style="justify-content:flex-start">
+        <div class="err">
+          <div class="body" style="color:var(--crit); font-weight:600; margin-bottom:4px">We couldn’t read that PDF</div>
+          <p class="tiny" style="margin:0; color:var(--ink-2)">It may be password-protected or a scanned image. Try a downloaded PDF from your bank’s app, or enter your income manually.</p>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:14px"><button class="b b-secondary b-sm">Enter manually</button><button class="b b-quiet b-sm">Try another file</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Modals</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .page { max-width:1180px; }
+  .scrim { background:rgba(23,21,15,0.34); border-radius:var(--r-lg); padding:34px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .modal { width:440px; max-width:100%; background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); box-shadow:var(--shade-pop); overflow:hidden; }
+  .modal .m-h { padding:18px 22px 0; }
+  .modal .m-h .kick { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; }
+  .modal .m-h h3 { font-family:var(--serif); font-size:20px; font-weight:600; letter-spacing:-0.01em; margin:8px 0 0; }
+  .modal .m-b { padding:14px 22px 18px; }
+  .modal .m-b p { font-size:13.5px; color:var(--ink-2); line-height:1.55; margin:0 0 12px; }
+  .modal .m-f { display:flex; gap:8px; justify-content:flex-end; padding:14px 22px; border-top:1px solid var(--hair); background:var(--panel-2); }
+  .label { font-family:var(--mono); font-size:10px; color:var(--ink-4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; display:block; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+  .impact { background:var(--crit-bg); border:1px solid var(--crit-edge); border-radius:var(--r-md); padding:12px 14px; margin:4px 0 14px; }
+  .impact .ir { display:flex; justify-content:space-between; font-size:12.5px; padding:3px 0; }
+  .impact .ir .v { font-family:var(--mono); font-weight:600; color:var(--crit); }
+  .typed { font-family:var(--mono); }
+  .hold { position:relative; overflow:hidden; }
+  .hold .fill { position:absolute; inset:0; background:var(--crit); width:0; transition:width 1.4s linear; z-index:0; }
+  .hold span { position:relative; z-index:1; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">40 · V</span>
+    <span class="ttl">Modals</span>
+    <span class="meta">confirm · form · the CRITICAL irreversible</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">Every system has a moment it can't take back. In Omoran there are two: <strong style="color:var(--ink)">rotating a key</strong> (breaks live ingestion) and <strong style="color:var(--ink)">deleting a user's data</strong> (GDPR, permanent). Both demand a deliberate confirm — a typed phrase or a hold — never a single click.</p>
+
+  <div class="grid2">
+    <!-- 1 · routine confirm -->
+    <div>
+      <span class="label">Routine confirm</span>
+      <div class="scrim" style="padding:24px">
+        <div class="modal" style="width:380px">
+          <div class="m-h"><h3 style="font-size:18px">Remove this widget?</h3></div>
+          <div class="m-b"><p>“Mobile checkout · 30d” will be removed from this dashboard. You can add it back anytime.</p></div>
+          <div class="m-f"><button class="b b-secondary">Cancel</button><button class="b b-primary">Remove</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · form modal -->
+    <div>
+      <span class="label">Form · invite member</span>
+      <div class="scrim" style="padding:24px">
+        <div class="modal" style="width:380px">
+          <div class="m-h"><h3 style="font-size:18px">Invite a teammate</h3></div>
+          <div class="m-b">
+            <label class="f-label">Email</label>
+            <input class="f" value="rita@acme.com" style="margin-bottom:12px" />
+            <label class="f-label">Role</label>
+            <div class="row"><span class="pill pill-ink">Member</span><span class="pill pill-ghost">Read-only</span></div>
+          </div>
+          <div class="m-f"><button class="b b-secondary">Cancel</button><button class="b b-primary">Send invite</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 · THE CRITICAL: rotate key (typed-confirm) -->
+  <div class="break"><span class="lbl">The critical idiom · rotate key — type to confirm</span></div>
+  <div class="scrim">
+    <div class="modal">
+      <div class="m-h">
+        <span class="kick" style="color:var(--crit)">⊘ Irreversible · logged</span>
+        <h3>Rotate the public write key?</h3>
+      </div>
+      <div class="m-b">
+        <p>The current key keeps working for a <b>24-hour grace period</b>, then stops. Any site or app still using the old key will go silent after that. Update your SDK before the grace period ends.</p>
+        <div class="impact">
+          <div class="ir"><span>Live integrations on this key</span><span class="v">3</span></div>
+          <div class="ir"><span>Events / day on this key</span><span class="v">~74,000</span></div>
+        </div>
+        <label class="f-label">Type <span class="typed" style="color:var(--crit)">ROTATE</span> to confirm</label>
+        <input class="f f-mono" placeholder="ROTATE" />
+      </div>
+      <div class="m-f">
+        <button class="b b-secondary">Cancel</button>
+        <button class="b b-danger-solid">Rotate key</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 · THE CRITICAL: delete all user data (hold-to-confirm) -->
+  <div class="break"><span class="lbl">The critical idiom · delete user data — hold to confirm</span></div>
+  <div class="scrim">
+    <div class="modal">
+      <div class="m-h">
+        <span class="kick" style="color:var(--crit)">⊘ Permanent · GDPR · cannot be undone</span>
+        <h3>Delete all data for usr_8841?</h3>
+      </div>
+      <div class="m-b">
+        <p>This permanently removes <b>every event</b> tied to this user across all projects in this workspace — sessions, properties, funnel membership, the lot. It's recorded in the audit log with your name.</p>
+        <div class="impact">
+          <div class="ir"><span>Events to delete</span><span class="v">11,204</span></div>
+          <div class="ir"><span>Across projects</span><span class="v">Prod, Staging</span></div>
+          <div class="ir"><span>Sessions</span><span class="v">142</span></div>
+        </div>
+      </div>
+      <div class="m-f">
+        <button class="b b-secondary">Cancel</button>
+        <button class="b b-danger-solid hold" id="holdbtn" onmousedown="hs()" onmouseup="he()" onmouseleave="he()">
+          <span class="fill" id="hf"></span><span>Hold to delete permanently</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 · session timeout -->
+  <div class="break"><span class="lbl">Session timeout</span></div>
+  <div class="grid2">
+    <div class="scrim" style="padding:24px">
+      <div class="modal" style="width:360px">
+        <div class="m-h"><h3 style="font-size:17px">Still there?</h3></div>
+        <div class="m-b"><p>For security, you'll be signed out in <b class="mono">02:58</b>. Your unsaved query is kept.</p></div>
+        <div class="m-f"><button class="b b-secondary">Sign out</button><button class="b b-primary">Stay signed in</button></div>
+      </div>
+    </div>
+    <div style="align-self:center">
+      <p class="mark" style="line-height:1.7;max-width:42ch">The critical modals never put the destructive verb under a single click. Routine actions get a plain confirm; irreversible actions cost the user a typed word or a deliberate hold — friction proportional to consequence.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  let t;
+  function hs(){ const f=document.getElementById('hf'),b=document.getElementById('holdbtn'); f.style.width='100%'; t=setTimeout(()=>{ b.querySelector('span:last-child').textContent='Deleted'; b.style.background='var(--crit-deep)'; },1400); }
+  function he(){ clearTimeout(t); const f=document.getElementById('hf'); if(document.getElementById('holdbtn').querySelector('span:last-child').textContent!=='Deleted'){ f.style.transition='width 120ms linear'; f.style.width='0'; setTimeout(()=>f.style.transition='width 1.4s linear',130);} }
+</script>
+</body>
+</html>

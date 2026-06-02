@@ -1,0 +1,344 @@
+/* ============================================================
+   GBEDITY — bright-room game-night foundation
+   One stance, applied everywhere.
+
+   Palette: stage cobalt frame, canvas mint zone, white cards,
+            forest ink for type, action green for go,
+            accent orange for celebration only.
+   Type:    Fraunces (warm display serif) + Nunito (rounded sans).
+            Tabular numerals on every score and timer.
+   Chrome:  layered colour surfaces for depth, not shadows.
+            Pill-shaped buttons, generous radii, generous padding.
+            Two register split: "operator" (host dash, no stage frame)
+                                "party"    (lobby/display/in-game, full stage)
+
+   Components are scenes. State grids live small at the end.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ---------- Stage architecture (the three-layer system) ---------- */
+  --stage:          #2D5BFF;   /* Stage Cobalt — outer poster frame */
+  --stage-deep:     #1E3FB8;   /* pressed / deeper edge */
+  --stage-tint:     #D8E1FF;   /* a stage-tinted hover/selected wash on canvas */
+  --canvas:         #C8E8DA;   /* Canvas Mint — the room's wall colour */
+  --canvas-tint:    #D9EFE3;   /* a lifted canvas zone (modal scrim land) */
+  --canvas-deep:    #ABDBC6;   /* the recessed groove inside canvas */
+  --surface:        #FFFFFF;   /* pure white — cards only */
+  --surface-soft:   #FAFBFA;   /* a hair off-white, for the rare nested card */
+
+  /* ---------- Ink (forest, never black) ---------- */
+  --ink:            #1F6B4A;   /* Forest Ink — primary type, wordmark, outlines */
+  --ink-2:          #2F5C46;   /* body */
+  --ink-3:          #536A62;   /* Deep Mist — secondary on white */
+  --ink-4:          #9CB3AB;   /* Mid Mist — placeholder, metadata */
+  --ink-5:          #C7D6CF;   /* dividers on white */
+  --ink-on-stage:   #FFFFFF;   /* white type sits on cobalt */
+  --ink-on-stage-2: #BFD0FF;   /* secondary type on cobalt */
+
+  /* ---------- Action & accent ---------- */
+  --action:         #27B973;   /* Action Green — primary positive action */
+  --action-deep:    #1F9A60;   /* pressed */
+  --action-soft:    #DFF5EA;   /* tint, success bg */
+  --action-edge:    #B8E6D0;
+
+  --accent:         #FF8A2A;   /* Accent Orange — celebration & brand only */
+  --accent-deep:    #E8731A;
+  --accent-soft:    #FFE5CD;
+
+  /* ---------- Semantic state (used as fills, not chrome) ---------- */
+  --danger:         #E85A4F;   /* Tomato Red — eliminations, errors */
+  --danger-deep:    #C44035;
+  --danger-soft:    #FBE0DD;
+  --danger-edge:    #F2B5AF;
+
+  --warn:           #F7C948;   /* Sun Yellow — warnings, in-progress, points */
+  --warn-deep:      #D9A813;
+  --warn-soft:      #FEF3D1;
+  --warn-edge:      #F0DC8E;
+
+  --info:           #5BC0EB;   /* Sky Blue — spectator, informational */
+  --info-soft:      #E0F2FB;
+
+  --special:        #7B4FBF;   /* Berry Purple — league mode, special modes */
+  --special-soft:   #ECE2F8;
+
+  /* ---------- Neutral mist ---------- */
+  --mist-soft:      #F2F5F4;   /* dividers, disabled bg */
+  --mist-mid:       #9CB3AB;
+  --mist-deep:      #536A62;
+
+  /* ---------- Type ---------- */
+  --serif:          'Fraunces', Georgia, serif;
+  --sans:           'Nunito', system-ui, -apple-system, sans-serif;
+
+  /* Fraunces axes: SOFT=100 (max softness), opsz scales w/ size */
+  --fraunces-soft:  'SOFT' 100, 'opsz' 48;
+  --fraunces-soft-display: 'SOFT' 100, 'opsz' 144;
+
+  /* Tracking */
+  --track-display:  -0.02em;   /* Fraunces display */
+  --track-h:        -0.01em;
+  --track-body:      0;
+  --track-button:    0.005em;
+  --track-label:     0.06em;   /* uppercase tags */
+  --track-overline:  0.10em;
+
+  /* ---------- Geometry — nothing sharp ---------- */
+  --r-btn-sm:       16px;
+  --r-btn:          20px;
+  --r-btn-lg:       24px;
+  --r-input:        16px;
+  --r-card:         20px;
+  --r-card-lg:      28px;
+  --r-stage:        32px;
+  --r-pill:         9999px;
+
+  /* ---------- Spacing — 8px grid, generous ---------- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  16px;
+  --s-4:  24px;
+  --s-5:  32px;
+  --s-6:  48px;
+  --s-7:  64px;
+  --s-8:  96px;
+
+  /* ---------- Depth (used sparingly) ---------- */
+  --lift-card:    0 8px 24px rgba(31, 107, 74, 0.08);
+  --lift-modal:   0 24px 64px rgba(31, 107, 74, 0.18);
+
+  /* ---------- Motion ---------- */
+  --t-fast:         150ms;
+  --t-default:      250ms;
+  --t-celebration:  400ms;
+  --ease-default:   cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ----- Reset ----- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* ----- Type primitives ----- */
+.display {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variation-settings: var(--fraunces-soft-display);
+  letter-spacing: var(--track-display);
+  line-height: 1.05;
+  color: var(--ink);
+}
+.headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-variation-settings: var(--fraunces-soft);
+  letter-spacing: var(--track-h);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.h2 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: var(--track-h);
+  line-height: 1.25;
+  color: var(--ink);
+}
+.body-lg { font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.body    { font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.meta {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* ----- The Stage architecture (party mode) ----- */
+.stage {
+  background: var(--stage);
+  padding: 20px;
+  border-radius: 0;
+  min-height: 100vh;
+}
+.stage-inset {
+  background: var(--canvas);
+  border-radius: var(--r-stage);
+  padding: 40px;
+  min-height: calc(100vh - 40px);
+}
+
+/* Operator mode — no stage frame, just canvas */
+.operator {
+  background: var(--canvas);
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ----- Card primitives ----- */
+.card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  padding: var(--s-4);
+}
+.card-lg {
+  background: var(--surface);
+  border-radius: var(--r-card-lg);
+  padding: var(--s-5);
+}
+.card-canvas {
+  background: var(--canvas-tint);
+  border-radius: var(--r-card);
+  padding: var(--s-4);
+}
+
+/* ----- Button primitives ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: var(--track-button);
+  border: 0;
+  cursor: pointer;
+  border-radius: var(--r-btn);
+  padding: 14px 28px;
+  transition: background var(--t-fast) var(--ease-default), color var(--t-fast) var(--ease-default), transform var(--t-fast) var(--ease-default);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-sm { font-size: 14px; padding: 10px 20px; border-radius: var(--r-btn-sm); }
+.btn-lg { font-size: 17px; padding: 18px 36px; border-radius: var(--r-btn-lg); }
+
+.btn-primary    { background: var(--action); color: #fff; }
+.btn-primary:hover { background: var(--action-deep); }
+
+.btn-secondary  { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.btn-secondary:hover { background: var(--canvas-tint); }
+
+.btn-ghost      { background: transparent; color: var(--ink); padding: 12px 20px; font-weight: 600; }
+.btn-ghost:hover{ background: rgba(31,107,74,0.06); }
+
+.btn-stage      { background: var(--surface); color: var(--stage); }
+.btn-stage:hover{ background: var(--stage-tint); }
+
+.btn-danger     { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: var(--danger-deep); }
+
+.btn-celebrate  { background: var(--accent); color: var(--ink); }
+.btn-celebrate:hover { background: var(--accent-deep); color: #fff; }
+
+.btn[disabled], .btn[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; }
+
+/* ----- Input primitive ----- */
+.input {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: 2px solid var(--mist-soft);
+  border-radius: var(--r-input);
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: border-color var(--t-fast) var(--ease-default);
+}
+.input::placeholder { color: var(--ink-4); font-weight: 400; }
+.input:focus { outline: none; border-color: var(--action); }
+.input.input-error { border-color: var(--danger); }
+
+/* ----- Pill / chip / badge ----- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  background: var(--canvas);
+  color: var(--ink);
+}
+.pill-action   { background: var(--action-soft); color: var(--action-deep); }
+.pill-warn     { background: var(--warn-soft);   color: #8A6A0B; }
+.pill-danger   { background: var(--danger-soft); color: var(--danger-deep); }
+.pill-info     { background: var(--info-soft);   color: #1F7BA8; }
+.pill-special  { background: var(--special-soft);color: var(--special); }
+.pill-accent   { background: var(--accent-soft); color: #B85A12; }
+
+/* ----- Hairlines (we use them, just rarely) ----- */
+.hr { height: 1px; background: var(--ink-5); border: 0; margin: var(--s-4) 0; }
+
+/* ----- Segmented control — used wherever 2–3 mutually exclusive options live ----- */
+.seg {
+  display: inline-flex;
+  background: var(--canvas);
+  border-radius: var(--r-pill);
+  padding: 2px;
+}
+.seg button {
+  border: 0;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background var(--t-fast) var(--ease-default), color var(--t-fast) var(--ease-default);
+}
+.seg button:hover { color: var(--ink); }
+.seg button.on { background: var(--surface); color: var(--ink); }
+
+/* ----- Score / number display ----- */
+.score {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variation-settings: var(--fraunces-soft-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.timer {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ----- Iframe gallery sandbox (used by index.html only) ----- */
+.preview-frame {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  display: block;
+}

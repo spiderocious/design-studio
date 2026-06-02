@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Spacing & geometry</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 32px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 16px;
+  }
+
+  /* Radii */
+  .radii { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .r-box {
+    background: var(--canvas);
+    padding: 18px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .r-shape {
+    width: 80px; height: 80px;
+    background: var(--ink);
+  }
+  .r-name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink); margin: 0;
+  }
+  .r-spec {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* Spacing rule */
+  .spacing-rule { display: flex; align-items: end; gap: 12px; }
+  .s-tick {
+    background: var(--ink); display: block; width: 8px;
+    border-radius: 4px;
+  }
+  .s-meta {
+    font-family: var(--sans); font-weight: 800; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+    text-align: center; margin-top: 8px;
+  }
+  .s-col { display: flex; flex-direction: column; align-items: center; }
+
+  /* Layered card demo */
+  .layered {
+    background: var(--stage);
+    padding: 16px;
+    border-radius: 32px;
+    margin-top: 16px;
+  }
+  .layered .canvas-zone {
+    background: var(--canvas);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .layered .cards {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px;
+  }
+  .layered .card-demo {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .layered .card-demo.lg { border-radius: 28px; padding: 28px; }
+  .layered .card-demo .ttl {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 20px; color: var(--ink); margin: 0 0 4px;
+  }
+  .layered .card-demo .sub { font-size: 13px; color: var(--ink-3); margin: 0; }
+
+  /* Touch target */
+  .touch-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: 12px;
+  }
+  .touch-demo {
+    background: var(--canvas);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 8px; align-items: center;
+  }
+  .touch-target {
+    width: 44px; height: 44px;
+    background: var(--surface);
+    border-radius: var(--r-pill);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; color: var(--ink);
+    box-shadow: inset 0 0 0 2px var(--ink);
+  }
+  .touch-target.big { width: 56px; height: 56px; }
+  .touch-target.huge { width: 72px; height: 72px; font-size: 16px; }
+  .touch-spec { font-size: 11px; color: var(--ink-3); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Spacing & geometry</h1>
+  <p class="lede">Nothing is sharp. Every interactive element, every surface, every illustration carries rounded geometry — buttons start at 16px, cards at 20px, the stage frame at 32px. Spacing is on an 8px grid, generous. Tight is wrong. Depth comes from <strong>layered colour surfaces</strong>, not drop shadows.</p>
+
+  <div class="section">
+    <p class="group-h">Corner radius scale</p>
+    <div class="radii">
+      <div class="r-box"><div class="r-shape" style="border-radius: 16px;"></div><p class="r-name">Button SM · Input</p><span class="r-spec">16px</span></div>
+      <div class="r-box"><div class="r-shape" style="border-radius: 20px;"></div><p class="r-name">Button · Card SM</p><span class="r-spec">20px</span></div>
+      <div class="r-box"><div class="r-shape" style="border-radius: 24px;"></div><p class="r-name">Button LG</p><span class="r-spec">24px</span></div>
+      <div class="r-box"><div class="r-shape" style="border-radius: 28px;"></div><p class="r-name">Card LG</p><span class="r-spec">28px</span></div>
+      <div class="r-box"><div class="r-shape" style="border-radius: 32px;"></div><p class="r-name">Stage frame</p><span class="r-spec">32px</span></div>
+      <div class="r-box"><div class="r-shape" style="border-radius: 9999px;"></div><p class="r-name">Pill · avatar</p><span class="r-spec">full</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Spacing — 8px grid</p>
+    <div class="spacing-rule">
+      <div class="s-col"><span class="s-tick" style="height: 4px;"></span><span class="s-meta">4 · S1</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 8px;"></span><span class="s-meta">8 · S2</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 16px;"></span><span class="s-meta">16 · S3</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 24px;"></span><span class="s-meta">24 · S4</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 32px;"></span><span class="s-meta">32 · S5</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 48px;"></span><span class="s-meta">48 · S6</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 64px;"></span><span class="s-meta">64 · S7</span></div>
+      <div class="s-col"><span class="s-tick" style="height: 96px;"></span><span class="s-meta">96 · S8</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Layered card architecture — depth from colour, not shadow</p>
+    <p class="body" style="color: var(--ink-3); font-size: 13px; margin: -6px 0 16px;">Three layers, each with its own rounded geometry: <strong>stage frame</strong> (32px outer), <strong>canvas zone</strong> (20px inset on canvas mint), <strong>cards</strong> (20–28px on white).</p>
+    <div class="layered">
+      <div class="canvas-zone">
+        <div class="cards">
+          <div class="card-demo lg">
+            <p class="ttl">Large content card</p>
+            <p class="sub">Radius 28 · padding 32. Used for hero scenes.</p>
+          </div>
+          <div class="card-demo">
+            <p class="ttl">Small content card</p>
+            <p class="sub">Radius 20 · padding 24.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Touch targets — minimum 44×44</p>
+    <p class="body" style="color: var(--ink-3); font-size: 13px; margin: -6px 0 0;">Generous padding satisfies this automatically. Tap surfaces below the minimum are forbidden.</p>
+    <div class="touch-row">
+      <div class="touch-demo"><div class="touch-target">A</div><span class="touch-spec">44 · minimum</span></div>
+      <div class="touch-demo"><div class="touch-target big">B</div><span class="touch-spec">56 · standard</span></div>
+      <div class="touch-demo"><div class="touch-target huge">C</div><span class="touch-spec">72 · hero / avatar-xl</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Hairlines — used, just rarely</p>
+    <p class="body" style="color: var(--ink-3); font-size: 13px; margin: -6px 0 16px;">When something must separate without shadow, draw a 1px line in <code>--ink-5</code> or a dashed line. Reserved for row dividers and option-group separators.</p>
+    <div style="background: var(--canvas); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 0;">
+      <div style="padding: 10px 0; font-weight: 700; color: var(--ink); font-size: 14px;">Lives per player</div>
+      <hr style="height: 1px; background: var(--ink-5); border: 0; margin: 0;">
+      <div style="padding: 10px 0; font-weight: 700; color: var(--ink); font-size: 14px;">Bomb time</div>
+      <hr style="height: 1px; background: var(--ink-5); border: 0; border-top: 1px dashed var(--ink-5); margin: 0;">
+      <div style="padding: 10px 0; font-weight: 700; color: var(--ink); font-size: 14px;">Rounds</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

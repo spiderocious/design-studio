@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scene · Landing &amp; income input · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  body { background: var(--paper); }
+  .frame { max-width: 1180px; margin: 0 auto; padding: 0 0 80px; }
+  .topbar { display:flex; align-items:center; gap:18px; padding:0 40px; height:64px; border-bottom:1px solid var(--hair); }
+  .brand { display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:20px; font-weight:600; letter-spacing:-0.01em; }
+  .brand .glyph { width:28px; height:28px; border-radius:8px; background:var(--clay-500); display:grid; place-items:center; color:#fff; font-size:14px; }
+  .brand .ng { font-size:11px; font-weight:600; color:var(--ink-4); letter-spacing:.08em; align-self:center; }
+  .topbar .spacer { flex:1; }
+  .topbar a { font-size:13px; font-weight:500; color:var(--ink-3); text-decoration:none; padding:8px 12px; border-radius:8px; }
+  .topbar a:hover { color:var(--ink); }
+
+  .hero { padding: 56px 40px 36px; max-width: 720px; }
+  .hero .eyebrow { margin-bottom:16px; }
+  .hero h1 { font-family:var(--serif); font-weight:500; font-size:52px; line-height:1.04; letter-spacing:-0.026em; margin:0 0 18px; }
+  .hero p { font-family:var(--serif); font-size:19px; line-height:1.55; color:var(--ink-2); margin:0; max-width:54ch; }
+
+  .paths { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; padding:8px 40px 40px; }
+  .path { background:var(--sheet); border:1px solid var(--edge); border-radius:var(--r-card); padding:24px; display:flex; flex-direction:column; gap:10px; transition:border-color 120ms var(--ease), transform 120ms var(--ease); cursor:pointer; }
+  .path:hover { border-color:var(--clay-400); transform:translateY(-2px); }
+  .path.primary { border-color:var(--clay-500); background:var(--clay-50); }
+  .path .ic { width:38px; height:38px; border-radius:10px; background:var(--clay-100); color:var(--clay-700); display:grid; place-items:center; }
+  .path .pt { font-size:16px; font-weight:600; }
+  .path .pd { font-size:13px; color:var(--ink-3); line-height:1.5; flex:1; }
+  .path .go { font-size:13px; font-weight:600; color:var(--clay-700); }
+
+  .form { padding: 0 40px; }
+  .form-card { background:var(--sheet); border:1px solid var(--edge); border-radius:var(--r-card-lg); overflow:hidden; }
+  .form-card .fc-head { padding:20px 28px; border-bottom:1px solid var(--hair); display:flex; align-items:center; justify-content:space-between; }
+  .form-card .fc-body { padding:26px 28px; }
+
+  .profiles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:26px; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .relief-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+  .running { display:flex; align-items:center; justify-content:space-between; padding:16px 28px; border-top:1px solid var(--hair); background:var(--paper-deep); }
+  .running .live { font-size:13px; color:var(--ink-3); }
+  .running .live b { font-family:var(--mono); color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="topbar">
+    <span class="brand"><span class="glyph">₦</span>TaxLens<span class="ng">NG</span></span>
+    <span class="spacer"></span>
+    <a href="#">How it works</a>
+    <a href="#">About this build</a>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Nigeria Tax Act 2025 · effective 1 Jan 2026</div>
+    <h1>See what you’ll actually owe under the new tax law.</h1>
+    <p>Enter your income — or upload a bank statement — and TaxLens shows your position under the NTA 2025, what changed for you, and why. No account, nothing stored.</p>
+  </div>
+
+  <div class="paths">
+    <div class="path primary">
+      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 8h18M3 16h18"/></svg></span>
+      <span class="pt">Enter income manually</span>
+      <span class="pd">Type your salary and reliefs. Two minutes, no documents.</span>
+      <span class="go">Selected ↓</span>
+    </div>
+    <div class="path">
+      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4m0 0L8 8m4-4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg></span>
+      <span class="pt">Upload bank statement</span>
+      <span class="pd">PDF, 3–12 months. We read the credits — you confirm.</span>
+      <span class="go">Choose →</span>
+    </div>
+    <div class="path">
+      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span>
+      <span class="pt">Try with sample data</span>
+      <span class="pd">See a worked salary earner or freelancer instantly.</span>
+      <span class="go">Salary · Freelancer →</span>
+    </div>
+  </div>
+
+  <div class="form">
+    <div class="form-card">
+      <div class="fc-head">
+        <div><div class="overline" style="margin-bottom:4px">Step 1 of 3</div><div class="subhead" style="font-size:18px">Tell us about your income</div></div>
+        <span class="chip chip-paper">Switching path keeps your entries</span>
+      </div>
+      <div class="fc-body">
+        <div class="overline" style="margin-bottom:12px">First, which describes you?</div>
+        <div class="profiles">
+          <div class="choice sel"><span class="tick"></span><div><div class="ctitle">Salary earner</div><div class="cdesc">PAYE, one income.</div></div></div>
+          <div class="choice"><span class="tick"></span><div><div class="ctitle">Freelancer</div><div class="cdesc">You invoice clients.</div></div></div>
+          <div class="choice"><span class="tick"></span><div><div class="ctitle">Mixed</div><div class="cdesc">Salary + side income.</div></div></div>
+        </div>
+
+        <div class="two">
+          <div class="field"><span class="flabel">Gross income</span><div class="money"><span class="naira">₦</span><input class="f f-mono f-lg" value="540,000"><span class="per">/mo</span></div><span class="fhelp mono" style="margin-top:2px">= ₦6,480,000 / yr</span></div>
+          <div class="field"><span class="flabel">Annual rent paid</span><div class="money"><span class="naira">₦</span><input class="f f-mono f-lg" value="1,800,000"></div><span class="fhelp">Relief = 20%, capped ₦500k → <b class="mono">₦360,000</b></span></div>
+        </div>
+
+        <div class="overline" style="margin:24px 0 4px">Reliefs you contribute to</div>
+        <div class="relief-grid">
+          <div class="field"><span class="flabel">Pension (PFA)</span><div class="money"><span class="naira">₦</span><input class="f f-mono" value="480,000"></div></div>
+          <div class="field"><span class="flabel">NHIS</span><div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div></div>
+          <div class="field"><span class="flabel">Life insurance</span><div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div></div>
+        </div>
+      </div>
+      <div class="running">
+        <span class="live">Reliefs so far <b>₦840,000</b> · taxable income <b>₦5,640,000</b></span>
+        <button class="b b-primary">Calculate my tax →</button>
+      </div>
+    </div>
+    <p class="disclaimer">TaxLens shows estimates under the Nigeria Tax Act 2025 and is <b>not tax advice</b>. Everything runs in your browser — no data is stored. <span style="float:right" class="mono">mobile: paths stack, form is single-column, running total pins to the bottom</span></p>
+  </div>
+</div>
+</body>
+</html>

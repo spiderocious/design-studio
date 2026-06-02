@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tooltips &amp; popovers · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 36px 28px; }
+
+  .tip { position: relative; display:inline-block; border-bottom:1.5px dotted var(--clay-400); cursor:help; }
+  .tip .bub { position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; font-size:12px; padding:8px 11px; border-radius:8px; width:max-content; max-width:240px; line-height:1.45; box-shadow:var(--shade-pop); }
+  .tip .bub::after { content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--ink); }
+
+  .pop { width:300px; background:var(--sheet); border:1px solid var(--edge); border-radius:14px; box-shadow:var(--shade-pop); overflow:hidden; }
+  .pop .ph { padding:14px 16px 12px; border-bottom:1px solid var(--hair); }
+  .pop .pb { padding:14px 16px; }
+  .pop .pt { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--clay-800); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">28 / 43</span>
+    <span class="ttl">Tooltips &amp; popovers</span>
+    <span class="meta">Defining a term · the “why” popover</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">Tax has jargon; TaxLens defines it inline. A dotted clay underline marks a definable term — hover for a one-line plain-English gloss. The popover is the heavier sibling: a statute snippet behind any computed figure.</p>
+
+  <div class="scene">
+    <div class="cap">tooltip · define a term, plainly</div>
+    <div class="body" style="font-size:16px; line-height:2.2">
+      Your <span class="tip">effective rate<span class="bub">The share of your <em>total</em> income that goes to tax — lower than your top band because earlier slices are taxed less.</span></span> is 12.4%, even though you touch the <span class="tip">18% band<span class="bub">The highest band any part of your income reaches. Only the slice inside it is taxed at 18%.</span></span>.
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">popover · the statute behind a number</div>
+    <div class="body" style="display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap">
+      <div>
+        <p class="body" style="max-width:30ch; margin:0">Click any computed figure to see the rule it came from →</p>
+        <p class="tiny" style="margin-top:10px">e.g. tapping <span class="amt amt-sm" style="border-bottom:1.5px dotted var(--clay-400)">₦360,000</span> rent relief opens this:</p>
+      </div>
+      <div class="pop">
+        <div class="ph">
+          <div class="pt">NTA 2025 · Fourth Schedule</div>
+          <div class="serif-i" style="font-size:14px; color:var(--ink-2); margin-top:6px; line-height:1.5">“Rent relief: 20% of annual rent paid, capped at ₦500,000.”</div>
+        </div>
+        <div class="pb">
+          <div class="tiny" style="margin-bottom:6px">How we got your figure</div>
+          <div class="body" style="font-size:13px; color:var(--ink)">20% × ₦1,800,000 = ₦360,000 <span class="muted">(below the ₦500k cap)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

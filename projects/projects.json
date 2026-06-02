@@ -1,0 +1,163 @@
+{
+  "projects": [
+    {
+      "slug": "medcord",
+      "name": "Medcord",
+      "tagline": "A clinical record system for an enterprise hospital management SaaS \u2014 patients, staff, EMR, equipment.",
+      "type": "Enterprise \u00b7 healthcare SaaS",
+      "style": "Surgical paper",
+      "stylePrinciples": "Bone-paper canvas with warm ink, apothecary green as the single accent, hairlines instead of shadows, serif for thinking, mono for record. Critical-red reserved for life-threatening only.",
+      "accent": "#16A34A",
+      "paper": "#F4EFE6",
+      "ink": "#181613",
+      "entry": "projects/medcord/index.html",
+      "thumb": "projects/medcord/thumb.html",
+      "createdAt": "2026-05-01",
+      "surfaceCount": 30
+    },
+    {
+      "slug": "irisi",
+      "name": "Irisi",
+      "tagline": "A slide-generation web app powered by its own React component library \u2014 one product stance, twenty-five slide packs, AI-directed.",
+      "type": "Consumer \u00b7 creator tools",
+      "style": "Maximalist startup",
+      "stylePrinciples": "Cool-neutral near-white paper with cool-leaning near-black ink, signal blue as the single product accent, type doing the heavy lifting. The product is one stance; the slide library carries all 25 stances from the catalogue.",
+      "accent": "#0361F0",
+      "paper": "#F7F8FB",
+      "ink": "#0F1115",
+      "entry": "projects/irisi/index.html",
+      "thumb": "projects/irisi/thumb.html",
+      "createdAt": "2026-05-10",
+      "surfaceCount": 33
+    },
+    {
+      "slug": "pracket",
+      "name": "Pracket",
+      "tagline": "A tutor-meets-student marketplace where parents pay a one-time connection fee to message verified tutors \u2014 identities masked, contact kept on-platform.",
+      "type": "Consumer \u00b7 education marketplace",
+      "style": "Soft Scandinavian",
+      "stylePrinciples": "Warm oat paper, single forest accent #3BB75E, hairlines instead of shadows, generous radii, Fraunces serif for tutor names + thinking, Inter for chrome, JetBrains Mono for prices. Spacious lists, light only, no gamification. Multi-country in data, Naira in design.",
+      "accent": "#3BB75E",
+      "paper": "#F7F5F0",
+      "ink": "#1F231C",
+      "entry": "projects/pracket/index.html",
+      "thumb": "projects/pracket/thumb.html",
+      "createdAt": "2026-05-11",
+      "surfaceCount": 17
+    },
+    {
+      "slug": "buffbyte",
+      "name": "BuffByte",
+      "tagline": "A redesign of buffbyteai.xyz \u2014 AI content analysis for creators, with a teleprompter for video scripts and a live trending board.",
+      "type": "Consumer \u00b7 creator tools",
+      "style": "Warm coach",
+      "stylePrinciples": "Warm-paper canvas with graphite ink, violet-blue as the single product accent (cool against the warm canvas), semantic-only amber + oxblood for warn and critical. Inter only, tabular numerals, hairlines instead of shadows. The AI speaks as a coach \u2014 second-person, constructive, never first-person.",
+      "accent": "#533AFD",
+      "paper": "#FAF7F2",
+      "ink": "#1C1B19",
+      "entry": "projects/buffbyte/index.html",
+      "thumb": "projects/buffbyte/thumb.html",
+      "createdAt": "2026-05-11",
+      "surfaceCount": 17,
+      "shippedTo": [
+        {
+          "repo": "buffbyte",
+          "date": "2026-05-17"
+        }
+      ]
+    },
+    {
+      "slug": "dipstick",
+      "name": "Dipstick",
+      "tagline": "A digital station logbook for Nigerian filling-station owners with multiple branches \u2014 pump readings, tank dips, deliveries, expenses, staff shifts, all signed and auditable.",
+      "type": "SMB \u00b7 operations SaaS",
+      "style": "Ledger broadsheet",
+      "stylePrinciples": "Warm cream paper, ink-near-black, deep emerald as the one accent. Source Serif 4 + Inter + IBM Plex Mono. Tabular numerals everywhere money or litres live. Hairlines instead of shadows. Oxblood reserved for shortages and voids; the CRITICAL idiom requires typing the literal word VOID. PMS / AGO / DPK distinction is a tiny inline mark, never a chromatic fill.",
+      "accent": "#0E5C3A",
+      "paper": "#F2EDE2",
+      "ink": "#1A1714",
+      "entry": "projects/dipstick/index.html",
+      "thumb": "projects/dipstick/thumb.html",
+      "createdAt": "2026-05-11",
+      "surfaceCount": 28,
+      "shippedTo": [
+        {
+          "repo": "dipstick",
+          "date": "2026-05-23"
+        }
+      ]
+    },
+    {
+      "slug": "solon",
+      "name": "Solon",
+      "tagline": "A political intelligence and campaign platform for Nigeria \u2014 flagship election simulator plus operational stack for voter data, agents, finance, and an election-day war room with citizen reporting.",
+      "type": "Civic \u00b7 political intelligence",
+      "style": "Parliamentary order paper",
+      "stylePrinciples": "Cream order-paper canvas with warm ink, deep forest as the single interactive accent, burnt orange reserved for warn, oxblood reserved for irreversible. Fraunces + Inter + JetBrains Mono. The semantic rule that does real work: MONO is record (counts, IDs, expenses), SERIF is projection (modelled %, confidence). INEC-official idiom on exports \u2014 stamps, drop-cap intro, signed signature blocks. Solon speaks as a neutral analyst with citations; voter-suppression queries are blocked at the model layer.",
+      "accent": "#1B4332",
+      "paper": "#F5EFE0",
+      "ink": "#1A1714",
+      "entry": "projects/solon/index.html",
+      "thumb": "projects/solon/thumb.html",
+      "createdAt": "2026-05-11",
+      "surfaceCount": 27
+    },
+    {
+      "slug": "omoran",
+      "name": "Omoran",
+      "tagline": "A product analytics platform for web & mobile apps \u2014 stable dashboards plus an AI analyst layer that digests, detects anomalies, and answers plain-English questions with the SQL it ran.",
+      "type": "B2B \u00b7 product analytics SaaS",
+      "style": "Brutalist dossier",
+      "stylePrinciples": "Near-white dossier canvas with warm graphite ink, mono-led type and exposed [NN] index tags. The type split is functional: JetBrains Mono for data, Inter for chrome, Source Serif 4 reserved for the AI analyst's prose. A four-register warm colour system that never overlaps \u2014 coral = attention, hazard = act-now, oxblood = irreversible action, green = healthy. The differentiator is the cited analyst: every AI claim carries a confidence indicator and a mandatory show-the-query disclosure, and refuses to invent numbers not in the schema.",
+      "accent": "#E85D2A",
+      "paper": "#F7F5F0",
+      "ink": "#17150F",
+      "entry": "projects/omoran/index.html",
+      "thumb": "projects/omoran/thumb.html",
+      "createdAt": "2026-05-20",
+      "surfaceCount": 23
+    },
+    {
+      "slug": "gbedity",
+      "name": "Gbedity",
+      "tagline": "A second-screen party game platform for the home \u2014 phones as controllers, TV as the shared display, 19 games, Nigerian cultural specificity in content, drop-in browser join.",
+      "type": "Consumer \u00b7 party / games",
+      "style": "Bright-room game-night",
+      "stylePrinciples": "Three-layer colour architecture \u2014 Stage Cobalt poster-frame, Canvas Mint zone, white cards \u2014 depth without shadow. Fraunces for emotional weight (numerals, titles, celebration), Nunito for every UI surface. Numbers shout in tabular Fraunces. Game IDs as a permanent brand-system element, two-digit zero-pad tinted to category. Stage frame reserved for post-game celebration only \u2014 operator-everyday lives on canvas. CRITICAL actions require typing the literal word. Per-game celebration content adapts to the win condition (score for Word Bomb, drawing+guess for Sketch, argument+verdict for Plead Your Case).",
+      "accent": "#FF8A2A",
+      "paper": "#C8E8DA",
+      "ink": "#1F6B4A",
+      "entry": "projects/gbedity/index.html",
+      "thumb": "projects/gbedity/thumb.html",
+      "createdAt": "2026-05-30",
+      "surfaceCount": 21,
+      "shippedTo": [
+        {
+          "repo": "gbedity",
+          "date": "2026-05-31"
+        }
+      ]
+    },
+    {
+      "slug": "taxlens",
+      "name": "TaxLens NG",
+      "tagline": "A personal income tax tool for Nigerians under the Nigeria Tax Act 2025 \u2014 enter income or upload a bank statement, see your position, what changed vs the old regime, and ask grounded follow-ups.",
+      "type": "Consumer \u00b7 fintech / civic",
+      "style": "Soft Scandinavian",
+      "stylePrinciples": "Cool-warm off-white paper, faintly-warm ink, clay #C2613A as the single accent (chosen to feel friendly, not bank-like, and to stand out in a Nigerian fintech sea of blue/green). Sans-led friendly chrome (Inter), Newsreader serif reserved for the explainer/AI voice, JetBrains Mono for every \u20a6 figure \u2014 the big tabular number is the hero. Save is a calm sage, never a shouty green; warn is amber; critical is a cold crimson #A11212 (cooler than the clay on purpose), reserved for the one irreversible action via hold-to-confirm. Every figure carries an 'Estimate \u00b7 NTA 2025' badge; every page a 'not tax advice' footer. No fake urgency. Light only. Distinct from Pracket: sans-led not serif-led, Newsreader not Fraunces, clay not forest.",
+      "accent": "#C2613A",
+      "paper": "#F6F4EF",
+      "ink": "#1C1B18",
+      "entry": "projects/taxlens/index.html",
+      "thumb": "projects/taxlens/thumb.html",
+      "createdAt": "2026-05-20",
+      "surfaceCount": 24,
+      "shippedTo": [
+        {
+          "repo": "taxlens",
+          "date": "2026-05-23"
+        }
+      ]
+    }
+  ]
+}

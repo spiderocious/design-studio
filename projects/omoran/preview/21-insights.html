@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · AI Insights panel</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel-wrap { max-width: 760px; }
+  .ai-head { display:flex; align-items:center; gap:10px; padding-bottom:14px; margin-bottom:6px; border-bottom:2px solid var(--ink); }
+  .ai-head .ttl { font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:-0.01em; }
+  .ai-head .spark2 { color:var(--coral-500); }
+  .ai-head .when { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .insight { margin-top:14px; }
+  .insight .ihead .kind { font-family:var(--mono); font-size:9.5px; }
+  .actions { display:flex; gap:6px; margin-left:auto; }
+  .actions button { border:1px solid var(--edge-2); background:var(--panel); border-radius:var(--r-xs); font:600 11px var(--sans); color:var(--ink-3); padding:3px 8px; cursor:pointer; }
+  .actions button:hover { border-color:var(--ink-3); color:var(--ink); }
+  .actions button.useful.on { background:var(--ok-bg); border-color:var(--ok-edge); color:var(--ok); }
+  /* mini breakdown inside an insight */
+  .mini { margin-top:12px; display:grid; grid-template-columns:1fr auto; gap:5px 12px; }
+  .mini .seg-label { font-family:var(--mono); font-size:11.5px; color:var(--ink-2); display:flex; align-items:center; gap:8px; }
+  .mini .bar { height:7px; border-radius:2px; background:var(--coral-500); }
+  .mini .bar.mut { background:var(--edge-2); }
+  .mini .val { font-family:var(--mono); font-size:11.5px; font-variant-numeric:tabular-nums; text-align:right; color:var(--ink-3); }
+  /* sql disclosure */
+  .disclose { margin-top:12px; }
+  .disclose summary { font-family:var(--mono); font-size:11px; color:var(--coral-700); cursor:pointer; font-weight:600; list-style:none; display:inline-flex; gap:5px; align-items:center; }
+  .disclose summary::-webkit-details-marker { display:none; }
+  .disclose[open] summary { margin-bottom:8px; }
+  .empty-conf { background:var(--warn-bg); border:1px solid var(--warn-edge); border-radius:var(--r-md); padding:11px 14px; display:flex; gap:9px; align-items:center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">21 · III</span>
+    <span class="ttl">AI Insights panel</span>
+    <span class="meta">the differentiator · the cited analyst</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 24px;">Omoran's signature surface. The analyst writes in prose (serif), but <strong style="color:var(--ink)">every claim shows its work</strong>: a confidence indicator driven by data volume, a breakdown of the numbers, and the exact query — never hidden. It sits <em>beside</em> the dashboard and never reshuffles it.</p>
+
+  <div class="panel-wrap">
+    <div class="ai-head">
+      <span class="spark2">✦</span>
+      <span class="ttl">What's worth a look</span>
+      <span class="when">Mon 19 May · refreshed 6m ago</span>
+    </div>
+
+    <!-- 1 · ACT NOW anomaly (hazard) -->
+    <div class="insight act-now">
+      <div class="ihead">
+        <span class="ibadge act-now"><span class="kind">⚑ ANOMALY</span></span>
+        <span class="conf"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span> high</span>
+        <span class="actions"><button>Dismiss</button><button class="useful">Useful</button></span>
+      </div>
+      <p class="iprose"><b>checkout_completed</b> fell <span class="num hl">41%</span> in the last 24 hours — far below its 14-day baseline. The drop is concentrated in <b>Safari iOS</b>, which alone accounts for <span class="num">9 of every 10</span> lost completions.</p>
+      <div class="mini">
+        <div class="seg-label">Safari iOS <div class="bar" style="width:120px"></div></div><div class="val">−530</div>
+        <div class="seg-label">Chrome Android <div class="bar mut" style="width:24px"></div></div><div class="val">−42</div>
+        <div class="seg-label">Desktop <div class="bar mut" style="width:10px"></div></div><div class="val">+8</div>
+      </div>
+      <details class="disclose">
+        <summary>↳ show the query</summary>
+        <div class="sql"><span class="cm">-- completions by browser, last 24h vs prior 14d avg</span>
+<span class="kw">SELECT</span> properties.browser, count() <span class="kw">AS</span> n
+<span class="kw">FROM</span> events
+<span class="kw">WHERE</span> event = <span class="st">'checkout_completed'</span>
+  <span class="kw">AND</span> timestamp &gt; now() - <span class="nm">1</span>
+<span class="kw">GROUP BY</span> properties.browser <span class="kw">ORDER BY</span> n <span class="kw">ASC</span></div>
+      </details>
+      <div class="ifoot">
+        <a class="show-query">↳ open in query builder</a>
+        <span class="grounded">grounded · 28,140 events</span>
+      </div>
+    </div>
+
+    <!-- 2 · ATTENTION auto-discovered insight (coral) -->
+    <div class="insight">
+      <div class="ihead">
+        <span class="ibadge"><span class="kind">✦ DISCOVERED</span></span>
+        <span class="conf"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></span> med</span>
+        <span class="actions"><button>Dismiss</button><button>Save</button><button class="useful on">✓ Useful</button></span>
+      </div>
+      <p class="iprose">Users who fire <b>add_to_cart</b> within their <em>first session</em> are <span class="num hl">3.2×</span> more likely to return after 7 days (<span class="num">61%</span> vs <span class="num">19%</span>). Worth treating first-session cart as an activation moment.</p>
+      <div class="ifoot">
+        <a class="show-query">↳ show the query</a>
+        <span class="grounded">grounded · 41,002 users</span>
+      </div>
+    </div>
+
+    <!-- 3 · ATTENTION segment insight (coral) -->
+    <div class="insight">
+      <div class="ihead">
+        <span class="ibadge ghost"><span class="kind">↗ TREND</span></span>
+        <span class="conf"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span> high</span>
+        <span class="actions"><button>Dismiss</button><button>Save</button><button class="useful">Useful</button></span>
+      </div>
+      <p class="iprose">Conversion to paid is <span class="num hl">4.1×</span> higher for users arriving from <b>organic search</b> than from <b>paid social</b> — and organic's share of signups grew <span class="num">+8pts</span> this week.</p>
+      <div class="ifoot">
+        <a class="show-query">↳ show the query</a>
+        <span class="grounded">grounded · 6,902 signups</span>
+      </div>
+    </div>
+
+    <!-- 4 · low-confidence / grounding refusal -->
+    <div class="break"><span class="lbl">When the data can't support a claim — the analyst says so</span></div>
+    <div class="empty-conf">
+      <span style="color:var(--warn);font-size:16px">⚠</span>
+      <div style="font-size:12.5px;color:var(--ink-2)"><strong>Low confidence.</strong> This project sees under 1,000 events/day. Anomaly detection is paused until there's enough volume to tell signal from noise.</div>
+    </div>
+    <div class="insight" style="border-left-color:var(--edge-2);margin-top:14px">
+      <p class="iprose" style="color:var(--ink-2)">You asked about <em>revenue</em>, but no revenue or purchase-value events are tracked in this project. I won't estimate it. To answer this, send a <b>checkout_completed</b> event with a <code style="font-family:var(--mono);font-size:13px">value</code> property.</p>
+      <div class="ifoot">
+        <span class="grounded" style="margin-left:0;color:var(--ink-3)">not grounded — refused</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

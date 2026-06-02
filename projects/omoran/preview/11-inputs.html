@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); margin-bottom: 16px; padding: 18px 20px; }
+  .scene > .overline { margin-bottom: 14px; display:block; }
+  .fieldset { display: grid; gap: 14px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .filter-chip {
+    display:inline-flex; align-items:center; gap:6px;
+    font-family: var(--mono); font-size:12px;
+    background: var(--paper-deep); border:1px solid var(--edge-2);
+    border-radius: var(--r-sm); padding: 5px 9px;
+  }
+  .filter-chip .op { color: var(--coral-700); }
+  .filter-chip .x { color: var(--ink-4); cursor:pointer; }
+  .schema-hint { font-family: var(--mono); font-size: 10.5px; color: var(--ink-4); margin-top:5px; }
+  .reffield { display:flex; gap:8px; align-items:center; }
+  .seg { display:inline-flex; border:1px solid var(--edge-2); border-radius: var(--r-sm); overflow:hidden; }
+  .seg button { border:0; background:var(--panel); font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 12px; cursor:pointer; color:var(--ink-3); border-right:1px solid var(--edge); }
+  .seg button:last-child { border-right:0; }
+  .seg button.on { background:var(--ink); color:var(--paper); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">11 · II</span>
+    <span class="ttl">Inputs</span>
+    <span class="meta">domain-first: event names, keys, filters, SQL</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">The fields a product-analytics tool actually needs come first; the generic text field comes last. Mono on anything that's data (event names, keys, values); sans on anything that's a label or sentence.</p>
+
+  <!-- Event + property filter (the query builder's heart) -->
+  <div class="scene">
+    <span class="overline">Query builder · event &amp; property filter</span>
+    <div class="fieldset">
+      <div>
+        <label class="f-label">Event</label>
+        <div class="reffield">
+          <input class="f f-mono" value="checkout_completed" />
+          <span class="evmark">custom</span>
+        </div>
+        <div class="schema-hint">↳ 3,019 in last 7d · 41 distinct properties</div>
+      </div>
+      <div>
+        <label class="f-label">Where</label>
+        <div class="row row-tight">
+          <span class="filter-chip">device <span class="op">=</span> mobile <span class="x">×</span></span>
+          <span class="filter-chip">browser <span class="op">≠</span> Chrome <span class="x">×</span></span>
+          <span class="filter-chip">plan <span class="op">in</span> [pro, team] <span class="x">×</span></span>
+          <button class="b b-sm b-quiet" style="border:1px dashed var(--edge-2)">＋ add filter</button>
+        </div>
+      </div>
+      <div>
+        <label class="f-label">Group by</label>
+        <input class="f f-mono" value="properties.utm_source" placeholder="property…" />
+      </div>
+    </div>
+  </div>
+
+  <!-- API keys -->
+  <div class="scene">
+    <span class="overline">SDK keys · read-only, copy or rotate</span>
+    <div class="fieldset two">
+      <div>
+        <label class="f-label">Public write key</label>
+        <div class="keyfield">
+          <input class="f f-mono" value="omo_pk_7Hq2X9b4kLmaF9" readonly />
+          <button class="b b-secondary">Copy</button>
+        </div>
+        <div class="f-help">Safe to ship in client code.</div>
+      </div>
+      <div>
+        <label class="f-label">Private read key</label>
+        <div class="keyfield">
+          <input class="f f-mono" value="omo_sk_••••••••••••aQ2" readonly />
+          <button class="b b-secondary">Reveal</button>
+        </div>
+        <div class="f-help" style="color:var(--crit)">Server-side only — never expose this.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Numeric thresholds (alerts) -->
+  <div class="scene">
+    <span class="overline">Alert thresholds · numeric, tabular</span>
+    <div class="fieldset two">
+      <div>
+        <label class="f-label">Notify when DAU drops below</label>
+        <input class="f f-mono" value="5,000" />
+      </div>
+      <div>
+        <label class="f-label">Funnel conversion below</label>
+        <div class="reffield"><input class="f f-mono" value="12.0" style="max-width:120px" /><span class="muted">%</span></div>
+      </div>
+      <div>
+        <label class="f-label">Conversion window</label>
+        <div class="seg">
+          <button>1d</button><button class="on">7d</button><button>14d</button><button>30d</button>
+        </div>
+      </div>
+      <div>
+        <label class="f-label">Retention interval</label>
+        <div class="seg">
+          <button class="on">Daily</button><button>Weekly</button><button>Monthly</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SQL editor field -->
+  <div class="scene">
+    <span class="overline">SQL query · read-only against events</span>
+    <div class="sql">
+<span class="kw">SELECT</span> toDate(timestamp) <span class="kw">AS</span> day, count() <span class="kw">AS</span> n
+<span class="kw">FROM</span> events
+<span class="kw">WHERE</span> event = <span class="st">'checkout_completed'</span>
+  <span class="kw">AND</span> properties.device = <span class="st">'mobile'</span>
+  <span class="kw">AND</span> timestamp &gt; now() - <span class="nm">7</span>
+<span class="kw">GROUP BY</span> day <span class="kw">ORDER BY</span> day</div>
+    <div class="row" style="margin-top:12px">
+      <button class="b b-primary">Run</button>
+      <button class="b b-secondary">Save query</button>
+      <span class="grow"></span>
+      <span class="mark">read-only · no writes, no schema changes</span>
+    </div>
+  </div>
+
+  <!-- States + generic last -->
+  <div class="break"><span class="lbl">States · default · focus · invalid · disabled · generic</span></div>
+  <div class="fieldset two">
+    <div><label class="f-label">Default</label><input class="f" placeholder="workspace name" /></div>
+    <div><label class="f-label">Focus</label><input class="f" value="Acme Production" style="border-color:var(--coral-500);box-shadow:0 0 0 3px var(--coral-edge)" /></div>
+    <div>
+      <label class="f-label">Invalid</label>
+      <input class="f" value="not-an-email" style="border-color:var(--crit);box-shadow:0 0 0 3px var(--crit-bg)" />
+      <div class="f-help" style="color:var(--crit)">Enter a valid email to invite this member.</div>
+    </div>
+    <div><label class="f-label">Disabled</label><input class="f" value="omo_sk_••••aQ2" disabled style="opacity:.55" /></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; display:grid; gap:14px; }
+
+  .toast { display:flex; align-items:center; gap:12px; background:var(--ink); color:#fff; border-radius:12px; padding:13px 16px; font-size:13.5px; box-shadow:var(--shade-pop); max-width:420px; }
+  .toast .ic { flex-shrink:0; }
+  .toast .x { margin-left:auto; opacity:.6; cursor:pointer; }
+  .toast.save { background:#1F3A22; }
+  .toast .undo { margin-left:auto; color:var(--clay-300); font-weight:600; cursor:pointer; }
+
+  .banner { border-radius:12px; padding:14px 18px; display:flex; align-items:flex-start; gap:12px; font-size:13.5px; line-height:1.55; }
+  .banner.info { background:var(--info-bg); border:1px solid var(--info-edge); color:var(--info); }
+  .banner.warn { background:var(--warn-bg); border:1px solid var(--warn-edge); color:var(--warn); }
+  .banner .ic { flex-shrink:0; margin-top:1px; }
+  .banner b { font-weight:600; }
+
+  .callout { border-left:3px solid var(--clay-500); background:var(--clay-50); border-radius:0 12px 12px 0; padding:14px 18px; }
+  .callout .h { font-size:13px; font-weight:600; color:var(--clay-800); margin-bottom:4px; }
+  .callout p { margin:0; font-size:13px; color:var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">41 / 43</span>
+    <span class="ttl">Feedback</span>
+    <span class="meta">Toasts · banners · callouts</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">Feedback is calm and factual. Toasts slip in at the corner and leave; banners carry standing notes (the estimate disclaimer, low-confidence warnings); the statute callout teaches. No alarm bells, no fake urgency.</p>
+
+  <div class="scene">
+    <div class="cap">toasts · transient confirmations</div>
+    <div class="body">
+      <div class="toast save"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Result downloaded — TaxLens-2026-estimate.pdf<span class="x">✕</span></div>
+      <div class="toast">3 credits reclassified as business income<span class="undo">Undo</span></div>
+      <div class="toast"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4m0 4h.01"/><circle cx="12" cy="12" r="9"/></svg>Switched to yearly — figures converted<span class="x">✕</span></div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">banners · standing notes</div>
+    <div class="body">
+      <div class="banner info">
+        <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <span><b>NIN is now your Tax ID.</b> Under the NTA Administration Act 2025, your National Identity Number is your TIN — no separate registration needed.</span>
+      </div>
+      <div class="banner warn">
+        <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 4h.01"/></svg>
+        <span><b>3 credits are still unclassified.</b> Your result excludes them for now. Classify them to include them in your taxable income.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">callout · the teaching note (statute-backed)</div>
+    <div class="body">
+      <div class="callout">
+        <div class="h">Good to know</div>
+        <p>Compensation for loss of employment is exempt up to <span class="mono">₦50,000,000</span> under the NTA 2025 — raised from ₦10m. If a redundancy payout is in your statement, it won’t be taxed within that limit.</p>
+      </div>
+      <p class="disclaimer" style="border:0; padding:0; margin:0"><b>The persistent footer</b> — present on every page — reads: “Estimate under NTA 2025. Not tax advice.”</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

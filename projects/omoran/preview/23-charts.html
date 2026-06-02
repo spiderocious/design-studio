@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Charts</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .chart { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); padding:16px 18px; }
+  .chart .ch-h { font-family:var(--sans); font-size:13px; font-weight:600; margin-bottom:14px; display:flex; align-items:baseline; gap:8px; }
+  .chart .ch-h .mark { margin-left:auto; }
+  /* funnel */
+  .funnel .step { display:grid; grid-template-columns:130px 1fr 70px; align-items:center; gap:12px; padding:6px 0; }
+  .funnel .step .lab { font-family:var(--mono); font-size:11.5px; }
+  .funnel .step .barwrap { background:var(--paper-deep); border-radius:var(--r-xs); height:26px; overflow:hidden; }
+  .funnel .step .bar { height:100%; background:var(--coral-500); display:flex; align-items:center; padding-left:8px; color:#fff; font:600 11px var(--mono); }
+  .funnel .step .pct { font-family:var(--mono); font-size:12px; font-variant-numeric:tabular-nums; text-align:right; font-weight:600; }
+  .funnel .drop { font-family:var(--mono); font-size:10.5px; color:var(--crit); padding:0 0 6px 142px; }
+  /* retention grid */
+  .ret { border-collapse:collapse; width:100%; }
+  .ret th { font-family:var(--mono); font-size:10px; color:var(--ink-4); padding:5px; text-align:center; font-weight:500; }
+  .ret td { padding:4px; text-align:center; }
+  .ret .cell { font-family:var(--mono); font-size:11px; font-variant-numeric:tabular-nums; border-radius:var(--r-xs); padding:7px 4px; color:#fff; }
+  .ret .lab { font-family:var(--mono); font-size:10.5px; color:var(--ink-3); text-align:left; }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">23 · III</span>
+    <span class="ttl">Charts</span>
+    <span class="meta">funnel · retention · donut · sparkline · bar</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">Hairline-first, coral as the single focus colour. The funnel and retention grid carry the real weight in a product-analytics tool — the funnel marks its worst drop-off in oxblood, retention fades coral by strength.</p>
+
+  <div class="grid2">
+    <!-- Funnel -->
+    <div class="chart">
+      <div class="ch-h">Funnel · signup → activation <span class="mark">7-day window</span></div>
+      <div class="funnel">
+        <div class="step"><span class="lab">signup_started</span><div class="barwrap"><div class="bar" style="width:100%">6,902</div></div><span class="pct">100%</span></div>
+        <div class="step"><span class="lab">email_verified</span><div class="barwrap"><div class="bar" style="width:74%">5,108</div></div><span class="pct">74%</span></div>
+        <div class="step"><span class="lab">workspace_created</span><div class="barwrap"><div class="bar" style="width:52%">3,589</div></div><span class="pct">52%</span></div>
+        <div class="drop">↳ −41% here · mobile drops 2× harder than desktop</div>
+        <div class="step"><span class="lab">first_event_sent</span><div class="barwrap"><div class="bar" style="width:31%">2,140</div></div><span class="pct">31%</span></div>
+        <div class="step"><span class="lab">activated</span><div class="barwrap"><div class="bar" style="width:24%">1,656</div></div><span class="pct">24%</span></div>
+      </div>
+    </div>
+
+    <!-- Retention -->
+    <div class="chart">
+      <div class="ch-h">Retention · weekly cohorts</div>
+      <table class="ret">
+        <thead><tr><th class="lab">Cohort</th><th>W0</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th></tr></thead>
+        <tbody>
+          <tr><td class="lab">Apr 21</td>
+            <td><div class="cell" style="background:#A93A15">100</div></td>
+            <td><div class="cell" style="background:#D04A1B">48</div></td>
+            <td><div class="cell" style="background:#EE7846">36</div></td>
+            <td><div class="cell" style="background:#F09A72">31</div></td>
+            <td><div class="cell" style="background:#F6BFA3;color:var(--ink)">28</div></td></tr>
+          <tr><td class="lab">Apr 28</td>
+            <td><div class="cell" style="background:#A93A15">100</div></td>
+            <td><div class="cell" style="background:#D04A1B">51</div></td>
+            <td><div class="cell" style="background:#EE7846">39</div></td>
+            <td><div class="cell" style="background:#F09A72">34</div></td>
+            <td><div class="cell" style="background:#FBE0D2;color:var(--ink)">—</div></td></tr>
+          <tr><td class="lab">May 5</td>
+            <td><div class="cell" style="background:#A93A15">100</div></td>
+            <td><div class="cell" style="background:#D04A1B">53</div></td>
+            <td><div class="cell" style="background:#EE7846">41</div></td>
+            <td><div class="cell" style="background:#FBE0D2;color:var(--ink)">—</div></td>
+            <td><div class="cell" style="background:#FDF1EA;color:var(--ink-4)">—</div></td></tr>
+          <tr><td class="lab">May 12</td>
+            <td><div class="cell" style="background:#A93A15">100</div></td>
+            <td><div class="cell" style="background:#D04A1B">55</div></td>
+            <td><div class="cell" style="background:#FBE0D2;color:var(--ink)">—</div></td>
+            <td><div class="cell" style="background:#FDF1EA;color:var(--ink-4)">—</div></td>
+            <td><div class="cell" style="background:#FDF1EA;color:var(--ink-4)">—</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Donut + sparklines -->
+    <div class="chart">
+      <div class="ch-h">Top sources · share of signups</div>
+      <div style="display:flex;align-items:center;gap:24px">
+        <svg viewBox="0 0 100 100" width="120" height="120">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--paper-deep)" stroke-width="16"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--coral-500)" stroke-width="16" stroke-dasharray="110 239" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--ink-3)" stroke-width="16" stroke-dasharray="72 239" stroke-dashoffset="-110" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--series-4)" stroke-width="16" stroke-dasharray="57 239" stroke-dashoffset="-182" transform="rotate(-90 50 50)"/>
+        </svg>
+        <div class="col" style="gap:9px">
+          <div class="row row-tight"><span style="width:10px;height:10px;border-radius:2px;background:var(--coral-500)"></span><span class="mono" style="font-size:12px">organic_search</span><span class="mono muted" style="font-size:11px;margin-left:auto">46%</span></div>
+          <div class="row row-tight"><span style="width:10px;height:10px;border-radius:2px;background:var(--ink-3)"></span><span class="mono" style="font-size:12px">direct</span><span class="mono muted" style="font-size:11px;margin-left:auto">30%</span></div>
+          <div class="row row-tight"><span style="width:10px;height:10px;border-radius:2px;background:var(--series-4)"></span><span class="mono" style="font-size:12px">paid_social</span><span class="mono muted" style="font-size:11px;margin-left:auto">24%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar + sparkline strip -->
+    <div class="chart">
+      <div class="ch-h">Top events · sparklines</div>
+      <div class="col" style="gap:0">
+        <div class="between" style="padding:9px 0;border-bottom:1px solid var(--hair)">
+          <span class="mono" style="font-size:12px">page_view</span>
+          <svg class="spark" width="120" height="18" viewBox="0 0 120 18" preserveAspectRatio="none"><polyline points="0,13 20,12 40,11 60,9 80,8 100,6 120,4" fill="none" stroke="var(--ok)" stroke-width="1.5"/></svg>
+          <span class="count">412,880</span>
+        </div>
+        <div class="between" style="padding:9px 0;border-bottom:1px solid var(--hair)">
+          <span class="mono" style="font-size:12px">add_to_cart</span>
+          <svg class="spark" width="120" height="18" viewBox="0 0 120 18" preserveAspectRatio="none"><polyline points="0,10 20,11 40,9 60,10 80,8 100,9 120,7" fill="none" stroke="var(--ok)" stroke-width="1.5"/></svg>
+          <span class="count">12,447</span>
+        </div>
+        <div class="between" style="padding:9px 0">
+          <span class="mono" style="font-size:12px">checkout_completed</span>
+          <svg class="spark" width="120" height="18" viewBox="0 0 120 18" preserveAspectRatio="none"><polyline points="0,6 20,6 40,7 60,8 80,11 100,14 120,16" fill="none" stroke="var(--coral-500)" stroke-width="1.5"/></svg>
+          <span class="count" style="color:var(--coral-700)">3,019</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

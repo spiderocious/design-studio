@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old vs new · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; margin-bottom: 24px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 26px 28px; }
+
+  .vs { display:grid; grid-template-columns: 1fr 64px 1fr; gap:0; align-items:stretch; }
+  .vs .side { padding:22px 24px; }
+  .vs .old { background: var(--paper-deep); border-radius:14px 0 0 14px; }
+  .vs .new { background: var(--clay-50); border:1px solid var(--clay-200); border-radius:0 14px 14px 0; }
+  .vs .mid { display:grid; place-items:center; }
+  .vs .arrow { width:40px; height:40px; border-radius:50%; background:var(--sheet); border:1px solid var(--edge); display:grid; place-items:center; color:var(--clay-600); }
+  .vs .tag { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .vs .new .tag { color:var(--clay-800); }
+  .vs .big { margin:12px 0 6px; }
+  .vs .sub { font-size:12.5px; color:var(--ink-3); }
+
+  .delta { text-align:center; margin-top:20px; padding:20px; background:var(--save-bg); border:1px solid var(--save-edge); border-radius:14px; }
+  .delta .line { font-family:var(--serif); font-size:24px; color:var(--ink); }
+  .delta .line b { color:var(--save); }
+  .delta .why { font-size:13px; color:var(--ink-3); margin-top:6px; }
+
+  .points { display:grid; gap:0; border:1px solid var(--edge); border-radius:14px; overflow:hidden; }
+  .pt { display:grid; grid-template-columns: 26px 1fr; gap:14px; padding:16px 20px; border-bottom:1px solid var(--hair-soft); }
+  .pt:last-child { border-bottom:0; }
+  .pt .dot { width:8px; height:8px; border-radius:50%; background:var(--clay-500); margin-top:7px; }
+  .pt .h { font-size:14px; font-weight:600; }
+  .pt .d { font-size:13px; color:var(--ink-3); margin-top:4px; line-height:1.5; }
+  .pt .d .mono { color:var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">22 / 43</span>
+    <span class="ttl">Old vs new</span>
+    <span class="meta">“What changed for you”</span>
+  </div>
+
+  <p class="lede" style="max-width:64ch; margin-bottom:18px">A side-by-side, then the net change in one plain sentence, then <em>only</em> the reform points that touch this person’s profile. Never the whole reform — just their slice of it. The change is delivered calmly, as good news when it is good news, never as alarm.</p>
+
+  <!-- side by side -->
+  <div class="scene">
+    <div class="cap">side by side · same income, two regimes</div>
+    <div class="body">
+      <div class="vs">
+        <div class="side old">
+          <div class="tag">Old regime · pre-2026 PITA</div>
+          <div class="big amt amt-xl" style="color:var(--ink-2)"><span class="ngn">₦</span>933,600</div>
+          <div class="sub">Effective 14.4% · after old CRA (₦200k + 20%)</div>
+        </div>
+        <div class="mid"><span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span></div>
+        <div class="side new">
+          <div class="tag">New regime · NTA 2025</div>
+          <div class="big amt amt-xl"><span class="ngn">₦</span>805,200</div>
+          <div class="sub">Effective 12.4% · after rent relief (₦360k) + pension</div>
+        </div>
+      </div>
+
+      <div class="delta">
+        <div class="line">You pay <b>₦128,400 less</b> a year under the new law.</div>
+        <div class="why">That’s about ₦10,700 a month back in your pocket.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- relevant reform points only -->
+  <div class="scene">
+    <div class="cap">why · the changes that actually affect you (3 of 9)</div>
+    <div class="body">
+      <div class="points">
+        <div class="pt"><span class="dot"></span><div><div class="h">The first ₦800,000 is now tax-free</div><div class="d">Before, tax started biting at ₦300,000. The new exempt threshold alone removes <span class="mono">₦56,000</span> of what you used to owe.</div></div></div>
+        <div class="pt"><span class="dot"></span><div><div class="h">Rent relief replaced the old CRA</div><div class="d">You now deduct 20% of rent (capped ₦500k). On your ₦1.8m rent that’s a <span class="mono">₦360,000</span> deduction — close to what CRA gave you, but simpler.</div></div></div>
+        <div class="pt"><span class="dot"></span><div><div class="h">Lower rates in your range</div><div class="d">The slice between ₦800k and ₦3m is taxed at 15%, down from a mix of 7–19% bands. That’s where most of your saving comes from.</div></div></div>
+      </div>
+      <p class="tiny" style="margin-top:14px">Six other reform points exist (digital-asset gains, gratuity, share-disposal exemptions…) but none change <em>your</em> result, so we don’t crowd the page with them.</p>
+      <div class="disclaimer">Comparison uses the old PITA bands for illustration only — those rates no longer apply to 2026 income. <b>Estimate — not tax advice.</b></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

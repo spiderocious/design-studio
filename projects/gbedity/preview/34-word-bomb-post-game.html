@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Word Bomb · post-game</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .stage-shell {
+    background: var(--stage);
+    padding: 18px;
+    border-radius: 36px;
+  }
+  .strip {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 4px 12px 14px;
+  }
+  .wordmark {
+    font-family: var(--serif); font-weight: 700;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 26px; color: #fff; letter-spacing: -0.01em;
+  }
+  .stage-meta {
+    color: rgba(255,255,255,0.78); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .stage-inset {
+    background: var(--canvas);
+    border-radius: 24px;
+    padding: 28px;
+  }
+  .card { background: var(--surface); border-radius: var(--r-card-lg); padding: 28px; }
+  .winner-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    background: var(--accent); color: var(--ink);
+    border-radius: 20px; padding: 22px 26px; margin-bottom: 22px;
+  }
+  .winner-bar .who { display: flex; align-items: center; gap: 14px; }
+  .winner-bar .crown {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 22px; color: var(--ink);
+  }
+  .winner-bar .name {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 30px; color: var(--ink);
+  }
+  .winner-bar .pts {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-variant-numeric: tabular-nums;
+    font-size: 56px; letter-spacing: -0.03em; color: var(--ink); line-height: 1;
+  }
+  .av {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 22px; flex-shrink: 0;
+  }
+  .av.b4 { background: var(--accent); }
+  .av.b1 { background: var(--stage); }
+  .av.b2 { background: var(--special); }
+  .av.b3 { background: var(--info); color: var(--ink); }
+  .av-sm { width: 40px; height: 40px; font-size: 16px; }
+
+  .row-ranked {
+    display: grid; grid-template-columns: 30px 40px 1fr auto;
+    align-items: center; gap: 14px;
+    padding: 14px 6px;
+  }
+  .row-ranked + .row-ranked { border-top: 1px dashed var(--ink-5); }
+  .row-ranked .rank {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 20px; color: var(--ink-3); text-align: right;
+  }
+  .row-ranked .rank.top { color: var(--accent-deep); }
+  .row-ranked .name { font-weight: 700; font-size: 16px; color: var(--ink); }
+  .row-ranked .score-cell {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 26px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .row-ranked .score-cell.win { color: var(--accent-deep); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Word Bomb · post-game (display TV)</p>
+
+  <div class="stage-shell">
+    <div class="strip">
+      <span class="wordmark">Final scores</span>
+      <span class="stage-meta">06 · Word Bomb · round 3</span>
+    </div>
+    <div class="stage-inset">
+      <div class="card">
+        <div class="winner-bar">
+          <div class="who">
+            <span class="crown">winner</span>
+            <div class="av b4">A</div>
+            <span class="name">Ada</span>
+          </div>
+          <span class="pts">1,420</span>
+        </div>
+        <div>
+          <div class="row-ranked"><div class="rank top">1</div><div class="av av-sm b4">A</div><div class="name">Ada</div><div class="score-cell win">1,420</div></div>
+          <div class="row-ranked"><div class="rank">2</div><div class="av av-sm">T</div><div class="name">Tobi</div><div class="score-cell">1,180</div></div>
+          <div class="row-ranked"><div class="rank">3</div><div class="av av-sm b3">F</div><div class="name">Funmi</div><div class="score-cell">940</div></div>
+          <div class="row-ranked"><div class="rank">4</div><div class="av av-sm b2">K</div><div class="name">Kemi</div><div class="score-cell">720</div></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg">Play again</button>
+          <button class="btn btn-secondary btn-lg">Pick another game</button>
+          <button class="btn btn-ghost btn-lg">End session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

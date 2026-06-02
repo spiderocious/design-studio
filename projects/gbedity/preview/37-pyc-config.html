@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Plead Your Case · configure</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+
+  .pyc-shell { display: grid; grid-template-columns: 1fr 320px; gap: 14px; }
+  .config-stack { display: flex; flex-direction: column; gap: 12px; }
+
+  .head-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 22px;
+    background: var(--surface);
+    border-radius: var(--r-card);
+  }
+  .head-card .id-chip {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 38px; color: var(--ink);
+    letter-spacing: -0.02em; line-height: 1;
+    width: 72px; height: 72px;
+    background: var(--canvas); border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .head-card .ttl {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 28px; color: var(--ink);
+    letter-spacing: -0.01em; line-height: 1.1; margin: 0;
+  }
+  .head-card .sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+  .head-card .head-desc {
+    font-size: 14px; color: var(--ink-3); margin-top: 6px;
+    font-family: var(--sans); font-weight: 400;
+  }
+
+  .group-card {
+    background: var(--surface); border-radius: var(--r-card);
+    padding: 20px 22px;
+  }
+  .group-head {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .group-label {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .group-status {
+    font-family: var(--sans); font-weight: 700; font-size: 11px;
+    color: var(--action-deep);
+  }
+  .opt-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; padding: 10px 0; gap: 14px;
+  }
+  .opt-row + .opt-row { border-top: 1px dashed var(--ink-5); }
+  .opt-row .opt-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .opt-row .opt-desc { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+  .slider-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; padding: 12px 0; gap: 14px;
+  }
+  .slider-row + .slider-row { border-top: 1px dashed var(--ink-5); padding-top: 16px; margin-top: 4px;}
+  .slider-row .opt-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .slider-row .opt-desc { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .slider-track {
+    width: 260px; height: 6px;
+    background: var(--canvas);
+    border-radius: var(--r-pill);
+    position: relative;
+    margin-top: 12px;
+  }
+  .slider-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--ink);
+    border-radius: var(--r-pill);
+  }
+  .slider-thumb {
+    position: absolute; top: 50%; width: 18px; height: 18px;
+    background: var(--surface); border: 2px solid var(--ink);
+    border-radius: 50%; transform: translate(-50%, -50%);
+  }
+  .weight-val {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    min-width: 48px; text-align: right;
+  }
+
+  .preview-rail {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    align-self: start;
+    position: sticky;
+    top: 20px;
+  }
+  .preview-rail .label {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .preview-rail .sample-arg {
+    background: var(--canvas); border-radius: 14px;
+    padding: 14px 16px;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 400; font-style: italic;
+    font-size: 14px; color: var(--ink-2); line-height: 1.55;
+  }
+  .preview-rail .sample-arg::before { content: "\201C"; color: var(--ink-4); margin-right: 2px; font-size: 22px; line-height: 0; vertical-align: -6px; }
+  .preview-rail .sample-arg::after  { content: "\201D"; color: var(--ink-4); margin-left: 2px;  font-size: 22px; line-height: 0; vertical-align: -10px; }
+
+  .sample-label {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin-top: 6px;
+  }
+  .verdict-card {
+    background: var(--ink); color: #fff;
+    border-radius: 16px; padding: 16px 18px;
+  }
+  .verdict-card .v-tag {
+    font-family: var(--sans); font-weight: 800; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .verdict-card .v-num {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 46px; line-height: 1;
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+  }
+  .verdict-card .v-num small {
+    font-family: var(--sans); font-weight: 700; font-size: 18px;
+    color: rgba(255,255,255,0.6); letter-spacing: 0; margin-left: 2px;
+  }
+  .verdict-card .v-line {
+    font-size: 12px; color: rgba(255,255,255,0.78);
+    margin-top: 8px; line-height: 1.55;
+  }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Plead Your Case · configure (host phone)</p>
+
+  <div class="pyc-shell">
+    <div class="config-stack">
+      <div class="head-card">
+        <div class="id-chip">18</div>
+        <div>
+          <p class="ttl">Plead Your Case</p>
+          <p class="sub">Immersive · 2–10 · AI evaluated · 12 min default</p>
+          <p class="head-desc">Argue your innocence. The AI rules.</p>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-head"><span class="group-label">Round</span><span class="group-status">2 set</span></div>
+        <div class="opt-row">
+          <div><div class="opt-name">Argument time</div><div class="opt-desc">Per player</div></div>
+          <div class="seg"><button>3 min</button><button class="on">5 min</button><button>10 min</button></div>
+        </div>
+        <div class="opt-row">
+          <div><div class="opt-name">Charge severity</div><div class="opt-desc">Pulls from the matching case pool</div></div>
+          <div class="seg"><button>Minor</button><button class="on">Mixed</button><button>Major</button></div>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-head"><span class="group-label">AI evaluation criteria</span><span class="group-status">3 set</span></div>
+        <div class="slider-row">
+          <div>
+            <div class="opt-name">Legal soundness</div>
+            <div class="opt-desc">How well grounded in the supplied laws</div>
+            <div class="slider-track"><div class="slider-fill" style="width: 50%;"></div><div class="slider-thumb" style="left: 50%;"></div></div>
+          </div>
+          <span class="weight-val">50%</span>
+        </div>
+        <div class="slider-row">
+          <div>
+            <div class="opt-name">Persuasiveness</div>
+            <div class="opt-desc">Rhetorical strength, narrative coherence</div>
+            <div class="slider-track"><div class="slider-fill" style="width: 30%;"></div><div class="slider-thumb" style="left: 30%;"></div></div>
+          </div>
+          <span class="weight-val">30%</span>
+        </div>
+        <div class="slider-row">
+          <div>
+            <div class="opt-name">Use of precedent</div>
+            <div class="opt-desc">Does the argument cite the supplied cases</div>
+            <div class="slider-track"><div class="slider-fill" style="width: 20%;"></div><div class="slider-thumb" style="left: 20%;"></div></div>
+          </div>
+          <span class="weight-val">20%</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary">Start game</button>
+        <button class="btn btn-secondary">Use defaults</button>
+        <button class="btn btn-ghost">Back</button>
+      </div>
+    </div>
+
+    <div class="preview-rail">
+      <span class="label">A sample argument</span>
+      <div class="sample-arg">My client did not violate clause 3.b — the contract was voided when the second party failed to deliver by Friday, citing the <em>Adamu v. Lagos</em> precedent.</div>
+
+      <div class="sample-label">Would score about</div>
+      <div class="verdict-card">
+        <div class="v-tag">AI verdict · sample</div>
+        <div class="v-num">78<small>/100</small></div>
+        <div class="v-line">Strong legal grounding (50%), cites supplied precedent (20%), moderate rhetoric (30%).</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,500 @@
+/* ============================================================
+   OMORAN — coral-console foundation  (Brutalist dossier #4)
+   One stance, applied everywhere.
+
+   Frame:   a declassified analytics dossier — exposed structure,
+            [01] index tags, mono-led, hairline frames.
+   Type:    JetBrains Mono for DATA (tabular, scannable),
+            Inter for CHROME (legible at small sizes),
+            Source Serif 4 reserved for the AI ANALYST'S PROSE only.
+   Colour:  a four-register warm system that never overlaps —
+              coral   = ATTENTION   (everyday accent, routine signals)
+              hazard  = ACT NOW      (highest-severity system state)
+              oxblood = IRREVERSIBLE (destructive user action)
+              green   = HEALTHY / UP
+   Chrome:  3px soft frames, hairlines instead of shadows,
+            content wins over decoration.
+
+   Components are designed scenes, not catalog grids.
+   The token name is in the code, never on the surface.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---------- Paper & ink (near-white, warm graphite) ---------- */
+  --paper:       #F7F5F0;   /* the canvas — near-white, faintly warm */
+  --paper-deep:  #EFEBE2;   /* recessed surface / app background */
+  --panel:       #FFFFFF;   /* a panel / card sheet */
+  --panel-2:     #FBFAF6;   /* a quieter panel */
+  --edge:        #ECE6DA;   /* the frame around a panel */
+  --edge-2:      #DDD6C8;   /* a stronger hairline / input border */
+  --ink:         #17150F;   /* near-black, warm graphite */
+  --ink-2:       #3A352C;   /* body */
+  --ink-3:       #5E574A;   /* secondary */
+  --ink-4:       #9A9484;   /* tertiary / placeholder */
+  --ink-5:       #B7B0A0;   /* faintest (index tags, ghost) */
+  --hair:        #ECE6DA;   /* hairline divider */
+  --hair-2:      #DDD6C8;   /* stronger divider */
+  --rule:        #17150F;   /* heavy ink rule (section tops) */
+
+  /* ---------- Register 1 — CORAL (attention / everyday accent) ----------
+     The product accent. Marks interactive, the AI analyst's everyday
+     "worth a look", routine anomalies. The brand colour. */
+  --coral-50:   #FDF1EA;
+  --coral-100:  #FBE0D2;
+  --coral-200:  #F6BFA3;
+  --coral-300:  #F09A72;
+  --coral-400:  #EE7846;
+  --coral-500:  #E85D2A;   /* PRIMARY accent — buttons, links, attention */
+  --coral-600:  #D04A1B;   /* hover */
+  --coral-700:  #A93A15;   /* pressed / on-light text */
+  --coral-bg:   #FCEBE2;
+  --coral-edge: #F4CBB4;
+
+  /* ---------- Register 2 — HAZARD (act now / highest severity) ----------
+     Deeper, louder cousin of coral. Reserved for the highest-severity
+     system STATE — a metric off a cliff, an event gone silent. It screams.
+     NEVER a button. NEVER decoration. */
+  --hazard:      #D6531B;   /* the act-now mark */
+  --hazard-deep: #B5430F;
+  --hazard-bg:   #FBE8DC;
+  --hazard-edge: #EFB991;
+
+  /* ---------- Register 3 — OXBLOOD (irreversible user action) ----------
+     Reserved for destructive actions the USER takes: rotate key,
+     delete-all-user-data, drop a project. Not for alarm-state. */
+  --crit:        #B0231C;   /* deep oxblood, not Bootstrap red */
+  --crit-deep:   #8C1A14;
+  --crit-bg:     #FBECEB;
+  --crit-edge:   #E5BCB9;
+
+  /* ---------- Register 4 — GREEN (healthy / up / live) ---------- */
+  --ok:          #1A6E3C;
+  --ok-bright:   #2E8B4F;
+  --ok-bg:       #E6F2EA;
+  --ok-edge:     #B9DCC6;
+
+  /* ---------- Amber (mild warn — quota, staleness, soft caution) ----------
+     Sits between "all good" and "act now". Used for warnings that are
+     not yet urgent (approaching event cap, data older than expected). */
+  --warn:        #9A6612;
+  --warn-bg:     #FBF1DC;
+  --warn-edge:   #E6D29B;
+
+  /* ---------- Chart ink (hairline-first, sober) ----------
+     A small, deliberate palette for series. Coral leads; the rest are
+     muted so the accent stays meaningful. */
+  --series-1: #E85D2A;   /* coral — the focused series */
+  --series-2: #3A352C;   /* ink */
+  --series-3: #1A6E3C;   /* green */
+  --series-4: #5E7CB8;   /* dusk blue (cool relief, used sparingly) */
+  --series-5: #9A6612;   /* amber */
+  --grid:     #ECE6DA;   /* chart gridlines */
+
+  /* ---------- Type ---------- */
+  --sans:   'Inter', system-ui, -apple-system, sans-serif;   /* CHROME */
+  --mono:   'JetBrains Mono', ui-monospace, monospace;       /* DATA */
+  --serif:  'Source Serif 4', Georgia, serif;                /* AI PROSE only */
+
+  /* Tracking — used deliberately */
+  --track-display:  -0.02em;
+  --track-h:        -0.01em;
+  --track-body:      0;
+  --track-label:     0.01em;
+  --track-overline:  0.16em;   /* mono section labels */
+  --track-tag:       0.04em;   /* the [01] index tags */
+  --track-mono:      0;
+
+  /* ---------- Geometry — 3px soft frames, hard where it counts ---------- */
+  --r-xs:    2px;
+  --r-sm:    3px;          /* the default — inputs, buttons, deltas */
+  --r-md:    4px;          /* panels / rows */
+  --r-lg:    6px;          /* cards */
+  --r-pill:  9999px;
+
+  --gutter:  20px;
+
+  /* Hairlines, not shadows. Shadow only on overlays. */
+  --line-1:  inset 0 0 0 1px var(--edge);
+  --shade-1: 0 1px 0 rgba(23,21,15,0.03);
+  --shade-pop: 0 8px 28px -6px rgba(23,21,15,0.18), 0 2px 6px rgba(23,21,15,0.06);
+
+  /* Motion — confident but quick; no bounce in chrome */
+  --ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1:     90ms;
+  --dur-2:     160ms;
+  --dur-3:     240ms;
+}
+
+/* ----- Reset ----- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: var(--track-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern", "calt";
+}
+
+/* ----- Type primitives — used inline, no class soup ----- */
+.sans    { font-family: var(--sans); }
+.mono    { font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1; letter-spacing: var(--track-mono); }
+.serif   { font-family: var(--serif); }
+.tabular { font-variant-numeric: tabular-nums; }
+.overline {
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: var(--track-overline);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* The [NN] index tag — the dossier's signature mark.
+   Mono, mid-grey, sits before a section label or row. */
+.tag {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: var(--track-tag);
+  color: var(--ink-5);
+}
+.tag-box {
+  display: inline-flex; align-items: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: var(--track-tag);
+  padding: 1px 6px; border: 1px solid var(--edge-2);
+  border-radius: var(--r-xs); color: var(--ink-3);
+}
+
+/* ----- Page chrome: a stamp header for every specimen ----- */
+.stamp {
+  display: flex; align-items: baseline; gap: 16px;
+  padding-bottom: 16px; margin-bottom: 32px;
+  border-bottom: 2px solid var(--ink);
+}
+.stamp .num {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  letter-spacing: var(--track-tag); white-space: nowrap;
+}
+.stamp .ttl {
+  font-family: var(--sans); font-size: 24px; font-weight: 700;
+  letter-spacing: var(--track-display); flex: 1; line-height: 1.05;
+}
+.stamp .meta {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  white-space: nowrap; letter-spacing: var(--track-tag);
+}
+
+/* ----- Section break ----- */
+.break { margin: 48px 0 22px; display: flex; align-items: center; gap: 12px; }
+.break .lbl {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  letter-spacing: var(--track-overline); text-transform: uppercase;
+}
+.break::after { content: ""; height: 1px; background: var(--hair-2); flex: 1; }
+
+/* ----- Page wrapper ----- */
+.page { max-width: 1140px; margin: 0 auto; padding: 48px 56px 96px; }
+.page-wide { max-width: 1280px; }
+
+/* ----- Panel: the only card idiom — hairline frame, soft 4-6px ----- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: var(--r-lg);
+}
+.panel-tight { padding: 14px 16px; }
+.panel-md    { padding: 18px 20px; }
+.panel-lg    { padding: 24px 28px; }
+.panel-deep  { background: var(--panel-2); }
+
+hr.hair { border: 0; border-top: 1px solid var(--hair); margin: 0; }
+hr.hair-2 { border: 0; border-top: 1px solid var(--hair-2); margin: 0; }
+
+/* A small uppercase mono mark used inside components */
+.mark {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+
+/* ============================================================
+   BUTTONS — three weights + the irreversible ornament.
+   Primary is filled coral. Secondary outlined. Danger oxblood.
+   Hazard is NOT a button — it is a state mark only.
+   ============================================================ */
+.b {
+  font-family: var(--sans);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.005em;
+  height: 34px; padding: 0 15px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  background: transparent; color: var(--ink);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  white-space: nowrap;
+  transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+}
+.b:active { transform: translateY(0.5px); }
+.b:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--coral-edge); }
+.b-primary    { background: var(--coral-500); color: #fff; border-color: var(--coral-500); }
+.b-primary:hover { background: var(--coral-600); border-color: var(--coral-600); }
+.b-secondary  { background: var(--panel); border-color: var(--edge-2); color: var(--ink); }
+.b-secondary:hover { border-color: var(--ink-3); background: var(--panel-2); }
+.b-quiet      { color: var(--ink-2); }
+.b-quiet:hover{ background: rgba(23,21,15,0.05); color: var(--ink); }
+.b-danger     { background: var(--panel); color: var(--crit); border-color: var(--crit-edge); }
+.b-danger:hover{ background: var(--crit-bg); border-color: var(--crit); }
+.b-danger-solid { background: var(--crit); color: #fff; border-color: var(--crit); }
+.b-danger-solid:hover { background: var(--crit-deep); }
+.b-ink        { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.b-ink:hover  { background: #000; }
+.b-sm { height: 28px; padding: 0 11px; font-size: 12px; }
+.b-lg { height: 40px; padding: 0 20px; font-size: 14px; }
+.b-icon { width: 34px; padding: 0; }
+
+/* ============================================================
+   INPUTS — boxed by default (3px). Mono for data fields,
+   sans for text. Key-fields carry an inline copy/rotate action.
+   ============================================================ */
+.f {
+  font-family: var(--sans);
+  font-size: 13px;
+  height: 34px; padding: 0 11px;
+  background: var(--panel);
+  border: 1px solid var(--edge-2);
+  border-radius: var(--r-sm);
+  color: var(--ink); outline: none; width: 100%;
+  letter-spacing: var(--track-body);
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+}
+.f::placeholder { color: var(--ink-4); }
+.f:focus { border-color: var(--coral-500); box-shadow: 0 0 0 3px var(--coral-edge); }
+.f-mono { font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1; }
+.f-lg { height: 40px; font-size: 14px; }
+.f-area { height: auto; padding: 10px 12px; line-height: 1.55; resize: vertical; }
+.f-label {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  color: var(--ink-3); display: block; margin-bottom: 5px;
+}
+.f-help { font-size: 11px; color: var(--ink-3); margin-top: 5px; }
+
+/* Key-field: a read-only mono value with an inline action button */
+.keyfield { display: flex; gap: 6px; align-items: stretch; }
+.keyfield .f { font-family: var(--mono); }
+.keyfield .b { flex-shrink: 0; }
+
+/* ============================================================
+   PILLS & STATUS — hairline rectangles. Colour the text + edge,
+   tint the fill faintly. The dot carries live-state.
+   ============================================================ */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 22px; padding: 0 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--edge-2);
+  background: var(--panel);
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  color: var(--ink-2); letter-spacing: var(--track-label); white-space: nowrap;
+}
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.pill-ok      { color: var(--ok);     border-color: var(--ok-edge);     background: var(--ok-bg); }
+.pill-coral   { color: var(--coral-700); border-color: var(--coral-edge); background: var(--coral-bg); }
+.pill-hazard  { color: var(--hazard-deep); border-color: var(--hazard-edge); background: var(--hazard-bg); }
+.pill-crit    { color: var(--crit);   border-color: var(--crit-edge);   background: var(--crit-bg); }
+.pill-warn    { color: var(--warn);   border-color: var(--warn-edge);   background: var(--warn-bg); }
+.pill-ink     { color: var(--paper);  border-color: var(--ink);         background: var(--ink); }
+.pill-ghost   { color: var(--ink-3);  border-color: var(--edge-2);      background: transparent; }
+.pill-sm { height: 18px; padding: 0 7px; font-size: 10px; }
+
+/* Mono tag chip — for event names, keys, ids inline */
+.chip-mono {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-2);
+  padding: 2px 7px; border-radius: var(--r-xs);
+  background: var(--paper-deep); border: 1px solid var(--edge);
+}
+.chip-mono.coral { color: var(--coral-700); background: var(--coral-bg); border-color: var(--coral-edge); }
+
+/* The auto/custom event mark */
+.evmark {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4);
+}
+
+/* ============================================================
+   NUMBERS — the readout family. Big tabular mono. The loudest
+   object on a metric tile. This is where Omoran "shouts".
+   ============================================================ */
+.read {
+  font-family: var(--mono);
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-weight: 600; color: var(--ink);
+  letter-spacing: -0.02em; line-height: 0.95;
+}
+.read-xl { font-size: 44px; }
+.read-lg { font-size: 34px; }
+.read-md { font-size: 26px; }
+.read-sm { font-size: 19px; }
+.read .u { font-family: var(--sans); font-size: 0.4em; color: var(--ink-3); margin-left: 5px; letter-spacing: 0.02em; font-weight: 600; }
+
+/* Delta marks — direction-coloured, mono, tabular. The anomaly flag
+   uses coral; the hazard escalation uses hazard. */
+.delta {
+  font-family: var(--mono); font-variant-numeric: tabular-nums;
+  font-size: 12px; font-weight: 600; letter-spacing: 0;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px; border-radius: var(--r-sm);
+}
+.delta-up   { color: var(--ok);     background: var(--ok-bg); }
+.delta-dn   { color: var(--crit);   background: var(--crit-bg); }
+.delta-flat { color: var(--ink-3);  background: var(--paper-deep); }
+.delta-anom { color: var(--coral-700); background: var(--coral-bg); }      /* attention */
+.delta-haz  { color: var(--hazard-deep); background: var(--hazard-bg); }   /* act now */
+.delta-bare { padding: 0; background: transparent; }
+
+/* ============================================================
+   THE AI ANALYST — the differentiator made into primitives.
+   Prose is the ONLY place serif appears. Every claim carries a
+   confidence indicator and a "show the query" affordance.
+   ============================================================ */
+.insight {
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-left: 3px solid var(--coral-500);   /* attention by default */
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+}
+.insight.act-now { border-left-color: var(--hazard); }     /* escalation */
+.insight .ihead { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.ibadge {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #fff;
+  background: var(--coral-500); padding: 3px 7px; border-radius: var(--r-sm);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.ibadge.act-now { background: var(--hazard); }
+.ibadge.ghost { background: transparent; color: var(--coral-700); border: 1px solid var(--coral-edge); }
+/* The AI prose — serif, the analyst's voice */
+.iprose {
+  font-family: var(--serif); font-size: 15.5px; line-height: 1.45;
+  color: var(--ink); margin: 0; letter-spacing: -0.003em;
+}
+.iprose b { font-weight: 600; }
+.iprose .num { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 14px; letter-spacing: 0; }
+.iprose .hl { color: var(--coral-700); }
+.iprose em { font-style: italic; color: var(--ink-2); }
+/* Confidence indicator — three dots, data-volume driven */
+.conf {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.conf .dots { display: flex; gap: 3px; }
+.conf .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); }
+.conf .dot.off { background: var(--edge-2); }
+.conf.low .dot:nth-child(n+2) { background: var(--edge-2); }
+.conf.med .dot:nth-child(3) { background: var(--edge-2); }
+/* The grounding footer — "show the query" is mandatory on every claim */
+.ifoot {
+  margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--hair);
+  display: flex; gap: 14px; align-items: center;
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+}
+.ifoot a, .show-query {
+  color: var(--coral-700); text-decoration: none; font-weight: 600;
+  font-family: var(--mono); font-size: 11px;
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+}
+.ifoot a:hover, .show-query:hover { color: var(--coral-600); }
+.ifoot .grounded { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; }
+.ifoot .grounded::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
+
+/* The SQL disclosure block — mono, dark, the receipt for any AI claim */
+.sql {
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+  background: var(--ink); color: #E8E3D6;
+  border-radius: var(--r-md); padding: 14px 16px;
+  overflow-x: auto; white-space: pre;
+}
+.sql .kw { color: #F09A72; }      /* keywords — coral-tinted */
+.sql .fn { color: #7FB58E; }      /* functions — green */
+.sql .st { color: #C9C2B0; }      /* strings */
+.sql .cm { color: #837C6C; }      /* comments */
+.sql .nm { color: #E8E3D6; }      /* numbers/cols */
+
+/* ============================================================
+   AVATARS — round for users-as-people; square for service keys.
+   Sober tones, no random rainbow.
+   ============================================================ */
+.av {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--paper-deep); color: var(--ink-2);
+  font-family: var(--sans); font-weight: 600; font-size: 12px;
+  flex-shrink: 0; user-select: none; border: 1px solid var(--edge-2);
+}
+.av-sm { width: 24px; height: 24px; font-size: 10px; }
+.av-lg { width: 44px; height: 44px; font-size: 16px; }
+.av-xl { width: 72px; height: 72px; font-size: 24px; }
+.av-sq { border-radius: var(--r-sm); }
+.av-coral { background: var(--coral-bg); color: var(--coral-700); border-color: var(--coral-edge); }
+.av-ink { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* Live pulse — green; used for "live event stream" / connected SDK only */
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(26,110,60,0.5); animation: pulse 1.7s var(--ease-out) infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(26,110,60,0.45); } 100% { box-shadow: 0 0 0 9px rgba(26,110,60,0); } }
+
+/* ============================================================
+   SCAFFOLDING
+   ============================================================ */
+.row    { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.row-tight { gap: 8px; }
+.col    { display: flex; flex-direction: column; gap: 12px; }
+.stack  { display: flex; flex-direction: column; gap: 0; }
+.between{ display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.split  { display: grid; gap: 16px; }
+.split-2 { grid-template-columns: 1fr 1fr; }
+.split-3 { grid-template-columns: repeat(3, 1fr); }
+.split-4 { grid-template-columns: repeat(4, 1fr); }
+.grow { flex: 1; }
+.muted { color: var(--ink-3); }
+.faint { color: var(--ink-4); }
+
+/* Metric tile — the dashboard's stable unit */
+.tile {
+  background: var(--panel); border: 1px solid var(--edge);
+  border-radius: var(--r-lg); padding: 16px 18px;
+}
+.tile .k { font-family: var(--sans); font-size: 11.5px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.01em; }
+.tile .v { margin-top: 8px; display: flex; align-items: baseline; gap: 10px; }
+
+/* Event-table row idiom — reused across explorer, dashboard, insights */
+.evrow {
+  display: grid; align-items: center; gap: 14px;
+  padding: 12px 14px; background: var(--panel);
+  border: 1px solid var(--edge); border-radius: var(--r-md);
+}
+.evrow .ename { font-family: var(--mono); font-size: 13px; font-weight: 500; }
+.evrow .count { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; text-align: right; }
+
+/* Spark — inline hairline trend */
+.spark { display: block; height: 16px; }
+
+/* ----- Selection ----- */
+::selection { background: rgba(232,93,42,0.22); color: var(--ink); }
+
+/* ----- Scrollbar ----- */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: var(--edge-2); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-4); }
+
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

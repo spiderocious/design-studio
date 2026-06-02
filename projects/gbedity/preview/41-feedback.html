@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Toasts, banners, alerts</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 28px 0 14px;
+  }
+
+  /* Toast — pill shape, semantic colour */
+  .toast {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--ink); color: #fff;
+    border-radius: var(--r-pill);
+    padding: 12px 22px 12px 18px;
+    font-family: var(--sans); font-weight: 700; font-size: 14px;
+    box-shadow: 0 8px 24px rgba(31, 107, 74, 0.18);
+  }
+  .toast .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #fff;
+  }
+  .toast.success { background: var(--action); color: #fff; }
+  .toast.success .dot { background: #fff; }
+  .toast.warn { background: var(--warn); color: var(--ink); }
+  .toast.warn .dot { background: var(--ink); }
+  .toast.danger { background: var(--danger); color: #fff; }
+  .toast .action {
+    background: rgba(255,255,255,0.15); color: inherit;
+    padding: 4px 10px; border-radius: var(--r-pill);
+    font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 0; cursor: pointer;
+    margin-left: 4px;
+  }
+
+  /* Banner — full-width, in-card */
+  .banner {
+    display: flex; align-items: center; gap: 14px;
+    border-radius: 18px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .banner .icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-weight: 900; font-size: 14px;
+  }
+  .banner .content {
+    flex: 1;
+  }
+  .banner .title {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink); margin: 0;
+  }
+  .banner .desc { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; line-height: 1.5; }
+  .banner .cta {
+    background: transparent; border: 0;
+    font-family: var(--sans); font-weight: 800; font-size: 12px;
+    color: var(--ink); cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .banner.info { background: var(--info-soft); }
+  .banner.info .icon { background: var(--info); color: var(--ink); }
+  .banner.warn { background: var(--warn-soft); }
+  .banner.warn .icon { background: var(--warn); color: var(--ink); }
+  .banner.danger { background: var(--danger-soft); }
+  .banner.danger .icon { background: var(--danger); color: #fff; }
+  .banner.success { background: var(--action-soft); }
+  .banner.success .icon { background: var(--action); color: #fff; }
+
+  /* In-scene alerts */
+  .scene {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 28px;
+    margin-top: 16px;
+  }
+  .scene-ttl {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink); margin: 0 0 4px;
+  }
+  .scene-sub { font-size: 13px; color: var(--ink-3); margin: 0 0 18px; }
+
+  .toast-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Live in-game ribbon (correct/wrong) */
+  .ribbon {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--action-soft); color: var(--action-deep);
+    padding: 18px;
+    border-radius: 18px;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px;
+    margin-top: 10px;
+  }
+  .ribbon.wrong { background: var(--danger-soft); color: var(--danger-deep); }
+  .ribbon strong {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 28px; letter-spacing: -0.02em;
+    margin: 0 8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Toasts · banners · in-game alerts</p>
+  <p class="lede">Feedback comes in three weights. <strong>Toasts</strong> appear briefly — confirmation pills that float in and fade. <strong>Banners</strong> live in a screen, persistent until dismissed or acted on. <strong>In-game alerts</strong> are the loudest — correct/wrong ribbons that flash mid-round, sized to read across the room.</p>
+
+  <p class="group-h">Toasts</p>
+  <div class="toast-row">
+    <div class="toast success"><span class="dot"></span>Ada joined the room</div>
+    <div class="toast"><span class="dot"></span>Configuration saved</div>
+    <div class="toast warn"><span class="dot"></span>Funmi reconnecting…</div>
+    <div class="toast danger"><span class="dot"></span>Kemi left the room</div>
+  </div>
+  <div class="toast-row" style="margin-top: 14px;">
+    <div class="toast">Drawing tools updated <button class="action">Undo</button></div>
+    <div class="toast success">Round 3 starts in 3s <button class="action">Skip</button></div>
+  </div>
+
+  <p class="group-h">Banners</p>
+  <div class="banner info">
+    <div class="icon">i</div>
+    <div class="content">
+      <p class="title">Open the display URL on your TV</p>
+      <p class="desc">Phones make better controllers than displays. Scan the QR or visit gbedity.app/display from any browser.</p>
+    </div>
+    <button class="cta">Open ↗</button>
+  </div>
+
+  <div class="banner warn">
+    <div class="icon">!</div>
+    <div class="content">
+      <p class="title">Connection unstable</p>
+      <p class="desc">Two players have dropped to 3G. Game state will keep, but inputs may stutter.</p>
+    </div>
+    <button class="cta">Pause</button>
+  </div>
+
+  <div class="banner danger">
+    <div class="icon">!</div>
+    <div class="content">
+      <p class="title">Room server reconnecting</p>
+      <p class="desc">Last 30 seconds of state may be lost. Players will see a brief "reconnecting" indicator on their phones.</p>
+    </div>
+    <button class="cta">Dismiss</button>
+  </div>
+
+  <div class="banner success">
+    <div class="icon">✓</div>
+    <div class="content">
+      <p class="title">League queue ready</p>
+      <p class="desc">3 games queued · 33 minutes estimated · weighted ×1 / ×2 / ×1.</p>
+    </div>
+    <button class="cta">Start</button>
+  </div>
+
+  <p class="group-h">In-game ribbons (display TV · loud, brief)</p>
+  <div class="scene">
+    <p class="scene-ttl">Mid-round feedback</p>
+    <p class="scene-sub">Flashes for 250ms over the answer area when a player gets it right or wrong. No shake — only colour and weight.</p>
+
+    <div class="ribbon">
+      <strong>amala</strong> · Ada · <strong>+150</strong> pts
+    </div>
+    <div class="ribbon wrong" style="margin-top: 12px;">
+      Not in the category — <strong>−1</strong> life · Funmi
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

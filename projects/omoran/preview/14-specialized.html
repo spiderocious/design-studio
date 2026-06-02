@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Specialized inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); margin-bottom: 16px; padding: 18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  /* snippet box */
+  .snippet { position:relative; }
+  .snippet .code { font-family:var(--mono); font-size:12.5px; line-height:1.7; background:var(--ink); color:#E8E3D6; border-radius:var(--r-md); padding:16px 18px; overflow-x:auto; white-space:pre; }
+  .snippet .code .tag { color:#F09A72; }
+  .snippet .code .at { color:#9FBE8C; }
+  .snippet .code .st { color:#C9C2B0; }
+  .snippet .copy { position:absolute; top:10px; right:10px; }
+  .tabs { display:flex; gap:2px; margin-bottom:10px; }
+  .tabs button { border:0; background:transparent; font:600 12px var(--sans); color:var(--ink-3); padding:6px 12px; border-radius:var(--r-sm); cursor:pointer; }
+  .tabs button.on { background:var(--paper-deep); color:var(--ink); }
+  /* schema browser */
+  .schema { font-family:var(--mono); font-size:12.5px; }
+  .schema .tbl { font-weight:600; color:var(--ink); padding:7px 0; border-bottom:1px solid var(--hair); display:flex; gap:8px; align-items:center; }
+  .schema .tbl .ic { color:var(--coral-600); }
+  .schema .col { display:grid; grid-template-columns:1fr auto auto; gap:10px; padding:5px 0 5px 22px; align-items:baseline; }
+  .schema .col .cn { color:var(--ink-2); }
+  .schema .col .ct { color:var(--ink-4); font-size:11px; }
+  .schema .col .cs { color:var(--ink-3); font-size:11px; background:var(--paper-deep); padding:1px 6px; border-radius:var(--r-xs); }
+  /* NL bar */
+  .nlbar { display:flex; align-items:center; gap:10px; padding:6px 8px 6px 16px; border:1px solid var(--edge-2); border-radius:var(--r-pill); background:var(--panel); }
+  .nlbar .spark2 { color:var(--coral-500); font-size:15px; }
+  .nlbar input { border:0; outline:0; flex:1; font:400 14px var(--sans); background:transparent; }
+  .nlbar .hint { font-family:var(--mono); font-size:10px; color:var(--ink-4); }
+  /* PII strip list */
+  .piichip { display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:12px; background:var(--crit-bg); color:var(--crit); border:1px solid var(--crit-edge); border-radius:var(--r-sm); padding:4px 9px; }
+  /* domain dropzone */
+  .drop { border:1.5px dashed var(--edge-2); border-radius:var(--r-md); padding:26px; text-align:center; color:var(--ink-3); }
+  .drop .big { font-family:var(--sans); font-weight:600; color:var(--ink); font-size:13.5px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">14 · II</span>
+    <span class="ttl">Specialized inputs</span>
+    <span class="meta">the SDK snippet · schema browser · the ask-bar</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">The inputs unique to Omoran: the one-line install snippet (copyable), the schema browser that sits beside the SQL editor, the natural-language ask-bar, and the PII strip-list that defines what never leaves the SDK.</p>
+
+  <!-- SDK snippet -->
+  <div class="scene">
+    <span class="overline">SDK install · copy in one click</span>
+    <div class="tabs"><button class="on">&lt;script&gt;</button><button>npm</button><button>React Native</button></div>
+    <div class="snippet">
+      <button class="b b-sm b-secondary copy">Copy</button>
+      <div class="code"><span class="tag">&lt;script</span> <span class="at">async src</span>=<span class="st">"https://cdn.omoran.io/v1/omoran.js"</span>
+        <span class="at">data-key</span>=<span class="st">"omo_pk_7Hq2X9b4kLmaF9"</span><span class="tag">&gt;&lt;/script&gt;</span></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <span class="pulse"></span>
+      <span class="mono" style="font-size:12px;color:var(--ok)">First event received · 3s ago</span>
+    </div>
+  </div>
+
+  <div class="split-2">
+    <!-- Schema browser -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Schema browser · beside the SQL editor</span>
+      <div class="schema">
+        <div class="tbl"><span class="ic">▦</span> events <span class="ct" style="margin-left:auto;font-weight:400">28.1M rows</span></div>
+        <div class="col"><span class="cn">event</span><span class="cs">String</span><span class="ct">page_view</span></div>
+        <div class="col"><span class="cn">distinct_id</span><span class="cs">String</span><span class="ct">anon_8f…</span></div>
+        <div class="col"><span class="cn">user_id</span><span class="cs">Nullable</span><span class="ct">usr_8841</span></div>
+        <div class="col"><span class="cn">timestamp</span><span class="cs">DateTime</span><span class="ct">2026-05-19</span></div>
+        <div class="col"><span class="cn">properties</span><span class="cs">JSON</span><span class="ct">{…}</span></div>
+        <div class="col"><span class="cn">device</span><span class="cs">String</span><span class="ct">mobile</span></div>
+      </div>
+    </div>
+
+    <!-- PII strip + ask bar -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">PII strip-list · removed before send</span>
+      <div class="row row-tight" style="margin-bottom:18px">
+        <span class="piichip">email ×</span>
+        <span class="piichip">phone ×</span>
+        <span class="piichip">full_name ×</span>
+        <button class="b b-sm b-quiet" style="border:1px dashed var(--edge-2)">＋ add key</button>
+      </div>
+      <span class="overline" style="display:block;margin-bottom:10px">Ask-bar</span>
+      <div class="nlbar">
+        <span class="spark2">✦</span>
+        <input value="Where do mobile users drop off in checkout?" />
+        <span class="hint">⏎ to ask</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk import dropzone (user-deletion CSV, etc.) -->
+  <div class="scene" style="margin-top:16px">
+    <span class="overline">GDPR · bulk user-deletion by ID</span>
+    <div class="drop">
+      <div class="big">Drop a CSV of user IDs to delete</div>
+      <div style="margin-top:5px;font-size:12px">Every event tied to these IDs is permanently removed. Logged to the audit trail.</div>
+      <button class="b b-secondary b-sm" style="margin-top:14px">Choose file</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

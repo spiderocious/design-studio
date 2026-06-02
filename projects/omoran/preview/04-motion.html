@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Motion</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .curves { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .curve { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); padding: 18px; }
+  .curve .nm { font-family: var(--sans); font-size: 13px; font-weight: 600; }
+  .curve .fn { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin: 4px 0 12px; }
+  .curve .desc { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 12px; }
+  .curve svg { width: 100%; height: 70px; display: block; }
+  .durs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .dur { font-family: var(--mono); font-size: 12px; padding: 8px 12px; border: 1px solid var(--edge-2); border-radius: var(--r-sm); }
+  .dur b { color: var(--ink); }
+  .demo { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); padding: 24px; }
+  .demo-insight {
+    border: 1px solid var(--edge); border-left: 3px solid var(--coral-500);
+    border-radius: var(--r-md); padding: 14px 16px; background: var(--panel-2);
+    transform: translateY(8px); opacity: 0;
+    transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-3) var(--ease-out);
+  }
+  .demo.show .demo-insight { transform: translateY(0); opacity: 1; }
+  .num-tick { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; }
+  .principles { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+  .principles li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">04 · I</span>
+    <span class="ttl">Motion</span>
+    <span class="meta">confident, quick · numbers tick, panels slide</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 26px;">Motion is confident but never bouncy in chrome. Two ideas carry it: AI insights <em>slide in</em> from below when the analyst surfaces something (it's arriving, not jumping at you); and live numbers <em>tick</em> — they count to their new value, they don't spring.</p>
+
+  <div class="break"><span class="lbl">Three curves</span></div>
+  <div class="curves">
+    <div class="curve">
+      <div class="nm">Standard</div>
+      <div class="fn">cubic-bezier(.2,.7,.2,1)</div>
+      <svg viewBox="0 0 100 70"><path d="M0,70 C20,7 40,0 100,0" fill="none" stroke="var(--coral-500)" stroke-width="2"/></svg>
+      <div class="desc">Hovers, button presses, toggles. The everyday curve.</div>
+    </div>
+    <div class="curve">
+      <div class="nm">Arrive</div>
+      <div class="fn">cubic-bezier(.16,1,.3,1)</div>
+      <svg viewBox="0 0 100 70"><path d="M0,70 C8,2 18,0 100,0" fill="none" stroke="var(--ink)" stroke-width="2"/></svg>
+      <div class="desc">Insights, drawers, popovers entering. A long ease-out — settles, doesn't overshoot.</div>
+    </div>
+    <div class="curve">
+      <div class="nm">Tick</div>
+      <div class="fn">stepped · per-frame</div>
+      <svg viewBox="0 0 100 70"><path d="M0,70 L0,52 L20,52 L20,38 L40,38 L40,24 L60,24 L60,12 L80,12 L80,0 L100,0" fill="none" stroke="var(--ok)" stroke-width="2"/></svg>
+      <div class="desc">Live counts. The value steps toward its target — a meter, not a spring.</div>
+    </div>
+  </div>
+
+  <div class="break"><span class="lbl">Four durations</span></div>
+  <div class="durs">
+    <div class="dur"><b>90ms</b> · press / hover</div>
+    <div class="dur"><b>160ms</b> · toggle / tab</div>
+    <div class="dur"><b>240ms</b> · insight / drawer in</div>
+    <div class="dur"><b>1.7s</b> · live pulse loop</div>
+  </div>
+
+  <div class="break"><span class="lbl">Live demo</span></div>
+  <div class="split-2">
+    <div class="demo" id="demo">
+      <div class="row" style="justify-content:space-between;margin-bottom:14px">
+        <span class="overline">AI insights panel</span>
+        <button class="b b-sm b-secondary" onclick="document.getElementById('demo').classList.toggle('show')">Surface insight ↻</button>
+      </div>
+      <div class="demo-insight">
+        <div class="row" style="gap:8px;margin-bottom:8px"><span class="ibadge"><span style="font-size:10px">⚑</span> Anomaly</span></div>
+        <p class="iprose" style="font-size:14px"><b>checkout_completed</b> fell <span class="num hl">18%</span> — mostly Safari iOS.</p>
+      </div>
+    </div>
+    <div class="demo">
+      <div class="row" style="justify-content:space-between;margin-bottom:14px">
+        <span class="overline">Live counter · ticks to value</span>
+        <button class="b b-sm b-secondary" onclick="tick()">Run ↻</button>
+      </div>
+      <div><span class="num-tick" id="ctr">0</span><span class="u" style="font-family:var(--sans);font-size:14px;color:var(--ink-3);margin-left:8px">events / min</span></div>
+      <div class="row" style="margin-top:10px"><span class="pulse"></span><span class="mark">ingesting</span></div>
+    </div>
+  </div>
+
+  <div class="break"><span class="lbl">What's allowed, what isn't</span></div>
+  <ul class="principles">
+    <li><strong>Allowed:</strong> slide-up arrivals for insights and drawers · ticking numbers · 90ms hover feedback · a single live pulse on a connected SDK.</li>
+    <li><strong>Not allowed:</strong> bouncy springs in chrome · gratuitous parallax · charts that animate every re-render · anything that delays the operator reading a number.</li>
+    <li><strong>Reduced motion:</strong> all transitions collapse to near-instant; the insight simply appears; the counter snaps to its value.</li>
+  </ul>
+</div>
+
+<script>
+  function tick(){
+    const el = document.getElementById('ctr'); const target = 1840 + Math.floor(Math.random()*400);
+    let v = 0; const step = Math.ceil(target/40);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = target.toLocaleString(); return; }
+    const id = setInterval(()=>{ v += step; if (v >= target){ v = target; clearInterval(id); } el.textContent = v.toLocaleString(); }, 24);
+  }
+  tick();
+</script>
+</body>
+</html>

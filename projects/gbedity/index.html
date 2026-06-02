@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gbedity — bright-room game-night</title>
+<link rel="stylesheet" href="preview/_foundation.css">
+<style>
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--canvas); }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 100vh;
+    column-gap: 0;
+  }
+
+  /* ---- Left index ---- */
+  .toc {
+    background: var(--canvas);
+    border-right: 1px solid var(--ink-5);
+    padding: 32px 28px 22px;
+    overflow: auto;
+    display: flex; flex-direction: column;
+  }
+  .ttl {
+    font-family: var(--serif);
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 30px; font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0;
+    color: var(--ink);
+  }
+  .vol {
+    font-family: var(--sans); font-size: 12px;
+    color: var(--ink-3); margin-top: 8px;
+    font-weight: 700;
+  }
+  .meta {
+    font-family: var(--sans); font-size: 10px; color: var(--ink-3);
+    margin-top: 24px; padding-top: 18px;
+    border-top: 1px solid var(--ink-5);
+    line-height: 1.7;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-weight: 700;
+  }
+
+  .toc-search {
+    margin: 22px 0 8px;
+  }
+  .toc-search input {
+    width: 100%;
+    background: var(--surface);
+    border: 0;
+    border-radius: var(--r-pill);
+    height: 36px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    outline: none;
+    padding: 0 16px;
+    letter-spacing: 0;
+  }
+  .toc-search input:focus { box-shadow: inset 0 0 0 2px var(--ink); }
+  .toc-search input::placeholder { color: var(--ink-4); font-weight: 500; }
+
+  .nav { flex: 1; padding: 0; margin: 0; list-style: none; }
+
+  .group { margin-top: 22px; }
+  .group:first-child { margin-top: 8px; }
+  .group-h {
+    display: flex; align-items: baseline; gap: 10px;
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+  }
+  .group-h .n {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-variation-settings: var(--fraunces-soft);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .group-h .l { flex: 1; height: 1px; background: var(--ink-5); }
+
+  .item {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 6px 0;
+    font-family: var(--sans); font-size: 13px;
+    color: var(--ink-2);
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1.45;
+    font-weight: 600;
+  }
+  .item .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: transparent; border: 1.5px solid var(--ink-4);
+    flex-shrink: 0; transform: translateY(-3px);
+  }
+  .item:hover { color: var(--ink); }
+  .item.on { color: var(--ink); font-weight: 700; }
+  .item.on .dot { background: var(--action); border-color: var(--action); }
+
+  /* ---- Stage ---- */
+  .stage {
+    display: flex; flex-direction: column;
+    min-width: 0; min-height: 0;
+    background: var(--canvas);
+  }
+
+  .head {
+    flex-shrink: 0;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--ink-5);
+    display: flex; align-items: baseline; gap: 16px;
+    background: var(--canvas);
+  }
+  .crumb {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 800;
+  }
+  .crumb .cur { color: var(--ink); }
+  .head .gap { flex: 1; }
+  .head a {
+    font-family: var(--sans); font-size: 11px; color: var(--ink-3);
+    text-transform: uppercase; letter-spacing: 0.14em; text-decoration: none;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+  .head a:hover { color: var(--ink); background: var(--surface); }
+
+  .frame {
+    flex: 1;
+    min-height: 0;
+    background: var(--canvas);
+  }
+  .frame iframe {
+    width: 100%; height: 100%; border: 0; display: block;
+    background: var(--canvas);
+  }
+
+  /* ---- Welcome ---- */
+  .welcome-shell {
+    height: 100%; overflow: auto; padding: 64px 88px;
+    background: var(--canvas);
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="toc">
+    <h1 class="ttl">Gbedity</h1>
+    <div class="vol">A second-screen party game platform · vol. 1 · bright-room game-night</div>
+
+    <div class="toc-search">
+      <input id="filter" placeholder="Search…" autocomplete="off">
+    </div>
+
+    <nav id="nav" class="nav"></nav>
+
+    <div class="meta">
+      19 games · home only<br>
+      Nigerian content · English + Pidgin
+    </div>
+  </aside>
+
+  <main class="stage">
+    <div class="head">
+      <div class="crumb" id="crumb">
+        <span>Part I · Foundation</span>
+        <span style="margin: 0 8px; color: var(--ink-4)">/</span>
+        <span class="cur">Welcome</span>
+      </div>
+      <div class="gap"></div>
+      <a href="../../index.html">← Playground</a>
+      <a href="README.md" target="_blank">Readme</a>
+      <a id="popout" href="#" target="_blank">Open ↗</a>
+    </div>
+    <div class="frame">
+      <iframe id="preview" title="Gbedity specimen"></iframe>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  const PARTS = [
+    { id: "I",   title: "Foundation", items: [
+        { name: "Welcome",                  file: "" },
+        { name: "Palette",                  file: "preview/01-palette.html" },
+        { name: "Type",                     file: "preview/02-type.html" },
+        { name: "Spacing & geometry",       file: "preview/03-geometry.html" },
+        { name: "Motion",                   file: "preview/04-motion.html" },
+    ]},
+    { id: "II",  title: "Primitives", items: [
+        { name: "Buttons",                  file: "preview/10-buttons.html" },
+        { name: "Inputs",                   file: "preview/11-inputs.html" },
+        { name: "Selection",                file: "preview/12-selection.html" },
+    ]},
+    { id: "III", title: "Data & display", items: [
+        { name: "Pills · badges · status",  file: "preview/13-pills-badges.html" },
+        { name: "Cards · tiles · rows",     file: "preview/14-cards-tiles-rows.html" },
+        { name: "Numerals",                 file: "preview/15-numerals.html" },
+    ]},
+    { id: "IV",  title: "Surfaces", items: [
+        { name: "Initial lobby",            file: "preview/30-lobby.html" },
+        { name: "Game catalogue",           file: "preview/31-catalogue.html" },
+        { name: "Word Bomb · in-game",      file: "preview/32-word-bomb-in-game.html" },
+        { name: "Word Bomb · configure",    file: "preview/33-word-bomb-config.html" },
+        { name: "Word Bomb · post-game",    file: "preview/34-word-bomb-post-game.html" },
+        { name: "Sketch & Guess · in-game", file: "preview/35-sketch-in-game.html" },
+        { name: "Sketch & Guess · post-game", file: "preview/36-sketch-post-game.html" },
+        { name: "Plead Your Case · configure", file: "preview/37-pyc-config.html" },
+        { name: "Plead Your Case · post-game", file: "preview/38-pyc-post-game.html" },
+    ]},
+    { id: "V",   title: "Overlays & system", items: [
+        { name: "Modals (incl. CRITICAL)",  file: "preview/40-modals.html" },
+        { name: "Toasts · banners · alerts",file: "preview/41-feedback.html" },
+    ]},
+  ];
+
+  const WELCOME = `
+<link rel="stylesheet" href="preview/_foundation.css">
+<style>
+  body { padding: 64px 88px; background: var(--canvas); }
+  .wrap { max-width: 820px; }
+  h1 {
+    font-family: var(--serif);
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 64px; font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1.02;
+    color: var(--ink); margin: 0 0 12px;
+  }
+  .vol {
+    font-family: var(--sans); font-weight: 700;
+    color: var(--ink-3); font-size: 13px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin: 0 0 36px;
+  }
+  p { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin: 0 0 18px; }
+  p strong { color: var(--ink); font-weight: 800; }
+  .ribbons { display: flex; gap: 10px; margin: 26px 0 0; flex-wrap: wrap; }
+  .ribbon {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border-radius: 9999px;
+    font-family: var(--sans); font-weight: 700; font-size: 12px;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .ribbon .sw { width: 12px; height: 12px; border-radius: 50%; }
+  .stance-card {
+    margin-top: 40px; background: var(--surface);
+    border-radius: 24px; padding: 28px 32px;
+  }
+  .stance-card h3 {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .stance-card .principle {
+    display: grid; grid-template-columns: auto 1fr; gap: 10px 16px;
+    align-items: baseline;
+  }
+  .stance-card .principle + .principle { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--ink-5); }
+  .stance-card .principle .k {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 18px; color: var(--ink);
+    min-width: 180px;
+  }
+  .stance-card .principle .v {
+    font-size: 14px; color: var(--ink-3); line-height: 1.5;
+  }
+</style></head>
+<body>
+<div class="wrap">
+  <h1>Bright-room<br>game-night.</h1>
+  <p class="vol">Vol. 1 · Gbedity · 27 specimens · 19 games · home only</p>
+  <p>A second-screen party game platform for the home — phones as controllers, TV as the shared display, no app installs, drop-in browser join. Strong Nigerian cultural specificity in content. Designed for family game night, friends-over party night, and youth/church group gatherings.</p>
+  <p>The system commits to a single stance: <strong>bright primary colour</strong>, <strong>generous rounded geometry</strong>, <strong>layered card depth without shadows</strong>, <strong>friendly humanist typography</strong>. Operator-everyday on canvas mint; stage cobalt poster-frame appears only when someone wins.</p>
+
+  <div class="ribbons">
+    <span class="ribbon"><span class="sw" style="background: #2D5BFF;"></span>Stage Cobalt</span>
+    <span class="ribbon"><span class="sw" style="background: #C8E8DA;"></span>Canvas Mint</span>
+    <span class="ribbon"><span class="sw" style="background: #1F6B4A;"></span>Forest Ink</span>
+    <span class="ribbon"><span class="sw" style="background: #27B973;"></span>Action Green</span>
+    <span class="ribbon"><span class="sw" style="background: #FF8A2A;"></span>Accent Orange</span>
+  </div>
+
+  <div class="stance-card">
+    <h3>The stance, in five principles</h3>
+    <div class="principle"><span class="k">Three colour layers</span><span class="v">Stage frames a canvas zone that holds white cards. Depth without shadow.</span></div>
+    <div class="principle"><span class="k">Two faces, two jobs</span><span class="v">Fraunces for emotional weight (numerals, titles, celebration). Nunito for every UI surface.</span></div>
+    <div class="principle"><span class="k">Numbers shout</span><span class="v">Bomb timer at 92px Fraunces tabular. Game IDs everywhere at 30px, tinted to category at 55% opacity.</span></div>
+    <div class="principle"><span class="k">Stage = celebration</span><span class="v">Stage cobalt poster-frame only appears post-game. Live play stays on operator canvas.</span></div>
+    <div class="principle"><span class="k">Critical needs words</span><span class="v">Booting a player or ending a session mid-game requires typing the literal action — colour alone never carries it.</span></div>
+  </div>
+</div>`;
+
+  const nav = document.getElementById('nav');
+  const filter = document.getElementById('filter');
+  const iframe = document.getElementById('preview');
+  const crumb = document.getElementById('crumb');
+  const popout = document.getElementById('popout');
+
+  let currentFile = null;
+
+  function render(query = "") {
+    nav.innerHTML = "";
+    const q = query.trim().toLowerCase();
+    PARTS.forEach(part => {
+      const items = part.items.filter(it => !q || it.name.toLowerCase().includes(q));
+      if (!items.length) return;
+      const g = document.createElement('div');
+      g.className = 'group';
+      g.innerHTML = `<div class="group-h"><span class="n">${part.id}</span><span>${part.title}</span><span class="l"></span></div>`;
+      items.forEach(it => {
+        const a = document.createElement('a');
+        a.className = 'item' + (it.file === currentFile ? ' on' : '');
+        a.innerHTML = `<span class="dot"></span><span>${it.name}</span>`;
+        a.addEventListener('click', e => { e.preventDefault(); load(it, part); });
+        g.appendChild(a);
+      });
+      nav.appendChild(g);
+    });
+  }
+
+  function load(item, part) {
+    currentFile = item.file;
+    if (item.file) {
+      iframe.removeAttribute('srcdoc');
+      iframe.src = item.file;
+      popout.href = item.file;
+      popout.style.opacity = '1';
+      popout.style.pointerEvents = 'auto';
+    } else {
+      iframe.removeAttribute('src');
+      iframe.srcdoc = WELCOME;
+      popout.href = '#';
+      popout.style.opacity = '0.4';
+      popout.style.pointerEvents = 'none';
+    }
+    crumb.innerHTML = `<span>Part ${part.id} · ${part.title}</span><span style="margin:0 8px;color:var(--ink-4)">/</span><span class="cur">${item.name}</span>`;
+    document.querySelectorAll('.item').forEach(el => el.classList.toggle('on', false));
+    [...document.querySelectorAll('.item')].forEach(el => {
+      if (el.querySelector('span:last-child')?.textContent.trim() === item.name) el.classList.add('on');
+    });
+    if (item.file) location.hash = encodeURIComponent(item.file);
+    else location.hash = '';
+  }
+
+  filter.addEventListener('input', e => render(e.target.value));
+  filter.addEventListener('keydown', e => {
+    const items = [...document.querySelectorAll('.item')];
+    const idx = items.findIndex(a => a.classList.contains('on'));
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(idx+1, items.length-1)]?.click(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[Math.max(idx-1, 0)]?.click(); }
+    else if (e.key === 'Enter') { items.find(a => a.classList.contains('on'))?.click(); }
+    else if (e.key === 'Escape') { filter.value = ''; render(); }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== filter) {
+      e.preventDefault(); filter.focus();
+    }
+  });
+
+  // Boot
+  const hash = decodeURIComponent(location.hash.slice(1));
+  let booted = false;
+  if (hash) {
+    PARTS.forEach(p => p.items.forEach(it => {
+      if (it.file === hash) { render(); load(it, p); booted = true; }
+    }));
+  }
+  if (!booted) { render(); load(PARTS[0].items[0], PARTS[0]); }
+</script>
+
+</body>
+</html>

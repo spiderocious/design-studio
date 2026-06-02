@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Avatars, pills & status</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-bottom:16px; padding:18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  .taxo { display:grid; grid-template-columns:repeat(2,1fr); gap:12px 24px; }
+  .taxo .t-row { display:flex; align-items:center; gap:12px; padding:7px 0; border-bottom:1px solid var(--hair); }
+  .taxo .t-row .lab { font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-left:auto; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">26 · III</span>
+    <span class="ttl">Avatars · pills · status</span>
+    <span class="meta">round = people · square = service · the taxonomy</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">Round avatars for people (team members, identified users); square for service identities (SDK keys, integrations). Pills colour the text and edge, never blast the fill — the dot carries live state.</p>
+
+  <!-- Avatars -->
+  <div class="scene">
+    <span class="overline">Avatars</span>
+    <div class="row" style="gap:24px;align-items:flex-end">
+      <div class="col" style="gap:6px;align-items:center"><span class="av av-xl">DA</span><span class="mark">person · xl</span></div>
+      <div class="col" style="gap:6px;align-items:center"><span class="av av-lg av-coral">PM</span><span class="mark">you</span></div>
+      <div class="col" style="gap:6px;align-items:center"><span class="av">JK</span><span class="mark">member</span></div>
+      <div class="col" style="gap:6px;align-items:center"><span class="av av-sm">RO</span><span class="mark">read-only</span></div>
+      <div class="col" style="gap:6px;align-items:center"><span class="av av-sq av-ink">▦</span><span class="mark">project key</span></div>
+      <div class="col" style="gap:6px;align-items:center"><span class="av av-sq" style="font-family:var(--mono)">⎈</span><span class="mark">integration</span></div>
+    </div>
+  </div>
+
+  <!-- Pills taxonomy -->
+  <div class="scene">
+    <span class="overline">Status taxonomy — the four registers in pill form</span>
+    <div class="taxo">
+      <div class="t-row"><span class="pill pill-ok"><span class="dot"></span>Connected</span><span class="lab">SDK live</span></div>
+      <div class="t-row"><span class="pill pill-ok"><span class="dot"></span>Activated</span><span class="lab">user state</span></div>
+      <div class="t-row"><span class="pill pill-coral"><span class="dot"></span>Anomaly</span><span class="lab">attention</span></div>
+      <div class="t-row"><span class="pill pill-coral"><span class="dot"></span>New insight</span><span class="lab">attention</span></div>
+      <div class="t-row"><span class="pill pill-hazard"><span class="dot"></span>Act now</span><span class="lab">highest severity</span></div>
+      <div class="t-row"><span class="pill pill-hazard"><span class="dot"></span>Event silent</span><span class="lab">act now</span></div>
+      <div class="t-row"><span class="pill pill-warn"><span class="dot"></span>82% of cap</span><span class="lab">soft caution</span></div>
+      <div class="t-row"><span class="pill pill-warn"><span class="dot"></span>Stale 4h</span><span class="lab">soft caution</span></div>
+      <div class="t-row"><span class="pill pill-crit"><span class="dot"></span>Key rotated</span><span class="lab">irreversible done</span></div>
+      <div class="t-row"><span class="pill pill-ghost"><span class="dot"></span>Read-only</span><span class="lab">role</span></div>
+    </div>
+  </div>
+
+  <!-- Role pills + event-type marks -->
+  <div class="split-2">
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Roles</span>
+      <div class="row">
+        <span class="pill pill-ink">Owner</span>
+        <span class="pill">Member</span>
+        <span class="pill pill-ghost">Read-only</span>
+      </div>
+    </div>
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Event type marks</span>
+      <div class="row">
+        <span class="chip-mono">page_view <span class="evmark">auto</span></span>
+        <span class="chip-mono coral">checkout_completed <span class="evmark" style="color:var(--coral-700)">custom</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

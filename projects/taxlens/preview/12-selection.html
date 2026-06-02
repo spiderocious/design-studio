@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selection · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 0; overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+  .profiles { display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .row { display:flex; align-items:center; gap:12px; }
+  .row + .row { margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">12 / 43</span>
+    <span class="ttl">Selection</span>
+    <span class="meta">The profile picker · tick, not fill</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:8px">Selection is a quiet tick or a clean fill of the clay — never a heavy coloured panel. The profile-type picker is the signature: it’s the first decision a visitor makes, and it changes which income fields appear.</p>
+
+  <!-- the signature: profile picker -->
+  <div class="scene">
+    <div class="cap">signature · choose your profile (drives the form)</div>
+    <div class="body">
+      <div class="profiles">
+        <div class="choice sel">
+          <span class="tick"></span>
+          <div><div class="ctitle">Salary earner</div><div class="cdesc">PAYE deducted by your employer. One income source.</div></div>
+        </div>
+        <div class="choice">
+          <span class="tick"></span>
+          <div><div class="ctitle">Freelancer / self-employed</div><div class="cdesc">You invoice clients and manage your own tax.</div></div>
+        </div>
+        <div class="choice">
+          <span class="tick"></span>
+          <div><div class="ctitle">Mixed</div><div class="cdesc">A salary plus side income on top.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- checkboxes for reliefs -->
+  <div class="scene">
+    <div class="cap">checkbox · which reliefs apply to you</div>
+    <div class="body">
+      <div class="row"><span class="check on"></span><span class="body" style="color:var(--ink)">I pay rent (eligible for rent relief)</span></div>
+      <div class="row"><span class="check on"></span><span class="body" style="color:var(--ink)">I contribute to a pension (PFA)</span></div>
+      <div class="row"><span class="check"></span><span class="body">I have NHIS / NHF contributions</span></div>
+      <div class="row"><span class="check"></span><span class="body">I pay a life-insurance premium</span></div>
+      <p class="tiny" style="margin-top:14px">The tick is a clean clay fill — selection reads as “done,” never as a warning.</p>
+    </div>
+  </div>
+
+  <!-- switch + segmented -->
+  <div class="scene">
+    <div class="cap">switch &amp; segmented · view options</div>
+    <div class="body">
+      <div class="row"><span class="switch on"></span><span class="body" style="color:var(--ink)">Show me the band-by-band breakdown</span></div>
+      <div class="row"><span class="switch"></span><span class="body">Compare against the old (pre-2026) regime</span></div>
+      <div style="margin-top:18px; display:flex; gap:20px; align-items:center; flex-wrap:wrap">
+        <div><div class="overline" style="margin-bottom:8px">Income period</div><div class="seg"><button class="on">Monthly</button><button>Yearly</button></div></div>
+        <div><div class="overline" style="margin-bottom:8px">Regime</div><div class="seg"><button>Old PITA</button><button class="on">NTA 2025</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- chips -->
+  <div class="scene">
+    <div class="cap">chips · status taxonomy</div>
+    <div class="body">
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <span class="chip chip-clay chip-dot">Exempt — under ₦800k</span>
+        <span class="chip chip-save chip-dot">You save ₦128,400</span>
+        <span class="chip chip-warn chip-dot">3 credits unclassified</span>
+        <span class="chip chip-info chip-dot">NIN is now your Tax ID</span>
+        <span class="chip chip-paper">Salary earner</span>
+        <span class="chip chip-crit chip-dot">Will be cleared</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

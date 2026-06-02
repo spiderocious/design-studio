@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charts · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  .card { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 22px 24px; }
+  .card .h { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; }
+  .card .t { font-size:13px; font-weight:600; }
+  svg text { font-family: var(--mono); fill: var(--ink-3); font-size: 10px; }
+  .donut-wrap { display:flex; align-items:center; gap:24px; }
+  .dlegend { display:grid; gap:10px; }
+  .dlegend .li { display:flex; align-items:center; gap:8px; font-size:12.5px; }
+  .dlegend .sw { width:10px; height:10px; border-radius:3px; }
+  .dlegend .v { font-family:var(--mono); margin-left:auto; font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">23 / 43</span>
+    <span class="ttl">Charts</span>
+    <span class="meta">Hairline-only · clay fills</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">Charts stay quiet: thin axes, clay fills, no gridline clutter, no 3-D. The point is comprehension, not spectacle. Every chart restates the number it visualises in mono nearby.</p>
+
+  <div class="grid">
+    <!-- where the money goes (donut) -->
+    <div class="card">
+      <div class="h"><span class="t">Where your gross goes</span><span class="tiny mono">₦6,480,000</span></div>
+      <div class="donut-wrap">
+        <svg width="132" height="132" viewBox="0 0 42 42">
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--paper-deep)" stroke-width="6"/>
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--clay-700)" stroke-width="6" stroke-dasharray="12.4 87.6" stroke-dashoffset="0" transform="rotate(-90 21 21)"/>
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--clay-400)" stroke-width="6" stroke-dasharray="20 80" stroke-dashoffset="-12.4" transform="rotate(-90 21 21)"/>
+          <text x="21" y="20" text-anchor="middle" style="font-size:6px;fill:var(--ink);font-weight:600">88%</text>
+          <text x="21" y="26" text-anchor="middle" style="font-size:3px">take-home</text>
+        </svg>
+        <div class="dlegend">
+          <div class="li"><span class="sw" style="background:var(--clay-700)"></span>Tax<span class="v">₦805,200</span></div>
+          <div class="li"><span class="sw" style="background:var(--clay-400)"></span>Reliefs (pre-tax)<span class="v">₦840,000</span></div>
+          <div class="li"><span class="sw" style="background:var(--paper-deep)"></span>Take-home<span class="v">₦5,674,800</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- tax by income (line) -->
+    <div class="card">
+      <div class="h"><span class="t">Tax as income rises</span><span class="tiny">you are here ↓</span></div>
+      <svg width="100%" height="150" viewBox="0 0 320 150" preserveAspectRatio="none">
+        <line x1="34" y1="120" x2="320" y2="120" stroke="var(--edge)"/>
+        <line x1="34" y1="10" x2="34" y2="120" stroke="var(--edge)"/>
+        <polyline fill="none" stroke="var(--clay-500)" stroke-width="2" points="34,118 90,118 150,96 210,70 270,44 312,22"/>
+        <circle cx="150" cy="96" r="4" fill="var(--clay-500)" stroke="#fff" stroke-width="1.5"/>
+        <line x1="150" y1="96" x2="150" y2="120" stroke="var(--clay-300)" stroke-dasharray="2 2"/>
+        <text x="150" y="134" text-anchor="middle">₦6.5m</text>
+        <text x="270" y="134" text-anchor="middle">₦25m</text>
+        <text x="22" y="24" text-anchor="end">25%</text>
+        <text x="22" y="122" text-anchor="end">0%</text>
+      </svg>
+    </div>
+
+    <!-- old vs new bars -->
+    <div class="card">
+      <div class="h"><span class="t">Old vs new</span><span class="chip chip-save" style="height:22px;font-size:11px">−₦128,400</span></div>
+      <svg width="100%" height="150" viewBox="0 0 320 150">
+        <line x1="20" y1="120" x2="320" y2="120" stroke="var(--edge)"/>
+        <rect x="70" y="34" width="70" height="86" rx="4" fill="var(--paper-deep)"/>
+        <rect x="190" y="46" width="70" height="74" rx="4" fill="var(--clay-500)"/>
+        <text x="105" y="138" text-anchor="middle">Old PITA</text>
+        <text x="225" y="138" text-anchor="middle">NTA 2025</text>
+        <text x="105" y="28" text-anchor="middle" style="fill:var(--ink-2);font-weight:600">₦933.6k</text>
+        <text x="225" y="40" text-anchor="middle" style="fill:var(--clay-700);font-weight:600">₦805.2k</text>
+      </svg>
+    </div>
+
+    <!-- sparkline / effective-rate gauge -->
+    <div class="card">
+      <div class="h"><span class="t">Your effective rate</span><span class="tiny">vs the 18% top band you touch</span></div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:14px"><span class="amt amt-xl">12.4</span><span class="amt-unit">% effective</span></div>
+      <div style="height:10px;border-radius:99px;background:var(--paper-deep);overflow:hidden;position:relative">
+        <i style="display:block;height:100%;width:49.6%;background:var(--clay-500);border-radius:99px"></i>
+        <span style="position:absolute;left:72%;top:-3px;width:2px;height:16px;background:var(--ink-3)"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px"><span class="tiny mono">0%</span><span class="tiny mono">top band 18% ↑</span><span class="tiny mono">25%</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

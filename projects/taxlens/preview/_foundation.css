@@ -1,0 +1,407 @@
+/* ============================================================
+   TaxLens NG — Soft Scandinavian foundation
+   Clay & paper. Light-only. Hairlines over shadows. One accent.
+
+   Stance: a calm, plain-spoken guide that takes a stressful,
+   bureaucratic thing (a tax law most Nigerians haven't read) and
+   makes it legible and reassuring. Sans-led friendly chrome; a
+   quiet serif for the explainer / AI voice; a big tabular ₦ number
+   as the hero of every result. Warm clay #C2613A is the single
+   accent. Crimson #A11212 — colder than the clay, deliberately —
+   is reserved for the one irreversible action. No fake urgency.
+
+   Tuned distinct from Pracket (also Soft Scandinavian): cooler
+   paper, sans-led not serif-led, Newsreader not Fraunces, clay
+   not forest, the hero is a number not a directory row.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Paper & ink (cool-leaning warm off-white) ---------- */
+  --paper:        #F6F4EF;   /* the canvas */
+  --paper-deep:   #EEEBE3;   /* recessed surface, behind a sheet / bar track */
+  --sheet:        #FFFFFF;   /* a single sheet on the canvas */
+  --edge:         #E4E0D6;   /* sheet edge — the default hairline */
+  --edge-2:       #D6D1C5;   /* stronger edge — inputs, pressed states */
+  --ink:          #1C1B18;   /* near-black, faintly warm */
+  --ink-2:        #3A3833;   /* body */
+  --ink-3:        #76726A;   /* secondary / labels */
+  --ink-4:        #A8A49B;   /* tertiary / placeholder */
+  --hair:         #E7E3D9;   /* hairline */
+  --hair-soft:    #EFEBE2;   /* quieter divider */
+  --rule:         #1C1B18;   /* heavy rule for emphasis (rare) */
+
+  /* ---------- Clay — the single accent ----------
+     #C2613A is the brand. Hover/active step down toward burnt clay.
+     Tints (50/100) are warm sand neutrals for quiet status + the
+     exempt band + result-card wash. */
+  --clay-50:   #FAF3EE;   /* lightest wash — result-card top, exempt band */
+  --clay-100:  #F4E7DD;   /* chip background */
+  --clay-200:  #E8C6B2;   /* tint edge */
+  --clay-300:  #D89E7E;   /* avatar tint / muted bar */
+  --clay-400:  #CE7A50;   /* hover-up rare use */
+  --clay-500:  #C2613A;   /* PRIMARY — the brand */
+  --clay-600:  #A94F2C;   /* primary hover */
+  --clay-700:  #8E4022;   /* primary pressed */
+  --clay-800:  #6F3119;
+  --clay-900:  #4E2210;
+
+  /* ---------- State ----------
+     Warn is amber-on-cream. Critical is COLDER crimson than the clay
+     — chosen so the irreversible button never reads as "redder clay".
+     Reserved for the one irreversible action only. */
+  --crit:        #A11212;   /* cold true-crimson, NOT a warm brick */
+  --crit-deep:   #870D0D;
+  --crit-bg:     #FBECEA;
+  --crit-edge:   #E7B4AE;
+
+  --warn:        #9A6B16;   /* warm amber */
+  --warn-bg:     #FAF2E0;
+  --warn-edge:   #E6D5A6;
+
+  --info:        #3C5C7A;   /* muted dusk slate — NOT bootstrap blue. statute/notes */
+  --info-bg:     #ECF0F4;
+  --info-edge:   #BFCDD9;
+
+  --ok:          var(--clay-700);
+  --ok-bg:       var(--clay-50);
+  --ok-edge:     var(--clay-200);
+
+  /* a single calm positive for "you save" — warm sage, never shouty green */
+  --save:        #4F7A52;
+  --save-bg:     #EEF3EC;
+  --save-edge:   #C7DBC4;
+
+  /* ---------- Type ---------- */
+  --serif:   'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Tracking — actually used */
+  --track-display:  -0.022em;
+  --track-h:        -0.014em;
+  --track-body:      0;
+  --track-label:     0.12em;
+  --track-overline:  0.18em;
+  --track-mono:     -0.01em;
+
+  /* ---------- Geometry (A · clay = 18 / 12) ---------- */
+  --r-sharp:   8px;
+  --r-ctrl:    12px;        /* buttons, inputs */
+  --r-card:    18px;        /* the project default */
+  --r-card-lg: 22px;
+  --r-pill:    9999px;
+
+  --gutter:    24px;
+
+  /* Hairlines, not shadows */
+  --line-1:   0 0 0 1px var(--edge);
+  --shade-1:  0 1px 0 rgba(28,27,24,0.03);
+  --shade-pop:0 14px 36px -18px rgba(28,27,24,0.20), 0 2px 8px -4px rgba(28,27,24,0.08);
+
+  /* Motion — calm, never bouncy */
+  --ease:        cubic-bezier(.4,0,.2,1);
+  --ease-out:    cubic-bezier(.16,1,.3,1);
+  --t-quick:     120ms;
+  --t-normal:    220ms;
+  --t-slow:      360ms;
+}
+
+/* ----- Reset ----- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: var(--track-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern", "calt";
+}
+a { color: inherit; }
+
+/* ----- Type primitives ----- */
+.serif    { font-family: var(--serif); font-weight: 500; letter-spacing: var(--track-h); }
+.serif-i  { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.005em; }
+.sans     { font-family: var(--sans); }
+.mono     { font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1; letter-spacing: var(--track-mono); }
+.tabular  { font-variant-numeric: tabular-nums; }
+.overline {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: var(--track-overline);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ----- Page chrome (stamp + section break + page wrapper) ----- */
+.stamp {
+  display: flex; align-items: baseline; gap: 16px;
+  padding-bottom: 18px; margin-bottom: 36px;
+  border-bottom: 1px solid var(--ink);
+}
+.stamp .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+.stamp .ttl {
+  font-family: var(--serif); font-size: 30px; font-weight: 500;
+  letter-spacing: var(--track-display); flex: 1; line-height: 1.05;
+}
+.stamp .meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+
+.break { margin: 56px 0 24px; display: flex; align-items: center; gap: 16px; }
+.break::before { content: ""; height: 1px; background: var(--hair); width: 24px; flex-shrink: 0; }
+.break::after  { content: ""; height: 1px; background: var(--hair); flex: 1; }
+.break .lbl { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+.page { max-width: 1100px; margin: 0 auto; padding: 56px 64px 96px; }
+.page-wide { max-width: 1320px; }
+
+/* ----- Sheet (card) ----- */
+.sheet { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); }
+.sheet-tight { padding: 14px 18px; }
+.sheet-md    { padding: 20px 24px; }
+.sheet-lg    { padding: 28px 32px; }
+.sheet-xl    { padding: 36px 40px; }
+
+hr.hair { border: 0; border-top: 1px solid var(--hair); margin: 0; }
+hr.hair-soft { border: 0; border-top: 1px solid var(--hair-soft); margin: 0; }
+
+.mark {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+
+/* ----- Buttons -----
+   Primary is filled clay. Secondary is outline-ink. Quiet is text.
+   Destructive defaults to GHOST (ink + thin edge) — solid crimson is
+   reserved for the irreversible confirm only. No drop shadows. */
+.b {
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  letter-spacing: -0.003em; height: 44px; padding: 0 20px;
+  border-radius: var(--r-ctrl); border: 1px solid transparent;
+  background: transparent; color: var(--ink); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  white-space: nowrap;
+  transition: background var(--t-quick) var(--ease), border-color var(--t-quick) var(--ease), color var(--t-quick) var(--ease), transform var(--t-quick) var(--ease);
+}
+.b:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--clay-100), 0 0 0 4px rgba(194,97,58,0.45); }
+.b:active { transform: translateY(1px); }
+
+.b-primary    { background: var(--clay-500); color: #fff; border-color: var(--clay-500); }
+.b-primary:hover { background: var(--clay-600); border-color: var(--clay-600); }
+.b-primary:active { background: var(--clay-700); border-color: var(--clay-700); }
+
+.b-secondary  { background: var(--sheet); border-color: var(--edge-2); color: var(--ink); }
+.b-secondary:hover { background: var(--paper-deep); border-color: var(--ink-3); }
+
+.b-quiet      { color: var(--ink-2); padding: 0 14px; }
+.b-quiet:hover{ background: rgba(28,27,24,0.05); color: var(--ink); }
+
+.b-link       { color: var(--clay-700); padding: 0; height: auto; background: transparent; }
+.b-link:hover { color: var(--clay-800); text-decoration: underline; text-underline-offset: 3px; }
+
+/* destructive — ghost by default; crimson grows only on hover */
+.b-danger-ghost { color: var(--crit); border-color: var(--crit-edge); background: var(--sheet); }
+.b-danger-ghost:hover { background: var(--crit-bg); border-color: var(--crit); }
+/* destructive — solid; ONLY inside the irreversible confirm */
+.b-danger     { background: var(--crit); color: #fff; border-color: var(--crit); }
+.b-danger:hover{ background: var(--crit-deep); border-color: var(--crit-deep); }
+.b-danger:disabled { background: var(--crit-bg); border-color: var(--crit-edge); color: var(--crit-edge); cursor: not-allowed; }
+
+.b-sm { height: 36px; padding: 0 14px; font-size: 13px; border-radius: 10px; }
+.b-lg { height: 52px; padding: 0 26px; font-size: 15px; border-radius: 14px; }
+.b-block { width: 100%; }
+
+/* ----- Inputs -----
+   The ₦ money field is the workhorse. A persistent ₦ prefix, mono
+   tabular figures, right-room for a "per year / per month" suffix. */
+.f {
+  font-family: var(--sans); font-size: 14px; height: 46px; padding: 0 14px;
+  background: var(--sheet); border: 1px solid var(--edge-2);
+  border-radius: var(--r-ctrl); color: var(--ink); outline: none; width: 100%;
+  letter-spacing: var(--track-body);
+  transition: border-color var(--t-quick) var(--ease), box-shadow var(--t-quick) var(--ease);
+}
+.f::placeholder { color: var(--ink-4); }
+.f:focus { border-color: var(--clay-500); box-shadow: 0 0 0 3px rgba(194,97,58,0.16); }
+.f-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: var(--track-mono); }
+.f-lg { height: 54px; font-size: 16px; padding: 0 18px; border-radius: 14px; }
+.f-sm { height: 38px; font-size: 13px; padding: 0 12px; border-radius: 10px; }
+.f-invalid { border-color: var(--crit); }
+.f-invalid:focus { box-shadow: 0 0 0 3px rgba(161,18,18,0.14); }
+
+textarea.f { height: auto; padding: 13px 14px; line-height: 1.6; resize: vertical; }
+
+/* the ₦ money input wrapper */
+.money { position: relative; }
+.money .naira {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-family: var(--mono); font-size: 14px; color: var(--ink-3); pointer-events: none;
+}
+.money input.f { padding-left: 36px; }
+.money .per {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-4); pointer-events: none;
+}
+
+.field { display: grid; gap: 7px; }
+.field .flabel {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3);
+}
+.field .fhelp { font-size: 12px; color: var(--ink-3); line-height: 1.45; }
+.field .ferr  { font-size: 12px; color: var(--crit); }
+
+/* ----- Selection (the profile-type picker is the signature) ----- */
+.choice {
+  display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+  background: var(--sheet); border: 1px solid var(--edge-2);
+  border-radius: var(--r-ctrl); padding: 16px 18px; cursor: pointer;
+  transition: border-color var(--t-quick) var(--ease), background var(--t-quick) var(--ease);
+}
+.choice:hover { border-color: var(--ink-3); }
+.choice.sel { border-color: var(--clay-500); background: var(--clay-50); box-shadow: inset 0 0 0 1px var(--clay-500); }
+.choice .tick {
+  width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--edge-2);
+  margin-top: 1px; position: relative; transition: border-color var(--t-quick) var(--ease);
+}
+.choice.sel .tick { border-color: var(--clay-500); }
+.choice.sel .tick::after {
+  content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--clay-500);
+}
+.choice .ctitle { font-weight: 600; font-size: 14px; color: var(--ink); }
+.choice .cdesc  { font-size: 12.5px; color: var(--ink-3); margin-top: 3px; line-height: 1.45; }
+
+/* a softer checkbox tick (selection is a tick, not a fill) */
+.check {
+  width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--edge-2);
+  display: inline-grid; place-items: center; cursor: pointer; flex-shrink: 0;
+  transition: border-color var(--t-quick) var(--ease), background var(--t-quick) var(--ease);
+}
+.check.on { border-color: var(--clay-500); background: var(--clay-500); }
+.check.on::after { content: ""; width: 10px; height: 6px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(0,-1px); }
+
+/* a switch */
+.switch { width: 40px; height: 24px; border-radius: 99px; background: var(--edge-2); position: relative; cursor: pointer; transition: background var(--t-quick) var(--ease); flex-shrink: 0; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left var(--t-quick) var(--ease); }
+.switch.on { background: var(--clay-500); }
+.switch.on::after { left: 19px; }
+
+/* segmented toggle (used for per-year / per-month, old / new) */
+.seg { display: inline-flex; background: var(--paper-deep); border-radius: 10px; padding: 3px; gap: 2px; }
+.seg button {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-3);
+  height: 30px; padding: 0 14px; border: 0; background: transparent; border-radius: 8px; cursor: pointer;
+  transition: background var(--t-quick) var(--ease), color var(--t-quick) var(--ease);
+}
+.seg button.on { background: var(--sheet); color: var(--ink); box-shadow: var(--shade-1); }
+
+/* ----- Chips & pills ----- */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px;
+  border-radius: 999px; font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.02em; border: 1px solid transparent; white-space: nowrap;
+}
+.chip-clay  { background: var(--clay-100); color: var(--clay-800); }
+.chip-sand  { background: #F0EADD; color: #5A4F2E; }
+.chip-paper { background: var(--sheet); color: var(--ink-2); border-color: var(--edge); }
+.chip-save  { background: var(--save-bg); color: var(--save); border-color: var(--save-edge); }
+.chip-warn  { background: var(--warn-bg); color: var(--warn); border-color: var(--warn-edge); }
+.chip-crit  { background: var(--crit-bg); color: var(--crit); border-color: var(--crit-edge); }
+.chip-info  { background: var(--info-bg); color: var(--info); border-color: var(--info-edge); }
+.chip-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.85; }
+
+/* the "Estimate under NTA 2025" badge — required on every computed number */
+.est-badge {
+  display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px;
+  border-radius: 6px; background: var(--clay-50); color: var(--clay-800);
+  border: 1px solid var(--clay-200);
+  font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ----- Numbers (mono, tabular) — the hero idiom ----- */
+.amt {
+  font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1;
+  font-weight: 500; letter-spacing: -0.01em; color: var(--ink);
+}
+.amt .ngn { color: var(--ink-3); font-weight: 500; }
+.amt-hero { font-size: 44px; line-height: 1; letter-spacing: -0.03em; }
+.amt-hero .ngn { font-size: 26px; }
+.amt-xl { font-size: 32px; letter-spacing: -0.02em; }
+.amt-xl .ngn { font-size: 20px; }
+.amt-lg { font-size: 22px; }
+.amt-md { font-size: 16px; }
+.amt-sm { font-size: 13px; }
+.amt-unit { font-family: var(--sans); font-size: 11px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ----- The tax-band breakdown (signature data display) ----- */
+.band {
+  background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-ctrl);
+  padding: 13px 16px; display: grid; grid-template-columns: 1fr auto auto; gap: 4px 16px; align-items: center;
+}
+.band + .band { margin-top: 8px; }
+.band .b-range { font-size: 13px; color: var(--ink-2); }
+.band .b-rate  { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--clay-700); letter-spacing: 0.02em; text-align: right; }
+.band .b-tax   { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; }
+.band .b-bar   { grid-column: 1 / -1; height: 6px; border-radius: 99px; background: var(--paper-deep); overflow: hidden; margin-top: 5px; }
+.band .b-bar > i { display: block; height: 100%; border-radius: 99px; background: var(--clay-500); }
+.band.exempt { background: var(--clay-50); border-color: var(--clay-200); }
+.band.exempt .b-rate { color: var(--clay-800); }
+.band.empty .b-range { color: var(--ink-4); }
+.band.empty .b-bar > i { background: var(--clay-300); opacity: 0.4; }
+
+/* ----- Result card (hero) ----- */
+.result { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; }
+.result .r-top { padding: 22px 24px 20px; border-bottom: 1px solid var(--hair); background: var(--clay-50); }
+.result .r-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay-800); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.result .r-sub { font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+.result .r-sub b { font-weight: 600; }
+.result .r-body { padding: 18px 24px 22px; display: grid; gap: 12px; }
+.result .r-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.result .r-row .k { font-size: 13px; color: var(--ink-3); }
+.result .r-row .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13.5px; color: var(--ink); }
+
+/* ----- Statute citation (the AI-grounding idiom) ----- */
+.cite {
+  border-left: 2px solid var(--clay-300); background: var(--clay-50);
+  border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0;
+}
+.cite .c-ref { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--clay-800); letter-spacing: 0.02em; }
+.cite .c-text { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-top: 4px; }
+
+/* ----- Avatars (rare — visitor has no account; used for AI assistant mark) ----- */
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--clay-300), var(--clay-600)); flex-shrink: 0; }
+.avatar-sm { width: 30px; height: 30px; }
+.avatar-lg { width: 56px; height: 56px; }
+.avatar.assistant { background: linear-gradient(135deg, #D89E7E, #8E4022); display: grid; place-items: center; color: #fff; font-family: var(--serif); font-weight: 600; }
+
+/* ----- Disclaimer footer (required on every page) ----- */
+.disclaimer {
+  font-size: 11.5px; color: var(--ink-3); line-height: 1.5;
+  border-top: 1px solid var(--hair); padding-top: 12px; margin-top: 18px;
+}
+.disclaimer b { color: var(--ink-2); font-weight: 600; }
+
+/* ----- Scene helpers ----- */
+.eyebrow { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.headline-xl { font-family: var(--serif); font-weight: 500; font-size: 52px; line-height: 1.03; letter-spacing: -0.026em; color: var(--ink); }
+.headline { font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.1; letter-spacing: -0.018em; color: var(--ink); }
+.subhead { font-family: var(--serif); font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.012em; color: var(--ink); }
+.body { font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+.lede { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink-2); letter-spacing: -0.006em; }
+.muted { color: var(--ink-3); }
+.tiny  { font-size: 12px; color: var(--ink-3); }
+
+/* ----- Specimen grid utility ----- */
+.scene-note {
+  font-size: 12px; color: var(--ink-3); font-style: italic;
+  border-left: 2px solid var(--edge-2); padding-left: 12px; margin: 10px 0 18px;
+}
+.reduced-note { /* honoured below */ }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

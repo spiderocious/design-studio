@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Active users & trends</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { padding: 0; overflow:hidden; }
+  .p-h { display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid var(--hair); }
+  .p-h .t { font-family:var(--sans); font-weight:600; font-size:14px; }
+  .seg { display:inline-flex; border:1px solid var(--edge-2); border-radius:var(--r-sm); overflow:hidden; margin-left:auto; }
+  .seg button { border:0; background:var(--panel); font:600 11.5px var(--sans); padding:5px 11px; cursor:pointer; color:var(--ink-3); border-right:1px solid var(--edge); }
+  .seg button:last-child { border-right:0; }
+  .seg button.on { background:var(--ink); color:var(--paper); }
+  .p-b { padding: 18px; }
+  .figs { display:flex; gap:36px; margin-bottom:18px; }
+  .figs .f .k { font-family:var(--sans); font-size:11.5px; color:var(--ink-3); font-weight:600; }
+  .figs .f .v { margin-top:5px; display:flex; align-items:baseline; gap:8px; }
+  .legend { display:flex; gap:16px; font-size:11.5px; color:var(--ink-3); }
+  .legend .l { display:inline-flex; align-items:center; gap:6px; }
+  .legend .sw { width:10px; height:3px; border-radius:2px; }
+  .anno { font-family:var(--mono); font-size:10px; fill:var(--coral-700); }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">22 · III</span>
+    <span class="ttl">Active users &amp; trends</span>
+    <span class="meta">DAU / WAU / MAU · the time axis</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">The product's time axis. The current series is coral; the comparison period is a muted ink line. The anomaly the analyst flagged is marked <em>on the chart itself</em> — coral for attention, a heavier mark for act-now — so the dashboard and the AI agree on what you're looking at.</p>
+
+  <div class="panel">
+    <div class="p-h">
+      <span class="t">Active users</span>
+      <div class="seg"><button>DAU</button><button class="on">WAU</button><button>MAU</button></div>
+      <div class="seg" style="margin-left:8px"><button>30d</button><button class="on">90d</button></div>
+    </div>
+    <div class="p-b">
+      <div class="figs">
+        <div class="f"><div class="k">This week</div><div class="v"><span class="read read-lg">38,204</span><span class="delta delta-up">+6%</span></div></div>
+        <div class="f"><div class="k">Previous</div><div class="v"><span class="read read-md" style="color:var(--ink-3)">36,020</span></div></div>
+        <div class="f"><div class="k">New vs returning</div><div class="v"><span class="read read-md">71<span class="u">% returning</span></span></div></div>
+      </div>
+
+      <svg viewBox="0 0 800 230" style="width:100%;height:auto;display:block">
+        <!-- gridlines -->
+        <g stroke="var(--grid)" stroke-width="1">
+          <line x1="0" y1="40" x2="800" y2="40"/><line x1="0" y1="90" x2="800" y2="90"/>
+          <line x1="0" y1="140" x2="800" y2="140"/><line x1="0" y1="190" x2="800" y2="190"/>
+        </g>
+        <!-- previous (muted) -->
+        <polyline fill="none" stroke="var(--ink-4)" stroke-width="1.5" stroke-dasharray="3 3"
+          points="0,150 90,145 180,150 270,138 360,142 450,135 540,140 630,132 720,128 800,130"/>
+        <!-- current (coral) -->
+        <polyline fill="none" stroke="var(--coral-500)" stroke-width="2.5"
+          points="0,160 90,152 180,148 270,128 360,120 450,118 540,110 630,96 720,84 800,72"/>
+        <!-- anomaly marker -->
+        <circle cx="540" cy="110" r="4" fill="var(--coral-500)"/>
+        <line x1="540" y1="110" x2="540" y2="40" stroke="var(--coral-300)" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="546" y="36" class="anno">✦ organic surge</text>
+        <!-- x labels -->
+        <g font-family="var(--mono)" font-size="10" fill="var(--ink-4)">
+          <text x="0" y="218">Feb 19</text><text x="350" y="218">Mar 28</text><text x="700" y="218">May 19</text>
+        </g>
+      </svg>
+
+      <div class="legend" style="margin-top:8px">
+        <span class="l"><span class="sw" style="background:var(--coral-500)"></span> This period</span>
+        <span class="l"><span class="sw" style="background:var(--ink-4)"></span> Previous period</span>
+        <span class="l"><span style="color:var(--coral-700)">✦</span> AI-flagged point</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event volume strip -->
+  <div class="panel" style="margin-top:16px">
+    <div class="p-h"><span class="t">Event volume · last 7 days vs previous 7</span><span class="mark" style="margin-left:auto">total 524k</span></div>
+    <div class="p-b">
+      <svg viewBox="0 0 800 130" style="width:100%;height:auto;display:block">
+        <g font-family="var(--mono)" font-size="10" fill="var(--ink-4)">
+          <!-- bars: each day a current (coral) + previous (ghost) pair -->
+        </g>
+        <g>
+          <!-- day pairs -->
+          <g transform="translate(20,0)">
+            <rect x="0" y="50" width="34" height="60" fill="var(--edge-2)"/><rect x="38" y="38" width="34" height="72" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Mon</text>
+          </g>
+          <g transform="translate(130,0)">
+            <rect x="0" y="55" width="34" height="55" fill="var(--edge-2)"/><rect x="38" y="44" width="34" height="66" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Tue</text>
+          </g>
+          <g transform="translate(240,0)">
+            <rect x="0" y="48" width="34" height="62" fill="var(--edge-2)"/><rect x="38" y="40" width="34" height="70" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Wed</text>
+          </g>
+          <g transform="translate(350,0)">
+            <rect x="0" y="52" width="34" height="58" fill="var(--edge-2)"/><rect x="38" y="36" width="34" height="74" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Thu</text>
+          </g>
+          <g transform="translate(460,0)">
+            <rect x="0" y="46" width="34" height="64" fill="var(--edge-2)"/><rect x="38" y="30" width="34" height="80" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Fri</text>
+          </g>
+          <g transform="translate(570,0)">
+            <rect x="0" y="62" width="34" height="48" fill="var(--edge-2)"/><rect x="38" y="64" width="34" height="46" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Sat</text>
+          </g>
+          <g transform="translate(680,0)">
+            <rect x="0" y="64" width="34" height="46" fill="var(--edge-2)"/><rect x="38" y="68" width="34" height="42" fill="var(--coral-500)"/>
+            <text x="34" y="124" font-family="monospace" font-size="10" fill="var(--ink-4)" text-anchor="middle">Sun</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>

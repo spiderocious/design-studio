@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+
+  /* top bar */
+  .topbar { display:flex; align-items:center; gap:18px; padding:0 22px; height:60px; }
+  .brand { display:flex; align-items:center; gap:9px; font-family:var(--serif); font-size:19px; font-weight:600; letter-spacing:-0.01em; }
+  .brand .glyph { width:26px; height:26px; border-radius:7px; background:var(--clay-500); display:grid; place-items:center; color:#fff; font-size:13px; }
+  .topbar .spacer { flex:1; }
+  .topbar .nav { display:flex; gap:4px; }
+  .topbar .nav a { font-size:13px; font-weight:500; color:var(--ink-3); padding:8px 12px; border-radius:8px; text-decoration:none; }
+  .topbar .nav a.on { color:var(--ink); background:var(--clay-50); }
+  .topbar .nav a:hover { color:var(--ink); }
+
+  /* step rail (mobile-first, but shown horizontal here) */
+  .steprail { display:flex; gap:8px; padding:14px 22px; }
+  .steprail .s { flex:1; padding:12px 14px; border-radius:12px; border:1px solid var(--edge); }
+  .steprail .s.on { border-color:var(--clay-500); background:var(--clay-50); }
+  .steprail .s .n { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .steprail .s .t { font-size:13px; font-weight:600; margin-top:3px; }
+  .steprail .s.on .t { color:var(--clay-800); }
+
+  /* command palette */
+  .cmd { width:440px; background:var(--sheet); border:1px solid var(--edge); border-radius:16px; box-shadow:var(--shade-pop); overflow:hidden; margin:24px auto; }
+  .cmd .search { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--hair); }
+  .cmd .search input { border:0; outline:0; font-size:15px; flex:1; background:transparent; color:var(--ink); }
+  .cmd .grp { padding:8px 0; }
+  .cmd .gh { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-4); padding:6px 16px; }
+  .cmd .item { display:flex; align-items:center; gap:12px; padding:9px 16px; font-size:13.5px; cursor:pointer; }
+  .cmd .item.on { background:var(--clay-50); }
+  .cmd .item .k { margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--ink-3); border:1px solid var(--edge); border-radius:5px; padding:1px 5px; }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">29 / 43</span>
+    <span class="ttl">Navigation</span>
+    <span class="meta">Top bar · step rail · ⌘K</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">A single-task tool needs almost no navigation — just a brand mark, the three-step flow, and a way to jump to the explainer pages. No account menu, no sidebar dashboard. The flow <em>is</em> the navigation.</p>
+
+  <div class="scene">
+    <div class="cap">top bar · brand + the few destinations there are</div>
+    <div class="topbar">
+      <span class="brand"><span class="glyph">₦</span>TaxLens<span style="font-size:11px;font-weight:600;color:var(--ink-4);letter-spacing:.08em;align-self:center">NG</span></span>
+      <span class="spacer"></span>
+      <nav class="nav">
+        <a href="#" class="on">Calculator</a>
+        <a href="#">How it works</a>
+        <a href="#">About this build</a>
+      </nav>
+      <button class="b b-primary b-sm">Start over</button>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">step rail · where you are in the flow (collapses to a bar on mobile)</div>
+    <div class="steprail">
+      <div class="s on"><div class="n">Step 1</div><div class="t">Your income</div></div>
+      <div class="s"><div class="n">Step 2</div><div class="t">Your result</div></div>
+      <div class="s"><div class="n">Step 3</div><div class="t">What changed</div></div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">command palette · ⌘K for the power user (optional)</div>
+    <div style="padding:8px 0 16px">
+      <div class="cmd">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg>
+          <input value="rent" placeholder="Search actions & topics…">
+          <span class="tiny mono">esc</span>
+        </div>
+        <div class="grp">
+          <div class="gh">Jump to</div>
+          <div class="item on"><span style="color:var(--clay-600)">↳</span>Edit rent paid<span class="k">↵</span></div>
+          <div class="item"><span style="color:var(--clay-600)">?</span>Explain: how rent relief works</div>
+        </div>
+        <div class="grp">
+          <div class="gh">Actions</div>
+          <div class="item"><span style="color:var(--clay-600)">✦</span>Ask TaxLens a follow-up</div>
+          <div class="item"><span>⤓</span>Download result as PDF</div>
+          <div class="item" style="color:var(--crit)"><span>⌫</span>Clear all my data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

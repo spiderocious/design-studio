@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Type · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .roles { display: grid; gap: 0; border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; }
+  .role { display: grid; grid-template-columns: 150px 1fr; gap: 24px; padding: 24px 28px; border-bottom: 1px solid var(--hair); align-items: center; }
+  .role:last-child { border-bottom: 0; }
+  .role .meta .fam { font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 500; }
+  .role .meta .use { font-size: 11.5px; color: var(--ink-3); margin-top: 4px; line-height: 1.45; }
+  .ladder { display: grid; gap: 14px; }
+  .ladder .row { display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--hair-soft); }
+  .ladder .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+  .compose { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 36px 40px; max-width: 64ch; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">02 / 43</span>
+    <span class="ttl">Type</span>
+    <span class="meta">Inter · Newsreader · JetBrains Mono</span>
+  </div>
+
+  <p class="lede" style="max-width:60ch; margin-bottom:32px">Sans leads the chrome — TaxLens should feel friendly and plain, not formal. The serif is reserved for the calm <em>explainer</em> voice: the AI's answers, the “what changed” prose, empty states. Mono carries every naira figure, because the number is always the most important thing on the screen.</p>
+
+  <div class="break"><span class="lbl">three families, three jobs</span></div>
+  <div class="roles">
+    <div class="role">
+      <div class="meta"><div class="fam">Inter</div><div class="use">Chrome — labels, buttons, body, navigation. The friendly default voice.</div></div>
+      <div><div style="font-family:var(--sans); font-size:26px; font-weight:600; letter-spacing:-0.01em">Enter your income to see what you’ll owe</div></div>
+    </div>
+    <div class="role">
+      <div class="meta"><div class="fam">Newsreader</div><div class="use">Thinking — the AI explainer, the reform prose, empty states. Calm, readable, never cold.</div></div>
+      <div><div class="serif" style="font-size:26px">Your first ₦800,000 is tax-free under the new law.</div></div>
+    </div>
+    <div class="role">
+      <div class="meta"><div class="fam">JetBrains Mono</div><div class="use">Record — every naira figure, every rate, every band. Tabular, so columns of money line up.</div></div>
+      <div><div class="amt amt-xl"><span class="ngn">₦</span>6,500,000</div></div>
+    </div>
+  </div>
+
+  <div class="break"><span class="lbl">the size ladder</span></div>
+  <div class="ladder">
+    <div class="row"><span class="tag">hero · 44</span><span class="amt amt-hero"><span class="ngn">₦</span>743,500</span></div>
+    <div class="row"><span class="tag">display · 52</span><span class="headline-xl">Tax made legible</span></div>
+    <div class="row"><span class="tag">headline · 32</span><span class="headline">What changed for you</span></div>
+    <div class="row"><span class="tag">subhead · 22</span><span class="subhead">Reliefs we applied</span></div>
+    <div class="row"><span class="tag">lede · 18 serif</span><span class="lede">A plain-English read on your position.</span></div>
+    <div class="row"><span class="tag">body · 14</span><span class="body">Bands apply to taxable income — gross minus reliefs.</span></div>
+    <div class="row"><span class="tag">label · 11 caps</span><span class="overline">Estimated annual tax</span></div>
+    <div class="row"><span class="tag">tiny · 12</span><span class="tiny">Documentation required to claim this relief.</span></div>
+  </div>
+
+  <div class="break"><span class="lbl">tracking — actually applied</span></div>
+  <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px">
+    <div class="sheet sheet-md"><div class="tiny" style="margin-bottom:8px">display · −0.022em</div><div class="headline" style="font-size:28px">Estimate, not advice</div></div>
+    <div class="sheet sheet-md"><div class="tiny" style="margin-bottom:8px">overline · +0.18em</div><div class="overline">How your income is taxed</div></div>
+  </div>
+
+  <div class="break"><span class="lbl">they coexist — one paragraph</span></div>
+  <div class="compose">
+    <div class="overline" style="margin-bottom:10px">Why am I paying this?</div>
+    <p class="serif" style="font-size:19px; line-height:1.55; margin:0 0 14px; color:var(--ink-2)">Your taxable income is <span class="amt amt-md" style="font-size:17px">₦5,640,000</span> after <span class="amt amt-md" style="font-size:17px">₦860,000</span> of reliefs. The first <span class="amt amt-md" style="font-size:17px">₦800,000</span> is tax-free; the next slice is taxed at 15%, and the rest at 18%.</p>
+    <div class="cite">
+      <div class="c-ref">NTA 2025 · Fourth Schedule</div>
+      <div class="c-text">“The first ₦800,000 of annual taxable income is charged at 0%.”</div>
+    </div>
+    <p class="body" style="margin:14px 0 0">That is why your effective rate lands at <b>11.4%</b> — well below the 18% top band you touch.</p>
+    <div class="disclaimer">This is an explanation based on the NTA 2025 — <b>not personalised tax advice.</b></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Band breakdown · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow: hidden; margin-bottom: 24px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 26px 28px; }
+
+  /* the stacked ladder — income climbing through bands */
+  .ladder { display:grid; gap:0; border:1px solid var(--edge); border-radius:14px; overflow:hidden; }
+  .rung { display:grid; grid-template-columns: 200px 1fr 110px 120px; gap:18px; align-items:center; padding:15px 18px; border-bottom:1px solid var(--hair-soft); position:relative; }
+  .rung:last-child { border-bottom:0; }
+  .rung.exempt { background: var(--clay-50); }
+  .rung.untouched { opacity:.5; }
+  .rung .band-name { font-size:13.5px; color:var(--ink); }
+  .rung .band-name .sub { display:block; font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-top:2px; }
+  .rung .track { height:10px; border-radius:99px; background:var(--paper-deep); overflow:hidden; }
+  .rung .track > i { display:block; height:100%; border-radius:99px; background:var(--clay-500); }
+  .rung.exempt .track > i { background:var(--clay-300); }
+  .rung .rate { font-family:var(--mono); font-size:14px; font-weight:500; text-align:right; color:var(--clay-700); }
+  .rung.exempt .rate { color:var(--clay-800); }
+  .rung.untouched .rate { color:var(--ink-4); }
+  .rung .tax { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:14px; text-align:right; color:var(--ink); }
+
+  .summary { display:grid; grid-template-columns: repeat(3,1fr); gap:0; border:1px solid var(--edge); border-radius:14px; overflow:hidden; margin-top:18px; }
+  .summary .cell { padding:18px 20px; border-right:1px solid var(--hair); }
+  .summary .cell:last-child { border-right:0; }
+  .summary .k { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .summary .v { margin-top:8px; }
+
+  /* the single horizontal income bar split by band */
+  .splitbar { display:flex; height:46px; border-radius:12px; overflow:hidden; border:1px solid var(--edge); }
+  .splitbar .seg { display:flex; flex-direction:column; justify-content:center; padding:0 12px; color:#fff; min-width:0; }
+  .splitbar .seg .pct { font-family:var(--mono); font-size:12px; font-weight:600; }
+  .splitbar .seg .amt2 { font-size:10.5px; opacity:.85; white-space:nowrap; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; }
+  .legend .li { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-3); }
+  .legend .sw { width:12px; height:12px; border-radius:3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">21 / 43</span>
+    <span class="ttl">Band breakdown</span>
+    <span class="meta">The signature display</span>
+  </div>
+
+  <p class="lede" style="max-width:64ch; margin-bottom:6px">This is the thing TaxLens exists to do: take a single scary number — “your tax” — and show exactly <em>how</em> it was built, tranche by tranche, so it stops being a mystery. The reform’s whole point is that the first ₦800,000 is free; this display makes that visible first.</p>
+  <p class="scene-note">Salary earner · ₦6,480,000 gross · ₦840,000 reliefs · ₦5,640,000 taxable.</p>
+
+  <!-- the split bar: one income, coloured by where it lands -->
+  <div class="scene">
+    <div class="cap">at a glance · your taxable income, split by band</div>
+    <div class="body">
+      <div class="splitbar">
+        <div class="seg" style="flex: 0 0 14.2%; background:var(--clay-300)"><span class="pct" style="color:var(--clay-900)">0%</span><span class="amt2" style="color:var(--clay-900)">₦800k free</span></div>
+        <div class="seg" style="flex: 0 0 39%; background:var(--clay-500)"><span class="pct">15%</span><span class="amt2">₦2.2m</span></div>
+        <div class="seg" style="flex: 0 0 46.8%; background:var(--clay-700)"><span class="pct">18%</span><span class="amt2">₦2.64m</span></div>
+      </div>
+      <div class="legend">
+        <span class="li"><span class="sw" style="background:var(--clay-300)"></span>Tax-free — first ₦800,000</span>
+        <span class="li"><span class="sw" style="background:var(--clay-500)"></span>Taxed at 15%</span>
+        <span class="li"><span class="sw" style="background:var(--clay-700)"></span>Taxed at 18%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- the full ladder -->
+  <div class="scene">
+    <div class="cap">band by band · how the new law taxes each slice</div>
+    <div class="body">
+      <div class="ladder">
+        <div class="rung exempt">
+          <div class="band-name">First slice — exempt<span class="sub">₦0 – ₦800,000</span></div>
+          <div class="track"><i style="width:100%"></i></div>
+          <div class="rate">0%</div>
+          <div class="tax">₦0</div>
+        </div>
+        <div class="rung">
+          <div class="band-name">Second slice<span class="sub">₦800,001 – ₦3,000,000</span></div>
+          <div class="track"><i style="width:100%"></i></div>
+          <div class="rate">15%</div>
+          <div class="tax">₦330,000</div>
+        </div>
+        <div class="rung">
+          <div class="band-name">Third slice<span class="sub">₦3,000,001 – ₦5,640,000</span></div>
+          <div class="track"><i style="width:74%"></i></div>
+          <div class="rate">18%</div>
+          <div class="tax">₦475,200</div>
+        </div>
+        <div class="rung untouched">
+          <div class="band-name">Fourth slice — you don’t reach this<span class="sub">₦12,000,001 – ₦25,000,000</span></div>
+          <div class="track"><i style="width:0%"></i></div>
+          <div class="rate">21%</div>
+          <div class="tax">—</div>
+        </div>
+        <div class="rung untouched">
+          <div class="band-name">Top slice — you don’t reach this<span class="sub">above ₦50,000,000</span></div>
+          <div class="track"><i style="width:0%"></i></div>
+          <div class="rate">25%</div>
+          <div class="tax">—</div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <div class="cell"><div class="k">Total tax</div><div class="v amt amt-lg"><span class="ngn">₦</span>805,200</div></div>
+        <div class="cell"><div class="k">Effective rate</div><div class="v amt amt-lg">12.4<span class="ngn" style="font-size:14px">%</span></div></div>
+        <div class="cell"><div class="k">Top band you touch</div><div class="v amt amt-lg">18<span class="ngn" style="font-size:14px">%</span></div></div>
+      </div>
+
+      <p class="body" style="margin:18px 0 0; max-width:60ch"><span class="serif" style="font-size:16px">The bands are progressive.</span> The 18% only applies to the slice <em>above</em> ₦3m — not to all your income. That gap between your top band (18%) and your effective rate (12.4%) is the part most people get wrong.</p>
+      <div class="cite">
+        <div class="c-ref">NTA 2025 · Fourth Schedule</div>
+        <div class="c-text">“Each rate applies only to the portion of taxable income that falls within its band.”</div>
+      </div>
+      <div class="disclaimer">Computed under the NTA 2025 from the figures you entered. <b>Estimate — not tax advice.</b></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

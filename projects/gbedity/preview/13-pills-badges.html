@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Pills, badges, status</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .row + .row { margin-top: 14px; }
+  .legend { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+
+  /* "said" pill (used in WB in-game) */
+  .said-pill {
+    background: var(--canvas); color: var(--ink);
+    border-radius: var(--r-pill);
+    padding: 6px 12px;
+    font-weight: 700; font-size: 12px;
+  }
+  .said-pill.eliminated {
+    background: var(--danger-soft); color: var(--danger-deep);
+    text-decoration: line-through;
+  }
+
+  /* Avatar grid */
+  .av-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .av {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px;
+  }
+  .av.b1 { background: var(--stage); }
+  .av.b2 { background: var(--special); }
+  .av.b3 { background: var(--info); color: var(--ink); }
+  .av.b4 { background: var(--accent); }
+  .av.b5 { background: var(--action); }
+  .av.b6 { background: var(--warn); color: var(--ink); }
+  .av.b7 { background: var(--danger); }
+  .av.b8 { background: var(--ink); color: #fff; }
+  .av-sm { width: 28px; height: 28px; font-size: 11px; }
+  .av-md { width: 40px; height: 40px; font-size: 15px; }
+  .av-lg { width: 56px; height: 56px; font-size: 22px; }
+  .av-xl { width: 72px; height: 72px; font-size: 28px; }
+
+  /* Avatar stack */
+  .av-stack { display: inline-flex; }
+  .av-stack .av { margin-left: -10px; box-shadow: 0 0 0 2px var(--surface); }
+  .av-stack .av:first-child { margin-left: 0; }
+
+  /* Status dots — for online/offline/spectator */
+  .status-row { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--canvas); border-radius: 14px; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .status-row .name { font-weight: 700; font-size: 14px; color: var(--ink); }
+
+  /* Game category chip — used on catalogue filter row */
+  .cat-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: var(--r-pill);
+    font-family: var(--sans); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .cat-chip.casual    { background: var(--action-soft); color: var(--action-deep); }
+  .cat-chip.brain     { background: var(--stage-tint); color: #1E3FB8; }
+  .cat-chip.party     { background: var(--special-soft); color: var(--special); }
+  .cat-chip.immersive { background: var(--mist-soft); color: var(--ink); }
+
+  /* Score bubble (uses Fraunces) */
+  .score-bubble {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 14px;
+    background: var(--accent-soft);
+    border-radius: var(--r-pill);
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 18px; color: var(--accent-deep);
+    letter-spacing: -0.01em; font-variant-numeric: tabular-nums;
+  }
+  .score-bubble small { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; color: var(--accent-deep); font-family: var(--sans); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Pills · badges · status</h1>
+  <p class="lede">Pills carry state at a glance. Three families: <strong>state</strong> (ready, watching, eliminated), <strong>category</strong> (Quick, Brain, Party, Immersive), and <strong>celebration</strong> (score bubble, winner crown). Every pill is full-pill radius. Uppercase Nunito 12 700 — never sentence case, never serif.</p>
+
+  <div class="section">
+    <p class="group-h">State pills</p>
+    <div class="row">
+      <span class="pill pill-action">Ready</span>
+      <span class="pill pill-info">Watching</span>
+      <span class="pill pill-info">Spectator</span>
+      <span class="pill pill-warn">Choosing name</span>
+      <span class="pill pill-danger">Eliminated</span>
+      <span class="pill pill-special">Drawing</span>
+      <span class="pill pill-accent">It's your turn</span>
+    </div>
+    <p class="legend">Player-state pills appear on lobby rows and inside in-game chrome.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Category chips</p>
+    <div class="row">
+      <span class="cat-chip casual">Quick · Casual</span>
+      <span class="cat-chip brain">Brain · Strategy</span>
+      <span class="cat-chip party">Party · Social</span>
+      <span class="cat-chip immersive">Immersive</span>
+    </div>
+    <p class="legend">Filter row on the game catalogue. Each tints to the same category colour used on the tile top.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">"Already said" pills (in-game)</p>
+    <div class="row">
+      <span class="said-pill">amala</span>
+      <span class="said-pill">akara</span>
+      <span class="said-pill">apple</span>
+      <span class="said-pill">avocado</span>
+      <span class="said-pill eliminated">— Kemi out</span>
+    </div>
+    <p class="legend">Word Bomb — every word the room has used this round. Eliminations join the same list with the strikethrough treatment.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Avatar — sizes</p>
+    <div class="av-row">
+      <div class="av av-sm">T</div>
+      <div class="av av-md b1">A</div>
+      <div class="av av-lg b2">F</div>
+      <div class="av av-xl b3">K</div>
+    </div>
+    <p class="legend">28 · 40 · 56 · 72. Avatars are full-pill, initial in Nunito 800, colour pulled from the player's seat assignment.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Avatar — seat colours</p>
+    <div class="av-row">
+      <div class="av b4">A</div><div class="av b1">T</div><div class="av b2">F</div><div class="av b3">K</div>
+      <div class="av b5">E</div><div class="av b6">O</div><div class="av b7">D</div><div class="av b8">M</div>
+    </div>
+    <p class="legend">Eight seats. Colours rotate from the brand secondary palette — never duplicated within a single room.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Avatar — stack</p>
+    <div class="av-stack">
+      <div class="av av-md">A</div>
+      <div class="av av-md b1">T</div>
+      <div class="av av-md b2">F</div>
+      <div class="av av-md b3">K</div>
+      <div class="av av-md" style="background: var(--canvas); color: var(--ink);">+3</div>
+    </div>
+    <p class="legend">Lobby summary at the top of the catalogue ("7 players in the room"). Overflow pill carries the count.</p>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Status dots — connection / role</p>
+    <div class="row">
+      <div class="status-row"><span class="status-dot" style="background: var(--action);"></span><span class="name">Tobi · connected</span></div>
+      <div class="status-row"><span class="status-dot" style="background: var(--warn);"></span><span class="name">Funmi · reconnecting</span></div>
+      <div class="status-row"><span class="status-dot" style="background: var(--ink-4);"></span><span class="name">Kemi · left the room</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Score bubble — celebration</p>
+    <div class="row">
+      <span class="score-bubble">+150 <small>pts</small></span>
+      <span class="score-bubble">+250 <small>pts</small></span>
+      <span class="score-bubble">+50 <small>pts</small></span>
+    </div>
+    <p class="legend">Floats up and fades on a correct answer. Fraunces because numbers shout — and they shout in serif here.</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Tables</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .explorer { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); overflow:hidden; }
+  .ex-bar { display:flex; align-items:center; gap:8px; padding:11px 14px; border-bottom:1px solid var(--hair); background:var(--panel-2); }
+  .ex-bar .f { max-width:260px; height:30px; }
+  .filter-chip { display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11.5px; background:var(--paper-deep); border:1px solid var(--edge-2); border-radius:var(--r-sm); padding:4px 8px; }
+  .filter-chip .op { color:var(--coral-700); }
+  thead th { font-family:var(--sans); font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-3); text-align:left; padding:9px 14px; border-bottom:1px solid var(--hair-2); }
+  thead th.r { text-align:right; }
+  table { width:100%; border-collapse:collapse; }
+  tbody td { padding:11px 14px; border-bottom:1px solid var(--hair); font-size:13px; vertical-align:middle; }
+  tbody td.r { text-align:right; }
+  tbody tr:hover { background:var(--paper-deep); }
+  tbody tr.sel { background:var(--coral-bg); }
+  .tag { font-family:var(--mono); font-size:11px; color:var(--ink-5); }
+  .ename { font-family:var(--mono); font-size:13px; font-weight:500; }
+  .count { font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600; }
+  /* selection bar */
+  .selbar { display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--ink); color:var(--paper); }
+  .selbar .n { font-family:var(--mono); font-size:12px; }
+  .selbar button { background:transparent; border:1px solid #3A352C; color:var(--paper); border-radius:var(--r-sm); font:600 12px var(--sans); padding:5px 11px; cursor:pointer; }
+  .selbar button:hover { background:#2A271F; }
+  /* expand row */
+  .expand { background:var(--panel-2); }
+  .expand td { padding:0; }
+  .expand-inner { padding:14px 18px 16px 40px; }
+  .kv { display:grid; grid-template-columns:repeat(3,1fr); gap:10px 24px; }
+  .kv .k { font-family:var(--mono); font-size:10.5px; color:var(--ink-4); text-transform:uppercase; letter-spacing:0.08em; }
+  .kv .v { font-family:var(--mono); font-size:12.5px; }
+  .ck { width:16px; height:16px; border:1px solid var(--edge-2); border-radius:var(--r-xs); display:inline-flex; align-items:center;justify-content:center; cursor:pointer; }
+  .ck.on { background:var(--coral-500); border-color:var(--coral-500); }
+  .ck.on::after { content:""; width:8px;height:8px; background:#fff; clip-path:polygon(14% 52%,0 65%,40% 100%,100% 18%,86% 8%,38% 70%); }
+</style>
+</head>
+<body>
+<div class="page page-wide">
+  <div class="stamp">
+    <span class="num">20 · III</span>
+    <span class="ttl">Tables</span>
+    <span class="meta">the events explorer · filter · select · expand</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">A worklist, dossier-style: index tags down the left, mono for every value, a coral selection state, a dark bulk-action bar, and an expandable row that reveals the raw event properties without leaving the table.</p>
+
+  <div class="explorer">
+    <!-- filter bar -->
+    <div class="ex-bar">
+      <input class="f f-mono" value="" placeholder="filter events…" />
+      <span class="filter-chip">last 7d</span>
+      <span class="filter-chip">device <span class="op">=</span> mobile</span>
+      <button class="b b-sm b-quiet" style="border:1px dashed var(--edge-2)">＋ filter</button>
+      <span class="grow"></span>
+      <span class="mark">6 events · 28.1M rows scanned</span>
+    </div>
+
+    <!-- selection bar (active) -->
+    <div class="selbar">
+      <span class="ck on"></span>
+      <span class="n">2 selected</span>
+      <button>Add to dashboard</button>
+      <button>Save as cohort</button>
+      <button>Export CSV</button>
+      <span class="grow"></span>
+      <button>Clear</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:34px"></th>
+          <th style="width:30px">#</th>
+          <th>Event</th>
+          <th>Type</th>
+          <th class="r">Count · 7d</th>
+          <th class="r">Unique users</th>
+          <th class="r">Δ vs prev</th>
+          <th style="width:30px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="sel">
+          <td><span class="ck on"></span></td>
+          <td><span class="tag">01</span></td>
+          <td><span class="ename">page_view</span></td>
+          <td><span class="evmark">auto</span></td>
+          <td class="r count">412,880</td>
+          <td class="r count">38,204</td>
+          <td class="r"><span class="delta delta-up">+6%</span></td>
+          <td><span class="tag">›</span></td>
+        </tr>
+        <tr class="sel">
+          <td><span class="ck on"></span></td>
+          <td><span class="tag">02</span></td>
+          <td><span class="ename">session_start</span></td>
+          <td><span class="evmark">auto</span></td>
+          <td class="r count">88,204</td>
+          <td class="r count">38,204</td>
+          <td class="r"><span class="delta delta-up">+1%</span></td>
+          <td><span class="tag">›</span></td>
+        </tr>
+        <tr>
+          <td><span class="ck"></span></td>
+          <td><span class="tag">03</span></td>
+          <td><span class="ename">checkout_completed</span></td>
+          <td><span class="evmark">custom</span></td>
+          <td class="r count">3,019</td>
+          <td class="r count">2,944</td>
+          <td class="r"><span class="delta delta-anom">−18% ⚑</span></td>
+          <td><span class="tag" style="color:var(--coral-600)">⌄</span></td>
+        </tr>
+        <!-- expanded -->
+        <tr class="expand">
+          <td colspan="8">
+            <div class="expand-inner">
+              <div class="overline" style="margin-bottom:10px">Sample event · most recent</div>
+              <div class="kv">
+                <div><div class="k">distinct_id</div><div class="v">anon_8f3c…d21</div></div>
+                <div><div class="k">user_id</div><div class="v">usr_8841</div></div>
+                <div><div class="k">timestamp</div><div class="v">2026-05-19 18:42:07Z</div></div>
+                <div><div class="k">device</div><div class="v">mobile · Safari iOS</div></div>
+                <div><div class="k">properties.value</div><div class="v">49.00</div></div>
+                <div><div class="k">properties.plan</div><div class="v">pro</div></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="ck"></span></td>
+          <td><span class="tag">04</span></td>
+          <td><span class="ename">add_to_cart</span></td>
+          <td><span class="evmark">custom</span></td>
+          <td class="r count">12,447</td>
+          <td class="r count">9,118</td>
+          <td class="r"><span class="delta delta-up">+3%</span></td>
+          <td><span class="tag">›</span></td>
+        </tr>
+        <tr>
+          <td><span class="ck"></span></td>
+          <td><span class="tag">05</span></td>
+          <td><span class="ename">rage_click</span></td>
+          <td><span class="evmark">auto</span></td>
+          <td class="r count">1,902</td>
+          <td class="r count">1,440</td>
+          <td class="r"><span class="delta delta-haz">+74% ⚑</span></td>
+          <td><span class="tag">›</span></td>
+        </tr>
+        <tr>
+          <td><span class="ck"></span></td>
+          <td><span class="tag">06</span></td>
+          <td><span class="ename">signup_started</span></td>
+          <td><span class="evmark">custom</span></td>
+          <td class="r count">6,902</td>
+          <td class="r count">6,902</td>
+          <td class="r"><span class="delta delta-flat">0%</span></td>
+          <td><span class="tag">›</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mark" style="margin-top:14px">Note · <code>rage_click +74%</code> escalates to <strong style="color:var(--hazard-deep)">hazard</strong>, not coral — a 74% jump in frustration signals is "act now," not just "worth a look."</p>
+</div>
+</body>
+</html>

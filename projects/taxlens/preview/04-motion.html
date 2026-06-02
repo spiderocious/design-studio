@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motion · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .curves { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .curve { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 20px; }
+  .curve .nm { font-family: var(--mono); font-size: 12px; color: var(--ink); }
+  .curve .fn { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
+  .curve .use { font-size: 12px; color: var(--ink-3); margin-top: 10px; line-height: 1.45; }
+  .durs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .durs .d { font-family: var(--mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--edge); border-radius: 10px; background: var(--sheet); }
+  .demo { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 28px 32px; }
+
+  /* the count-up demo: the number settling in */
+  @keyframes settle { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform:none; } }
+  .demo .num { animation: settle var(--t-slow) var(--ease-out); }
+
+  /* band bars filling left-to-right */
+  @keyframes grow { from { width: 0; } }
+  .demo .b-bar > i { animation: grow var(--t-slow) var(--ease-out); }
+
+  .btn-demo:hover { filter: brightness(0.96); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">04 / 43</span>
+    <span class="ttl">Motion</span>
+    <span class="meta">Calm · settle, never bounce</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:28px">Money should arrive, not perform. The result number settles in with a short fade-and-rise; band bars draw left-to-right once. Nothing springs, nothing bounces — fake urgency was explicitly ruled out. Reduced-motion turns it all off.</p>
+
+  <div class="break"><span class="lbl">three named curves</span></div>
+  <div class="curves">
+    <div class="curve"><div class="nm">ease</div><div class="fn">cubic-bezier(.4,0,.2,1)</div><div class="use">The default — hovers, focus rings, toggles.</div></div>
+    <div class="curve"><div class="nm">ease-out</div><div class="fn">cubic-bezier(.16,1,.3,1)</div><div class="use">Arrival — the result number settling, bars drawing, panels entering.</div></div>
+    <div class="curve"><div class="nm">linear</div><div class="fn">linear</div><div class="use">The hold-to-confirm ring filling at a steady, predictable rate.</div></div>
+  </div>
+
+  <div class="break"><span class="lbl">four durations</span></div>
+  <div class="durs">
+    <span class="d">120ms · quick (hover, focus)</span>
+    <span class="d">220ms · normal (toggle, chip)</span>
+    <span class="d">360ms · slow (number settle, bar draw)</span>
+    <span class="d">1500ms · hold-to-confirm</span>
+  </div>
+
+  <div class="break"><span class="lbl">live — a result settling in</span></div>
+  <div class="demo">
+    <div class="overline" style="margin-bottom:12px">Estimated annual tax · NTA 2025</div>
+    <div class="amt amt-hero num"><span class="ngn">₦</span>743,500</div>
+    <div style="margin-top:18px; display:grid; gap:8px; max-width:420px">
+      <div class="band exempt"><span class="b-range">First ₦800,000</span><span class="b-rate">0%</span><span class="b-tax">₦0</span><div class="b-bar"><i style="width:14%"></i></div></div>
+      <div class="band"><span class="b-range">₦800k – ₦3m</span><span class="b-rate">15%</span><span class="b-tax">₦330,000</span><div class="b-bar"><i style="width:50%"></i></div></div>
+      <div class="band"><span class="b-range">₦3m – ₦5.64m</span><span class="b-rate">18%</span><span class="b-tax">₦413,500</span><div class="b-bar"><i style="width:36%"></i></div></div>
+    </div>
+    <p class="tiny" style="margin-top:16px">Reload the frame to replay. The number fades up over 360ms; bars draw once, then rest.</p>
+  </div>
+
+  <p class="disclaimer" style="margin-top:28px"><b>Reduced-motion is honoured.</b> With <span class="mono">prefers-reduced-motion: reduce</span>, the number appears instantly and bars are drawn at rest — no animation at all.</p>
+</div>
+</body>
+</html>

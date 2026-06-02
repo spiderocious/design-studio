@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · SDK setup</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .wrap { max-width:760px; margin:0 auto; padding:30px 24px 80px; }
+  .stepper { display:flex; align-items:center; margin-bottom:24px; }
+  .stepper .st { display:flex; align-items:center; gap:8px; }
+  .stepper .node { width:22px; height:22px; border-radius:50%; border:1px solid var(--edge-2); display:flex; align-items:center; justify-content:center; font:600 11px var(--mono); color:var(--ink-4); background:var(--panel); }
+  .stepper .st.done .node { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .stepper .st.now .node { background:var(--coral-500); border-color:var(--coral-500); color:#fff; }
+  .stepper .lbl { font-size:12.5px; font-weight:600; }
+  .stepper .st.todo .lbl { color:var(--ink-4); font-weight:400; }
+  .stepper .line { flex:1; height:1px; background:var(--edge-2); margin:0 12px; }
+  .stepper .st.done + .line { background:var(--ok); }
+  .panel { margin-bottom:16px; }
+  .p-h { padding:14px 18px; border-bottom:1px solid var(--hair); display:flex; align-items:baseline; gap:10px; }
+  .p-h .t { font-weight:700; font-size:15px; letter-spacing:-0.01em; }
+  .p-h .n { font-family:var(--mono); font-size:11px; color:var(--ink-4); }
+  .p-b { padding:18px; }
+  .tabs { display:flex; gap:2px; margin-bottom:12px; }
+  .tabs button { border:0; background:transparent; font:600 12px var(--sans); color:var(--ink-3); padding:6px 12px; border-radius:var(--r-sm); cursor:pointer; }
+  .tabs button.on { background:var(--paper-deep); color:var(--ink); }
+  .snippet { position:relative; }
+  .snippet .code { font-family:var(--mono); font-size:12.5px; line-height:1.7; background:var(--ink); color:#E8E3D6; border-radius:var(--r-md); padding:16px 18px; overflow-x:auto; white-space:pre; }
+  .snippet .code .tg { color:#F09A72; } .snippet .code .at { color:#9FBE8C; } .snippet .code .st { color:#C9C2B0; }
+  .snippet .copy { position:absolute; top:10px; right:10px; }
+  /* the waiting indicator — the spec-mandated live state */
+  .waiter { display:flex; align-items:center; gap:14px; padding:18px 20px; border-radius:var(--r-md); border:1px solid var(--edge); background:var(--panel-2); }
+  .waiter.live { border-color:var(--ok-edge); background:var(--ok-bg); }
+  .waiter .orb { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+  .waiter.waiting .orb { background:var(--ink-4); animation:blink 1.3s var(--ease) infinite; }
+  .waiter.live .orb { background:var(--ok); box-shadow:0 0 0 0 rgba(26,110,60,.5); animation:pulse 1.7s var(--ease-out) infinite; }
+  @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+  .waiter .h { font-weight:700; font-size:14px; }
+  .waiter .s { font-size:12.5px; color:var(--ink-2); margin-top:1px; }
+  .waiter.live .h { color:var(--ok); }
+  .waiter .ev { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); text-align:right; }
+  .toggle-demo { margin-top:10px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stamp" style="margin-bottom:20px">
+    <span class="num">34 · IV</span>
+    <span class="ttl">Connect your SDK</span>
+    <span class="meta">the dev's first five minutes</span>
+  </div>
+
+  <div class="stepper">
+    <div class="st done"><span class="node">✓</span><span class="lbl">Workspace</span></div>
+    <span class="line"></span>
+    <div class="st done"><span class="node">✓</span><span class="lbl">Project</span></div>
+    <span class="line"></span>
+    <div class="st now"><span class="node">3</span><span class="lbl">Install SDK</span></div>
+    <span class="line"></span>
+    <div class="st todo"><span class="node">4</span><span class="lbl">First event</span></div>
+  </div>
+
+  <!-- snippet -->
+  <div class="panel">
+    <div class="p-h"><span class="t">Drop this in your &lt;head&gt;</span><span class="grow"></span><span class="n">~9KB gzipped · async</span></div>
+    <div class="p-b">
+      <div class="tabs"><button class="on">Script tag</button><button>npm</button><button>React Native</button></div>
+      <div class="snippet">
+        <button class="b b-sm b-secondary copy">Copy</button>
+        <div class="code"><span class="tg">&lt;script</span> <span class="at">async</span>
+  <span class="at">src</span>=<span class="st">"https://cdn.omoran.io/v1/omoran.js"</span>
+  <span class="at">data-key</span>=<span class="st">"omo_pk_7Hq2X9b4kLmaF9"</span><span class="tg">&gt;&lt;/script&gt;</span></div>
+      </div>
+      <p class="f-help" style="margin-top:12px">Page views, sessions, and rage clicks are captured automatically — no extra code. To track your own events, call <code style="font-family:var(--mono);font-size:12px;background:var(--paper-deep);padding:1px 5px;border-radius:3px">omoran.track('event_name')</code>.</p>
+    </div>
+  </div>
+
+  <!-- the live indicator -->
+  <div class="panel">
+    <div class="p-h"><span class="t">First event</span></div>
+    <div class="p-b">
+      <!-- waiting state -->
+      <div class="waiter waiting" id="waiter">
+        <span class="orb"></span>
+        <div>
+          <div class="h">Waiting for your first event…</div>
+          <div class="s">Open your site in another tab. This turns green the moment an event arrives.</div>
+        </div>
+        <span class="ev" id="evmeta">listening on<br>omo_pk_…aF9</span>
+      </div>
+      <div class="toggle-demo"><button class="b b-sm b-quiet" onclick="goLive()">▸ simulate first event (demo)</button></div>
+    </div>
+  </div>
+
+  <!-- keys preview -->
+  <div class="panel">
+    <div class="p-h"><span class="t">Your keys</span></div>
+    <div class="p-b">
+      <div class="split-2">
+        <div>
+          <label class="f-label">Public write key</label>
+          <div class="keyfield"><input class="f f-mono" value="omo_pk_7Hq2X9b4kLmaF9" readonly /><button class="b b-secondary">Copy</button></div>
+        </div>
+        <div>
+          <label class="f-label">Private read key</label>
+          <div class="keyfield"><input class="f f-mono" value="omo_sk_••••••••aQ2" readonly /><button class="b b-secondary">Reveal</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="justify-content:flex-end"><button class="b b-secondary">Skip for now</button><button class="b b-primary" id="finish" disabled style="opacity:.5;cursor:not-allowed">Finish setup</button></div>
+</div>
+
+<script>
+  function goLive(){
+    const w = document.getElementById('waiter');
+    w.classList.remove('waiting'); w.classList.add('live');
+    w.querySelector('.h').textContent = 'Connected — first event received';
+    w.querySelector('.s').textContent = 'page_view from chrome / macOS · EU-West';
+    document.getElementById('evmeta').innerHTML = 'received<br>3s ago';
+    const f = document.getElementById('finish'); f.disabled = false; f.style.opacity='1'; f.style.cursor='pointer';
+    const st = document.querySelector('.stepper .st.todo'); st.classList.remove('todo'); st.classList.add('done'); st.querySelector('.node').textContent='✓';
+  }
+</script>
+</body>
+</html>

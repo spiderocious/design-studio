@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inputs · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); padding: 0; overflow: hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .three { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .stack { display: grid; gap: 16px; }
+  .live-help { display:flex; align-items:center; justify-content:space-between; margin-top:7px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">11 / 43</span>
+    <span class="ttl">Inputs</span>
+    <span class="meta">The ₦ money field, first</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:8px">The naira field is the workhorse of the whole product. A persistent ₦ prefix, mono tabular figures so amounts line up, and a per-year / per-month toggle that auto-converts — because most Nigerians know their salary monthly, not annually.</p>
+  <p class="scene-note">Domain fields first (income, rent, reliefs), generic fields last.</p>
+
+  <!-- the money field, the workhorse -->
+  <div class="scene">
+    <div class="cap">domain · the naira money field</div>
+    <div class="body">
+      <div class="two">
+        <div class="field">
+          <span class="flabel">Gross income</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono f-lg" value="540,000"><span class="per">/mo</span></div>
+          <div class="live-help"><span class="fhelp">Enter monthly — we convert.</span><span class="fhelp mono">= ₦6,480,000 / yr</span></div>
+        </div>
+        <div class="field">
+          <span class="flabel">Gross income</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono f-lg" value="6,480,000"><span class="per">/yr</span></div>
+          <div class="live-help"><span class="fhelp">Or enter the annual figure.</span><span class="seg" style="transform:scale(.9);transform-origin:right"><button>Monthly</button><button class="on">Yearly</button></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- reliefs -->
+  <div class="scene">
+    <div class="cap">domain · reliefs &amp; deductions (deducted before bands)</div>
+    <div class="body">
+      <div class="three">
+        <div class="field">
+          <span class="flabel">Annual rent paid</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono" value="1,800,000"></div>
+          <span class="fhelp">Relief = 20%, capped ₦500k → <b class="mono">₦360,000</b></span>
+        </div>
+        <div class="field">
+          <span class="flabel">Pension (PFA)</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono" value="480,000"></div>
+          <span class="fhelp">Fully deductible.</span>
+        </div>
+        <div class="field">
+          <span class="flabel">NHIS</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div>
+          <span class="fhelp">Deductible if contributed.</span>
+        </div>
+        <div class="field">
+          <span class="flabel">NHF</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div>
+        </div>
+        <div class="field">
+          <span class="flabel">Life insurance premium</span>
+          <div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div>
+        </div>
+        <div class="field" style="align-self:end">
+          <div class="sheet" style="background:var(--clay-50);border-color:var(--clay-200);padding:12px 14px;border-radius:12px">
+            <div class="overline" style="margin-bottom:4px">Total reliefs</div>
+            <div class="amt amt-md"><span class="ngn">₦</span>1,320,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- states -->
+  <div class="scene">
+    <div class="cap">states · default · focus · invalid · disabled</div>
+    <div class="body">
+      <div class="two">
+        <div class="field"><span class="flabel">Default</span><div class="money"><span class="naira">₦</span><input class="f f-mono" placeholder="0"></div></div>
+        <div class="field"><span class="flabel">Focused</span><div class="money"><span class="naira">₦</span><input class="f f-mono" value="6,500,000" style="border-color:var(--clay-500); box-shadow:0 0 0 3px rgba(194,97,58,.16)"></div></div>
+        <div class="field"><span class="flabel" style="color:var(--crit)">Invalid</span><div class="money"><span class="naira">₦</span><input class="f f-mono f-invalid" value="-200,000"></div><span class="ferr">Income can’t be negative.</span></div>
+        <div class="field"><span class="flabel">Disabled — awaiting profile</span><div class="money"><span class="naira" style="opacity:.5">₦</span><input class="f f-mono" placeholder="Pick a profile first" disabled style="background:var(--paper-deep);color:var(--ink-4)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- generic last -->
+  <div class="scene">
+    <div class="cap">generic · text · select · textarea</div>
+    <div class="body">
+      <div class="stack">
+        <div class="field"><span class="flabel">Employment type</span><select class="f"><option>Salaried — PAYE</option><option>Self-employed</option><option>Mixed</option></select></div>
+        <div class="field"><span class="flabel">Ask TaxLens a follow-up</span><textarea class="f" rows="2" placeholder="Why is my effective rate 11.4%?"></textarea><span class="fhelp">TaxLens explains your computed result — it won’t compute a new number.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

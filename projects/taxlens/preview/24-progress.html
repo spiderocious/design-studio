@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+  .stepper { display:flex; align-items:center; }
+  .stepper .step { display:flex; align-items:center; gap:10px; }
+  .stepper .num { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; font-family:var(--mono); font-size:12px; border:1.5px solid var(--edge-2); color:var(--ink-3); }
+  .stepper .num.done { background:var(--clay-500); border-color:var(--clay-500); color:#fff; }
+  .stepper .num.now { border-color:var(--clay-500); color:var(--clay-700); box-shadow:0 0 0 4px var(--clay-100); }
+  .stepper .lbl { font-size:13px; font-weight:600; }
+  .stepper .lbl.muted { color:var(--ink-4); font-weight:500; }
+  .stepper .line { flex:1; height:1.5px; background:var(--edge); margin:0 14px; }
+  .stepper .line.done { background:var(--clay-500); }
+  .bar { height:8px; border-radius:99px; background:var(--paper-deep); overflow:hidden; }
+  .bar > i { display:block; height:100%; background:var(--clay-500); border-radius:99px; }
+  @keyframes indet { 0%{transform:translateX(-100%)} 100%{transform:translateX(320%)} }
+  .bar.indet > i { width:30%; animation: indet 1.2s var(--ease) infinite; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">24 / 43</span>
+    <span class="ttl">Progress</span>
+    <span class="meta">Steps · bars · the compute moment</span>
+  </div>
+
+  <!-- the flow stepper -->
+  <div class="scene">
+    <div class="cap">stepper · the three-step flow</div>
+    <div class="body">
+      <div class="stepper">
+        <div class="step"><span class="num done">✓</span><span class="lbl">Income</span></div>
+        <span class="line done"></span>
+        <div class="step"><span class="num now">2</span><span class="lbl">Result</span></div>
+        <span class="line"></span>
+        <div class="step"><span class="num">3</span><span class="lbl muted">What changed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- computing -->
+  <div class="scene">
+    <div class="cap">indeterminate · reading your statement</div>
+    <div class="body">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px"><span class="body" style="color:var(--ink)">Reading GTBank-statement.pdf…</span><span class="tiny mono">142 credits</span></div>
+      <div class="bar indet"><i></i></div>
+      <p class="tiny" style="margin-top:10px">Done in your browser — your statement never leaves this device.</p>
+    </div>
+  </div>
+
+  <!-- determinate -->
+  <div class="scene">
+    <div class="cap">determinate · reliefs applied</div>
+    <div class="body">
+      <div style="display:grid; gap:16px">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span class="body" style="color:var(--ink)">Rent relief used</span><span class="tiny mono">₦360,000 of ₦500,000 cap</span></div><div class="bar"><i style="width:72%"></i></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span class="body" style="color:var(--ink)">Tax-free band used</span><span class="tiny mono">₦800,000 of ₦800,000</span></div><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ring -->
+  <div class="scene">
+    <div class="cap">ring · take-home share</div>
+    <div class="body" style="display:flex; align-items:center; gap:24px">
+      <svg width="92" height="92" viewBox="0 0 42 42">
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--paper-deep)" stroke-width="5"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--clay-500)" stroke-width="5" stroke-dasharray="87.6 12.4" transform="rotate(-90 21 21)" stroke-linecap="round"/>
+        <text x="21" y="22" text-anchor="middle" style="font-size:7px;fill:var(--ink);font-weight:600;font-family:var(--mono)">88%</text>
+      </svg>
+      <div><div class="body" style="color:var(--ink);font-weight:600">You keep ₦5,674,800</div><p class="tiny" style="margin:4px 0 0">88% of gross stays with you after tax.</p></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

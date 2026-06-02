@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Sketch & Guess · post-game</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); min-height: 100vh; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  .scene-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .stage-shell {
+    background: var(--stage);
+    padding: 18px;
+    border-radius: 36px;
+  }
+  .strip {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 4px 12px 14px;
+  }
+  .wordmark {
+    font-family: var(--serif); font-weight: 700;
+    font-variation-settings: var(--fraunces-soft);
+    font-size: 26px; color: #fff; letter-spacing: -0.01em;
+  }
+  .stage-meta {
+    color: rgba(255,255,255,0.78); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .stage-inset {
+    background: var(--canvas);
+    border-radius: 24px;
+    padding: 24px;
+  }
+
+  .celebrate-card {
+    background: var(--surface);
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    overflow: hidden;
+  }
+  .frozen-canvas {
+    background: var(--accent-soft);
+    padding: 20px 22px 18px;
+  }
+  .canvas-tag {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-deep);
+    margin: 0 0 12px;
+  }
+  .frozen-surface {
+    height: 260px;
+    background: #FCFDFC;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .frozen-surface .sk {
+    position: absolute;
+    stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round;
+    fill: none;
+  }
+  .frozen-surface .sk-orange { stroke: var(--accent); }
+  .word-reveal {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink);
+    background: var(--accent-soft);
+    padding: 6px 18px; border-radius: var(--r-pill);
+    letter-spacing: 0.02em;
+  }
+  .drawer-credit {
+    font-family: var(--sans); font-weight: 700; font-size: 12px;
+    color: var(--accent-deep); margin: 12px 4px 0;
+    letter-spacing: 0.02em;
+  }
+
+  .winning-side {
+    padding: 28px 30px;
+    display: flex; flex-direction: column; gap: 8px;
+    justify-content: center;
+  }
+  .crown {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--accent-deep);
+    letter-spacing: 0.02em;
+  }
+  .guess-text {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 64px; color: var(--ink);
+    letter-spacing: -0.03em; line-height: 1;
+    margin: 8px 0 0;
+  }
+  .guesser-line {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 500; font-size: 18px; color: var(--ink-2);
+    margin: 18px 0 0;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .guesser-line strong { color: var(--ink); font-weight: 600; }
+  .av {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; flex-shrink: 0;
+  }
+  .av.b1 { background: var(--stage); }
+  .av.b2 { background: var(--special); }
+  .av.b3 { background: var(--info); color: var(--ink); }
+  .av.b4 { background: var(--accent); }
+  .av-sm { width: 32px; height: 32px; font-size: 13px; }
+
+  .meta-strip {
+    margin-top: 22px;
+    display: flex; gap: 12px;
+  }
+  .meta-stat {
+    background: var(--canvas);
+    border-radius: 12px;
+    padding: 12px 14px;
+    flex: 1;
+  }
+  .meta-stat .k {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .meta-stat .v {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em; margin-top: 4px;
+  }
+
+  .board-card {
+    margin-top: 14px;
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 24px;
+  }
+  .winner-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    background: var(--accent); color: var(--ink);
+    border-radius: 18px; padding: 16px 22px; margin-bottom: 18px;
+  }
+  .winner-bar .who { display: flex; align-items: center; gap: 12px; }
+  .winner-bar .name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink);
+  }
+  .winner-bar .pts {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 38px; letter-spacing: -0.02em; color: var(--ink); line-height: 1;
+  }
+  .winner-bar .crown-mini {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 14px; color: var(--accent-deep);
+    text-transform: lowercase; letter-spacing: 0.02em;
+  }
+
+  .row-ranked {
+    display: grid; grid-template-columns: 24px 36px 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 12px 6px;
+  }
+  .row-ranked + .row-ranked { border-top: 1px dashed var(--ink-5); }
+  .row-ranked .rank {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 18px; color: var(--ink-3); text-align: right;
+  }
+  .row-ranked .rank.top { color: var(--accent-deep); }
+  .row-ranked .name { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .row-ranked .score-cell {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 22px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .row-ranked .score-cell.win { color: var(--accent-deep); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="scene-h">Surface · Sketch & Guess · post-game (display TV)</p>
+
+  <div class="stage-shell">
+    <div class="strip">
+      <span class="wordmark">Final scores</span>
+      <span class="stage-meta">15 · Sketch & Guess · round 4</span>
+    </div>
+    <div class="stage-inset">
+      <div class="celebrate-card">
+        <div class="frozen-canvas">
+          <p class="canvas-tag">The drawing · Ada</p>
+          <div class="frozen-surface">
+            <svg class="sk" style="left: 50px; top: 40px;" width="240" height="180" viewBox="0 0 240 180">
+              <path d="M30 100 L120 30 L210 100"/>
+              <path d="M50 98 L50 170 L190 170 L190 98"/>
+              <path d="M100 170 L100 120 L140 120 L140 170"/>
+            </svg>
+            <svg class="sk sk-orange" style="left: 200px; top: 70px;" width="80" height="40" viewBox="0 0 80 40">
+              <path d="M5 30 Q40 5 75 30"/>
+            </svg>
+            <div class="word-reveal">house</div>
+          </div>
+          <p class="drawer-credit">+ Ada earns 180 pts (drawer bonus)</p>
+        </div>
+        <div class="winning-side">
+          <span class="crown">winning guess</span>
+          <p class="guess-text">house</p>
+          <div class="guesser-line">
+            <div class="av b1">T</div>
+            <span><strong>Tobi</strong> got it first</span>
+          </div>
+          <div class="meta-strip">
+            <div class="meta-stat">
+              <div class="k">Time</div>
+              <div class="v">0:12</div>
+            </div>
+            <div class="meta-stat">
+              <div class="k">Earned</div>
+              <div class="v">320 pts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="board-card">
+        <div class="winner-bar">
+          <div class="who">
+            <span class="crown-mini">round winner</span>
+            <div class="av b1">T</div>
+            <span class="name">Tobi</span>
+          </div>
+          <span class="pts">320</span>
+        </div>
+        <div>
+          <div class="row-ranked"><div class="rank top">1</div><div class="av av-sm b1">T</div><div class="name">Tobi</div><div class="score-cell win">320</div></div>
+          <div class="row-ranked"><div class="rank">2</div><div class="av av-sm b4">A</div><div class="name">Ada</div><div class="score-cell">180</div></div>
+          <div class="row-ranked"><div class="rank">3</div><div class="av av-sm b3">F</div><div class="name">Funmi</div><div class="score-cell">120</div></div>
+          <div class="row-ranked"><div class="rank">4</div><div class="av av-sm b2">K</div><div class="name">Kemi</div><div class="score-cell">40</div></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg">Next drawer</button>
+          <button class="btn btn-secondary btn-lg">Pick another game</button>
+          <button class="btn btn-ghost btn-lg">End session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

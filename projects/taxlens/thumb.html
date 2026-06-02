@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TaxLens · thumb</title>
+<style>
+  /* Self-contained gallery thumbnail. The signature artifact: the
+     result card — big naira number, band split, "you save" chip. */
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #F6F4EF; font-family: 'Inter', system-ui, sans-serif; color: #1C1B18; overflow: hidden; }
+  .frame { height: 100%; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; justify-content: center; }
+
+  .card { background: #fff; border: 1px solid #E4E0D6; border-radius: 14px; overflow: hidden; }
+  .top { background: #FAF3EE; padding: 11px 13px 10px; border-bottom: 1px solid #E7E3D9; }
+  .eyebrow { font-size: 6.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8E4022; margin-bottom: 6px; }
+  .num { font-family: 'JetBrains Mono', monospace; font-size: 23px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; font-feature-settings: "tnum" 1; }
+  .num .n { color: #76726A; font-size: 14px; }
+  .sub { font-size: 8px; color: #3A3833; margin-top: 6px; }
+  .sub b { font-weight: 600; }
+
+  .split { display: flex; height: 14px; margin: 10px 13px 0; border-radius: 5px; overflow: hidden; border: 1px solid #E4E0D6; }
+  .split i { height: 100%; }
+  .body { padding: 9px 13px 11px; }
+  .chip { display: inline-flex; align-items: center; gap: 4px; background: #EEF3EC; color: #4F7A52; border: 1px solid #C7DBC4; border-radius: 999px; padding: 2px 8px; font-size: 8px; font-weight: 600; }
+  .chip::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #4F7A52; }
+
+  .bands { margin-top: 8px; display: grid; gap: 4px; }
+  .band { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; font-size: 8px; color: #3A3833; }
+  .band .r { font-family: 'JetBrains Mono', monospace; color: #8E4022; font-size: 8px; }
+  .band.ex { color: #8E4022; }
+
+  .meta { display: flex; justify-content: space-between; font-size: 7px; color: #76726A; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; padding: 0 2px; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="card">
+    <div class="top">
+      <div class="eyebrow">Estimated annual tax · NTA 2025</div>
+      <div class="num"><span class="n">₦</span>805,200</div>
+      <div class="sub">Effective <b>12.4%</b> · take-home <b>₦5.67m</b></div>
+    </div>
+    <div class="split">
+      <i style="flex:0 0 14%; background:#D89E7E"></i>
+      <i style="flex:0 0 39%; background:#C2613A"></i>
+      <i style="flex:0 0 47%; background:#8E4022"></i>
+    </div>
+    <div class="body">
+      <span class="chip">You save ₦128,400 vs old regime</span>
+      <div class="bands">
+        <div class="band ex"><span>First ₦800,000 — exempt</span><span class="r">0%</span></div>
+        <div class="band"><span>₦800k – ₦3m</span><span class="r">15%</span></div>
+        <div class="band"><span>₦3m – ₦5.64m</span><span class="r">18%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="meta">
+    <span>24 surfaces</span>
+    <span>v 0.1 · clay</span>
+  </div>
+</div>
+</body>
+</html>

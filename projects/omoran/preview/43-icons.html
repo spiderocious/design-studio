@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Iconography</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-bottom:16px; padding:18px 20px; }
+  .scene > .overline { display:block; margin-bottom:16px; }
+  .iset { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+  .ic { display:flex; flex-direction:column; align-items:center; gap:8px; padding:14px 8px; border:1px solid var(--hair); border-radius:var(--r-md); }
+  .ic svg { width:22px; height:22px; stroke:var(--ink); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .ic .nm { font-family:var(--mono); font-size:10px; color:var(--ink-3); }
+  .sizes { display:flex; align-items:flex-end; gap:22px; }
+  .sizes .s { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .sizes svg { stroke:var(--ink); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .rule { display:flex; gap:30px; }
+  .rule .r { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .rule svg { width:26px; height:26px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">43 · V</span>
+    <span class="ttl">Iconography</span>
+    <span class="meta">single-stroke · 1.5px · the analytics glyph set</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">A restrained single-stroke set at 1.5px. No emoji as functional icons. The one glyph that earns colour is the analyst's spark <span style="color:var(--coral-500)">✦</span> and the hazard flag <span style="color:var(--hazard)">⚑</span> — they carry meaning, so they carry the accent.</p>
+
+  <!-- domain glyphs -->
+  <div class="scene">
+    <span class="overline">Analytics glyphs</span>
+    <div class="iset">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-9"/></svg><span class="nm">events</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg><span class="nm">funnel</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 16c4-9 12-9 16 0M4 16l3-2M4 16l2 3"/></svg><span class="nm">retention</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg><span class="nm">users</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span class="nm">session</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12l5-2M12 12l-3 4"/></svg><span class="nm">cohort</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg><span class="nm">alert</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg><span class="nm">dashboard</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg><span class="nm">explore</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span class="nm">sql</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--coral-500)"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><span class="nm">analyst ✦</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--hazard)"><path d="M6 21V4M6 4h11l-2 4 2 4H6"/></svg><span class="nm">hazard ⚑</span></div>
+    </div>
+  </div>
+
+  <!-- system glyphs -->
+  <div class="scene">
+    <span class="overline">System glyphs</span>
+    <div class="iset">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><span class="nm">settings</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><span class="nm">key</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4l8 4v5c0 5-4 7-8 8-4-1-8-3-8-8V8z"/></svg><span class="nm">privacy</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg><span class="nm">close</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span class="nm">add</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="nm">arrow</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg><span class="nm">export</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--ok)"><path d="M5 13l4 4 10-11"/></svg><span class="nm">done</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--crit)"><circle cx="12" cy="12" r="9"/><path d="M7 17L17 7"/></svg><span class="nm">refused</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span class="nm">info</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 6V4h10v2M6 6l1 14h10l1-14"/></svg><span class="nm">delete</span></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span class="nm">recent</span></div>
+    </div>
+  </div>
+
+  <div class="split-2">
+    <!-- sizes -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Sizes</span>
+      <div class="sizes">
+        <div class="s"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-9"/></svg><span class="mark">14</span></div>
+        <div class="s"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-9"/></svg><span class="mark">18</span></div>
+        <div class="s"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-9"/></svg><span class="mark">22</span></div>
+        <div class="s"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-9"/></svg><span class="mark">28</span></div>
+      </div>
+    </div>
+    <!-- line vs filled -->
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Line vs filled</span>
+      <div class="rule">
+        <div class="r"><svg viewBox="0 0 24 24" style="stroke:var(--ink);fill:none;stroke-width:1.5"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><span class="mark">line · default</span></div>
+        <div class="r"><svg viewBox="0 0 24 24" style="fill:var(--coral-500);stroke:none"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><span class="mark">filled · active only</span></div>
+      </div>
+      <p class="mark" style="margin-top:12px;line-height:1.6">Filled = current/selected. Everything else is line. Colour only on the two meaning-bearing glyphs.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

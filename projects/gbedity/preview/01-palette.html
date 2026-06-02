@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Palette</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .display-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 36px 0 14px;
+  }
+  .ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .ribbon.three { grid-template-columns: repeat(3, 1fr); }
+  .ribbon.six { grid-template-columns: repeat(6, 1fr); }
+  .swatch {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .swatch .chip {
+    height: 92px;
+  }
+  .swatch .meta-info {
+    padding: 12px 14px 14px;
+  }
+  .swatch .name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink); margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .swatch .hex {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.06em; color: var(--ink-3); margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .swatch .role {
+    font-size: 12px; color: var(--ink-3); margin-top: 6px; line-height: 1.4;
+  }
+
+  /* Stage demo */
+  .stage-demo {
+    background: var(--stage);
+    padding: 16px;
+    border-radius: 28px;
+    margin-top: 14px;
+  }
+  .stage-demo .inset {
+    background: var(--canvas);
+    border-radius: 20px;
+    padding: 28px;
+  }
+  .stage-demo .card {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .stage-demo .card .ttl {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 26px; color: var(--ink); margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .stage-demo .card .sub { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="display-title">Palette</h1>
+  <p class="lede">The system is built on a three-layer stage architecture: a saturated <strong>stage</strong> frame around a calm <strong>canvas</strong> wall, with white <strong>cards</strong> doing the work inside. Forest ink replaces black across every surface. Action green is the colour of forward motion; accent orange earns its keep on celebration moments only.</p>
+
+  <div class="group-h">Stage architecture</div>
+  <div class="ribbon three">
+    <div class="swatch">
+      <div class="chip" style="background: #2D5BFF;"></div>
+      <div class="meta-info">
+        <p class="name">Stage Cobalt</p>
+        <p class="hex">#2D5BFF</p>
+        <p class="role">Outer poster-frame. Appears only on celebration screens (post-game).</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #C8E8DA;"></div>
+      <div class="meta-info">
+        <p class="name">Canvas Mint</p>
+        <p class="hex">#C8E8DA</p>
+        <p class="role">The room's wall colour. Every operator screen sits on this.</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--ink-5);"></div>
+      <div class="meta-info">
+        <p class="name">Surface White</p>
+        <p class="hex">#FFFFFF</p>
+        <p class="role">Card surfaces only. Page backgrounds never use pure white.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-demo">
+    <div class="inset">
+      <div class="card">
+        <div>
+          <p class="ttl">Stage · Canvas · Card</p>
+          <p class="sub">Depth from colour layering, not shadow.</p>
+        </div>
+        <span class="pill pill-action">Three layers</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-h">Ink — forest, never black</div>
+  <div class="ribbon">
+    <div class="swatch"><div class="chip" style="background: #1F6B4A;"></div><div class="meta-info"><p class="name">Forest Ink</p><p class="hex">#1F6B4A</p><p class="role">Type, wordmark, button borders.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #2F5C46;"></div><div class="meta-info"><p class="name">Ink 2 · body</p><p class="hex">#2F5C46</p><p class="role">Body copy.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #536A62;"></div><div class="meta-info"><p class="name">Ink 3 · Deep Mist</p><p class="hex">#536A62</p><p class="role">Secondary text on white.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #9CB3AB;"></div><div class="meta-info"><p class="name">Ink 4 · Mid Mist</p><p class="hex">#9CB3AB</p><p class="role">Placeholder, metadata.</p></div></div>
+  </div>
+
+  <div class="group-h">Action & accent</div>
+  <div class="ribbon">
+    <div class="swatch"><div class="chip" style="background: #27B973;"></div><div class="meta-info"><p class="name">Action Green</p><p class="hex">#27B973</p><p class="role">Primary positive action. "Start game."</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #1F9A60;"></div><div class="meta-info"><p class="name">Action Deep</p><p class="hex">#1F9A60</p><p class="role">Pressed state.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #FF8A2A;"></div><div class="meta-info"><p class="name">Accent Orange</p><p class="hex">#FF8A2A</p><p class="role">Celebration & brand identity only. Never decoration.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #FFE5CD;"></div><div class="meta-info"><p class="name">Accent Soft</p><p class="hex">#FFE5CD</p><p class="role">Tint for celebration card grounds.</p></div></div>
+  </div>
+
+  <div class="group-h">Semantic state</div>
+  <div class="ribbon">
+    <div class="swatch"><div class="chip" style="background: #E85A4F;"></div><div class="meta-info"><p class="name">Tomato Red · Danger</p><p class="hex">#E85A4F</p><p class="role">Eliminations, errors, the bomb timer in extremis.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #F7C948;"></div><div class="meta-info"><p class="name">Sun Yellow · Warn</p><p class="hex">#F7C948</p><p class="role">In-progress states, mid-tier urgency.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #5BC0EB;"></div><div class="meta-info"><p class="name">Sky Blue · Info</p><p class="hex">#5BC0EB</p><p class="role">Spectator state, informational badges.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #7B4FBF;"></div><div class="meta-info"><p class="name">Berry Purple · Special</p><p class="hex">#7B4FBF</p><p class="role">League mode, special game-mode accents.</p></div></div>
+  </div>
+
+  <div class="group-h">Game category tints — used on catalogue tile tops</div>
+  <div class="ribbon">
+    <div class="swatch"><div class="chip" style="background: #27B973; display: flex; align-items: flex-end; padding: 12px;"><span style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display); font-weight: 600; color: #fff; opacity: 0.55; font-size: 26px; letter-spacing: -0.02em;">06</span></div><div class="meta-info"><p class="name">Quick · Casual</p><p class="role">Word Bomb, Quizzes, Spelling Fast, Wordshot…</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #2D5BFF; display: flex; align-items: flex-end; padding: 12px;"><span style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display); font-weight: 600; color: #fff; opacity: 0.55; font-size: 26px; letter-spacing: -0.02em;">12</span></div><div class="meta-info"><p class="name">Brain · Strategy</p><p class="role">Millionaire.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #7B4FBF; display: flex; align-items: flex-end; padding: 12px;"><span style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display); font-weight: 600; color: #fff; opacity: 0.55; font-size: 26px; letter-spacing: -0.02em;">14</span></div><div class="meta-info"><p class="name">Party · Social</p><p class="role">Catch the Lie, Sketch & Guess, Hot Take Court…</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #1A1714; display: flex; align-items: flex-end; padding: 12px;"><span style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display); font-weight: 600; color: #fff; opacity: 0.55; font-size: 26px; letter-spacing: -0.02em;">18</span></div><div class="meta-info"><p class="name">Immersive</p><p class="role">Investigation, Plead Your Case, Presentation.</p></div></div>
+  </div>
+
+  <div class="group-h">Mist — used sparingly</div>
+  <div class="ribbon">
+    <div class="swatch"><div class="chip" style="background: #F2F5F4;"></div><div class="meta-info"><p class="name">Soft Mist</p><p class="hex">#F2F5F4</p><p class="role">Disabled bg, faintest dividers.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #9CB3AB;"></div><div class="meta-info"><p class="name">Mid Mist</p><p class="hex">#9CB3AB</p><p class="role">Placeholder text.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #536A62;"></div><div class="meta-info"><p class="name">Deep Mist</p><p class="hex">#536A62</p><p class="role">Secondary text on white.</p></div></div>
+    <div class="swatch"><div class="chip" style="background: #C7D6CF;"></div><div class="meta-info"><p class="name">Divider</p><p class="hex">#C7D6CF</p><p class="role">Hairline rules between rows.</p></div></div>
+  </div>
+
+</div>
+</body>
+</html>

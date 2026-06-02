@@ -1,0 +1,27 @@
+# Studio — static design-systems gallery.
+# No build step: the repo root IS the site.
+
+[build]
+  publish = "."
+  # No command — pure static HTML/CSS.
+
+# Pretty, folder-free URLs: /projects/medcord -> projects/medcord/index.html
+[[redirects]]
+  from = "/projects/:slug"
+  to = "/projects/:slug/index.html"
+  status = 200
+
+# Security + caching headers for a public static site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Long-cache the static project assets (they're versioned by content anyway).
+[[headers]]
+  for = "/projects/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

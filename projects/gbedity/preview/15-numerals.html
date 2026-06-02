@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Numerals</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 32px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+
+  /* Hero showcase */
+  .hero { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+  .hero-cell {
+    background: var(--canvas);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+  }
+  .hero-cell .what {
+    font-family: var(--sans); font-weight: 800; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 10px;
+  }
+  .num-hero {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 92px; line-height: 0.95; letter-spacing: -0.04em;
+    color: var(--danger);
+    margin: 0;
+  }
+  .num-hero.score-c { color: var(--accent-deep); font-size: 72px; }
+  .num-hero.verdict { color: var(--ink); font-size: 72px; }
+  .num-hero.verdict small {
+    font-family: var(--sans); font-weight: 700; font-size: 20px;
+    color: var(--ink-3); letter-spacing: 0; margin-left: 2px;
+    vertical-align: 0.3em;
+  }
+
+  .hero-cell .desc {
+    font-size: 13px; color: var(--ink-3); margin: 12px 0 0; line-height: 1.5;
+  }
+
+  /* Timer state escalation */
+  .timer-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ts {
+    background: var(--canvas);
+    border-radius: 18px; padding: 28px; text-align: center;
+  }
+  .ts .label {
+    font-family: var(--sans); font-weight: 800; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 8px;
+  }
+  .ts .num {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-variant-numeric: tabular-nums;
+    font-size: 64px; line-height: 0.95; letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .ts.calm .num { color: var(--ink); }
+  .ts.warn .num { color: var(--warn-deep); }
+  .ts.crit .num { color: var(--danger); }
+  .ts .when { font-size: 12px; color: var(--ink-3); margin-top: 8px; }
+
+  /* Game ID showcase */
+  .id-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .id-chip-demo {
+    width: 88px; height: 88px;
+    background: var(--canvas);
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft-display);
+    font-weight: 600; font-size: 38px; letter-spacing: -0.02em;
+  }
+  .id-chip-demo.casual { color: var(--action); }
+  .id-chip-demo.brain { color: var(--stage); }
+  .id-chip-demo.party { color: var(--special); }
+  .id-chip-demo.immersive { color: var(--ink); }
+
+  /* Tabular vs proportional */
+  .compare-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .compare-row .col {
+    background: var(--canvas); border-radius: 18px; padding: 22px;
+    text-align: left;
+  }
+  .compare-row .col .meta { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .compare-row .col table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .compare-row .col td { padding: 4px 0; }
+  .compare-row .col td:last-child { text-align: right; }
+  .compare-row .col.tab table { font-variant-numeric: tabular-nums; }
+
+  /* Comma vs no-comma */
+  .digit-rule {
+    background: var(--canvas);
+    border-radius: 18px;
+    padding: 22px;
+  }
+  .digit-rule .ex { display: flex; gap: 36px; align-items: baseline; }
+  .digit-rule .num {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 36px; color: var(--ink);
+    font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  }
+  .digit-rule .meta { font-size: 12px; color: var(--ink-3); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Numerals</h1>
+  <p class="lede">Every number in Gbedity is set in <strong>Fraunces SemiBold with tabular numerals</strong>. The brief is explicit: numbers <em>shout</em> in this product — vitals shout, scores shout, the bomb timer shouts. Three roles dominate: <strong>timer</strong> (huge, tinted by urgency), <strong>score</strong> (large, accent on win), and <strong>game ID</strong> (medium, tinted to category at 55% opacity).</p>
+
+  <div class="section">
+    <p class="group-h">The three hero numerals</p>
+    <div class="hero">
+      <div class="hero-cell">
+        <p class="what">Bomb timer</p>
+        <p class="num-hero">04</p>
+        <p class="desc">Tomato red. 92px. Centred. Always two-digit zero-pad.</p>
+      </div>
+      <div class="hero-cell">
+        <p class="what">Final score</p>
+        <p class="num-hero score-c">1,420</p>
+        <p class="desc">Accent deep. 72px. Thousands separator with comma.</p>
+      </div>
+      <div class="hero-cell">
+        <p class="what">AI verdict</p>
+        <p class="num-hero verdict">84<small>/100</small></p>
+        <p class="desc">Ink. 72px. <em>/100</em> in Nunito Bold 20 ink-3, vertical-aligned.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Timer escalation — colour only, no scale change</p>
+    <div class="timer-states">
+      <div class="ts calm">
+        <p class="label">Plenty of time</p>
+        <p class="num">08</p>
+        <p class="when">More than 50% remaining</p>
+      </div>
+      <div class="ts warn">
+        <p class="label">Last 25%</p>
+        <p class="num">06</p>
+        <p class="when">Sun yellow</p>
+      </div>
+      <div class="ts crit">
+        <p class="label">Last 10%</p>
+        <p class="num">02</p>
+        <p class="when">Tomato red · pulse animation kicks in</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Game ID — permanent brand-system element</p>
+    <p style="font-size: 13px; color: var(--ink-3); margin: -8px 0 14px;">Two-digit zero-pad, Fraunces SemiBold, tinted to the game's category colour at ~55% opacity. Shows up consistently on catalogue tiles, in-game headers, post-game headers, config head chips, and league queue rows.</p>
+    <div class="id-row">
+      <div class="id-chip-demo casual">06</div>
+      <div class="id-chip-demo brain">12</div>
+      <div class="id-chip-demo party">14</div>
+      <div class="id-chip-demo party">15</div>
+      <div class="id-chip-demo immersive">17</div>
+      <div class="id-chip-demo immersive">18</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Tabular vs proportional — always tabular</p>
+    <div class="compare-row">
+      <div class="col tab">
+        <p class="meta">Tabular · used everywhere</p>
+        <table>
+          <tr><td>Ada</td><td>1,420</td></tr>
+          <tr><td>Tobi</td><td>1,180</td></tr>
+          <tr><td>Funmi</td><td>940</td></tr>
+          <tr><td>Kemi</td><td>720</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <p class="meta">Proportional · do not use for scores</p>
+        <table style="font-variant-numeric: proportional-nums;">
+          <tr><td>Ada</td><td>1,420</td></tr>
+          <tr><td>Tobi</td><td>1,180</td></tr>
+          <tr><td>Funmi</td><td>940</td></tr>
+          <tr><td>Kemi</td><td>720</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Formatting rules</p>
+    <div class="digit-rule">
+      <div class="ex">
+        <div><div class="num">8</div><div class="meta">Lives, rounds — single digit, no pad</div></div>
+        <div><div class="num">04</div><div class="meta">Timer — always two-digit zero-pad</div></div>
+        <div><div class="num">1,420</div><div class="meta">Score — comma at thousands</div></div>
+      </div>
+      <div class="ex" style="margin-top: 18px;">
+        <div><div class="num">78<span style="font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink-3); vertical-align: 0.3em;">/100</span></div><div class="meta">AI verdict — denominator in Nunito Bold ink-3</div></div>
+        <div><div class="num">06</div><div class="meta">Game ID — two-digit, opacity 0.55 on tinted top</div></div>
+        <div><div class="num">0:38</div><div class="meta">Round timer — m:ss with colon</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

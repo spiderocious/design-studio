@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Selection</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .scene {
+    background: var(--canvas);
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 16px;
+  }
+  .scene .card {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 24px;
+  }
+  .scene h3 {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink); margin: 0 0 4px;
+  }
+  .scene p.sub { font-size: 13px; color: var(--ink-3); margin: 0 0 18px; }
+
+  /* Segmented (uses global .seg) */
+
+  /* Toggle / switch */
+  .switch {
+    position: relative; display: inline-flex; align-items: center;
+    width: 44px; height: 26px;
+    background: var(--canvas);
+    border-radius: var(--r-pill);
+    cursor: pointer;
+    transition: background var(--t-fast) var(--ease-default);
+  }
+  .switch::after {
+    content: "";
+    position: absolute; left: 3px; top: 3px;
+    width: 20px; height: 20px;
+    background: var(--surface);
+    border-radius: 50%;
+    transition: transform var(--t-fast) var(--ease-default);
+    box-shadow: 0 1px 3px rgba(31, 107, 74, 0.15);
+  }
+  .switch.on { background: var(--action); }
+  .switch.on::after { transform: translateX(18px); }
+
+  /* Checkbox custom */
+  .check {
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+  }
+  .check .box {
+    width: 22px; height: 22px; border-radius: 7px;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .check.on .box { background: var(--action); border-color: var(--action); }
+  .check.on .box::after { content: "✓"; color: #fff; font-weight: 900; font-size: 13px; }
+
+  /* Radio (game mode pick) */
+  .radio-card {
+    background: var(--canvas);
+    border-radius: 16px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 14px; align-items: center;
+    cursor: pointer;
+  }
+  .radio-card + .radio-card { margin-top: 8px; }
+  .radio-card.on {
+    background: var(--action-soft);
+    box-shadow: inset 0 0 0 2px var(--action);
+  }
+  .radio-card .dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .radio-card.on .dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--action); }
+  .radio-card .name {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 16px; color: var(--ink);
+  }
+  .radio-card .meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .radio-card .pill { font-size: 9px; padding: 4px 9px; }
+
+  /* Multi-select chips (rating tier filter) */
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--canvas);
+    border: 2px solid transparent;
+    border-radius: var(--r-pill);
+    padding: 8px 14px;
+    font-family: var(--sans); font-weight: 700; font-size: 13px;
+    color: var(--ink-2); cursor: pointer;
+    transition: all var(--t-fast) var(--ease-default);
+  }
+  .chip:hover { color: var(--ink); }
+  .chip.on { background: var(--action-soft); color: var(--action-deep); border-color: var(--action); }
+  .chip.on::before { content: "✓"; font-weight: 900; }
+
+  /* Slider (single — for game config) */
+  .slider {
+    width: 100%; height: 6px;
+    background: var(--canvas);
+    border-radius: var(--r-pill);
+    position: relative;
+    margin: 14px 0;
+  }
+  .slider .fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--ink);
+    border-radius: var(--r-pill);
+  }
+  .slider .thumb {
+    position: absolute; top: 50%; width: 18px; height: 18px;
+    background: var(--surface); border: 2px solid var(--ink);
+    border-radius: 50%; transform: translate(-50%, -50%);
+  }
+  .slider-meta {
+    display: flex; justify-content: space-between;
+    font-size: 11px; font-weight: 700; color: var(--ink-3);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Selection</h1>
+  <p class="lede">The selection primitives are how a host configures a game. They appear inside <strong>config screens</strong> (Word Bomb, Plead Your Case) and inside <strong>category filter chips</strong> on the catalogue. Segmented for 2–3 mutually exclusive choices; chips for multi-select; radio cards for big consequential picks; switches for binary on/off.</p>
+
+  <!-- Scene: config row mix -->
+  <div class="scene">
+    <div class="card">
+      <h3>Word Bomb · round options</h3>
+      <p class="sub">A real config row mix — segmented + switch + slider.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--ink-5);">
+        <div>
+          <div style="font-weight: 700; color: var(--ink);">Bomb time</div>
+          <div style="font-size: 11px; color: var(--ink-3); margin-top: 2px;">Decays as rounds progress</div>
+        </div>
+        <div class="seg"><button>Fixed</button><button class="on">Decay</button></div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--ink-5);">
+        <div>
+          <div style="font-weight: 700; color: var(--ink);">Rounds</div>
+        </div>
+        <div class="seg"><button>1</button><button class="on">3</button><button>5</button></div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--ink-5);">
+        <div>
+          <div style="font-weight: 700; color: var(--ink);">Allow autocorrect</div>
+          <div style="font-size: 11px; color: var(--ink-3); margin-top: 2px;">When off, autocorrected answers are disqualified</div>
+        </div>
+        <span class="switch"></span>
+      </div>
+
+      <div style="padding: 14px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div style="font-weight: 700; color: var(--ink);">Speed vs accuracy</div>
+          <span style="font-family: var(--serif); font-variation-settings: var(--fraunces-soft); font-weight: 600; font-size: 16px; color: var(--ink); font-variant-numeric: tabular-nums;">50 / 50</span>
+        </div>
+        <div class="slider">
+          <div class="fill" style="width: 50%;"></div>
+          <div class="thumb" style="left: 50%;"></div>
+        </div>
+        <div class="slider-meta">
+          <span>Pure speed</span>
+          <span>Pure accuracy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game mode pick -->
+  <div class="scene">
+    <div class="card">
+      <h3>Game mode</h3>
+      <p class="sub">Single Game or League. The choice that frames the whole session.</p>
+
+      <div class="radio-card on">
+        <span class="dot"></span>
+        <div>
+          <div class="name">Single Game</div>
+          <div class="meta">Pick one game, play, see scores, decide what's next.</div>
+        </div>
+        <span class="pill pill-action">Default</span>
+      </div>
+      <div class="radio-card">
+        <span class="dot"></span>
+        <div>
+          <div class="name">League</div>
+          <div class="meta">Queue multiple games up front, cross-game leaderboard, final winner.</div>
+        </div>
+        <span class="pill pill-special">Special</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content filters -->
+  <div class="scene">
+    <div class="card">
+      <h3>Content rating filter</h3>
+      <p class="sub">Multi-select. Host can stack tiers — Family + Friends, no Spicy.</p>
+      <div class="chip-row">
+        <button class="chip on">Family</button>
+        <button class="chip on">Friends</button>
+        <button class="chip">Spicy</button>
+        <button class="chip">18+</button>
+      </div>
+
+      <p class="group-h" style="margin-top: 22px;">Exclude tags</p>
+      <div class="chip-row">
+        <button class="chip on">No sexual</button>
+        <button class="chip on">No religious</button>
+        <button class="chip">No political</button>
+        <button class="chip">No physical dares</button>
+        <button class="chip">No relationship</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Switches alone -->
+  <div class="section">
+    <p class="group-h">Switch · binary on/off</p>
+    <div style="display: flex; gap: 32px; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="switch on"></span>
+        <span style="font-weight: 700;">On</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="switch"></span>
+        <span style="font-weight: 700;">Off</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Check -->
+  <div class="section">
+    <p class="group-h">Checkbox · multi-select in a list</p>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <label class="check on"><span class="box"></span>Quizzes</label>
+      <label class="check on"><span class="box"></span>Word Bomb</label>
+      <label class="check"><span class="box"></span>Sketch & Guess</label>
+      <label class="check"><span class="box"></span>Plead Your Case</label>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

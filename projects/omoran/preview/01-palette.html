@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Palette</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .swatch-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .sw { border: 1px solid var(--edge); border-radius: var(--r-md); overflow: hidden; }
+  .sw .chip { height: 64px; }
+  .sw .lab { padding: 8px 10px; background: var(--panel); }
+  .sw .lab .nm { font-family: var(--sans); font-size: 12px; font-weight: 600; }
+  .sw .lab .hx { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin-top: 2px; }
+  .register {
+    display: grid; grid-template-columns: 180px 1fr; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .register:last-child { border-bottom: 0; }
+  .register .desc .rt { font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .register .desc .rt .dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+  .register .desc p { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; margin: 8px 0 0; }
+  .ramp { display: flex; border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--edge); }
+  .ramp div { flex: 1; height: 40px; }
+  .frontis {
+    background: var(--ink); color: var(--paper); border-radius: var(--r-lg);
+    padding: 36px 40px; margin-bottom: 40px; position: relative; overflow: hidden;
+  }
+  .frontis .lead { font-family: var(--serif); font-size: 22px; line-height: 1.4; max-width: 52ch; margin: 0; }
+  .frontis .lead b { color: var(--coral-400); font-weight: 600; }
+  .frontis .lead .num { font-family: var(--mono); color: #fff; }
+  .frontis .tagrow { display: flex; gap: 10px; margin-top: 22px; }
+  .frontis .ftag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-5); border: 1px solid #3A352C; border-radius: var(--r-xs); padding: 4px 8px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">01 · I</span>
+    <span class="ttl">Palette</span>
+    <span class="meta">coral console · four registers</span>
+  </div>
+
+  <!-- Frontispiece: the ink-on-paper proof + the one-line worldview -->
+  <div class="frontis">
+    <p class="lead">Omoran reads its own data and tells you what changed. The colour does one job each: <b>coral</b> says <em style="color:var(--coral-200)">look here</em>, <span style="color:var(--hazard);font-weight:600">hazard</span> says <em style="color:#EFB991">act now</em>, oxblood guards what you can't undo. Everything else stays out of the way so a falling <span class="num">−18%</span> is the only thing that moves.</p>
+    <div class="tagrow">
+      <span class="ftag">paper #F7F5F0</span>
+      <span class="ftag">ink #17150F</span>
+      <span class="ftag">accent #E85D2A</span>
+      <span class="ftag">hairlines · not shadows</span>
+    </div>
+  </div>
+
+  <!-- Paper & ink -->
+  <div class="break"><span class="lbl">Paper & ink</span></div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:#F7F5F0"></div><div class="lab"><div class="nm">Paper</div><div class="hx">#F7F5F0</div></div></div>
+    <div class="sw"><div class="chip" style="background:#EFEBE2"></div><div class="lab"><div class="nm">Paper deep</div><div class="hx">#EFEBE2</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--edge)"></div><div class="lab"><div class="nm">Panel</div><div class="hx">#FFFFFF</div></div></div>
+    <div class="sw"><div class="chip" style="background:#5E574A"></div><div class="lab"><div class="nm">Ink 3</div><div class="hx">#5E574A</div></div></div>
+    <div class="sw"><div class="chip" style="background:#17150F"></div><div class="lab"><div class="nm">Ink</div><div class="hx">#17150F</div></div></div>
+  </div>
+
+  <!-- The four registers -->
+  <div class="break"><span class="lbl">The four registers — each does one job, none overlaps</span></div>
+
+  <div class="register">
+    <div class="desc">
+      <div class="rt"><span class="dot" style="background:#E85D2A"></span>Coral</div>
+      <p><strong>Attention.</strong> The product accent. Interactive things, links, the AI analyst's everyday "worth a look", routine anomalies.</p>
+    </div>
+    <div>
+      <div class="ramp">
+        <div style="background:#FDF1EA"></div><div style="background:#FBE0D2"></div><div style="background:#F6BFA3"></div><div style="background:#F09A72"></div><div style="background:#EE7846"></div><div style="background:#E85D2A"></div><div style="background:#D04A1B"></div><div style="background:#A93A15"></div>
+      </div>
+      <div class="row" style="margin-top:10px;gap:8px;">
+        <span class="pill pill-coral"><span class="dot"></span>Attention</span>
+        <span class="chip-mono coral">checkout_completed</span>
+        <span class="delta delta-anom">−18%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="register">
+    <div class="desc">
+      <div class="rt"><span class="dot" style="background:#D6531B"></span>Hazard</div>
+      <p><strong>Act now.</strong> Coral's louder cousin, reserved for the highest-severity <em>state</em> — a metric off a cliff, an event gone silent. Never a button.</p>
+    </div>
+    <div>
+      <div class="ramp">
+        <div style="background:#FBE8DC"></div><div style="background:#EFB991"></div><div style="background:#E47A3F"></div><div style="background:#D6531B"></div><div style="background:#B5430F"></div>
+      </div>
+      <div class="row" style="margin-top:10px;gap:8px;">
+        <span class="pill pill-hazard"><span class="dot"></span>Act now</span>
+        <span class="delta delta-haz">⚑ −41%</span>
+        <span class="mark">highest-severity only</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="register">
+    <div class="desc">
+      <div class="rt"><span class="dot" style="background:#B0231C"></span>Oxblood</div>
+      <p><strong>Irreversible.</strong> Reserved for destructive actions <em>you take</em> — rotate a key, delete all of a user's data, drop a project. Not for alarm-state.</p>
+    </div>
+    <div>
+      <div class="ramp">
+        <div style="background:#FBECEB"></div><div style="background:#E5BCB9"></div><div style="background:#CE5A52"></div><div style="background:#B0231C"></div><div style="background:#8C1A14"></div>
+      </div>
+      <div class="row" style="margin-top:10px;gap:8px;">
+        <button class="b b-sm b-danger">Rotate key</button>
+        <span class="pill pill-crit"><span class="dot"></span>Irreversible</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="register">
+    <div class="desc">
+      <div class="rt"><span class="dot" style="background:#1A6E3C"></span>Green</div>
+      <p><strong>Healthy / up.</strong> Metrics rising, funnels converting, the SDK connected, an event firing. The quiet "all good".</p>
+    </div>
+    <div>
+      <div class="ramp">
+        <div style="background:#E6F2EA"></div><div style="background:#B9DCC6"></div><div style="background:#5BAE7B"></div><div style="background:#2E8B4F"></div><div style="background:#1A6E3C"></div>
+      </div>
+      <div class="row" style="margin-top:10px;gap:8px;">
+        <span class="pill pill-ok"><span class="dot"></span>Connected</span>
+        <span class="delta delta-up">+6%</span>
+        <span class="pulse"></span><span class="mark">live</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="register">
+    <div class="desc">
+      <div class="rt"><span class="dot" style="background:#9A6612"></span>Amber</div>
+      <p><strong>Soft caution.</strong> Sits between all-good and act-now: approaching the event cap, data older than expected, a stale dashboard.</p>
+    </div>
+    <div>
+      <div class="ramp">
+        <div style="background:#FBF1DC"></div><div style="background:#E6D29B"></div><div style="background:#C99A36"></div><div style="background:#9A6612"></div><div style="background:#6F490C"></div>
+      </div>
+      <div class="row" style="margin-top:10px;gap:8px;">
+        <span class="pill pill-warn"><span class="dot"></span>82% of cap</span>
+        <span class="mark">not yet urgent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart ink -->
+  <div class="break"><span class="lbl">Chart ink — coral leads, the rest stay muted so the accent keeps meaning</span></div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:#E85D2A"></div><div class="lab"><div class="nm">Series 1 · focus</div><div class="hx">#E85D2A</div></div></div>
+    <div class="sw"><div class="chip" style="background:#3A352C"></div><div class="lab"><div class="nm">Series 2</div><div class="hx">#3A352C</div></div></div>
+    <div class="sw"><div class="chip" style="background:#1A6E3C"></div><div class="lab"><div class="nm">Series 3</div><div class="hx">#1A6E3C</div></div></div>
+    <div class="sw"><div class="chip" style="background:#5E7CB8"></div><div class="lab"><div class="nm">Series 4 · cool</div><div class="hx">#5E7CB8</div></div></div>
+    <div class="sw"><div class="chip" style="background:#9A6612"></div><div class="lab"><div class="nm">Series 5</div><div class="hx">#9A6612</div></div></div>
+  </div>
+
+</div>
+</body>
+</html>

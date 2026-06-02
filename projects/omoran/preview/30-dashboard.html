@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Dashboard + AI panel</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .app { display:grid; grid-template-columns:200px 1fr 340px; min-height:100vh; }
+  /* rail */
+  .rail { background:var(--paper-deep); border-right:1px solid var(--edge); padding:14px 12px; display:flex; flex-direction:column; }
+  .brand { display:flex; align-items:center; gap:8px; padding:4px 8px 14px; }
+  .brand .wm { font-family:var(--mono); font-size:15px; font-weight:700; letter-spacing:-0.02em; }
+  .brand .wm .dot { color:var(--coral-500); }
+  .ws { display:flex; align-items:center; gap:8px; padding:8px; border:1px solid var(--edge); border-radius:var(--r-sm); background:var(--panel); margin-bottom:14px; }
+  .ws .av { width:22px; height:22px; font-size:9px; }
+  .ws .nm { font-size:12px; font-weight:600; }
+  .ws .ch { margin-left:auto; color:var(--ink-4); }
+  .nav-i { display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:var(--r-sm); font-size:13px; color:var(--ink-2); cursor:pointer; }
+  .nav-i:hover { background:var(--panel); }
+  .nav-i.on { background:var(--coral-bg); color:var(--coral-700); font-weight:600; }
+  .nav-i .ic { width:15px; text-align:center; opacity:.75; }
+  .nav-i .badge { margin-left:auto; font-family:var(--mono); font-size:10px; background:var(--coral-500); color:#fff; border-radius:999px; padding:1px 6px; }
+  .gl { font-family:var(--mono); font-size:9px; color:var(--ink-4); letter-spacing:0.14em; text-transform:uppercase; padding:10px 8px 4px; }
+  .rail-foot { margin-top:auto; padding-top:12px; border-top:1px solid var(--edge); }
+  /* main */
+  .main { background:var(--paper); display:flex; flex-direction:column; min-width:0; }
+  .topbar { display:flex; align-items:center; gap:12px; padding:13px 22px; border-bottom:1px solid var(--hair); }
+  .topbar h1 { font-size:18px; font-weight:700; letter-spacing:-0.02em; margin:0; }
+  .seg { display:inline-flex; border:1px solid var(--edge-2); border-radius:var(--r-sm); overflow:hidden; }
+  .seg button { border:0; background:var(--panel); font:600 11.5px var(--sans); padding:5px 11px; cursor:pointer; color:var(--ink-3); border-right:1px solid var(--edge); }
+  .seg button:last-child { border-right:0; }
+  .seg button.on { background:var(--ink); color:var(--paper); }
+  .content { padding:20px 22px; overflow:auto; }
+  .tiles { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:14px; }
+  .wide { display:grid; grid-template-columns:1.6fr 1fr; gap:12px; }
+  .panel .p-h { display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid var(--hair); }
+  .panel .p-h .t { font-weight:600; font-size:13.5px; }
+  .panel .p-b { padding:16px; }
+  .evline { display:grid; grid-template-columns:1fr auto auto; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid var(--hair); }
+  .evline:last-child { border-bottom:0; }
+  /* AI panel (right) */
+  .aside { background:var(--panel); border-left:1px solid var(--edge); display:flex; flex-direction:column; }
+  .aside-h { display:flex; align-items:center; gap:9px; padding:14px 18px; border-bottom:2px solid var(--ink); }
+  .aside-h .spark2 { color:var(--coral-500); }
+  .aside-h .t { font-weight:700; font-size:14px; letter-spacing:-0.01em; }
+  .aside-h .x { margin-left:auto; color:var(--ink-4); cursor:pointer; }
+  .aside-b { padding:14px; overflow:auto; display:flex; flex-direction:column; gap:12px; }
+  .stamp-mini { font-family:var(--mono); font-size:10px; color:var(--ink-3); letter-spacing:0.06em; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- left rail -->
+  <aside class="rail">
+    <div class="brand"><span class="wm">omoran<span class="dot">.</span></span></div>
+    <div class="ws"><span class="av av-coral">Ac</span><span class="nm">Acme · Prod</span><span class="ch">⇅</span></div>
+    <div class="nav-i on"><span class="ic">▤</span> Dashboard</div>
+    <div class="nav-i"><span class="ic">✦</span> Insights <span class="badge">3</span></div>
+    <div class="nav-i"><span class="ic">⊞</span> Explore</div>
+    <div class="nav-i"><span class="ic">⌖</span> Funnels</div>
+    <div class="nav-i"><span class="ic">↻</span> Retention</div>
+    <div class="gl">People</div>
+    <div class="nav-i"><span class="ic">○</span> Users</div>
+    <div class="nav-i"><span class="ic">≣</span> Sessions</div>
+    <div class="nav-i"><span class="ic">◐</span> Cohorts</div>
+    <div class="gl">System</div>
+    <div class="nav-i"><span class="ic">⊕</span> Alerts</div>
+    <div class="nav-i"><span class="ic">⚙</span> Settings</div>
+    <div class="rail-foot"><div class="nav-i"><span class="ic">◉</span> SDK · <span style="color:var(--ok)">live</span> <span class="pulse" style="margin-left:2px"></span></div></div>
+  </aside>
+
+  <!-- main: STABLE dashboard -->
+  <main class="main">
+    <div class="topbar">
+      <h1>Dashboard</h1>
+      <span class="pill pill-ghost pill-sm">B2C · default layout</span>
+      <span class="grow"></span>
+      <div class="seg"><button>24h</button><button class="on">7d</button><button>30d</button></div>
+      <button class="b b-sm b-secondary">＋ Widget</button>
+      <button class="b b-sm b-secondary">Share</button>
+    </div>
+    <div class="content">
+      <!-- stable tiles -->
+      <div class="tiles">
+        <div class="tile"><div class="k">Active users · WAU</div><div class="v"><span class="read read-md">38,204</span><span class="delta delta-up">+6%</span></div></div>
+        <div class="tile"><div class="k">Event volume</div><div class="v"><span class="read read-md">524k</span><span class="delta delta-up">+4%</span></div></div>
+        <div class="tile"><div class="k">Checkout conv.</div><div class="v"><span class="read read-md">2.4<span class="u">%</span></span><span class="delta delta-anom">−18%</span></div></div>
+        <div class="tile"><div class="k">New vs returning</div><div class="v"><span class="read read-md">29<span class="u">% new</span></span></div></div>
+      </div>
+
+      <div class="wide" style="margin-bottom:12px">
+        <div class="panel">
+          <div class="p-h"><span class="t">Active users</span><span class="grow"></span><span class="mark">WAU · 90d</span></div>
+          <div class="p-b">
+            <svg viewBox="0 0 600 150" style="width:100%;height:auto;display:block">
+              <g stroke="var(--grid)" stroke-width="1"><line x1="0" y1="40" x2="600" y2="40"/><line x1="0" y1="80" x2="600" y2="80"/><line x1="0" y1="120" x2="600" y2="120"/></g>
+              <polyline fill="none" stroke="var(--ink-4)" stroke-width="1.5" stroke-dasharray="3 3" points="0,100 100,96 200,98 300,90 400,86 500,80 600,82"/>
+              <polyline fill="none" stroke="var(--coral-500)" stroke-width="2.5" points="0,110 100,102 200,96 300,82 400,70 500,58 600,48"/>
+            </svg>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="p-h"><span class="t">Top events</span></div>
+          <div class="p-b">
+            <div class="evline"><span class="ename">page_view</span><span class="count">412,880</span><span class="delta delta-up delta-bare">+6%</span></div>
+            <div class="evline"><span class="ename">session_start</span><span class="count">88,204</span><span class="delta delta-up delta-bare">+1%</span></div>
+            <div class="evline"><span class="ename">add_to_cart</span><span class="count">12,447</span><span class="delta delta-up delta-bare">+3%</span></div>
+            <div class="evline"><span class="ename">signup_started</span><span class="count">6,902</span><span class="delta delta-flat delta-bare">0%</span></div>
+            <div class="evline"><span class="ename" style="color:var(--coral-700)">checkout_completed</span><span class="count" style="color:var(--coral-700)">3,019</span><span class="delta delta-anom delta-bare">−18%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="p-h"><span class="t">Top pages</span><span class="grow"></span><span class="mark">by views · 7d</span></div>
+        <div class="p-b" style="padding:8px 16px">
+          <div class="evline"><span class="mono" style="font-size:12.5px">/home</span><span class="count">182,440</span><span class="delta delta-up delta-bare">+5%</span></div>
+          <div class="evline"><span class="mono" style="font-size:12.5px">/pricing</span><span class="count">44,118</span><span class="delta delta-up delta-bare">+12%</span></div>
+          <div class="evline"><span class="mono" style="font-size:12.5px">/checkout</span><span class="count">19,204</span><span class="delta delta-dn delta-bare">−9%</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- right: the AI Insights panel (separate, never reshuffles the dashboard) -->
+  <aside class="aside">
+    <div class="aside-h"><span class="spark2">✦</span><span class="t">Worth a look</span><span class="x">⌄</span></div>
+    <div class="aside-b">
+      <div class="stamp-mini">Mon 19 May · 3 new · refreshed 6m ago</div>
+
+      <div class="insight act-now">
+        <div class="ihead"><span class="ibadge act-now"><span style="font-size:9.5px">⚑ ANOMALY</span></span><span class="conf" style="font-size:9.5px"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span> high</span></div>
+        <p class="iprose" style="font-size:14px"><b>checkout_completed</b> fell <span class="num hl">41%</span> in 24h — almost all <b>Safari iOS</b>.</p>
+        <div class="ifoot"><a class="show-query" style="font-size:10.5px">↳ show the query</a><span class="grounded" style="font-size:10px">28,140 events</span></div>
+      </div>
+
+      <div class="insight">
+        <div class="ihead"><span class="ibadge"><span style="font-size:9.5px">✦ DISCOVERED</span></span><span class="conf" style="font-size:9.5px"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></span> med</span></div>
+        <p class="iprose" style="font-size:14px">First-session <b>add_to_cart</b> users return at <span class="num hl">3.2×</span> the rate after 7 days.</p>
+        <div class="ifoot"><a class="show-query" style="font-size:10.5px">↳ show the query</a><span class="grounded" style="font-size:10px">41,002 users</span></div>
+      </div>
+
+      <div class="insight">
+        <div class="ihead"><span class="ibadge ghost"><span style="font-size:9.5px">↗ TREND</span></span><span class="conf" style="font-size:9.5px"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span> high</span></div>
+        <p class="iprose" style="font-size:14px">Organic search converts <span class="num hl">4.1×</span> better than paid social, and its share grew <span class="num">+8pts</span>.</p>
+        <div class="ifoot"><a class="show-query" style="font-size:10.5px">↳ show the query</a><span class="grounded" style="font-size:10px">6,902 signups</span></div>
+      </div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

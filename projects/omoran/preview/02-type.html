@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Type</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .role { display: grid; grid-template-columns: 150px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--hair); }
+  .role:last-of-type { border-bottom: 0; }
+  .role .meta .rn { font-family: var(--sans); font-size: 14px; font-weight: 700; }
+  .role .meta .rf { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 4px; }
+  .role .meta p { font-size: 12px; color: var(--ink-3); line-height: 1.5; margin: 10px 0 0; }
+  .ladder div { padding: 6px 0; border-bottom: 1px solid var(--hair); }
+  .ladder div:last-child { border-bottom: 0; }
+  .ladder .sz { font-family: var(--mono); font-size: 10px; color: var(--ink-4); width: 64px; display: inline-block; }
+  .track-tbl { width: 100%; border-collapse: collapse; }
+  .track-tbl td { padding: 8px 0; border-bottom: 1px solid var(--hair); vertical-align: baseline; }
+  .track-tbl td:first-child { font-family: var(--mono); font-size: 11px; color: var(--ink-3); width: 180px; }
+  .composed { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); padding: 26px 30px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">02 · I</span>
+    <span class="ttl">Type</span>
+    <span class="meta">mono = data · sans = chrome · serif = the analyst</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;font-size:13.5px;margin:0 0 8px;">Three families, three jobs. The split is <strong style="color:var(--ink)">functional, not decorative</strong>: numbers need monospace to align and scan, chrome needs a humanist sans to stay legible at 11px, and the AI analyst gets a serif so its prose reads like prose — never a table.</p>
+
+  <div class="role">
+    <div class="meta">
+      <div class="rn">Data</div>
+      <div class="rf">JetBrains Mono</div>
+      <p>Every number, event name, key, ID, timestamp and SQL token. Tabular figures so columns line up. The loudest object on a metric tile.</p>
+    </div>
+    <div class="ladder">
+      <div><span class="sz">44 / 600</span><span class="read read-xl">412,880</span></div>
+      <div><span class="sz">26 / 600</span><span class="read read-md">88,204<span class="u">sessions</span></span></div>
+      <div><span class="sz">13 / 500</span><span class="mono" style="font-size:13px">checkout_completed</span></div>
+      <div><span class="sz">11 / 600</span><span class="mono" style="font-size:11px;color:var(--ink-3)">omo_pk_7Hq2…aF9</span></div>
+    </div>
+  </div>
+
+  <div class="role">
+    <div class="meta">
+      <div class="rn">Chrome</div>
+      <div class="rf">Inter</div>
+      <p>Labels, buttons, navigation, settings, table headers — everything the user reads to <em>operate</em> the tool. Scales to the unsexy surfaces.</p>
+    </div>
+    <div class="ladder">
+      <div><span class="sz">24 / 700</span><span class="sans" style="font-size:24px;font-weight:700;letter-spacing:-0.02em">Default dashboard</span></div>
+      <div><span class="sz">15 / 600</span><span class="sans" style="font-size:15px;font-weight:600">Top events · last 7 days</span></div>
+      <div><span class="sz">13 / 600</span><span class="b b-sm b-secondary" style="cursor:default">Save as widget</span></div>
+      <div><span class="sz">10 / 600</span><span class="overline">Conversion window</span></div>
+    </div>
+  </div>
+
+  <div class="role">
+    <div class="meta">
+      <div class="rn">The analyst</div>
+      <div class="rf">Source Serif 4</div>
+      <p>Reserved for one job: the AI analyst's prose — digests, insight sentences. It's the signal that <em>a human-sounding read</em> follows, always footnoted to data.</p>
+    </div>
+    <div class="ladder">
+      <div><span class="sz">18 / 500</span><span class="serif" style="font-size:18px;line-height:1.4">Checkout completions fell sharply yesterday.</span></div>
+      <div><span class="sz">15 / 400</span><span class="serif" style="font-size:15px;line-height:1.45">Almost entirely Safari iOS users — worth a look before the weekend.</span></div>
+      <div><span class="sz">15 / italic</span><span class="serif" style="font-size:15px;font-style:italic;color:var(--ink-2)">“What changed for mobile users this week?”</span></div>
+    </div>
+  </div>
+
+  <!-- Tracking ladder -->
+  <div class="break"><span class="lbl">Tracking — used deliberately</span></div>
+  <table class="track-tbl">
+    <tr><td>display −0.02em</td><td><span class="sans" style="font-size:22px;font-weight:700;letter-spacing:-0.02em">Natural-language query</span></td></tr>
+    <tr><td>heading −0.01em</td><td><span class="sans" style="font-size:17px;font-weight:600;letter-spacing:-0.01em">Funnel · signup to activation</span></td></tr>
+    <tr><td>body 0</td><td><span class="sans" style="font-size:14px">Build a query without writing code, then save it as a widget.</span></td></tr>
+    <tr><td>overline +0.16em</td><td><span class="overline">Top events</span></td></tr>
+    <tr><td>tag +0.04em</td><td><span class="tag-box">[03]</span></td></tr>
+  </table>
+
+  <!-- Composed proof: the three families coexisting in one real surface -->
+  <div class="break"><span class="lbl">The three coexisting — an AI insight, as built</span></div>
+  <div class="composed">
+    <div class="row" style="justify-content:space-between;margin-bottom:12px">
+      <span class="ibadge"><span style="font-size:10px">⚑</span> Anomaly</span>
+      <span class="conf med"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></span> confidence · med</span>
+    </div>
+    <p class="iprose"><b>checkout_completed</b> fell <span class="num hl">18%</span> yesterday against a 14-day baseline — almost entirely <b>Safari iOS</b> users, who dropped from <span class="num">2,930</span> to <span class="num">2,400</span> completions. <em>Worth a look before the weekend.</em></p>
+    <div class="ifoot">
+      <a class="show-query">↳ show the query</a>
+      <span class="grounded">grounded · 28,140 events</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

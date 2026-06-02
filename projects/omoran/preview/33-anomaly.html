@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Anomaly drill-down</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .wrap { max-width:980px; margin:0 auto; padding:28px 24px 80px; }
+  /* the act-now banner */
+  .banner { display:flex; align-items:center; gap:14px; padding:16px 20px; border:1px solid var(--hazard-edge); border-left:4px solid var(--hazard); background:var(--hazard-bg); border-radius:var(--r-md); }
+  .banner .big { font-family:var(--mono); font-size:28px; font-weight:700; color:var(--hazard-deep); font-variant-numeric:tabular-nums; }
+  .banner .txt .h { font-family:var(--sans); font-weight:700; font-size:14px; }
+  .banner .txt .s { font-size:12.5px; color:var(--ink-2); }
+  .grid { display:grid; grid-template-columns:1.5fr 1fr; gap:16px; margin-top:18px; }
+  .panel .p-h { display:flex; align-items:center; gap:8px; padding:13px 16px; border-bottom:1px solid var(--hair); }
+  .panel .p-h .t { font-weight:600; font-size:13.5px; }
+  .panel .p-b { padding:18px; }
+  /* timeline chart with baseline band */
+  .legend { display:flex; gap:16px; font-size:11px; color:var(--ink-3); margin-top:8px; }
+  .legend .l { display:inline-flex; align-items:center; gap:6px; }
+  .legend .sw { width:12px; height:3px; border-radius:2px; }
+  /* segment breakdown */
+  .seg-b .srow { display:grid; grid-template-columns:130px 1fr 64px; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--hair); }
+  .seg-b .srow:last-child { border-bottom:0; }
+  .seg-b .lab { font-family:var(--mono); font-size:12px; }
+  .seg-b .barwrap { height:10px; background:var(--paper-deep); border-radius:999px; overflow:hidden; position:relative; }
+  .seg-b .bar { height:100%; border-radius:999px; }
+  .seg-b .val { font-family:var(--mono); font-size:12px; font-variant-numeric:tabular-nums; text-align:right; font-weight:600; }
+  /* analyst note */
+  .note { margin-top:16px; }
+  .actions { display:flex; gap:8px; margin-top:16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stamp" style="margin-bottom:18px">
+    <span class="num">33 · IV</span>
+    <span class="ttl">Anomaly drill-down</span>
+    <span class="meta">two-tier urgency, in action</span>
+  </div>
+
+  <!-- ACT NOW banner -->
+  <div class="banner">
+    <span class="big">−41%</span>
+    <div class="txt">
+      <div class="h">checkout_completed is well below baseline — last 24 hours</div>
+      <div class="s">±2σ band exceeded · detected 18:40 · concentrated in one segment</div>
+    </div>
+    <span class="grow"></span>
+    <span class="pill pill-hazard"><span class="dot"></span>Act now</span>
+  </div>
+
+  <div class="grid">
+    <!-- chart with baseline band -->
+    <div class="panel">
+      <div class="p-h"><span class="t">checkout_completed · hourly</span><span class="grow"></span><span class="mark">48h</span></div>
+      <div class="p-b">
+        <svg viewBox="0 0 540 180" style="width:100%;height:auto;display:block">
+          <!-- baseline band (expected ±2σ) -->
+          <path d="M0,70 L540,62 L540,98 L0,106 Z" fill="var(--ok-bg)" opacity="0.7"/>
+          <line x1="0" y1="88" x2="540" y2="80" stroke="var(--ok)" stroke-width="1" stroke-dasharray="4 4"/>
+          <!-- actual line: tracks baseline then plunges -->
+          <polyline fill="none" stroke="var(--ink-3)" stroke-width="2" points="0,90 90,86 180,88 270,84 330,90"/>
+          <polyline fill="none" stroke="var(--hazard)" stroke-width="2.5" points="330,90 380,108 430,132 480,150 540,158"/>
+          <circle cx="330" cy="90" r="4" fill="var(--hazard)"/>
+          <text x="336" y="80" font-family="var(--mono)" font-size="10" fill="var(--hazard-deep)">break · Thu 14:00</text>
+          <!-- x -->
+          <g font-family="var(--mono)" font-size="9" fill="var(--ink-4)"><text x="0" y="174">Wed</text><text x="250" y="174">Thu</text><text x="500" y="174">Fri</text></g>
+        </svg>
+        <div class="legend">
+          <span class="l"><span class="sw" style="background:var(--ok)"></span> expected ±2σ</span>
+          <span class="l"><span class="sw" style="background:var(--ink-3)"></span> actual</span>
+          <span class="l"><span class="sw" style="background:var(--hazard)"></span> below band</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- segment breakdown — the "why" guess -->
+    <div class="panel">
+      <div class="p-h"><span class="t">By segment · who's missing</span></div>
+      <div class="p-b seg-b">
+        <div class="srow"><span class="lab">Safari iOS</span><div class="barwrap"><div class="bar" style="width:92%;background:var(--hazard)"></div></div><span class="val" style="color:var(--hazard-deep)">−530</span></div>
+        <div class="srow"><span class="lab">Chrome iOS</span><div class="barwrap"><div class="bar" style="width:14%;background:var(--coral-400)"></div></div><span class="val">−61</span></div>
+        <div class="srow"><span class="lab">Chrome Android</span><div class="barwrap"><div class="bar" style="width:8%;background:var(--edge-2)"></div></div><span class="val">−42</span></div>
+        <div class="srow"><span class="lab">Desktop</span><div class="barwrap"><div class="bar" style="width:4%;background:var(--ok)"></div></div><span class="val" style="color:var(--ok)">+8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- analyst's grounded note -->
+  <div class="insight act-now note">
+    <div class="ihead"><span class="ibadge act-now"><span style="font-size:9.5px">⚑ ANOMALY · ACT NOW</span></span><span class="conf"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span> high confidence</span></div>
+    <p class="iprose"><b>Safari iOS</b> accounts for <span class="num hl">9 of every 10</span> lost completions, and the break is sharp — it started Thursday at 14:00 and hasn't recovered. Users still reach the payment step, so the funnel is intact up to there. <em>This pattern usually means a client-side payment SDK or Safari version issue, not a demand drop.</em></p>
+    <div class="ifoot">
+      <a class="show-query">↳ show the query</a>
+      <a class="show-query">↳ view affected sessions</a>
+      <span class="grounded">grounded · 28,140 events · 19,204 mobile sessions</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="b b-primary">Open in funnel</button>
+    <button class="b b-secondary">Create alert for this metric</button>
+    <button class="b b-secondary">Share with team</button>
+    <span class="grow"></span>
+    <button class="b b-quiet">Mark resolved</button>
+  </div>
+</div>
+</body>
+</html>

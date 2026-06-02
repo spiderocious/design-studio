@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gbedity · Buttons</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { padding: 40px; background: var(--canvas); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .page-title {
+    font-family: var(--serif); font-weight: 600;
+    font-variation-settings: var(--fraunces-soft-display);
+    font-size: 42px; letter-spacing: var(--track-display);
+    color: var(--ink); margin: 0 0 6px; line-height: 1.05;
+  }
+  .lede { color: var(--ink-3); font-size: 14px; margin: 0 0 32px; max-width: 760px; line-height: 1.55; }
+  .lede strong { color: var(--ink); font-weight: 800; }
+
+  .section { background: var(--surface); border-radius: 22px; padding: 28px; margin-top: 16px; }
+  .group-h {
+    font-family: var(--sans); font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .row + .row { margin-top: 12px; }
+
+  /* Scene: a real button row */
+  .scene {
+    background: var(--canvas);
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 16px;
+  }
+  .scene .card {
+    background: var(--surface);
+    border-radius: var(--r-card);
+    padding: 22px;
+  }
+  .scene .scene-h {
+    font-family: var(--serif); font-variation-settings: var(--fraunces-soft);
+    font-weight: 600; font-size: 22px; color: var(--ink); margin: 0 0 4px;
+  }
+  .scene .scene-sub { font-size: 13px; color: var(--ink-3); margin: 0 0 16px; }
+
+  /* Reference grid at the end */
+  .state-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    padding: 14px;
+    background: var(--canvas);
+    border-radius: 14px;
+  }
+  .state-grid .cell {
+    background: var(--surface);
+    padding: 14px;
+    border-radius: 12px;
+    display: flex; flex-direction: column; gap: 8px; align-items: center;
+  }
+  .state-grid .cell .lbl {
+    font-family: var(--sans); font-weight: 800; font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .ghost-pressed { background: rgba(31, 107, 74, 0.06); }
+  .primary-pressed { background: var(--action-deep) !important; }
+  .secondary-pressed { background: var(--canvas-tint); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1 class="page-title">Buttons</h1>
+  <p class="lede">Three intents — <strong>primary</strong> (forward motion), <strong>secondary</strong> (alternative), <strong>ghost</strong> (low-emphasis) — plus two reserved variants: <strong>celebrate</strong> for accent-orange moments and <strong>danger</strong> for destructive actions. Three sizes. Nunito 700 everywhere; Fraunces never on a button.</p>
+
+  <div class="section">
+    <p class="group-h">Primary — Action Green</p>
+    <div class="row">
+      <button class="btn btn-primary btn-lg">Start game</button>
+      <button class="btn btn-primary">Start game</button>
+      <button class="btn btn-primary btn-sm">Next</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Secondary — outlined</p>
+    <div class="row">
+      <button class="btn btn-secondary btn-lg">Use defaults</button>
+      <button class="btn btn-secondary">Use defaults</button>
+      <button class="btn btn-secondary btn-sm">Back</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Ghost — tertiary</p>
+    <div class="row">
+      <button class="btn btn-ghost btn-lg">Skip</button>
+      <button class="btn btn-ghost">Skip</button>
+      <button class="btn btn-ghost btn-sm">Cancel</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Celebrate — accent orange (reserved)</p>
+    <p style="margin: -8px 0 14px; font-size: 13px; color: var(--ink-3);">Used only on celebration moments — score callouts, winner reveals. Never as a generic accent.</p>
+    <div class="row">
+      <button class="btn btn-celebrate btn-lg">+250 points</button>
+      <button class="btn btn-celebrate">Crown the winner</button>
+      <button class="btn btn-celebrate btn-sm">+150</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">Danger — tomato red (reserved)</p>
+    <p style="margin: -8px 0 14px; font-size: 13px; color: var(--ink-3);">Boot a player, end a session, void an action. The CRITICAL modal idiom (see overlays) requires more than just colour — typing or hold-to-confirm.</p>
+    <div class="row">
+      <button class="btn btn-danger btn-lg">Boot Kemi</button>
+      <button class="btn btn-danger">End game</button>
+      <button class="btn btn-danger btn-sm">Eliminate</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">On the stage frame — primary stays white</p>
+    <div style="background: var(--stage); border-radius: 22px; padding: 22px;">
+      <div class="row">
+        <button class="btn btn-stage btn-lg">Play again</button>
+        <button class="btn btn-stage">Pick another</button>
+        <button class="btn" style="background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5);">End session</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="card">
+      <p class="scene-h">In context — config screen footer</p>
+      <p class="scene-sub">Primary leads. Secondary is the calm escape. Ghost only when both are too loud.</p>
+      <div class="row">
+        <button class="btn btn-primary">Start game</button>
+        <button class="btn btn-secondary">Use defaults</button>
+        <button class="btn btn-ghost">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="group-h">State reference grid</p>
+    <p style="margin: -8px 0 14px; font-size: 13px; color: var(--ink-3);">Default · hover · pressed · disabled — small reference. The interesting work happens in the scenes above.</p>
+    <div class="state-grid">
+      <div class="cell"><button class="btn btn-primary btn-sm">Primary</button><span class="lbl">default</span></div>
+      <div class="cell"><button class="btn btn-primary btn-sm" style="background: var(--action-deep);">Primary</button><span class="lbl">hover · pressed</span></div>
+      <div class="cell"><button class="btn btn-primary btn-sm" disabled>Primary</button><span class="lbl">disabled</span></div>
+      <div class="cell"><button class="btn btn-primary btn-sm" style="outline: 3px solid var(--canvas-deep); outline-offset: 2px;">Primary</button><span class="lbl">focus</span></div>
+      <div class="cell"><button class="btn btn-secondary btn-sm">Secondary</button><span class="lbl">default</span></div>
+      <div class="cell"><button class="btn btn-secondary btn-sm" style="background: var(--canvas-tint);">Secondary</button><span class="lbl">hover · pressed</span></div>
+      <div class="cell"><button class="btn btn-secondary btn-sm" disabled>Secondary</button><span class="lbl">disabled</span></div>
+      <div class="cell"><button class="btn btn-secondary btn-sm" style="outline: 3px solid var(--canvas-deep); outline-offset: 2px;">Secondary</button><span class="lbl">focus</span></div>
+      <div class="cell"><button class="btn btn-ghost btn-sm">Ghost</button><span class="lbl">default</span></div>
+      <div class="cell"><button class="btn btn-ghost btn-sm" style="background: rgba(31, 107, 74, 0.06);">Ghost</button><span class="lbl">hover · pressed</span></div>
+      <div class="cell"><button class="btn btn-ghost btn-sm" disabled>Ghost</button><span class="lbl">disabled</span></div>
+      <div class="cell"><button class="btn btn-ghost btn-sm" style="outline: 2px solid var(--ink); outline-offset: 2px; background: rgba(31, 107, 74, 0.06);">Ghost</button><span class="lbl">focus</span></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

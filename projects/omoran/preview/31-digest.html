@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · The Monday digest</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  body { background:var(--paper-deep); }
+  .reader { max-width:680px; margin:0 auto; padding:40px 24px 80px; }
+  .memo { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); overflow:hidden; }
+  /* masthead — the one editorial moment */
+  .masthead { padding:26px 36px 20px; border-bottom:2px solid var(--ink); }
+  .masthead .kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--coral-700); }
+  .masthead .wm { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:-0.01em; float:right; }
+  .masthead .wm .dot { color:var(--coral-500); }
+  .masthead h1 { font-family:var(--serif); font-size:30px; font-weight:600; letter-spacing:-0.02em; line-height:1.1; margin:14px 0 6px; }
+  .masthead .dateline { font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:0.04em; }
+  .body { padding:26px 36px 32px; }
+  .lede { font-family:var(--serif); font-size:18px; line-height:1.55; color:var(--ink); margin:0 0 22px; }
+  .lede .drop { float:left; font-family:var(--serif); font-size:54px; line-height:0.82; font-weight:600; padding:4px 8px 0 0; color:var(--coral-600); }
+  .sec { margin-top:26px; }
+  .sec-h { font-family:var(--mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); padding-bottom:7px; border-bottom:1px solid var(--hair-2); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .sec-h .n { color:var(--ink); }
+  .para { font-family:var(--serif); font-size:15.5px; line-height:1.6; margin:0 0 12px; }
+  .para .num { font-family:var(--mono); font-weight:600; font-variant-numeric:tabular-nums; font-size:14px; }
+  .para b { font-weight:600; }
+  /* metric strip */
+  .strip { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--edge); border-radius:var(--r-md); overflow:hidden; margin:6px 0 4px; }
+  .strip .cell { padding:13px 15px; border-right:1px solid var(--hair); }
+  .strip .cell:last-child { border-right:0; }
+  .strip .k { font-family:var(--mono); font-size:9.5px; color:var(--ink-4); text-transform:uppercase; letter-spacing:0.06em; }
+  .strip .v { font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600; font-size:18px; margin-top:5px; display:flex; align-items:baseline; gap:6px; }
+  /* watch list */
+  .watch { counter-reset:w; }
+  .watch .item { display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--hair); }
+  .watch .item:last-child { border-bottom:0; }
+  .watch .item::before { counter-increment:w; content:counter(w); font-family:var(--mono); font-size:12px; font-weight:600; color:var(--coral-600); width:18px; flex-shrink:0; }
+  .watch .item .txt { font-family:var(--serif); font-size:14.5px; line-height:1.5; }
+  .watch .item .txt a { color:var(--coral-700); text-decoration:none; font-family:var(--mono); font-size:11.5px; }
+  /* footer / signature */
+  .signoff { margin-top:26px; padding-top:18px; border-top:1px solid var(--hair-2); display:flex; align-items:center; gap:12px; }
+  .signoff .av { background:var(--ink); color:var(--paper); }
+  .signoff .nm { font-family:var(--serif); font-style:italic; font-size:15px; }
+  .signoff .role { font-family:var(--mono); font-size:10px; color:var(--ink-3); letter-spacing:0.06em; }
+  .signoff .conf { margin-left:auto; }
+  .memo-foot { padding:14px 36px; background:var(--panel-2); border-top:1px solid var(--hair); display:flex; align-items:center; gap:10px; }
+</style>
+</head>
+<body>
+<div class="reader">
+  <div class="memo">
+    <div class="masthead">
+      <span class="wm">omoran<span class="dot">.</span></span>
+      <div class="kicker">The weekly analyst digest</div>
+      <h1>Mobile checkout slipped — and organic quietly carried the week.</h1>
+      <div class="dateline">Acme · Production · Mon 19 May 2026 · week of May 12–18</div>
+    </div>
+
+    <div class="body">
+      <p class="lede"><span class="drop">A</span>ctivity held up — weekly active users rose <span class="num" style="color:var(--ok)">+6%</span> to <span class="num">38,204</span>, and total event volume crossed half a million. But two stories sit under that calm surface: a sharp, mobile-only dip in checkout, and a steady shift toward organic acquisition that's worth leaning into.</p>
+
+      <!-- metrics moved -->
+      <div class="sec">
+        <div class="sec-h"><span class="n">§1</span> Where the numbers moved</div>
+        <div class="strip">
+          <div class="cell"><div class="k">WAU</div><div class="v">38,204 <span class="delta delta-up delta-bare" style="font-size:11px">+6%</span></div></div>
+          <div class="cell"><div class="k">Events</div><div class="v">524k <span class="delta delta-up delta-bare" style="font-size:11px">+4%</span></div></div>
+          <div class="cell"><div class="k">Checkout conv.</div><div class="v" style="color:var(--coral-700)">2.4% <span class="delta delta-anom delta-bare" style="font-size:11px">−18%</span></div></div>
+          <div class="cell"><div class="k">Organic share</div><div class="v">46% <span class="delta delta-up delta-bare" style="font-size:11px">+8pt</span></div></div>
+        </div>
+      </div>
+
+      <!-- the anomaly -->
+      <div class="sec">
+        <div class="sec-h"><span class="n">§2</span> The thing to look at first</div>
+        <p class="para"><b>Checkout completions fell 18% week-over-week</b>, and almost all of it is <b>Safari on iOS</b> — desktop and Android were flat. The drop accelerated Thursday and held through the weekend, which rules out a one-off spike. <span style="color:var(--ink-3)">It looks like a platform-specific break, not a demand problem.</span></p>
+        <p class="para" style="color:var(--ink-3)"><em>Two-thirds of the lost completions reached the payment step and stopped there — so the funnel is intact up to checkout, then breaks.</em></p>
+      </div>
+
+      <!-- the good story -->
+      <div class="sec">
+        <div class="sec-h"><span class="n">§3</span> The quiet win</div>
+        <p class="para">Organic search overtook direct as your top signup source this week and now converts to paid at <span class="num">4.1×</span> the rate of paid social. If that holds, shifting spend away from paid social wouldn't dent acquisition — it might improve it.</p>
+      </div>
+
+      <!-- watch list -->
+      <div class="sec">
+        <div class="sec-h"><span class="n">§4</span> Three things to do this week</div>
+        <div class="watch">
+          <div class="item"><div class="txt">Check the Safari iOS checkout path — start with the payment step. <a>↳ open funnel</a></div></div>
+          <div class="item"><div class="txt">Treat first-session <b>add_to_cart</b> as activation; those users return 3.2× more. <a>↳ save cohort</a></div></div>
+          <div class="item"><div class="txt">Review paid-social spend against its 4× weaker conversion. <a>↳ open query</a></div></div>
+        </div>
+      </div>
+
+      <!-- signature -->
+      <div class="signoff">
+        <span class="av av-lg">✦</span>
+        <div>
+          <div class="nm">Omoran, your analyst</div>
+          <div class="role">Every figure links to the query behind it</div>
+        </div>
+        <span class="conf med"><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></span> confidence · med</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="memo-foot" style="border:1px solid var(--edge);border-top:0;border-radius:0 0 var(--r-lg) var(--r-lg);background:var(--panel-2);margin-top:-1px">
+    <span class="mark">delivered to 4 recipients · email</span>
+    <span class="grow"></span>
+    <button class="b b-sm b-quiet">Change frequency</button>
+    <button class="b b-sm b-secondary">Open in app</button>
+  </div>
+</div>
+</body>
+</html>

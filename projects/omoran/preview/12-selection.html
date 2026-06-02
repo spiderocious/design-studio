@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Selection</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background: var(--panel); border: 1px solid var(--edge); border-radius: var(--r-lg); margin-bottom: 16px; padding: 18px 20px; }
+  .scene > .overline { display:block; margin-bottom:14px; }
+  /* checkbox */
+  .ck { display:inline-flex; align-items:center; gap:9px; cursor:pointer; font-size:13px; }
+  .ck .box { width:17px; height:17px; border:1px solid var(--edge-2); border-radius:var(--r-xs); display:inline-flex; align-items:center; justify-content:center; background:var(--panel); }
+  .ck.on .box { background:var(--coral-500); border-color:var(--coral-500); color:#fff; }
+  .ck .box svg { width:11px; height:11px; }
+  /* radio */
+  .rd { display:inline-flex; align-items:center; gap:9px; cursor:pointer; font-size:13px; }
+  .rd .dot { width:17px; height:17px; border:1px solid var(--edge-2); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
+  .rd.on .dot { border-color:var(--coral-500); }
+  .rd.on .dot::after { content:""; width:9px; height:9px; border-radius:50%; background:var(--coral-500); }
+  /* switch */
+  .sw { display:inline-flex; align-items:center; gap:10px; cursor:pointer; font-size:13px; }
+  .sw .track { width:34px; height:20px; border-radius:999px; background:var(--edge-2); position:relative; transition:background var(--dur-2) var(--ease); }
+  .sw .track::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:left var(--dur-2) var(--ease); box-shadow:0 1px 2px rgba(0,0,0,.2); }
+  .sw.on .track { background:var(--coral-500); }
+  .sw.on .track::after { left:16px; }
+  /* segmented */
+  .seg { display:inline-flex; border:1px solid var(--edge-2); border-radius:var(--r-sm); overflow:hidden; }
+  .seg button { border:0; background:var(--panel); font-family:var(--sans); font-size:12px; font-weight:600; padding:7px 13px; cursor:pointer; color:var(--ink-3); border-right:1px solid var(--edge); }
+  .seg button:last-child { border-right:0; }
+  .seg button.on { background:var(--ink); color:var(--paper); }
+  /* cohort combobox */
+  .combo { border:1px solid var(--edge-2); border-radius:var(--r-md); overflow:hidden; max-width:380px; }
+  .combo .field { display:flex; align-items:center; gap:8px; padding:8px 11px; border-bottom:1px solid var(--hair); }
+  .combo .field input { border:0; outline:0; font-family:var(--mono); font-size:13px; flex:1; background:transparent; }
+  .combo .opt { display:flex; align-items:center; gap:9px; padding:9px 11px; cursor:pointer; }
+  .combo .opt:hover { background:var(--paper-deep); }
+  .combo .opt.sel { background:var(--coral-bg); }
+  .combo .opt .nm { font-family:var(--mono); font-size:13px; }
+  .combo .opt .ct { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">12 · II</span>
+    <span class="ttl">Selection</span>
+    <span class="meta">tick, not fill · the cohort picker</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">Selection is a coral tick, never a heavy fill. Toggles run the privacy and AI controls; segmented controls switch ranges; the cohort combobox is how saved segments get reused across queries.</p>
+
+  <!-- Privacy / project toggles -->
+  <div class="scene">
+    <span class="overline">Project settings · privacy &amp; AI controls</span>
+    <div class="col" style="gap:14px">
+      <div class="between" style="padding-bottom:12px;border-bottom:1px solid var(--hair)">
+        <div><div style="font-weight:600;font-size:13px">IP anonymisation</div><div class="muted" style="font-size:12px">Drop the last octet before storing.</div></div>
+        <label class="sw on" onclick="this.classList.toggle('on')"><span class="track"></span></label>
+      </div>
+      <div class="between" style="padding-bottom:12px;border-bottom:1px solid var(--hair)">
+        <div><div style="font-weight:600;font-size:13px">Respect Do-Not-Track</div><div class="muted" style="font-size:12px">Skip events from browsers sending DNT.</div></div>
+        <label class="sw" onclick="this.classList.toggle('on')"><span class="track"></span></label>
+      </div>
+      <div class="between">
+        <div><div style="font-weight:600;font-size:13px">AI analyst layer</div><div class="muted" style="font-size:12px">Digests, anomaly detection, auto-insights.</div></div>
+        <label class="sw on" onclick="this.classList.toggle('on')"><span class="track"></span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkboxes + radios in context -->
+  <div class="split-2">
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Digest · which metrics to focus</span>
+      <div class="col" style="gap:11px">
+        <label class="ck on" onclick="this.classList.toggle('on')"><span class="box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span> Active users</label>
+        <label class="ck on" onclick="this.classList.toggle('on')"><span class="box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span> Conversion funnels</label>
+        <label class="ck" onclick="this.classList.toggle('on')"><span class="box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span> Retention</label>
+        <label class="ck on" onclick="this.classList.toggle('on')"><span class="box"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span> Anomalies</label>
+      </div>
+    </div>
+    <div class="scene" style="margin-bottom:0">
+      <span class="overline">Digest frequency</span>
+      <div class="col" style="gap:11px">
+        <label class="rd" onclick="setRd(this)"><span class="dot"></span> Daily · 8:00am</label>
+        <label class="rd on" onclick="setRd(this)"><span class="dot"></span> Weekly · Monday morning</label>
+        <label class="rd" onclick="setRd(this)"><span class="dot"></span> Off</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segmented + chips -->
+  <div class="scene" style="margin-top:16px">
+    <span class="overline">Range &amp; metric switches</span>
+    <div class="row" style="gap:18px">
+      <div class="seg"><button>24h</button><button class="on">7d</button><button>30d</button><button>90d</button></div>
+      <div class="seg"><button class="on">DAU</button><button>WAU</button><button>MAU</button></div>
+      <div class="seg"><button class="on">Line</button><button>Bar</button><button>Table</button></div>
+    </div>
+  </div>
+
+  <!-- Cohort combobox -->
+  <div class="scene">
+    <span class="overline">Cohort picker · reuse a saved segment</span>
+    <div class="combo">
+      <div class="field"><span class="muted">⌕</span><input value="pro_" /></div>
+      <div class="opt sel"><span class="nm">pro_active_mobile</span><span class="ct">4,201</span></div>
+      <div class="opt"><span class="nm">pro_trial_day0</span><span class="ct">1,338</span></div>
+      <div class="opt"><span class="nm">pro_churned_30d</span><span class="ct">612</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setRd(el){ el.parentElement.querySelectorAll('.rd').forEach(r=>r.classList.remove('on')); el.classList.add('on'); }
+</script>
+</body>
+</html>

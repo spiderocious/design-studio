@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometry · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .ruler { display: flex; align-items: flex-end; gap: 0; height: 80px; border-bottom: 1px solid var(--edge); margin-bottom: 6px; }
+  .ruler .u { width: 32px; border-left: 1px solid var(--edge); position: relative; }
+  .ruler .u::after { content: attr(data-n); position: absolute; bottom: 4px; left: 5px; font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+  .ruler .u .fill { background: var(--clay-100); margin: 0 4px; }
+  .radii { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; }
+  .radii .r { background: var(--sheet); border: 1px solid var(--edge-2); aspect-ratio: 3/2; display: grid; place-items: center; }
+  .radii .lab { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+  .edges { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .edges .e { background: var(--sheet); border-radius: 12px; padding: 18px; }
+  .density { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .drow { display:flex; justify-content:space-between; align-items:center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">03 / 43</span>
+    <span class="ttl">Spacing &amp; geometry</span>
+    <span class="meta">4-px base · 18 / 12 radii · hairlines</span>
+  </div>
+
+  <p class="lede" style="max-width:60ch; margin-bottom:30px">Soft, but disciplined. Cards round at 18px, controls at 12px — generous enough to feel friendly, tight enough to hold money in a column. Separation is a hairline, almost never a shadow.</p>
+
+  <div class="break"><span class="lbl">the 4-px ruler</span></div>
+  <div class="ruler">
+    <div class="u" data-n="4"><div class="fill" style="height:8px"></div></div>
+    <div class="u" data-n="8"><div class="fill" style="height:16px"></div></div>
+    <div class="u" data-n="12"><div class="fill" style="height:24px"></div></div>
+    <div class="u" data-n="16"><div class="fill" style="height:32px"></div></div>
+    <div class="u" data-n="24"><div class="fill" style="height:48px"></div></div>
+    <div class="u" data-n="32"><div class="fill" style="height:64px"></div></div>
+    <div class="u" data-n="48"><div class="fill" style="height:78px"></div></div>
+  </div>
+  <p class="tiny">Spacing steps: 4 · 8 · 12 · 16 · 24 · 32 · 48. The 24px gutter is the page default.</p>
+
+  <div class="break"><span class="lbl">radius lineup</span></div>
+  <div class="radii">
+    <div style="display:grid;gap:8px"><div class="r" style="border-radius:8px"></div><span class="lab">8 · sharp</span></div>
+    <div style="display:grid;gap:8px"><div class="r" style="border-radius:12px"></div><span class="lab">12 · control</span></div>
+    <div style="display:grid;gap:8px"><div class="r" style="border-radius:18px"></div><span class="lab">18 · card</span></div>
+    <div style="display:grid;gap:8px"><div class="r" style="border-radius:22px"></div><span class="lab">22 · card-lg</span></div>
+    <div style="display:grid;gap:8px"><div class="r" style="border-radius:999px"></div><span class="lab">pill</span></div>
+  </div>
+
+  <div class="break"><span class="lbl">edge taxonomy</span></div>
+  <div class="edges">
+    <div class="e" style="border:1px solid var(--edge)"><div class="overline" style="margin-bottom:8px">hairline</div><p class="tiny" style="margin:0">1px <span class="mono">#E4E0D6</span>. The default separation everywhere.</p></div>
+    <div class="e" style="border:1px solid var(--edge-2)"><div class="overline" style="margin-bottom:8px">input edge</div><p class="tiny" style="margin:0">1px <span class="mono">#D6D1C5</span>. A touch stronger for fields.</p></div>
+    <div class="e" style="border:0; box-shadow: var(--shade-pop)"><div class="overline" style="margin-bottom:8px">pop shadow</div><p class="tiny" style="margin:0">Reserved for modals &amp; popovers only — never on a resting card.</p></div>
+  </div>
+
+  <div class="break"><span class="lbl">density — friendly, with room</span></div>
+  <p class="scene-note">TaxLens leans spacious (TaxFix-like) but the band breakdown packs tight so the numbers stack into a readable column. Two densities, one stance.</p>
+  <div class="density">
+    <div class="sheet sheet-lg">
+      <div class="overline" style="margin-bottom:14px">spacious — input &amp; result</div>
+      <div class="field" style="margin-bottom:16px"><span class="flabel">Gross annual income</span><div class="money"><span class="naira">₦</span><input class="f f-mono f-lg" value="6,500,000"><span class="per">/yr</span></div></div>
+      <button class="b b-primary b-block">Calculate my tax</button>
+    </div>
+    <div class="sheet sheet-md">
+      <div class="overline" style="margin-bottom:12px">packed — band breakdown</div>
+      <div class="band exempt"><span class="b-range">First ₦800,000</span><span class="b-rate">0%</span><span class="b-tax">₦0</span><div class="b-bar"><i style="width:14%"></i></div></div>
+      <div class="band"><span class="b-range">₦800k – ₦3m</span><span class="b-rate">15%</span><span class="b-tax">₦330,000</span><div class="b-bar"><i style="width:50%"></i></div></div>
+      <div class="band"><span class="b-range">₦3m – ₦5.64m</span><span class="b-rate">18%</span><span class="b-tax">₦475,200</span><div class="b-bar"><i style="width:36%"></i></div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Omoran · Tooltips & hovercards</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-lg); margin-bottom:16px; padding:30px 24px 40px; }
+  .scene > .overline { display:block; margin-bottom:24px; }
+  /* tooltip chip */
+  .tip { position:relative; display:inline-block; }
+  .tip .pop { position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:11px; padding:5px 9px; border-radius:var(--r-sm); white-space:nowrap; box-shadow:var(--shade-pop); }
+  .tip .pop::after { content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--ink); }
+  /* hovercards */
+  .hc { width:280px; box-shadow:var(--shade-pop); border:1px solid var(--edge); border-radius:var(--r-lg); background:var(--panel); overflow:hidden; }
+  .hc-h { display:flex; align-items:center; gap:11px; padding:13px 15px; border-bottom:1px solid var(--hair); }
+  .hc-b { padding:13px 15px; }
+  .hc .row-kv { display:flex; justify-content:space-between; padding:4px 0; font-size:12.5px; }
+  .hc .row-kv .k { color:var(--ink-3); }
+  .hc .row-kv .v { font-family:var(--mono); }
+  .hc .nm { font-weight:700; font-size:14px; letter-spacing:-0.005em; }
+  .hc .id { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .cards-row { display:flex; gap:20px; flex-wrap:wrap; }
+  .label { font-family:var(--mono); font-size:10px; color:var(--ink-4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">28 · III</span>
+    <span class="ttl">Tooltips &amp; hovercards</span>
+    <span class="meta">four species · event · user · property · metric</span>
+  </div>
+
+  <p class="muted" style="max-width:64ch;margin:0 0 22px;">A tooltip is a one-line mono chip on dark. Hovercards are richer — they explain the four things you hover in Omoran: an event, a user, a property value, and a metric definition.</p>
+
+  <!-- Tooltips -->
+  <div class="scene">
+    <span class="overline">Tooltip chips</span>
+    <div class="row" style="gap:50px">
+      <span class="tip"><span class="pop">auto-captured · cannot rename</span><span class="chip-mono">page_view</span></span>
+      <span class="tip"><span class="pop">±2σ from 14-day baseline</span><span class="delta delta-anom">−18% ⚑</span></span>
+      <span class="tip"><span class="pop">read-only · server-side only</span><span class="chip-mono">omo_sk_••••aQ2</span></span>
+    </div>
+  </div>
+
+  <!-- Hovercards -->
+  <div class="scene">
+    <span class="overline">Hovercards</span>
+    <div class="cards-row">
+      <!-- event -->
+      <div>
+        <div class="label">on an event</div>
+        <div class="hc">
+          <div class="hc-h"><span class="av av-sq av-coral" style="font-family:var(--mono)">✦</span><div><div class="nm" style="font-family:var(--mono);font-size:13px">checkout_completed</div><div class="id">custom · first seen Mar 2</div></div></div>
+          <div class="hc-b">
+            <div class="row-kv"><span class="k">Count · 7d</span><span class="v">3,019</span></div>
+            <div class="row-kv"><span class="k">Unique users</span><span class="v">2,944</span></div>
+            <div class="row-kv"><span class="k">Δ vs prev</span><span class="v" style="color:var(--coral-700)">−18%</span></div>
+            <div class="row-kv"><span class="k">Properties</span><span class="v">41</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- user -->
+      <div>
+        <div class="label">on a user</div>
+        <div class="hc">
+          <div class="hc-h"><span class="av av-coral">EA</span><div><div class="nm">Esther A.</div><div class="id">usr_8841 · pro</div></div><span class="pill pill-ok pill-sm" style="margin-left:auto"><span class="dot"></span></span></div>
+          <div class="hc-b">
+            <div class="row-kv"><span class="k">Sessions · 30d</span><span class="v">24</span></div>
+            <div class="row-kv"><span class="k">Last seen</span><span class="v">2h ago</span></div>
+            <div class="row-kv"><span class="k">Device</span><span class="v">Safari iOS</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- metric definition -->
+      <div>
+        <div class="label">on a metric</div>
+        <div class="hc">
+          <div class="hc-h"><div><div class="nm">WAU</div><div class="id">weekly active users</div></div></div>
+          <div class="hc-b">
+            <p class="iprose" style="font-size:13px;margin:0">Distinct users with <b>≥1 event</b> in a rolling 7-day window. Identified and anonymous both count, deduped by distinct_id.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

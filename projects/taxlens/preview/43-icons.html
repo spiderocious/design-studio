@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iconography · TaxLens</title>
+<link rel="stylesheet" href="_foundation.css">
+<style>
+  .scene { background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--r-card); overflow:hidden; margin-bottom: 22px; }
+  .scene .cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); padding: 12px 20px; border-bottom: 1px solid var(--hair); background: var(--paper-deep); }
+  .scene .body { padding: 24px; }
+  .iconset { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+  .ig { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 8px; border:1px solid var(--hair); border-radius:12px; }
+  .ig svg { color:var(--ink); }
+  .ig .nm { font-family:var(--mono); font-size:10px; color:var(--ink-3); }
+  .sizes { display:flex; align-items:flex-end; gap:24px; }
+  .sizes .s { display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .sizes .s .nm { font-family:var(--mono); font-size:10px; color:var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">
+    <span class="num">43 / 43</span>
+    <span class="ttl">Iconography</span>
+    <span class="meta">Line · 1.6 stroke · domain glyphs</span>
+  </div>
+
+  <p class="lede" style="max-width:62ch; margin-bottom:18px">One icon family: line, 1.6px stroke, round caps, on a 24-grid. Filled only for a hard “done” state. No emoji — the brief ruled them out, and tax deserves restraint. The domain glyphs (naira, document, bands, shield) are drawn to match.</p>
+
+  <div class="scene">
+    <div class="cap">sizes · the stroke holds across the scale</div>
+    <div class="body">
+      <div class="sizes">
+        <div class="s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><span class="nm">14</span></div>
+        <div class="s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><span class="nm">18</span></div>
+        <div class="s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><span class="nm">22</span></div>
+        <div class="s"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><span class="nm">32</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="cap">the domain set</div>
+    <div class="body">
+      <div class="iconset">
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4v16M18 4v16M6 9h12M6 15h12M9 4l6 16"/></svg><span class="nm">naira</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg><span class="nm">statement</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="4" rx="1"/><rect x="3" y="11" width="13" height="4" rx="1"/><rect x="3" y="17" width="8" height="4" rx="1"/></svg><span class="nm">bands</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg><span class="nm">exempt</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg><span class="nm">rate</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span class="nm">explain</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4m0 0L8 8m4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span class="nm">upload</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20V8m0 12-4-4m4 4 4-4"/><path d="M4 8V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3"/></svg><span class="nm">download</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><span class="nm">next</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg><span class="nm">done</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.6"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 4h.01"/></svg><span class="nm">warn</span></div>
+        <div class="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--crit)" stroke-width="1.6"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-9 4v8m6-8v8M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg><span class="nm">clear</span></div>
+      </div>
+      <p class="tiny" style="margin-top:16px">Only “warn” and “clear” carry colour — amber and cold-crimson respectively. Everything else is ink, inheriting <span class="mono">currentColor</span>.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
