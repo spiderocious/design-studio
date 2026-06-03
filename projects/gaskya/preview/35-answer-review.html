@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Answer review</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  /* answer grid (whole mock at a glance) */
+  .agrid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 7px; max-width: 460px; }
+  .acell { aspect-ratio: 1; border-radius: 7px; display: grid; place-items: center; font-family: var(--mono); font-size: 11px; font-weight: 600; cursor: pointer; }
+  .acell.right { background: var(--good-soft); color: var(--good); border: 1px solid var(--good-edge); }
+  .acell.wrong { background: var(--crit-soft); color: var(--crit); border: 1px solid var(--crit-edge); }
+  .acell.skip { background: var(--paper-2); color: var(--ink-4); border: 1px solid var(--hair); }
+  .acell.flag { box-shadow: inset 0 0 0 2px var(--warn); }
+  /* per-question review */
+  .rev { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .qreview { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--hair-2); }
+  .qreview .qn { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-3); }
+  .qreview .stem { font-family: var(--serif); font-size: 14px; }
+  /* side-by-side your vs key */
+  .sbs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .sbscol { border: 1px solid var(--hair); border-radius: var(--r-input); padding: 14px; }
+  .sbscol .lab { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-bottom: 10px; }
+  .sbscol.yours { border-color: var(--crit-edge); background: var(--crit-soft); }
+  .sbscol.key { border-color: var(--good-edge); background: var(--good-soft); }
+  /* written diff */
+  .draft { font-size: 14px; line-height: 1.7; }
+  .draft .flagtxt { background: var(--warn-soft); border-bottom: 2px solid var(--warn); }
+  .draft .goodtxt { background: var(--good-soft); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">35</span><span class="ttl">Answer review</span><span class="meta">Data · every way to look back at what you did</span></div>
+
+  <div class="panel">
+    <div class="sh">Whole-mock grid — 40 questions at a glance</div>
+    <div class="agrid">
+      <div class="acell right">1</div><div class="acell right">2</div><div class="acell wrong">3</div><div class="acell right">4</div><div class="acell right">5</div><div class="acell right">6</div><div class="acell wrong flag">7</div><div class="acell right">8</div><div class="acell right">9</div><div class="acell right">10</div>
+      <div class="acell right">11</div><div class="acell wrong">12</div><div class="acell right">13</div><div class="acell right">14</div><div class="acell right">15</div><div class="acell right">16</div><div class="acell right">17</div><div class="acell wrong">18</div><div class="acell right">19</div><div class="acell right">20</div>
+      <div class="acell right">21</div><div class="acell right">22</div><div class="acell right">23</div><div class="acell wrong">24</div><div class="acell right">25</div><div class="acell right">26</div><div class="acell right">27</div><div class="acell right">28</div><div class="acell wrong">29</div><div class="acell right">30</div>
+      <div class="acell right">31</div><div class="acell right">32</div><div class="acell wrong">33</div><div class="acell right">34</div><div class="acell right">35</div><div class="acell skip">36</div><div class="acell skip">37</div><div class="acell skip">38</div><div class="acell skip">39</div><div class="acell skip">40</div>
+    </div>
+    <div class="row" style="gap:16px;margin-top:14px">
+      <span class="pill pill-good"><span class="dot"></span>28 correct</span>
+      <span class="pill pill-crit"><span class="dot"></span>8 missed</span>
+      <span class="pill"><span class="dot" style="background:var(--ink-4)"></span>4 unanswered</span>
+      <span class="pill pill-warn"><span class="dot"></span>1 flagged</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Aptitude — bubble review (your pick vs the key)</div>
+    <div class="qreview"><span class="qn">07</span><div><div class="stem">Next term: 2, 6, 12, 20, 30, …</div></div><span class="bubbles"><span class="bub">A</span><span class="bub was">B</span><span class="bub right">C</span><span class="bub">D</span></span></div>
+    <div class="qreview"><span class="qn">12</span><div><div class="stem">A trader's profit percentage…</div></div><span class="bubbles"><span class="bub">A</span><span class="bub right">B</span><span class="bub was">C</span><span class="bub">D</span></span></div>
+    <p class="note-i" style="margin-top:12px">Your wrong pick struck through in crimson, the right key ringed in sage — the same bubble language as the test itself, so review feels continuous with the attempt.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Side-by-side — your answer vs the model</div>
+    <div class="sbs">
+      <div class="sbscol yours"><div class="lab">You chose · B (40)</div><div style="font-size:13px;color:var(--ink-2);line-height:1.5">You added the last gap again (+10) instead of the next gap.</div></div>
+      <div class="sbscol key"><div class="lab">Key · C (42)</div><div style="font-size:13px;color:var(--ink-2);line-height:1.5">Gaps rise 4,6,8,10 → next is 12. 30+12 = 42.</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Written draft — review with inline marks</div>
+    <p class="draft">
+      <span class="flagtxt">I want this graduate role because I am a hardworking and dedicated individual</span> who is passionate about finance. <span class="goodtxt">During my final-year project I rebuilt a corrupted dataset 48 hours before deadline,</span> which taught me to stay calm under pressure.
+    </p>
+    <div class="row" style="margin-top:14px;gap:10px">
+      <span class="pill pill-warn"><span class="dot"></span>Opening is a common template</span>
+      <span class="pill pill-good"><span class="dot"></span>Concrete example — keep this</span>
+    </div>
+    <p class="note-i" style="margin-top:12px">Amber underline = a line employers' tools will flag (make it yours); sage = the specific, concrete writing that's working. Coaching, never accusation.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Video answer — review modes</div>
+    <div class="row" style="gap:10px">
+      <span class="pill pill-ac">▶ Re-watch</span>
+      <span class="pill">◔ Transcript only</span>
+      <span class="pill">◆ Frames + visual notes</span>
+      <span class="pill">↔ Compare with last attempt</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

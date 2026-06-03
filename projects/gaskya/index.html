@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GasKya — the calm before the test</title>
+<link rel="stylesheet" href="preview/_foundation.css">
+<style>
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--paper); }
+
+  .shell { display: grid; grid-template-columns: 288px 1fr; height: 100vh; }
+
+  /* ---- Left index ---- */
+  .toc { background: var(--paper); border-right: 1px solid var(--ink); padding: 30px 26px 20px; overflow: auto; display: flex; flex-direction: column; }
+  .ttl { font-family: var(--serif); font-size: 24px; font-weight: 600; letter-spacing: -0.01em; line-height: 1; margin: 0; }
+  .ttl .ng { color: var(--ac); }
+  .vol { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+
+  .toc-search { margin: 22px 0 8px; }
+  .toc-search input { width: 100%; background: var(--sheet); border: 1px solid var(--hair); border-radius: 12px; height: 36px; font-family: var(--sans); font-size: 13px; color: var(--ink); outline: none; padding: 0 12px; }
+  .toc-search input:focus { border-color: var(--ac); box-shadow: 0 0 0 4px var(--ac-soft); }
+  .toc-search input::placeholder { color: var(--ink-4); }
+
+  .nav { flex: 1; padding: 0; margin: 0; list-style: none; }
+  .group { margin-top: 22px; }
+  .group:first-child { margin-top: 8px; }
+  .group-h { display: flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.16em; padding-bottom: 6px; margin-bottom: 4px; }
+  .group-h .n { color: var(--ac); }
+  .group-h .l { flex: 1; height: 1px; background: var(--hair); }
+
+  .item { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; font-family: var(--sans); font-size: 13.5px; color: var(--ink-2); text-decoration: none; cursor: pointer; line-height: 1.45; }
+  .item .dot { width: 5px; height: 5px; border-radius: 50%; background: transparent; border: 1px solid var(--ink-4); flex-shrink: 0; transform: translateY(-2px); }
+  .item:hover { color: var(--ink); }
+  .item.on { color: var(--ac); font-weight: 600; }
+  .item.on .dot { background: var(--ac); border-color: var(--ac); }
+
+  .meta { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--ink); line-height: 1.7; text-transform: uppercase; letter-spacing: 0.14em; }
+
+  /* ---- Stage ---- */
+  .stage { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: var(--paper); }
+  .head { flex-shrink: 0; padding: 16px 28px; border-bottom: 1px solid var(--ink); display: flex; align-items: baseline; gap: 16px; background: var(--paper); }
+  .crumb { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.14em; }
+  .crumb .cur { color: var(--ink); }
+  .head .gap { flex: 1; }
+  .head a { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.14em; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .head a:hover { color: var(--ac); border-bottom-color: var(--ac); }
+
+  .frame { flex: 1; min-height: 0; background: var(--paper-2); }
+  .frame iframe { width: 100%; height: 100%; border: 0; display: block; background: var(--paper); }
+
+  /* ---- Welcome ---- */
+  .welcome-shell { height: 100%; overflow: auto; padding: 64px 80px; background: var(--paper); }
+  .welcome-shell h1 { font-family: var(--serif); font-size: 56px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.02; margin: 0 0 20px; max-width: 18ch; }
+  .welcome-shell h1 .ng { color: var(--ac); }
+  .welcome-shell .lede { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink-2); line-height: 1.5; max-width: 62ch; margin: 0 0 44px; }
+  .welcome-shell .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; }
+  .welcome-shell .card { border: 1px solid var(--hair); border-radius: var(--r-card); padding: 24px; background: var(--sheet); }
+  .welcome-shell .card .ix { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ac); margin-bottom: 12px; }
+  .welcome-shell .card h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .welcome-shell .card p { font-family: var(--sans); font-size: 13px; color: var(--ink-3); line-height: 1.55; margin: 0; }
+  .welcome-shell .foot { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-3); margin-top: 44px; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="toc">
+    <h1 class="ttl">GasKya<span class="ng">.</span></h1>
+    <div class="vol">Free graduate-funnel practice · the calm before the test</div>
+
+    <div class="toc-search"><input id="filter" placeholder="Search the system…" autocomplete="off"></div>
+    <nav id="nav" class="nav"></nav>
+
+    <div class="meta">Gaskiya · truth · merit<br>v 0.1 · Nigeria</div>
+  </aside>
+
+  <main class="stage">
+    <div class="head">
+      <div class="crumb" id="crumb"><span>Part I · Foundation</span><span style="margin:0 8px;color:var(--ink-4)">/</span><span class="cur">Welcome</span></div>
+      <div class="gap"></div>
+      <a href="../../index.html">← Playground</a>
+      <a href="README.md" target="_blank">Readme</a>
+      <a href="mvp.md" target="_blank">Brief</a>
+      <a id="popout" href="#" target="_blank">Open ↗</a>
+    </div>
+    <div class="frame">
+      <iframe id="preview" title="GasKya specimen"></iframe>
+      <div id="welcome-pane" style="display:none;height:100%;overflow:auto"></div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  const PARTS = [
+    { id: "I", title: "Foundation", items: [
+        { name: "Welcome", file: "" },
+        { name: "Palette", file: "preview/01-palette.html" },
+        { name: "Type", file: "preview/02-type.html" },
+        { name: "Spacing & geometry", file: "preview/03-geometry.html" },
+        { name: "Motion", file: "preview/04-motion.html" },
+    ]},
+    { id: "II", title: "Primitives", items: [
+        { name: "Buttons · the key press", file: "preview/10-buttons.html" },
+        { name: "Inputs · answer, phone, OTP, selects", file: "preview/11-inputs.html" },
+        { name: "More inputs · search, stepper, slider…", file: "preview/15-inputs-more.html" },
+        { name: "Selection", file: "preview/12-selection.html" },
+        { name: "Date & time · the clock", file: "preview/13-datetime.html" },
+        { name: "Specialized · video booth", file: "preview/14-specialized.html" },
+    ]},
+    { id: "III", title: "Data & state", items: [
+        { name: "Tables · history, compare, cohort", file: "preview/20-tables.html" },
+        { name: "The worked solution", file: "preview/21-question.html" },
+        { name: "Question types · text families", file: "preview/30-questions-text.html" },
+        { name: "Question types · figure families", file: "preview/31-questions-figure.html" },
+        { name: "Question bank & review (admin)", file: "preview/32-question-bank.html" },
+        { name: "Answer review", file: "preview/35-answer-review.html" },
+        { name: "Video player", file: "preview/33-media-video.html" },
+        { name: "Audio player", file: "preview/34-media-audio.html" },
+        { name: "Improvement over time", file: "preview/22-trend.html" },
+        { name: "Charts", file: "preview/23-charts.html" },
+        { name: "Progress & loading states", file: "preview/24-progress.html" },
+        { name: "Skeletons & empty", file: "preview/25-skeletons-empty.html" },
+        { name: "Avatars · pills · status", file: "preview/26-avatars-pills.html" },
+        { name: "Cards · the whole family", file: "preview/27-cards.html" },
+        { name: "Tooltips · popovers", file: "preview/28-tooltips.html" },
+        { name: "Navigation · shell", file: "preview/29-navigation.html" },
+    ]},
+    { id: "IV", title: "Surfaces", items: [
+        { name: "The no-signup sample", file: "preview/40-sample-mock.html" },
+        { name: "The timed mock", file: "preview/41-aptitude-test.html" },
+        { name: "Video coaching", file: "preview/42-video-coach.html" },
+        { name: "The funnel & readiness", file: "preview/43-dashboard.html" },
+    ]},
+    { id: "V", title: "Overlays & system", items: [
+        { name: "Modals · the irreversible", file: "preview/50-modals.html" },
+        { name: "Toasts · banners", file: "preview/51-feedback.html" },
+        { name: "Cross-record patterns", file: "preview/52-cross.html" },
+        { name: "Iconography", file: "preview/53-icons.html" },
+    ]},
+  ];
+
+  const WELCOME = `
+    <div class="welcome-shell">
+      <h1>The first gate should measure <span class="ng">you</span>, not your access.</h1>
+      <p class="lede">GasKya is free, unlimited practice for the whole Nigerian graduate funnel — timed aptitude, async video interviews, written answers — with feedback that teaches, not just scores. The stance is the calm before the test: warm paper, deep aubergine, Fraunces in the coach's voice. Serious like an examiner's instrument, but on your side.</p>
+      <div class="grid">
+        <div class="card"><div class="ix">Foundation</div><h3>The material</h3><p>Aubergine as the one true colour, Fraunces for thinking, mono for the record. The single tactile flourish is the physical key-press button. Crimson is reserved for the clock alone.</p></div>
+        <div class="card"><div class="ix">Primitives & data</div><h3>The instruments</h3><p>The answer bubble, the live clock, the video booth, and the signature: a worked solution that hands you the method, in the coach's voice, anchored to the step you slipped on.</p></div>
+        <div class="card"><div class="ix">Surfaces</div><h3>The scenes</h3><p>Start with <strong>The no-signup sample</strong>, then <strong>The timed mock</strong>, the <strong>Video coaching</strong> report, and <strong>The funnel & readiness</strong> home base.</p></div>
+      </div>
+      <div class="foot">For Halima in Kano, on a cracked phone, with one shot · use the search to filter</div>
+    </div>
+  `;
+
+  const nav = document.getElementById('nav');
+  const filter = document.getElementById('filter');
+  const iframe = document.getElementById('preview');
+  const welcomePane = document.getElementById('welcome-pane');
+  const crumb = document.getElementById('crumb');
+  const popout = document.getElementById('popout');
+  let currentFile = null;
+
+  function render(query = "") {
+    nav.innerHTML = "";
+    const q = query.trim().toLowerCase();
+    PARTS.forEach(part => {
+      const items = part.items.filter(it => !q || it.name.toLowerCase().includes(q));
+      if (!items.length) return;
+      const g = document.createElement('div');
+      g.className = 'group';
+      g.innerHTML = `<div class="group-h"><span class="n">${part.id}</span><span>${part.title}</span><span class="l"></span></div>`;
+      items.forEach(it => {
+        const a = document.createElement('a');
+        a.className = 'item' + (it.file === currentFile ? ' on' : '');
+        a.innerHTML = `<span class="dot"></span><span>${it.name}</span>`;
+        a.addEventListener('click', e => { e.preventDefault(); load(it, part); });
+        g.appendChild(a);
+      });
+      nav.appendChild(g);
+    });
+  }
+
+  function load(item, part) {
+    currentFile = item.file;
+    if (item.file) {
+      welcomePane.style.display = 'none';
+      iframe.style.display = 'block';
+      iframe.src = item.file;
+      popout.href = item.file; popout.style.opacity = '1'; popout.style.pointerEvents = 'auto';
+    } else {
+      iframe.removeAttribute('src');
+      iframe.style.display = 'none';
+      welcomePane.innerHTML = WELCOME;
+      welcomePane.style.display = 'block';
+      popout.href = '#'; popout.style.opacity = '0.4'; popout.style.pointerEvents = 'none';
+    }
+    crumb.innerHTML = `<span>Part ${part.id} · ${part.title}</span><span style="margin:0 8px;color:var(--ink-4)">/</span><span class="cur">${item.name}</span>`;
+    [...document.querySelectorAll('.item')].forEach(el => el.classList.toggle('on', el.querySelector('span:last-child')?.textContent.trim() === item.name));
+    location.hash = item.file ? encodeURIComponent(item.file) : '';
+  }
+
+  filter.addEventListener('input', e => render(e.target.value));
+  filter.addEventListener('keydown', e => {
+    const items = [...document.querySelectorAll('.item')];
+    const idx = items.findIndex(a => a.classList.contains('on'));
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(idx+1, items.length-1)]?.click(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[Math.max(idx-1, 0)]?.click(); }
+    else if (e.key === 'Escape') { filter.value=''; render(); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== filter) { e.preventDefault(); filter.focus(); } });
+
+  const hash = decodeURIComponent(location.hash.slice(1));
+  let booted = false;
+  if (hash) { PARTS.forEach(p => p.items.forEach(it => { if (it.file === hash) { render(); load(it, p); booted = true; } })); }
+  if (!booted) { render(); load(PARTS[0].items[0], PARTS[0]); }
+</script>
+
+</body>
+</html>

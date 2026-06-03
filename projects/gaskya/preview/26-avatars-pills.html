@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Avatars & status</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .avimg { display: inline-block; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--hair); }
+  .avimg.av-sm { width: 28px; height: 28px; }
+  .avimg.av-lg { width: 56px; height: 56px; }
+  .stack-row { display: flex; }
+  .stack-row .av { margin-left: -10px; border: 2px solid var(--sheet); }
+  .stack-row .av:first-child { margin-left: 0; }
+  .logo { width: 44px; height: 44px; border-radius: 14px; display: inline-grid; place-items: center; font-family: var(--sans); font-weight: 700; font-size: 13px; border: 1px solid var(--hair); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">26</span><span class="ttl">Avatars · pills · status</span><span class="meta">Data · the status taxonomy</span></div>
+
+  <div class="panel">
+    <div class="sh">Avatars — initials default, sizes</div>
+    <div class="row" style="gap:16px;align-items:flex-end">
+      <span class="av av-sm">HB</span>
+      <span class="av">HB</span>
+      <span class="av av-lg">HB</span>
+      <span class="av av-lg" style="background:var(--good-soft);color:var(--good);border-color:var(--good-edge)">AO</span>
+    </div>
+    <p class="note-i" style="margin-top:14px">No photos by default — a low-income graduate shouldn't need a headshot. Initials on an aubergine tint, round, sober. There is no “coach” avatar: GasKya speaks in text, never as a fake face.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Image avatars — when a student opts to add one</div>
+    <div class="row" style="gap:16px;align-items:flex-end">
+      <span class="avimg av-sm" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D)"></span>
+      <span class="avimg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D)"></span>
+      <span class="avimg av-lg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D)"></span>
+      <span class="avimg av-lg" style="background:linear-gradient(135deg,#6E8C6F,#4E6B4F)"></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Shapes — circle · squircle · rounded · square</div>
+    <div class="row" style="gap:18px;align-items:flex-end">
+      <div style="text-align:center"><span class="avimg av-lg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D);border-radius:50%"></span><div class="hint" style="margin-top:6px">circle</div></div>
+      <div style="text-align:center"><span class="avimg av-lg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D);border-radius:32% / 38%"></span><div class="hint" style="margin-top:6px">squircle</div></div>
+      <div style="text-align:center"><span class="avimg av-lg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D);border-radius:16px"></span><div class="hint" style="margin-top:6px">rounded</div></div>
+      <div style="text-align:center"><span class="avimg av-lg" style="background:linear-gradient(135deg,#8A4F7C,#5A2A4D);border-radius:4px"></span><div class="hint" style="margin-top:6px">square</div></div>
+    </div>
+    <p class="note-i" style="margin-top:14px">People stay round; squircle/rounded are for non-person entities (a saved view, an item). The squircle echoes the soft 14–18px geometry of the system without going full circle.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Status ring · presence dot · fallback</div>
+    <div class="row" style="gap:20px;align-items:flex-end">
+      <div style="text-align:center"><span class="av av-lg" style="box-shadow:0 0 0 2px var(--sheet),0 0 0 4px var(--good)">HB</span><div class="hint" style="margin-top:6px">ring · ready</div></div>
+      <div style="text-align:center;position:relative"><span class="av av-lg">HB</span><span style="position:absolute;right:0;bottom:18px;width:13px;height:13px;border-radius:50%;background:var(--good);border:2px solid var(--sheet)"></span><div class="hint" style="margin-top:6px">presence</div></div>
+      <div style="text-align:center"><span class="av av-lg" style="background:var(--paper-2);color:var(--ink-4);border-color:var(--hair)">?</span><div class="hint" style="margin-top:6px">fallback</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Group stack — a cohort, anonymised</div>
+    <div class="stack-row">
+      <span class="av">HB</span><span class="av" style="background:var(--good-soft);color:var(--good);border-color:var(--good-edge)">AO</span><span class="av" style="background:var(--warn-soft);color:var(--warn);border-color:var(--warn-edge)">CU</span><span class="av">+409</span>
+    </div>
+    <p class="hint" style="margin-top:12px">A partner sees the <em>count</em>, never the faces or names.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Partner / employer marks — squircle logo tiles</div>
+    <div class="row" style="gap:14px">
+      <span class="logo" style="background:var(--ac-soft);color:var(--ac)">AB</span>
+      <span class="logo" style="background:var(--good-soft);color:var(--good)">D</span>
+      <span class="logo" style="background:var(--warn-soft);color:var(--warn)">SH</span>
+      <span class="logo" style="background:var(--paper-2);color:var(--ink-3)">BUK</span>
+    </div>
+    <p class="hint" style="margin-top:12px">Used only on partner landing banners — never inside the practice surfaces.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Readiness pills — the core taxonomy</div>
+    <div class="row" style="gap:10px">
+      <span class="pill pill-good"><span class="dot"></span>Mock-ready</span>
+      <span class="pill pill-ac"><span class="dot"></span>Improving</span>
+      <span class="pill pill-warn"><span class="dot"></span>Keep drilling</span>
+      <span class="pill"><span class="dot" style="background:var(--ink-4)"></span>Not started</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Question / item status</div>
+    <div class="row" style="gap:10px">
+      <span class="pill pill-good"><span class="dot"></span>Correct</span>
+      <span class="pill pill-crit"><span class="dot"></span>Missed</span>
+      <span class="pill pill-warn"><span class="dot"></span>Flagged for review</span>
+      <span class="pill"><span class="dot" style="background:var(--ink-4)"></span>Generated · verified</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Mode & path</div>
+    <div class="row" style="gap:10px">
+      <span class="pill pill-ac">Practice · retakes</span>
+      <span class="pill pill-ink">Graded mock · one shot</span>
+      <span class="pill">Untimed</span>
+      <span class="pill pill-crit"><span class="dot"></span>Timed · no going back</span>
+    </div>
+    <p class="note-i" style="margin-top:14px">“Timed, no going back” borrows the reserved crimson dot on purpose — it's the one practice choice that mimics the real test's irreversibility, so it carries a hint of that gravity.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Video coaching tags</div>
+    <div class="row" style="gap:10px">
+      <span class="pill pill-good"><span class="dot"></span>STAR complete</span>
+      <span class="pill pill-warn"><span class="dot"></span>11 fillers</span>
+      <span class="pill pill-warn"><span class="dot"></span>Ran over by 8s</span>
+      <span class="pill pill-ac"><span class="dot"></span>Good pace</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

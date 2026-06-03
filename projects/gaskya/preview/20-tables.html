@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Tables</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); overflow: hidden; }
+  .panel .bar { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--hair); }
+  .panel .bar .gap { flex: 1; }
+  table { width: 100%; border-collapse: collapse; }
+  th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); text-align: left; padding: 10px 18px; border-bottom: 1px solid var(--hair); font-weight: 500; }
+  th.num, td.num { text-align: right; font-family: var(--mono); font-feature-settings: "tnum" 1; }
+  td { padding: 14px 18px; border-bottom: 1px solid var(--hair-2); font-size: 13.5px; }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: var(--paper); }
+  .filter-tab { font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-3); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+  .filter-tab.on { background: var(--ac-soft); color: var(--ac); }
+  .selbar { background: var(--ac-soft); color: var(--ac-deep); padding: 10px 18px; font-size: 13px; display: flex; align-items: center; gap: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">20</span><span class="ttl">Tables</span><span class="meta">Data · your practice history</span></div>
+
+  <div class="panel">
+    <div class="bar">
+      <span class="filter-tab on">All</span>
+      <span class="filter-tab">Mocks</span>
+      <span class="filter-tab">Drills</span>
+      <span class="filter-tab">Video</span>
+      <span class="gap"></span>
+      <button class="b b2 b-sm">Filter</button>
+    </div>
+    <div class="selbar"><span style="font-weight:600">2 selected</span><button class="b b3 b-sm">Compare</button><button class="bdanger b b-sm" style="margin-left:auto">Delete</button></div>
+    <table>
+      <thead><tr><th>When</th><th>Practice</th><th>Family</th><th class="num">Score</th><th class="num">Time / Q</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="mono" style="color:var(--ink-3)">2h ago</td><td>Number-series drill</td><td><span class="tag">Numerical</span></td><td class="num"><span style="color:var(--good);font-weight:600">7/10</span></td><td class="num">52s</td><td><a href="#" style="color:var(--ac);font-size:12px">Review →</a></td></tr>
+        <tr><td class="mono" style="color:var(--ink-3)">Yesterday</td><td>Full numerical mock</td><td><span class="tag">Numerical</span></td><td class="num">28/40</td><td class="num">1m 14s</td><td><a href="#" style="color:var(--ac);font-size:12px">Review →</a></td></tr>
+        <tr><td class="mono" style="color:var(--ink-3)">Yesterday</td><td>Video · “under pressure”</td><td><span class="tag">Video</span></td><td class="num"><span class="pill pill-good" style="height:20px">STAR ✓</span></td><td class="num">0:58</td><td><a href="#" style="color:var(--ac);font-size:12px">Review →</a></td></tr>
+        <tr><td class="mono" style="color:var(--ink-3)">3 days ago</td><td>Verbal drill</td><td><span class="tag">Verbal</span></td><td class="num"><span style="color:var(--warn);font-weight:600">5/10</span></td><td class="num">41s</td><td><a href="#" style="color:var(--ac);font-size:12px">Review →</a></td></tr>
+        <tr><td class="mono" style="color:var(--ink-3)">Last week</td><td>Sample mock (no account)</td><td><span class="tag">Numerical</span></td><td class="num">4/10</td><td class="num">48s</td><td><a href="#" style="color:var(--ac);font-size:12px">Review →</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note-i" style="margin-top:16px">A worklist, not a leaderboard. Scores are mono and tabular so they align down the column. Sage marks improvement, amber marks “keep going” — never a harsh red for a low score. Red is only ever the clock or a delete.</p>
+
+  <div class="break"><span class="lbl">Sortable + expandable rows</span></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>Sub-skill ▼</th><th class="num">Attempts</th><th class="num">Best</th><th class="num">Avg time ▲</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Number series</td><td class="num">8</td><td class="num" style="color:var(--warn)">3/10</td><td class="num">1m 32s</td><td><a href="#" style="color:var(--ac);font-size:12px">Expand ▾</a></td></tr>
+        <tr style="background:var(--paper)"><td colspan="5" style="padding:0">
+          <div style="padding:14px 18px;border-left:3px solid var(--ac)">
+            <div class="muted" style="font-size:12.5px;margin-bottom:8px">Last 3 items missed — all because you stopped one layer of differences too early.</div>
+            <button class="b b1 b-sm">Drill with worked solutions</button>
+          </div>
+        </td></tr>
+        <tr><td>Data interpretation</td><td class="num">5</td><td class="num">7/10</td><td class="num">1m 14s</td><td><a href="#" style="color:var(--ac);font-size:12px">Expand ▾</a></td></tr>
+        <tr><td>Ratio &amp; percentage</td><td class="num">6</td><td class="num" style="color:var(--good)">9/10</td><td class="num">48s</td><td><a href="#" style="color:var(--ac);font-size:12px">Expand ▾</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="break"><span class="lbl">Comparison — two attempts side by side</span></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>Metric</th><th class="num">Attempt 1</th><th class="num">Attempt 6</th><th class="num">Δ</th></tr></thead>
+      <tbody>
+        <tr><td>Score</td><td class="num">4/10</td><td class="num">7/10</td><td class="num" style="color:var(--good)">+3</td></tr>
+        <tr><td>Avg time / question</td><td class="num">1m 48s</td><td class="num">1m 14s</td><td class="num" style="color:var(--good)">−34s</td></tr>
+        <tr><td>Number series</td><td class="num">0/4</td><td class="num">2/4</td><td class="num" style="color:var(--good)">+2</td></tr>
+        <tr><td>Left blank</td><td class="num">3</td><td class="num">0</td><td class="num" style="color:var(--good)">−3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="break"><span class="lbl">Cohort aggregate (partner view — no PII, ever)</span></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>Cohort</th><th class="num">Students</th><th class="num">Avg start</th><th class="num">Avg now</th><th class="num">Mock-ready</th></tr></thead>
+      <tbody>
+        <tr><td>BUK 2026 · numerical</td><td class="num">412</td><td class="num">38%</td><td class="num">56%</td><td class="num" style="color:var(--good)">63%</td></tr>
+        <tr><td>BUK 2026 · video</td><td class="num">228</td><td class="num">—</td><td class="num">—</td><td class="num">41%</td></tr>
+      </tbody>
+    </table>
+    <p class="hint" style="margin-top:12px">Counts and averages only — never a single student's name, score, or recording.</p>
+  </div>
+
+  <div class="break"><span class="lbl">Paginated footer</span></div>
+  <div class="panel">
+    <div class="bar" style="border-bottom:0;border-top:1px solid var(--hair)">
+      <span class="muted" style="font-size:12.5px">Showing 1–10 of 47 attempts</span>
+      <span class="gap"></span>
+      <button class="b b2 b-sm">← Prev</button>
+      <span class="pill pill-ac">1</span><span class="pill">2</span><span class="pill">3</span><span class="muted">…</span><span class="pill">5</span>
+      <button class="b b2 b-sm">Next →</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

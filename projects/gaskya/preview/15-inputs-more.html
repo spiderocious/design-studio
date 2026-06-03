@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · More inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  .scene { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; }
+  .scene .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  /* search/combobox */
+  .search { position: relative; }
+  .search .ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-4); }
+  .search .f { padding-left: 40px; }
+  .combo { border: 1px solid var(--hair); border-top: 0; border-radius: 0 0 var(--r-input) var(--r-input); margin-top: -2px; overflow: hidden; }
+  .combo .row2 { padding: 10px 14px; font-size: 13.5px; display: flex; gap: 10px; align-items: center; }
+  .combo .row2:hover { background: var(--ac-soft); }
+  .combo .row2 mark { background: var(--ac-soft); color: var(--ac); font-weight: 600; }
+  /* stepper */
+  .stepper { display: inline-flex; align-items: center; border: 1px solid var(--hair); border-radius: var(--r-input); overflow: hidden; }
+  .stepper button { width: 44px; height: 46px; border: 0; background: var(--sheet); font-size: 20px; color: var(--ac); cursor: pointer; }
+  .stepper button:hover { background: var(--ac-soft); }
+  .stepper .val { width: 56px; text-align: center; font-family: var(--mono); font-size: 16px; font-weight: 600; border-left: 1px solid var(--hair); border-right: 1px solid var(--hair); line-height: 46px; }
+  /* slider */
+  .slider { position: relative; height: 6px; background: var(--paper-2); border-radius: 999px; margin: 22px 6px; }
+  .slider .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 60%; background: var(--ac); border-radius: 999px; }
+  .slider .knob { position: absolute; left: 60%; top: 50%; transform: translate(-50%,-50%); width: 22px; height: 22px; border-radius: 50%; background: var(--sheet); border: 2px solid var(--ac); box-shadow: 0 2px 8px -2px rgba(44,38,32,0.3); }
+  .slider .tip { position: absolute; left: 60%; top: -28px; transform: translateX(-50%); font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ac); }
+  /* difficulty seg */
+  .diff { display: flex; gap: 0; border: 1px solid var(--hair); border-radius: 999px; overflow: hidden; }
+  .diff button { flex: 1; border: 0; background: var(--sheet); font-family: var(--sans); font-weight: 600; font-size: 13px; color: var(--ink-3); padding: 10px 0; cursor: pointer; }
+  .diff button.on { background: var(--ac); color: #fff; }
+  /* tag input */
+  .taginput { display: flex; flex-wrap: wrap; gap: 7px; padding: 9px 12px; border: 1px solid var(--hair); border-radius: var(--r-input); }
+  .taginput .t { display: inline-flex; align-items: center; gap: 5px; background: var(--paper-2); border-radius: 999px; padding: 4px 6px 4px 10px; font-size: 12.5px; }
+  .taginput .t .x { color: var(--ink-3); cursor: pointer; }
+  .taginput input { border: 0; outline: none; flex: 1; min-width: 80px; font-size: 14px; background: transparent; }
+  /* file picker */
+  .drop { border: 1.5px dashed var(--ac-edge); border-radius: var(--r-input); background: var(--ac-soft); padding: 26px; text-align: center; }
+  .drop .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--sheet); border: 1px solid var(--ac-edge); display: grid; place-items: center; margin: 0 auto 12px; color: var(--ac); font-size: 18px; }
+  /* PIN-ish OTP already in 11; here a quiet inline mono code */
+  .pinrow { display:flex; gap:8px; }
+  .pinrow .c { width: 42px; height: 50px; border: 1px solid var(--hair); border-radius: 12px; display: grid; place-items: center; font-family: var(--mono); font-size: 20px; font-weight: 600; }
+  .pinrow .c.on { border-color: var(--ac); color: var(--ac); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">15</span><span class="ttl">More inputs</span><span class="meta">Primitives · the rest of the kit</span></div>
+
+  <div class="grid">
+
+    <div class="scene">
+      <div class="sh">Search / combobox — find a drill</div>
+      <div class="search">
+        <span class="ic">⌕</span>
+        <input class="f" value="numb" style="border-radius:var(--r-input) var(--r-input) 0 0" />
+      </div>
+      <div class="combo">
+        <div class="row2"><span class="tag">NUM</span><span><mark>Numb</mark>er series</span></div>
+        <div class="row2"><span class="tag">NUM</span><span><mark>Numb</mark>er — data interpretation</span></div>
+        <div class="row2"><span class="tag">NUM</span><span>Ratio &amp; percentage</span></div>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Number stepper — how many questions?</div>
+      <div class="stepper"><button>−</button><span class="val">20</span><button>+</button></div>
+      <span style="margin-left:12px;font-size:13px;color:var(--ink-3)">questions in this drill</span>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Slider — set your own timer</div>
+      <div class="slider"><span class="fill"></span><span class="tip">12 min</span><span class="knob"></span></div>
+      <div class="spread"><span class="hint">Untimed</span><span class="hint">30 min</span></div>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Difficulty — pick your band</div>
+      <div class="diff"><button>Easy</button><button class="on">Medium</button><button>Hard</button><button>Mixed</button></div>
+      <p class="hint" style="margin-top:12px">The generation engine tops up items in this band so you never run dry.</p>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Tag input — target employers (admin)</div>
+      <div class="taginput">
+        <span class="t">Access Bank <span class="x">×</span></span>
+        <span class="t">GTBank <span class="x">×</span></span>
+        <span class="t">Deloitte <span class="x">×</span></span>
+        <input placeholder="Add a tag…" />
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="sh">File picker / drop zone (admin: ingest a seed PDF)</div>
+      <div class="drop">
+        <div class="ic">⤓</div>
+        <div style="font-weight:600;font-size:14px">Drop a vendor past-pack PDF</div>
+        <p class="hint" style="margin:6px 0 0">Used to learn the style — never served verbatim.</p>
+      </div>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Inline code entry (alt OTP)</div>
+      <div class="pinrow"><span class="c on">4</span><span class="c on">9</span><span class="c on">2</span><span class="c">·</span><span class="c">·</span><span class="c">·</span></div>
+    </div>
+
+    <div class="scene">
+      <div class="sh">Toggle group — practice path</div>
+      <div class="diff"><button class="on">Practice · retakes</button><button>Graded · one shot</button></div>
+      <p class="hint" style="margin-top:12px">Cheap fast path is the default; the expensive graded pipeline is opt-in by intent.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

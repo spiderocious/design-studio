@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Question types — text families</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .q { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); overflow: hidden; margin-bottom: 18px; }
+  .q .qhead { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--hair-2); }
+  .q .qbody { padding: 18px; }
+  .q .stem { font-family: var(--serif); font-size: 16px; line-height: 1.45; }
+  .q .passage { background: var(--paper-2); border-radius: var(--r-input); padding: 14px 16px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 16px; }
+  .opts { display: grid; gap: 9px; margin-top: 16px; }
+  .opts.two { grid-template-columns: 1fr 1fr; }
+  .opt { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border: 1px solid var(--hair); border-radius: var(--r-input); font-size: 14px; cursor: pointer; }
+  .opt:hover { border-color: var(--ac-edge); background: var(--ac-soft); }
+  .opt.on { border-color: var(--ac); background: var(--ac-soft); }
+  .opt.key { border-color: var(--good-edge); background: var(--good-soft); }
+  .colhead { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 36px 0 16px; letter-spacing: -0.01em; }
+  .colhead:first-of-type { margin-top: 12px; }
+  .colhead .fam { font-family: var(--mono); font-size: 11px; color: var(--ac); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .blanks { display:flex; gap:8px; flex-wrap:wrap; }
+  .blank { border-bottom: 2px solid var(--ac); min-width: 60px; text-align:center; font-weight:600; color: var(--ac); padding: 0 6px; }
+  .tf { display:flex; gap:10px; }
+  .tf .opt { flex:1; justify-content:center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">30</span><span class="ttl">Question types · text families</span><span class="meta">Data · every shape a generated item can take</span></div>
+  <p class="note-i" style="margin-bottom:8px">The bank classifies every item by family and sub-skill (Module 1). These are the text-based families — each rendered as the student sees it. The figure families (diagrammatic, abstract, data-interpretation charts) live on the next page.</p>
+
+  <!-- NUMERICAL -->
+  <div class="colhead"><span class="fam">Numerical</span>Number series</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Numerical · Number series</span><span class="pill" style="margin-left:auto"><span class="dot" style="background:var(--ink-4)"></span>Generated #NS-4471</span></div>
+    <div class="qbody">
+      <div class="stem">Find the next term: <b>2, 6, 12, 20, 30, …</b></div>
+      <div class="opts two"><div class="opt">A · 38</div><div class="opt">B · 40</div><div class="opt key">C · 42</div><div class="opt">D · 36</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Numerical</span>Ratio &amp; percentage (word problem)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Numerical · Ratio</span></div>
+    <div class="qbody">
+      <div class="stem">A trader buys goods for ₦4,800 and sells at ₦6,000. What is the percentage profit?</div>
+      <div class="opts two"><div class="opt">A · 20%</div><div class="opt on">B · 25%</div><div class="opt">C · 12.5%</div><div class="opt">D · 30%</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Numerical</span>Numeric entry (type the answer)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Numerical · Free entry</span></div>
+    <div class="qbody">
+      <div class="stem">If 3 pumps fill a tank in 8 hours, how many hours for 4 pumps at the same rate?</div>
+      <div class="row" style="margin-top:16px;gap:10px"><input class="f f-mono" style="max-width:140px" value="6" /><span style="color:var(--ink-3);font-size:13px">hours</span></div>
+    </div>
+  </div>
+
+  <!-- VERBAL -->
+  <div class="colhead"><span class="fam">Verbal</span>Word relationships (analogy)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Verbal · Analogy</span></div>
+    <div class="qbody">
+      <div class="stem"><b>Doctor</b> is to <b>Hospital</b> as <b>Teacher</b> is to …</div>
+      <div class="opts two"><div class="opt">A · Student</div><div class="opt key">B · School</div><div class="opt">C · Book</div><div class="opt">D · Lesson</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Verbal</span>Syllogism (logical deduction)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Verbal · Syllogism</span></div>
+    <div class="qbody">
+      <div class="passage">All graduates wrote the aptitude test. Some who wrote the test passed. No one who failed got an interview.</div>
+      <div class="stem">Which conclusion <b>must</b> be true?</div>
+      <div class="opts"><div class="opt">A · All graduates got an interview</div><div class="opt on">B · Some graduates may have got an interview</div><div class="opt">C · No graduate failed</div><div class="opt">D · Everyone who passed got an interview</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Verbal</span>Reading comprehension (passage + question)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Verbal · Comprehension</span></div>
+    <div class="qbody">
+      <div class="passage">Nigeria's graduate hiring funnel increasingly front-loads cognitive screening. Employers argue it scales; critics note it filters on format-familiarity as much as ability, disadvantaging candidates without access to paid preparation.</div>
+      <div class="stem">The critics' main concern is that the screening …</div>
+      <div class="opts"><div class="opt">A · takes too long to administer</div><div class="opt key">B · measures access to prep as much as ability</div><div class="opt">C · is too easy for graduates</div><div class="opt">D · should be done in person</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Verbal</span>Sentence completion (cloze)</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Verbal · Cloze</span></div>
+    <div class="qbody">
+      <div class="stem">The candidate remained <span class="blank">composed</span> despite the <span class="blank">pressure</span> of the timed test.</div>
+      <div class="opts two"><div class="opt">A · anxious / calm</div><div class="opt key">B · composed / pressure</div><div class="opt">C · hurried / ease</div><div class="opt">D · confused / quiet</div></div>
+    </div>
+  </div>
+
+  <!-- CRITICAL REASONING -->
+  <div class="colhead"><span class="fam">Critical reasoning</span>Assumption / inference</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Critical · Assumption</span></div>
+    <div class="qbody">
+      <div class="passage">"We should adopt video interviews — they let us screen more candidates per hour than phone calls."</div>
+      <div class="stem">The argument assumes that …</div>
+      <div class="opts"><div class="opt key">A · screening more candidates per hour is desirable</div><div class="opt">B · video interviews are cheaper</div><div class="opt">C · candidates prefer video</div><div class="opt">D · phone calls are unreliable</div></div>
+    </div>
+  </div>
+
+  <div class="colhead"><span class="fam">Critical reasoning</span>True / False / Cannot say</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Critical · TF/Cannot say</span></div>
+    <div class="qbody">
+      <div class="passage">The 2026 cohort had 412 students from the partner link. Average numerical scores rose 18 points over three mocks.</div>
+      <div class="stem"><i>“Every student in the cohort improved.”</i></div>
+      <div class="tf"><div class="opt">True</div><div class="opt">False</div><div class="opt on">Cannot say</div></div>
+    </div>
+  </div>
+
+  <!-- LOGICAL -->
+  <div class="colhead"><span class="fam">Logical</span>Seating / ordering puzzle</div>
+  <div class="q">
+    <div class="qhead"><span class="tag">Logical · Ordering</span></div>
+    <div class="qbody">
+      <div class="passage">Five candidates sit in a row. Ada is left of Bola. Chidi is right of Bola. Dele is at one end. Ngozi is between Bola and Chidi.</div>
+      <div class="stem">Who is in the middle seat?</div>
+      <div class="opts two"><div class="opt">A · Ada</div><div class="opt">B · Bola</div><div class="opt key">C · Ngozi</div><div class="opt">D · Chidi</div></div>
+    </div>
+  </div>
+
+  <p class="note-i" style="margin-top:24px">Every item carries its family/sub-skill tag and (for the live bank) a “Generated” provenance mark. Single-select, multi-option, numeric-entry, true/false/cannot-say, and cloze all share the same answer-affordance language: a tap target with the aubergine tick, the right key shown in sage on review.</p>
+</div>
+</body>
+</html>

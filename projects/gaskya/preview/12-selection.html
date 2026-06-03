@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Selection</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; max-width: 560px; }
+  .scene .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+
+  /* checkbox — a tick, not a fill */
+  .ck { display: flex; align-items: center; gap: 11px; padding: 9px 0; cursor: pointer; font-size: 14px; }
+  .ck .box { width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid var(--ink-4); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 120ms ease; }
+  .ck.on .box { background: var(--ac); border-color: var(--ac); }
+  .ck .box svg { opacity: 0; }
+  .ck.on .box svg { opacity: 1; }
+
+  /* radio */
+  .rd { display: flex; align-items: center; gap: 11px; padding: 9px 0; cursor: pointer; font-size: 14px; }
+  .rd .ring { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink-4); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rd.on .ring { border-color: var(--ac); }
+  .rd.on .ring::after { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--ac); }
+
+  /* switch */
+  .sw { display: inline-flex; align-items: center; gap: 11px; cursor: pointer; font-size: 14px; }
+  .sw .track { width: 44px; height: 26px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--hair); position: relative; transition: all 150ms ease; }
+  .sw .track .knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--sheet); border: 1px solid var(--hair); transition: all 150ms ease; }
+  .sw.on .track { background: var(--ac); border-color: var(--ac); }
+  .sw.on .track .knob { left: 20px; border-color: var(--ac-deep); }
+
+  /* segmented (mode toggle) */
+  .seg { display: inline-flex; background: var(--paper-2); border-radius: 999px; padding: 4px; gap: 3px; }
+  .seg button { border: 0; background: transparent; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-3); padding: 8px 16px; border-radius: 999px; cursor: pointer; }
+  .seg button.on { background: var(--sheet); color: var(--ac); box-shadow: 0 1px 0 var(--hair); }
+
+  .chips { display: flex; gap: 9px; flex-wrap: wrap; }
+  .selchip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--hair); background: var(--sheet); font-size: 13px; font-weight: 600; color: var(--ink-2); cursor: pointer; }
+  .selchip.on { border-color: var(--ac); background: var(--ac-soft); color: var(--ac); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">12</span><span class="ttl">Selection</span><span class="meta">Primitives · a tick, not a fill</span></div>
+
+  <div class="scene">
+    <div class="sh">Mode · how do you want to practise?</div>
+    <div class="seg"><button class="on">Practice · retakes</button><button>Graded mock · one shot</button></div>
+    <p class="note-i" style="margin-top:14px">The default is the cheap, kind path: practice with retakes and instant audio-only feedback. The expensive graded pipeline is opt-in <em>by intent</em> — the student deliberately chooses it.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Checkbox & radio</div>
+    <div class="ck on"><span class="box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No going back once I start (like the real test)</div>
+    <div class="ck"><span class="box"></span>Allow me to flag questions for review</div>
+    <hr class="hair" style="margin:14px 0" />
+    <div class="rd on"><span class="ring"></span>One question at a time</div>
+    <div class="rd"><span class="ring"></span>Section-paged, like Dragnet</div>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Switches — settings that stay calm</div>
+    <div class="col-f">
+      <label class="sw on"><span class="track"><span class="knob"></span></span> SMS reminders before a known assessment date</label>
+      <label class="sw"><span class="track"><span class="knob"></span></span> Show me cohort averages</label>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Chips · pick the families to drill</div>
+    <div class="chips">
+      <span class="selchip on">Numerical</span>
+      <span class="selchip on">Verbal</span>
+      <span class="selchip">Diagrammatic</span>
+      <span class="selchip">Abstract</span>
+      <span class="selchip">Critical reasoning</span>
+      <span class="selchip">Logical</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

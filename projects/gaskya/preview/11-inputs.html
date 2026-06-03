@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; max-width: 480px; }
+  .scene .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .otp { display: flex; gap: 10px; }
+  .otp .cell { width: 48px; height: 56px; border: 1px solid var(--hair); border-radius: var(--r-input); background: var(--sheet); font-family: var(--mono); font-size: 22px; font-weight: 600; text-align: center; color: var(--ink); outline: none; }
+  .otp .cell:focus { border-color: var(--ac); box-shadow: 0 0 0 4px var(--ac-soft); }
+  .otp .cell.filled { border-color: var(--ac); }
+  .answers { display: flex; flex-direction: column; gap: 12px; }
+  .answer { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--hair); border-radius: var(--r-input); background: var(--sheet); cursor: pointer; transition: all 120ms ease; }
+  .answer:hover { border-color: var(--ac-edge); background: var(--ac-soft); }
+  .answer.chosen { border-color: var(--ac); background: var(--ac-soft); }
+  .answer .txt { font-family: var(--sans); font-size: 14px; }
+
+  /* custom select — open, with icon options */
+  .csel { position: relative; }
+  .csel .control { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border: 1px solid var(--ac); border-radius: var(--r-input) var(--r-input) 0 0; background: var(--sheet); box-shadow: 0 0 0 4px var(--ac-soft); cursor: pointer; }
+  .csel .control .v { font-size: 14px; font-weight: 500; }
+  .csel .control .chev { margin-left: auto; color: var(--ink-3); }
+  .csel .menu { border: 1px solid var(--ac); border-top: 0; border-radius: 0 0 var(--r-input) var(--r-input); background: var(--sheet); overflow: hidden; box-shadow: 0 12px 30px -16px rgba(44,38,32,0.3); }
+  .opt-i { display: flex; align-items: center; gap: 12px; padding: 11px 14px; cursor: pointer; font-size: 14px; }
+  .opt-i:hover { background: var(--ac-soft); }
+  .opt-i.sel { background: var(--ac-soft); }
+  .opt-i .ico { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; font-size: 14px; }
+  .opt-i .sub { font-size: 11.5px; color: var(--ink-3); }
+  .opt-i .tick { margin-left: auto; color: var(--ac); }
+  /* multi-select with tokens */
+  .ms .control { flex-wrap: wrap; height: auto; min-height: 46px; padding: 8px 14px; gap: 8px; border-radius: var(--r-input); box-shadow: none; }
+  .token { display: inline-flex; align-items: center; gap: 6px; background: var(--ac-soft); color: var(--ac); border: 1px solid var(--ac-edge); border-radius: 999px; padding: 4px 6px 4px 10px; font-size: 12.5px; font-weight: 600; }
+  .token .x { width: 16px; height: 16px; border-radius: 50%; background: var(--ac); color: #fff; display: grid; place-items: center; font-size: 10px; cursor: pointer; }
+  .ms .menu { margin-top: 8px; border: 1px solid var(--hair); border-radius: var(--r-input); }
+  .opt-c { display: flex; align-items: center; gap: 12px; padding: 11px 14px; cursor: pointer; font-size: 14px; }
+  .opt-c:hover { background: var(--ac-soft); }
+  .opt-c .box { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--ink-4); display: grid; place-items: center; flex-shrink: 0; }
+  .opt-c.on .box { background: var(--ac); border-color: var(--ac); color: #fff; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">11</span><span class="ttl">Inputs</span><span class="meta">Primitives · phone-first, the test before the form</span></div>
+
+  <div class="scene">
+    <div class="sh">Domain · the answer field — choose A, B, C, or D</div>
+    <p class="serif" style="font-size:16px;margin:0 0 14px">A sum doubles in 6 years at simple interest. What is the rate per annum?</p>
+    <div class="answers">
+      <div class="answer"><span class="bub">A</span><span class="txt">12.5%</span></div>
+      <div class="answer chosen"><span class="bub on">B</span><span class="txt">16⅔%</span></div>
+      <div class="answer"><span class="bub">C</span><span class="txt">20%</span></div>
+      <div class="answer"><span class="bub">D</span><span class="txt">8.33%</span></div>
+    </div>
+    <p class="note-i" style="margin-top:14px">The whole row is the tap target — generous, because thumbs on a cracked screen miss small circles. The bubble is the W2 graft: the test made tactile and yours.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Domain · phone-first sign-in (the target user lives on their phone)</div>
+    <div class="field"><label class="cap">Phone number</label><input class="f f-mono" value="+234 803 412 9920" /></div>
+    <div class="field"><label class="cap">Email <span class="muted" style="font-weight:400">· optional, may be secondary</span></label><input class="f" placeholder="you@example.com" /></div>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Domain · the OTP code</div>
+    <div class="otp">
+      <input class="cell filled" value="4" /><input class="cell filled" value="9" /><input class="cell filled" value="2" /><input class="cell" placeholder="·" /><input class="cell" placeholder="·" /><input class="cell" placeholder="·" />
+    </div>
+    <p class="hint" style="margin-top:12px">Sent by SMS to +234 803 ··· 9920 · <a href="#" style="color:var(--ac)">Resend in 0:24</a></p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Domain · what are you aiming for?</div>
+    <div class="field"><label class="cap">Target employer or sector</label>
+      <div class="fselect"><select class="f"><option>Banks — Graduate Trainee</option><option>Big 4 — Audit &amp; Advisory</option><option>Oil &amp; Gas — NNPC / Shell</option><option>General graduate trainee</option></select></div>
+    </div>
+    <p class="hint">Tailors your funnel map and drills — never a hard gate. You can practise anything, anytime.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Custom select — options with icons (target employer)</div>
+    <div class="csel">
+      <div class="control"><span class="ico" style="background:var(--ac-soft);color:var(--ac)">🏦</span><span class="v">Banks — Graduate Trainee</span><span class="chev">▴</span></div>
+      <div class="menu">
+        <div class="opt-i sel"><span class="ico" style="background:var(--ac-soft);color:var(--ac)">🏦</span><div><div>Banks — Graduate Trainee</div><div class="sub">Numerical-heavy · video stage common</div></div><span class="tick">✓</span></div>
+        <div class="opt-i"><span class="ico" style="background:var(--good-soft);color:var(--good)">📊</span><div><div>Big 4 — Audit &amp; Advisory</div><div class="sub">Critical reasoning · case write-up</div></div></div>
+        <div class="opt-i"><span class="ico" style="background:var(--warn-soft);color:var(--warn)">⛽</span><div><div>Oil &amp; Gas — NNPC / Shell</div><div class="sub">Diagrammatic · async video</div></div></div>
+        <div class="opt-i"><span class="ico" style="background:var(--paper-2);color:var(--ink-3)">🎓</span><div><div>General graduate trainee</div><div class="sub">Balanced across families</div></div></div>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:12px">Each target carries a tiny icon and a one-line read of what its real test emphasises — so the choice teaches, not just selects.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Multi-select — pick the families to drill (tokens + checkable menu)</div>
+    <div class="csel ms">
+      <div class="control">
+        <span class="token">Numerical <span class="x">×</span></span>
+        <span class="token">Verbal <span class="x">×</span></span>
+        <span class="token">Critical reasoning <span class="x">×</span></span>
+        <span style="color:var(--ink-4);font-size:13px;padding:4px 2px">+ add more…</span>
+      </div>
+      <div class="menu">
+        <div class="opt-c on"><span class="box">✓</span> Numerical</div>
+        <div class="opt-c on"><span class="box">✓</span> Verbal</div>
+        <div class="opt-c"><span class="box"></span> Diagrammatic</div>
+        <div class="opt-c"><span class="box"></span> Abstract reasoning</div>
+        <div class="opt-c on"><span class="box">✓</span> Critical reasoning</div>
+        <div class="opt-c"><span class="box"></span> Logical</div>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:12px">Chosen families show as removable tokens; the menu stays checkable for many-at-once. Same aubergine logic as the answer bubbles — selection is a tick, never a heavy fill.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Generic — text · error · textarea</div>
+    <div class="field"><label class="cap">What should we call you?</label><input class="f" value="Halima" /></div>
+    <div class="field"><label class="cap">Phone number</label><input class="f f-mono err" value="0803 412" /><div class="hint" style="color:var(--crit)">That doesn't look like a complete Nigerian number.</div></div>
+    <div class="field"><label class="cap">Your draft answer</label><textarea class="f f-area" placeholder="Start writing…">I want this graduate role because</textarea></div>
+  </div>
+</div>
+</body>
+</html>

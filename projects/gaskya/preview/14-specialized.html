@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Specialized inputs</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .scene { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; max-width: 540px; }
+  .scene .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+
+  /* camera/mic check */
+  .booth { border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--hair); }
+  .booth .view { aspect-ratio: 16/10; background: linear-gradient(160deg, #2a2330, #3a2f3e); position: relative; display: flex; align-items: center; justify-content: center; }
+  .booth .silh { width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 2px dashed rgba(255,255,255,0.4); }
+  .booth .guide { position: absolute; left: 14px; bottom: 14px; right: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .gtag { font-family: var(--sans); font-size: 11px; font-weight: 600; color: #fff; background: rgba(0,0,0,0.45); border-radius: 999px; padding: 5px 10px; backdrop-filter: blur(4px); }
+  .gtag.ok { background: rgba(78,107,79,0.85); }
+  .gtag.fix { background: rgba(154,102,18,0.9); }
+  .levels { display: flex; align-items: flex-end; gap: 3px; height: 24px; }
+  .levels i { width: 4px; background: var(--ac); border-radius: 2px; }
+
+  /* recorder */
+  .rec { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: var(--r-card); background: var(--paper-2); }
+  .rec .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--crit); animation: blink 1.2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: 0.3; } }
+  .rec .wave { flex: 1; display: flex; align-items: center; gap: 2px; height: 30px; }
+  .rec .wave i { width: 3px; background: var(--ac-mid); border-radius: 2px; }
+
+  /* upload state */
+  .upl { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px dashed var(--ac-edge); border-radius: var(--r-card); background: var(--ac-soft); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">14</span><span class="ttl">Specialized inputs</span><span class="meta">Primitives · the video booth &amp; the writing surface</span></div>
+
+  <div class="scene">
+    <div class="sh">The 10-second camera &amp; mic check — coach the setup before judging it</div>
+    <div class="booth">
+      <div class="view">
+        <div class="silh"></div>
+        <div class="guide">
+          <span class="gtag ok">✓ Mic clear</span>
+          <span class="gtag ok">✓ Centred</span>
+          <span class="gtag fix">Face a window — it's a little dark</span>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <div class="levels"><i style="height:8px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:9px"></i></div>
+      <button class="b b1 b-sm">Looks good — start</button>
+    </div>
+    <p class="note-i" style="margin-top:14px">Guidance is always a <em>fixable instruction</em> (“face a window”), never a judgement a cheap camera in a dim room can't fairly make. We coach the room, then the answer.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Recording — one shot, audio &amp; video as separate streams</div>
+    <div class="rec">
+      <span class="dot"></span>
+      <div class="wave"><i style="height:6px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:8px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:10px"></i><i style="height:20px"></i><i style="height:6px"></i></div>
+      <span class="clock urgent"><span class="ring"></span><span class="t">0:42</span><span class="lab">left</span></span>
+    </div>
+    <p class="note-i" style="margin-top:14px">Captured in-browser. The video goes to storage to re-watch; only the audio and a handful of frames are ever processed — so the bill stays small and the bad network never costs the whole session.</p>
+  </div>
+
+  <div class="scene">
+    <div class="sh">Resilient upload — survives a dropped connection</div>
+    <div class="upl">
+      <div style="flex:1">
+        <div class="row" style="justify-content:space-between;margin-bottom:8px"><span style="font-weight:600;font-size:13px">Uploading your answer</span><span class="mono" style="font-size:12px;color:var(--ink-3)">3.2 / 4.6 MB</span></div>
+        <div class="track"><i style="width:70%"></i></div>
+        <div class="hint" style="margin-top:8px">Chunked &amp; resumable — if your line drops, we pick up where we left off. Audio's already safe, so you'll get full coaching either way.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="sh">The writing surface — drafting a “why this firm” answer</div>
+    <div class="field"><label class="cap">Your draft <span class="muted" style="font-weight:400">· 142 words · 6 min left</span></label>
+      <textarea class="f f-area" style="min-height:140px">I want to join the graduate scheme because the firm's work in agricultural finance speaks directly to</textarea>
+    </div>
+    <div class="row" style="justify-content:space-between"><span class="pill pill-good"><span class="dot"></span>Saving as you type</span><button class="b b3 b-sm">Check originality</button></div>
+  </div>
+</div>
+</body>
+</html>

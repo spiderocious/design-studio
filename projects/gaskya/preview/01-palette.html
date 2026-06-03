@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Palette</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .sw { border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; background: var(--sheet); }
+  .sw .chip { display: block; height: 78px; border-radius: 0; padding: 0; }
+  .sw .body { padding: 11px 13px; }
+  .sw .nm { font-family: var(--sans); font-size: 12.5px; font-weight: 600; }
+  .sw .hx { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .frontis { background: var(--ac); color: #fff; border-radius: var(--r-lg); padding: 40px 36px; margin-bottom: 40px; }
+  .frontis .big { font-family: var(--serif); font-weight: 600; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; max-width: 16ch; }
+  .frontis .sub { font-family: var(--serif); font-style: italic; font-size: 16px; opacity: 0.85; margin-top: 14px; max-width: 52ch; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">01</span><span class="ttl">Palette</span><span class="meta">Foundation · the colours</span></div>
+
+  <div class="frontis">
+    <div class="big">Truth is one colour. We chose it carefully.</div>
+    <div class="sub">Aubergine — deep, earned, scholarly. Not the blue or green every Nigerian test-prep tool reaches for. It means: this was measured fairly, and it's yours.</div>
+  </div>
+
+  <div class="break"><span class="lbl">Accent — the one colour that does work</span></div>
+  <div class="swatches">
+    <div class="sw"><span class="chip" style="background:var(--ac)"></span><div class="body"><div class="nm">Aubergine</div><div class="hx">#5A2A4D · primary</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ac-deep)"></span><div class="body"><div class="nm">Aubergine deep</div><div class="hx">#421E39 · hover / key edge</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ac-mid)"></span><div class="body"><div class="nm">Aubergine mid</div><div class="hx">#8A4F7C · 2nd meter tone</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ac-soft)"></span><div class="body"><div class="nm">Aubergine soft</div><div class="hx">#F3EBF1 · tinted fill</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ac-edge)"></span><div class="body"><div class="nm">Aubergine edge</div><div class="hx">#DFCBDA · tinted border</div></div></div>
+  </div>
+
+  <div class="break"><span class="lbl">Paper & ink — warm, no pure black</span></div>
+  <div class="swatches">
+    <div class="sw"><span class="chip" style="background:var(--paper)"></span><div class="body"><div class="nm">Paper</div><div class="hx">#F6F1EC · canvas</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--paper-2)"></span><div class="body"><div class="nm">Paper 2</div><div class="hx">#EFE8E0 · track</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--sheet);border-bottom:1px solid var(--hair)"></span><div class="body"><div class="nm">Sheet</div><div class="hx">#FFFFFF · cards</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ink)"></span><div class="body"><div class="nm">Ink</div><div class="hx">#2C2620</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ink-2)"></span><div class="body"><div class="nm">Ink 2</div><div class="hx">#4A4338 · body</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ink-3)"></span><div class="body"><div class="nm">Ink 3</div><div class="hx">#7C7264 · secondary</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--ink-4)"></span><div class="body"><div class="nm">Ink 4</div><div class="hx">#A89E90 · placeholder</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--hair)"></span><div class="body"><div class="nm">Hair</div><div class="hx">#E3DACF · hairline</div></div></div>
+  </div>
+
+  <div class="break"><span class="lbl">Reserved states — crimson never decorates</span></div>
+  <div class="swatches">
+    <div class="sw"><span class="chip" style="background:var(--crit)"></span><div class="body"><div class="nm">Crimson</div><div class="hx">#A1281E · clock out / irreversible</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--warn)"></span><div class="body"><div class="nm">Amber</div><div class="hx">#9A6612 · everyday warn</div></div></div>
+    <div class="sw"><span class="chip" style="background:var(--good)"></span><div class="body"><div class="nm">Sage</div><div class="hx">#4E6B4F · saved / on-track</div></div></div>
+  </div>
+
+  <p class="note-i" style="margin-top:28px">Crimson is the only red, and it is reserved: the live clock running out, and a genuinely irreversible action. Everyday warnings use the calm amber; “you got it / on track” uses sage, which never shouts. The aubergine carries everything interactive. One accent — the discipline is the point.</p>
+</div>
+</body>
+</html>

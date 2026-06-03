@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Skeletons & empty</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .sk { background: linear-gradient(90deg, var(--paper-2) 25%, var(--hair-2) 37%, var(--paper-2) 63%); background-size: 400% 100%; animation: shimmer 1.4s ease infinite; border-radius: 8px; }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+  @media (prefers-reduced-motion: reduce) { .sk { animation: none; } }
+  .empty { text-align: center; padding: 32px 18px; }
+  .empty .ic { width: 52px; height: 52px; border-radius: 50%; background: var(--ac-soft); border: 1px solid var(--ac-edge); display: grid; place-items: center; margin: 0 auto 16px; color: var(--ac); }
+  .empty .lead { margin-bottom: 8px; }
+  .empty p { font-size: 13px; color: var(--ink-3); margin: 0 auto 18px; max-width: 36ch; line-height: 1.5; }
+  .errbar { border-left: 3px solid var(--crit); background: var(--crit-soft); border-radius: 10px; padding: 16px 18px; }
+  .offline { border-left: 3px solid var(--warn); background: var(--warn-soft); border-radius: 10px; padding: 16px 18px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">25</span><span class="ttl">Skeletons &amp; empty</span><span class="meta">Data · the in-between, made kind</span></div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="sh">Loading — mirrors the result card</div>
+      <div class="sk" style="height:14px;width:40%;margin-bottom:14px"></div>
+      <div class="sk" style="height:46px;width:55%;margin-bottom:14px"></div>
+      <div class="sk" style="height:8px;width:100%;margin-bottom:10px"></div>
+      <div class="sk" style="height:12px;width:80%"></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Skeleton — a question card</div>
+      <div class="sk" style="height:11px;width:30%;margin-bottom:14px"></div>
+      <div class="sk" style="height:18px;width:85%;margin-bottom:8px"></div>
+      <div class="sk" style="height:18px;width:60%;margin-bottom:18px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+        <div class="sk" style="height:42px"></div><div class="sk" style="height:42px"></div><div class="sk" style="height:42px"></div><div class="sk" style="height:42px"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Skeleton — the video player</div>
+      <div class="sk" style="aspect-ratio:16/10;width:100%;border-radius:12px;margin-bottom:12px"></div>
+      <div class="sk" style="height:6px;width:100%;margin-bottom:12px"></div>
+      <div class="row" style="gap:8px"><div class="sk" style="height:14px;width:40px"></div><div class="sk" style="height:14px;width:40px"></div><div class="sk" style="height:14px;width:40px;margin-left:auto"></div></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Skeleton — a table</div>
+      <div class="sk" style="height:12px;width:100%;margin-bottom:12px"></div>
+      <div class="sk" style="height:16px;width:100%;margin-bottom:9px"></div>
+      <div class="sk" style="height:16px;width:100%;margin-bottom:9px"></div>
+      <div class="sk" style="height:16px;width:100%;margin-bottom:9px"></div>
+      <div class="sk" style="height:16px;width:80%"></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Skeleton — a chart</div>
+      <div class="sk" style="height:12px;width:40%;margin-bottom:16px"></div>
+      <div style="display:flex;align-items:flex-end;gap:12px;height:110px">
+        <div class="sk" style="flex:1;height:80%"></div><div class="sk" style="flex:1;height:55%"></div><div class="sk" style="flex:1;height:40%"></div><div class="sk" style="flex:1;height:65%"></div><div class="sk" style="flex:1;height:75%"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Empty — no practice yet</div>
+      <div class="empty">
+        <div class="ic">◆</div>
+        <div class="lead lead-sm">Your funnel is waiting.</div>
+        <p>Run a sample mock — ten questions, eight minutes, no signup. See where you stand in three minutes.</p>
+        <button class="b b1 b-sm">Start the sample</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Empty — no weaknesses yet (a good problem)</div>
+      <div class="empty">
+        <div class="ic">✓</div>
+        <div class="lead lead-sm">Nothing flagged to drill.</div>
+        <p>You're scoring evenly across every sub-skill. Try a full timed mock to find your real ceiling.</p>
+        <button class="b b3 b-sm">Take a full mock</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Error & offline — never a dead end</div>
+      <div class="errbar">
+        <div style="font-weight:600;font-size:13.5px;margin-bottom:4px">Video couldn't upload</div>
+        <p class="muted" style="font-size:12.5px;margin:0">But your audio made it through — so here's your full transcript coaching. We'll retry the video in the background.</p>
+      </div>
+      <div class="offline" style="margin-top:14px">
+        <div style="font-weight:600;font-size:13.5px;margin-bottom:4px">You're offline</div>
+        <p class="muted" style="font-size:12.5px;margin:0">Your mock is saved on this phone. Keep going — we'll sync your answers the moment you're back.</p>
+      </div>
+    </div>
+  </div>
+  <p class="note-i" style="margin-top:18px">The error triad is built for Halima's network, not the founder's fibre. The video failing is an <em>amber</em> inconvenience that still delivers 90% of the value, never a crimson catastrophe. Empty states speak in the coach's voice, not “No data found.”</p>
+</div>
+</body>
+</html>

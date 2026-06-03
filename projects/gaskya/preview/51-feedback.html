@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Toasts & banners</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .toast { display: flex; align-items: center; gap: 12px; background: var(--ink); color: var(--paper); border-radius: var(--r-input); padding: 13px 16px; max-width: 400px; margin-bottom: 12px; box-shadow: 0 10px 30px -14px rgba(44,38,32,0.5); }
+  .toast .ic { width: 8px; height: 8px; border-radius: 50%; background: var(--good); flex-shrink: 0; }
+  .toast.warn .ic { background: var(--warn); }
+  .toast a { color: #fff; font-weight: 600; text-decoration: underline; margin-left: auto; font-size: 13px; white-space: nowrap; }
+  .banner { display: flex; align-items: center; gap: 12px; border-radius: var(--r-input); padding: 14px 16px; margin-bottom: 12px; }
+  .banner.good { background: var(--good-soft); border-left: 3px solid var(--good); }
+  .banner.warn { background: var(--warn-soft); border-left: 3px solid var(--warn); }
+  .banner.ac { background: var(--ac-soft); border-left: 3px solid var(--ac); }
+  .banner .gap { flex: 1; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">41</span><span class="ttl">Toasts · banners · alerts</span><span class="meta">Overlays · the system speaking quietly</span></div>
+
+  <div class="panel">
+    <div class="sh">Toasts — brief, then gone</div>
+    <div class="toast"><span class="ic"></span><span style="font-size:13.5px">Answer saved — synced to your account</span></div>
+    <div class="toast warn"><span class="ic"></span><span style="font-size:13.5px">Connection dropped — saving locally</span><a href="#">Retry</a></div>
+    <div class="toast"><span class="ic"></span><span style="font-size:13.5px">Drill complete · 7/10</span><a href="#">Review</a></div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Undo strip — nothing lost by accident</div>
+    <div class="toast"><span class="ic"></span><span style="font-size:13.5px">Attempt deleted</span><a href="#">Undo</a></div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Page banners</div>
+    <div class="banner good"><span style="font-size:13.5px"><strong>You hit mock-ready on numerical.</strong> Grounded in your last three timed mocks.</span><span class="gap"></span><button class="b b1 b-sm">Try video next</button></div>
+    <div class="banner ac"><span style="font-size:13.5px"><strong>New questions added.</strong> Your number-series bank was topped up — no repeats.</span></div>
+    <div class="banner warn"><span style="font-size:13.5px"><strong>Your video upload is still retrying.</strong> Your transcript coaching is ready now, below.</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Partner landing banner — branding lives here, never in the practice</div>
+    <div class="banner ac"><span style="font-size:13.5px">In partnership with <strong>Bayero University Careers Office</strong> — free practice for the 2026 cohort.</span></div>
+    <p class="note-i" style="margin-top:12px">A partner's light branding appears only on the landing/referral banner. It never enters the test, the video booth, or the dashboard — and never as an ad. The student experience stays clean.</p>
+  </div>
+</div>
+</body>
+</html>

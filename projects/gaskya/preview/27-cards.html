@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Cards</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .lblmono { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 12px; }
+  /* Q3 ring */
+  .ringwrap { display: flex; align-items: center; gap: 16px; }
+  .ring { width: 76px; height: 76px; border-radius: 50%; background: conic-gradient(var(--ac) 0 70%, var(--paper-2) 70% 100%); display: grid; place-items: center; flex-shrink: 0; }
+  .ring .inner { width: 58px; height: 58px; border-radius: 50%; background: var(--sheet); display: grid; place-items: center; }
+  /* review row (Q2) */
+  .reviewline { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--hair); }
+  .reviewline .qn { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-3); width: 24px; }
+  .reviewline .why { font-size: 11px; color: var(--ink-3); margin-left: auto; text-align: right; max-width: 110px; line-height: 1.3; }
+  /* Q4 chip */
+  .statchip { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--ac-deep); background: var(--ac-soft); border: 1px solid var(--ac-edge); padding: 5px 12px; border-radius: 999px; }
+  .statchip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ac); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">27</span><span class="ttl">Cards</span><span class="meta">Data · the four voices, one family</span></div>
+  <p class="note-i" style="margin-bottom:28px">You said adopt them all — so each is a real surface, not a rival. Q1 &amp; Q4 carry the encouraging dashboard voice; Q2 is the answer-review screen (the teaching core); Q3 is the compact result tile that goes in lists.</p>
+
+  <div class="grid">
+
+    <!-- Q1 Open Letter -->
+    <div>
+      <div class="lblmono">Q1 · Open Letter — the calmest</div>
+      <div class="card-lg card pad-lg">
+        <div class="lead">You're <b>mock-ready</b> on numerical. The only thing between you and full marks is the clock — let's work on pace.</div>
+        <div class="row" style="margin-top:16px"><span class="track" style="flex:1"><i style="width:70%"></i></span><span class="mono" style="font-size:12px;color:var(--ink-3)">70%</span></div>
+        <div class="footscore" style="margin-top:12px">Latest: <b>7 / 10</b> · up 3 over four practices</div>
+      </div>
+    </div>
+
+    <!-- Q3 Soft Tile -->
+    <div>
+      <div class="lblmono">Q3 · Soft Tile — the compact result</div>
+      <div class="card-lg card pad-lg">
+        <div class="ringwrap">
+          <div class="ring"><div class="inner"><span class="figure figure-md" style="font-size:24px">7<span class="den" style="font-size:12px">/10</span></span></div></div>
+          <div><div class="serif" style="font-size:17px;font-weight:600">Data Interpretation</div><div class="muted" style="font-size:12px;margin-top:3px">Numerical · mock-ready · up 3</div></div>
+        </div>
+        <p class="note-i" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--hair)">Strong on percentages. You lost two to the clock, not the maths — let's drill timing.</p>
+      </div>
+    </div>
+
+    <!-- Q2 Marked Up -->
+    <div>
+      <div class="lblmono">Q2 · Marked Up — the answer review</div>
+      <div class="card-lg card pad-lg">
+        <div class="reviewline"><span class="qn">07</span><span class="bubbles"><span class="bub bub-lg">A</span><span class="bub bub-lg right">B</span><span class="bub bub-lg">C</span><span class="bub bub-lg">D</span></span><span class="why">you got it</span></div>
+        <div class="reviewline"><span class="qn">08</span><span class="bubbles"><span class="bub bub-lg">A</span><span class="bub bub-lg">B</span><span class="bub bub-lg was">C</span><span class="bub bub-lg right">D</span></span><span class="why">chose C · was D</span></div>
+        <div class="lead lead-sm" style="margin-top:16px">Two slipped under time, not skill — your <b>method</b> is sound.</div>
+      </div>
+    </div>
+
+    <!-- Q4 Two-up Coach -->
+    <div>
+      <div class="lblmono">Q4 · Two-up Coach — the mission voice</div>
+      <div class="card-lg card pad-lg">
+        <span class="statchip"><span class="dot"></span>Numerical · mock-ready</span>
+        <div class="lead" style="margin-top:14px">You'll sit the real Access Bank test having already practised it <b>ten times</b> — for free. The clock's your last hurdle.</div>
+        <div class="row" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--hair)"><button class="b b1 b-sm">Drill pace →</button><span class="footscore">next best step · <b>15 min</b></span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="break"><span class="lbl">The wider card family</span></div>
+  <div class="grid">
+
+    <!-- drill card -->
+    <div>
+      <div class="lblmono">Drill card</div>
+      <div class="card pad">
+        <div class="spread"><span class="tag">Numerical</span><span class="pill pill-warn" style="height:20px"><span class="dot"></span>weakest</span></div>
+        <div class="serif" style="font-size:18px;font-weight:600;margin:8px 0 4px">Number series</div>
+        <div class="muted" style="font-size:12.5px;margin-bottom:14px">12 fresh items · each with a worked method</div>
+        <button class="b b1 b-sm b-block">Drill this</button>
+      </div>
+    </div>
+
+    <!-- interview pack -->
+    <div>
+      <div class="lblmono">Interview pack card</div>
+      <div class="card pad">
+        <div class="spread"><span class="logo" style="width:34px;height:34px;border-radius:11px;background:var(--warn-soft);color:var(--warn);font-size:11px">SH</span><span class="pill" style="height:20px">6 prompts</span></div>
+        <div class="serif" style="font-size:18px;font-weight:600;margin:10px 0 4px">Shell-style competency</div>
+        <div class="muted" style="font-size:12.5px;margin-bottom:14px">Async video · 30s think · 60s answer</div>
+        <button class="b b3 b-sm b-block">Start practice</button>
+      </div>
+    </div>
+
+    <!-- written prompt -->
+    <div>
+      <div class="lblmono">Written prompt card</div>
+      <div class="card pad">
+        <span class="tag">Written · motivational</span>
+        <div class="serif" style="font-size:16px;font-weight:600;margin:8px 0 4px;line-height:1.3">“Why do you want this graduate role?”</div>
+        <div class="muted" style="font-size:12.5px;margin-bottom:14px">Timed or untimed · originality check included</div>
+        <button class="b b3 b-sm b-block">Draft an answer</button>
+      </div>
+    </div>
+
+    <!-- stat tile -->
+    <div>
+      <div class="lblmono">Stat tile</div>
+      <div class="card pad" style="text-align:left">
+        <div class="overline" style="margin-bottom:8px">Mocks taken</div>
+        <div class="figure figure-lg">12</div>
+        <div class="footscore" style="margin-top:6px"><span style="color:var(--good)">▲ 4</span> this week</div>
+      </div>
+    </div>
+
+    <!-- funnel-stage card -->
+    <div>
+      <div class="lblmono">Funnel-stage card</div>
+      <div class="card pad">
+        <div class="spread"><span class="mono" style="font-size:11px;color:var(--ink-4)">Stage 2</span><span class="pill pill-ac" style="height:20px"><span class="dot"></span>Improving</span></div>
+        <div class="serif" style="font-size:18px;font-weight:600;margin:8px 0 12px">Video interview</div>
+        <div class="track track-thin"><i style="width:45%"></i></div>
+        <div class="footscore" style="margin-top:10px">3 of 6 prompts practised</div>
+      </div>
+    </div>
+
+    <!-- history card -->
+    <div>
+      <div class="lblmono">History card (re-openable)</div>
+      <div class="card pad">
+        <div class="spread"><span class="tag">Yesterday</span><span class="mono" style="font-size:13px;font-weight:600">28/40</span></div>
+        <div class="serif" style="font-size:16px;font-weight:600;margin:8px 0 12px">Full numerical mock</div>
+        <div class="row" style="gap:8px"><button class="b b2 b-sm">Review</button><button class="b b3 b-sm">Retake</button></div>
+      </div>
+    </div>
+
+    <!-- partner card -->
+    <div>
+      <div class="lblmono">Partner landing card</div>
+      <div class="card pad" style="border-left:3px solid var(--ac)">
+        <span class="logo" style="width:34px;height:34px;border-radius:11px;background:var(--paper-2);color:var(--ink-3);font-size:11px">BUK</span>
+        <div class="serif" style="font-size:16px;font-weight:600;margin:10px 0 4px">Bayero University Careers Office</div>
+        <div class="muted" style="font-size:12.5px">In partnership · free for the 2026 cohort</div>
+      </div>
+    </div>
+
+    <!-- support-the-mission -->
+    <div>
+      <div class="lblmono">Support-the-mission card</div>
+      <div class="card pad" style="background:var(--ac);border-color:var(--ac-deep)">
+        <div class="lead lead-sm" style="color:#fff">Free for every student. Always.</div>
+        <p style="color:#E8D6E2;font-size:12.5px;line-height:1.5;margin:8px 0 14px">Sponsors and partners keep it that way — never the student.</p>
+        <button class="b b-sm" style="background:#fff;color:var(--ac);--edge:#C9BEB2">Sponsor a cohort</button>
+      </div>
+    </div>
+
+    <!-- tip card -->
+    <div>
+      <div class="lblmono">Coach tip card</div>
+      <div class="card pad" style="background:var(--ac-soft);border-color:var(--ac-edge)">
+        <span class="pill pill-ac" style="height:20px"><span class="dot"></span>Tip</span>
+        <p class="serif" style="font-style:italic;font-size:14px;color:var(--ac-deep);line-height:1.5;margin:10px 0 0">On bank tests, the number-series pattern is almost always one layer of differences down. Check the gaps first.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Progress</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  /* stepper */
+  .stepper { display: flex; align-items: center; }
+  .stp { display: flex; align-items: center; }
+  .stp .dot { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--hair); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-4); background: var(--sheet); }
+  .stp.done .dot { background: var(--ac); border-color: var(--ac); color: #fff; }
+  .stp.on .dot { border-color: var(--ac); color: var(--ac); }
+  .stp .line { width: 50px; height: 2px; background: var(--hair); }
+  .stp.done .line { background: var(--ac); }
+  .stp .cap { font-size: 11px; color: var(--ink-3); position: absolute; margin-top: 40px; white-space: nowrap; }
+  /* ring */
+  .ring { width: 96px; height: 96px; border-radius: 50%; background: conic-gradient(var(--ac) 0 70%, var(--paper-2) 70% 100%); display: grid; place-items: center; }
+  .ring .inner { width: 72px; height: 72px; border-radius: 50%; background: var(--sheet); display: grid; place-items: center; }
+  /* progress in a mock */
+  .mockbar { display: flex; align-items: center; gap: 12px; }
+  /* indeterminate */
+  .indet { height: 6px; background: var(--paper-2); border-radius: 999px; overflow: hidden; position: relative; }
+  .indet::after { content: ""; position: absolute; left: -40%; top: 0; bottom: 0; width: 40%; background: var(--ac); border-radius: 999px; animation: slide 1.3s ease-in-out infinite; }
+  @keyframes slide { 0% { left: -40%; } 100% { left: 100%; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">24</span><span class="ttl">Progress</span><span class="meta">Data · linear, ring, stepper, working</span></div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="sh">Inside a mock — Q&nbsp;17 of 40</div>
+      <div class="mockbar"><span class="track"><i style="width:42%"></i></span><span class="mono" style="font-size:12px;color:var(--ink-3);white-space:nowrap">17 / 40</span></div>
+      <div class="mockbar" style="margin-top:18px"><span class="clock"><span class="ring" style="width:9px;height:9px"></span><span class="t">08:24</span><span class="lab">left</span></span></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Readiness ring</div>
+      <div class="row" style="gap:16px"><div class="ring"><div class="inner"><span class="figure figure-md">7<span class="den" style="font-size:13px">/10</span></span></div></div><div class="lead lead-sm">Mock-ready</div></div>
+    </div>
+
+    <div class="panel" style="grid-column:1/-1;overflow:visible">
+      <div class="sh">The funnel stepper</div>
+      <div class="stepper" style="position:relative">
+        <div class="stp done"><span class="dot">✓</span><span class="cap">Sample</span><span class="line"></span></div>
+        <div class="stp done"><span class="dot">✓</span><span class="cap">Account</span><span class="line"></span></div>
+        <div class="stp on"><span class="dot">3</span><span class="cap">Aptitude</span><span class="line"></span></div>
+        <div class="stp"><span class="dot">4</span><span class="cap">Video</span><span class="line"></span></div>
+        <div class="stp"><span class="dot">5</span><span class="cap">Written</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Generating fresh questions…</div>
+      <div class="indet"></div>
+      <p class="hint" style="margin-top:12px">Topping up your number-series bank so you never see the same item twice.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Processing your answer…</div>
+      <div class="indet"></div>
+      <p class="hint" style="margin-top:12px">Transcribing audio (the cheap, valuable part) — your video is already safe in storage.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">File upload — chunked &amp; resumable, with %</div>
+      <div class="spread" style="margin-bottom:8px"><span style="font-weight:600;font-size:13px">Uploading your answer</span><span class="mono" style="font-size:12px;color:var(--ink-3)">3.2 / 4.6 MB · 70%</span></div>
+      <div class="track"><i style="width:70%"></i></div>
+      <p class="hint" style="margin-top:10px">If the line drops, it resumes from the last chunk — only marked “submitted” once storage confirms.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Button — submitting (inline spinner)</div>
+      <div class="btns-col" style="gap:10px">
+        <button class="b b1" aria-disabled="true"><span class="spin"></span> Submitting…</button>
+        <button class="b b1">Submit mock</button>
+      </div>
+    </div>
+
+    <div class="panel" style="grid-column:1/-1">
+      <div class="sh">Multi-stage pipeline — what happens after a graded video</div>
+      <div class="pipeline">
+        <div class="pstage done"><span class="pdot">✓</span><div><div class="pn">Uploaded to storage</div><div class="ps">whole video, never processed whole</div></div></div>
+        <div class="pstage done"><span class="pdot">✓</span><div><div class="pn">Audio transcribed</div><div class="ps">the cheap 90%</div></div></div>
+        <div class="pstage now"><span class="pdot"><span class="spin spin-sm"></span></span><div><div class="pn">Analysing 8 frames</div><div class="ps">timed to transcript events</div></div></div>
+        <div class="pstage"><span class="pdot">4</span><div><div class="pn">Writing your coaching</div><div class="ps">substance + visual, correlated</div></div></div>
+      </div>
+      <p class="note-i" style="margin-top:14px">Each stage is bounded and cheap; if a later stage fails, the student still keeps everything completed before it. The pipeline degrades, never dead-ends.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Question loading (in a drill)</div>
+      <div class="indet"></div>
+      <p class="hint" style="margin-top:12px">Fetching a fresh generated item — never one you've seen.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Page load (full-screen splash)</div>
+      <div style="display:grid;place-items:center;padding:18px;gap:12px">
+        <div class="bigspin"></div>
+        <span class="serif" style="font-size:16px">Loading your funnel…</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Saving — continuous autosave pip</div>
+      <span class="pill pill-good"><span class="dot"></span>Saved · 2s ago</span>
+      <span class="pill" style="margin-left:8px"><span class="spin spin-sm" style="position:static"></span> Saving…</span>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Score count-up (settles on reveal)</div>
+      <span class="figure figure-lg">7<span class="den">/10</span></span>
+      <p class="hint" style="margin-top:8px">Counts up on the Settle curve when a result lands — the one celebratory motion.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; display: inline-block; animation: spin 0.7s linear infinite; }
+  .spin-sm { width: 11px; height: 11px; border-width: 2px; border-color: var(--ac-edge); border-top-color: var(--ac); }
+  .bigspin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--ac-soft); border-top-color: var(--ac); animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin, .spin-sm, .bigspin { animation: none; } }
+  .pipeline { display: flex; flex-direction: column; gap: 0; }
+  .pstage { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--hair-2); }
+  .pstage:last-child { border: 0; }
+  .pstage .pdot { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--hair); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; color: var(--ink-4); flex-shrink: 0; }
+  .pstage.done .pdot { background: var(--good); border-color: var(--good); color: #fff; }
+  .pstage.now .pdot { border-color: var(--ac); }
+  .pstage .pn { font-size: 14px; font-weight: 600; }
+  .pstage .ps { font-size: 12px; color: var(--ink-3); }
+  .pstage:not(.done):not(.now) { opacity: 0.5; }
+</style>
+</body>
+</html>

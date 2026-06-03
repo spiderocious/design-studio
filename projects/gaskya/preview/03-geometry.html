@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Geometry</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .radii { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-end; }
+  .rad { text-align: center; }
+  .rad .box { width: 90px; height: 60px; background: var(--ac-soft); border: 1px solid var(--ac-edge); }
+  .rad .nm { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 8px; }
+  .ruler { display: flex; gap: 0; align-items: flex-end; height: 60px; }
+  .ruler .u { width: 4px; background: var(--ac); margin-right: 4px; }
+  .density { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .dcard { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); overflow: hidden; }
+  .dcard .h { padding: 10px 14px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); border-bottom: 1px solid var(--hair); }
+  .dline { padding: 9px 14px; border-bottom: 1px solid var(--hair-2); font-size: 13px; }
+  .dline:last-child { border: 0; }
+  .dline.tight { padding: 5px 14px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">03</span><span class="ttl">Spacing &amp; geometry</span><span class="meta">Foundation · soft, this is a calm place</span></div>
+
+  <div class="break"><span class="lbl">The 4px ruler</span></div>
+  <div class="ruler">
+    <div class="u" style="height:16px"></div><div class="u" style="height:24px"></div><div class="u" style="height:32px"></div><div class="u" style="height:48px"></div><div class="u" style="height:64px"></div>
+  </div>
+  <p class="note-i" style="margin-top:12px">Everything snaps to a 4px grid. Gutters of 16 / 24 px; section breaks at 48–52 px. Generous, because the brief asked for <em>spacious everywhere</em> — air is how this product lowers the temperature.</p>
+
+  <div class="break"><span class="lbl">Radius lineup — rounded, never sharp</span></div>
+  <div class="radii">
+    <div class="rad"><div class="box" style="border-radius:var(--r-sm)"></div><div class="nm">10px · chips</div></div>
+    <div class="rad"><div class="box" style="border-radius:var(--r-input)"></div><div class="nm">14px · inputs</div></div>
+    <div class="rad"><div class="box" style="border-radius:var(--r-card)"></div><div class="nm">18px · cards</div></div>
+    <div class="rad"><div class="box" style="border-radius:var(--r-lg)"></div><div class="nm">22px · result tile</div></div>
+    <div class="rad"><div class="box" style="border-radius:999px;width:60px"></div><div class="nm">999px · pills & keys</div></div>
+  </div>
+
+  <div class="break"><span class="lbl">Edges — hairlines, not shadows</span></div>
+  <div class="row" style="gap:20px">
+    <div class="card pad" style="width:200px">Hairline card<br><span class="muted" style="font-size:12px">1px var(--hair)</span></div>
+    <div style="width:200px;padding:18px;border-radius:var(--r-card);background:var(--paper-2)">Recessed well<br><span class="muted" style="font-size:12px">paper-2, no border</span></div>
+  </div>
+  <p class="note-i" style="margin-top:12px">The only intentional shadow in the whole system is the physical key-press button — and even that is a hard coloured edge, not a blur. Everywhere else: a line, or a recess.</p>
+
+  <div class="break"><span class="lbl">Density — spacious is the default, but it can pack when it must</span></div>
+  <div class="density">
+    <div class="dcard">
+      <div class="h">Spacious — the everyday</div>
+      <div class="dline">Number series</div>
+      <div class="dline">Data interpretation</div>
+      <div class="dline">Ratio &amp; percentage</div>
+    </div>
+    <div class="dcard">
+      <div class="h">Packed — a long review list</div>
+      <div class="dline tight">07 · Ratio &amp; rate · correct</div>
+      <div class="dline tight">08 · Number series · review</div>
+      <div class="dline tight">09 · Data tables · correct</div>
+      <div class="dline tight">10 · Syllogism · correct</div>
+      <div class="dline tight">11 · Percentage · review</div>
+    </div>
+  </div>
+  <p class="note-i" style="margin-top:12px">Spacious wins everywhere a student is thinking under pressure (the test, the video booth, onboarding). Packed is allowed only on review lists and history, where scanning beats breathing room.</p>
+</div>
+</body>
+</html>

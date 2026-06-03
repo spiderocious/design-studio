@@ -1,0 +1,414 @@
+/* ============================================================
+   GASKYA — "the calm before the test" foundation
+   One stance, applied everywhere.
+
+   Frame:   a patient coach sitting beside you, not the examiner.
+   Surface: warm coach paper (#F6F1EC), white sheets, no pure black.
+   Colour:  deep aubergine as the ONE accent — "truth / merit /
+            earned." Crimson reserved for the live clock + genuine
+            alarm only. No fintech blue/green anywhere.
+   Type:    Fraunces (serif) thinks & coaches; Inter (sans) is the
+            chrome; JetBrains Mono is the record — IDs, scores,
+            timers, anything tabular.
+   Chrome:  soft rounded edges, hairlines not shadows. The ONE
+            tactile flourish is the physical key-press button.
+   Voice:   second-person, calm, fixable. Never judges what a cheap
+            camera in a dim room can't fairly measure.
+
+   Components are designed scenes, not catalog grids. The exam-grade
+   seriousness lives in the CONTENT (real bubbles, real timing, real
+   verdicts), never in cold chrome.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Paper & ink (warm, no pure black) ---------- */
+  --paper:    #F6F1EC;   /* warm coach paper — the canvas */
+  --paper-2:  #EFE8E0;   /* recessed surface / track */
+  --sheet:    #FFFFFF;   /* a clean sheet (cards, inputs) */
+  --ink:      #2C2620;   /* near-black, warm */
+  --ink-2:    #4A4338;   /* body */
+  --ink-3:    #7C7264;   /* secondary */
+  --ink-4:    #A89E90;   /* tertiary / placeholder */
+  --hair:     #E3DACF;   /* hairline */
+  --hair-2:   #EBE3D8;   /* even quieter divider */
+
+  /* ---------- Aubergine (primary, single accent) ----------
+     The ONE accent. Marks: interactive, verified, ready, mine. */
+  --ac:       #5A2A4D;   /* deep aubergine — primary action */
+  --ac-deep:  #421E39;   /* hover / the key's physical side */
+  --ac-press: #2B1326;   /* deepest, for darkest edges */
+  --ac-soft:  #F3EBF1;   /* tinted fill / ghost button bg */
+  --ac-edge:  #DFCBDA;   /* tinted border */
+  --ac-mid:   #8A4F7C;   /* lighter aubergine for meters/2nd tone */
+
+  /* ---------- Reserved states ----------
+     Crimson is the only red, and it is reserved: the live clock
+     running out, and genuine system alarm. Amber is everyday warn.
+     Sage is the calm "saved / good" that never shouts. */
+  --crit:      #A1281E;  /* reserved: clock out / irreversible */
+  --crit-soft: #FBEEEC;
+  --crit-edge: #E6C2BD;
+
+  --warn:      #9A6612;  /* everyday warning — calm amber */
+  --warn-soft: #FBF3E2;
+  --warn-edge: #E8D6A8;
+
+  --good:      #4E6B4F;  /* sage — saved / on-track, never shouty */
+  --good-soft: #ECF1EA;
+  --good-edge: #CBDAC6;
+
+  /* ---------- Type ---------- */
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+
+  /* Tracking — actually used */
+  --track-display:  -0.015em;
+  --track-h:        -0.01em;
+  --track-body:      0;
+  --track-label:     0.02em;
+  --track-overline:  0.16em;
+
+  /* ---------- Geometry — soft, this is a calm place ---------- */
+  --r-bub:   999px;      /* bubbles, pills, the buttons */
+  --r-input: 14px;       /* inputs */
+  --r-card:  18px;       /* the standard soft card */
+  --r-lg:    22px;       /* the big result tile */
+  --r-sm:    10px;       /* small chips / tight things */
+
+  --gutter:  24px;
+
+  /* the physical key-press depth (locked, user-set) */
+  --lift:    3px;
+}
+
+/* ----- Reset ----- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: var(--track-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern", "calt";
+}
+
+/* ----- Type primitives — used inline, no class soup ----- */
+.serif    { font-family: var(--serif); font-weight: 500; letter-spacing: var(--track-display); }
+.sans     { font-family: var(--sans); }
+.mono     { font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1; letter-spacing: 0; }
+.tabular  { font-variant-numeric: tabular-nums; }
+.italic   { font-style: italic; }
+.overline {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--track-overline);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ----- Page scaffolding (specimen pages) ----- */
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 56px 96px;
+}
+
+/* The specimen stamp/header — names the page, no spec annotations */
+.stamp {
+  display: flex; align-items: baseline; gap: 16px;
+  padding-bottom: 16px; margin-bottom: 36px;
+  border-bottom: 1px solid var(--ink);
+}
+.stamp .num {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  white-space: nowrap;
+}
+.stamp .ttl {
+  font-family: var(--serif); font-size: 30px; font-weight: 600;
+  letter-spacing: var(--track-display); flex: 1; line-height: 1.0;
+}
+.stamp .meta {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* Section break */
+.break { margin: 52px 0 22px; display: flex; align-items: center; gap: 14px; }
+.break::after { content: ""; height: 1px; background: var(--hair); flex: 1; }
+.break .lbl {
+  font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* A captioned annotation under a specimen (serif italic — the voice) */
+.note-i {
+  font-family: var(--serif); font-style: italic; font-size: 13.5px;
+  color: var(--ink-2); line-height: 1.5; max-width: 64ch;
+}
+
+/* ----- The soft card — our one card idiom ----- */
+.card {
+  background: var(--sheet);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-card);
+}
+.card-lg { border-radius: var(--r-lg); }
+.pad     { padding: 18px; }
+.pad-lg  { padding: 22px; }
+
+/* ============================================================
+   BUTTONS — the physical key press (LOCKED; user hand-tuned)
+   Each button sits raised on a solid coloured edge (--edge), its
+   physical side, --lift tall. On :active it travels down the full
+   --lift and the edge collapses to 0 — it lands like a real key.
+   Hover lifts it 1px higher. No blur — a hard edge, no-shadow stance.
+   ============================================================ */
+.b {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  height: 42px;
+  padding: 0 20px;
+  border-radius: var(--r-bub);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  line-height: 1;
+  position: relative;
+  --lift: 3px;
+  --edge: #C9BEB2;
+  transform: translateY(0);
+  box-shadow: 0 var(--lift) 0 0 var(--edge);
+  transition:
+    transform 90ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    box-shadow 90ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    background 130ms ease, border-color 130ms ease, color 130ms ease;
+}
+.b:hover  { transform: translateY(-1px); box-shadow: 0 calc(var(--lift) + 1px) 0 0 var(--edge); }
+.b:active { transform: translateY(var(--lift)); box-shadow: 0 0 0 0 var(--edge); }
+.b:focus-visible { outline: none; box-shadow: 0 var(--lift) 0 0 var(--edge), 0 0 0 4px var(--ac-soft); }
+
+.b1 { background: var(--ac); color: #fff; --edge: var(--ac-deep); }            /* primary */
+.b1:hover { background: var(--ac-deep); }
+.b2 { background: var(--sheet); border-color: #C9BEB2; color: var(--ink); --edge: #D8CCBE; }  /* secondary */
+.b2:hover { border-color: var(--ink); }
+.b3 { background: var(--ac-soft); color: var(--ac); --edge: var(--ac-edge); }  /* tinted/quiet */
+.b3:hover { background: #ECDFE9; }
+/* dashed Skip — also raised, on a soft edge, lower lift */
+.bskip { background: transparent; color: var(--ink-3); border: 1.5px dashed #C9BEB2; --edge: #E0D5C8; --lift: 2px; }
+.bskip:hover { color: var(--ink); border-color: var(--ink-3); }
+/* destructive — crimson, ghost by default (red is reserved) */
+.bdanger { background: transparent; color: var(--crit); border: 1px solid var(--crit-edge); --edge: #E0CFC0; }
+.bdanger:hover { background: var(--crit-soft); border-color: var(--crit); }
+
+.b-sm { height: 36px; padding: 0 16px; font-size: 13px; }
+.b-lg { height: 50px; padding: 0 26px; font-size: 15px; --lift: 4px; }
+.b-block { width: 100%; justify-content: center; }
+.b:disabled, .b[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+.btns { display: flex; gap: 13px; align-items: flex-start; flex-wrap: wrap; }
+.btns-col { display: flex; flex-direction: column; gap: 13px; align-items: flex-start; }
+
+@media (prefers-reduced-motion: reduce) {
+  .b { transition: background 130ms ease, border-color 130ms ease, color 130ms ease; }
+  .b:hover, .b:active { transform: translateY(0); box-shadow: 0 var(--lift) 0 0 var(--edge); }
+}
+
+/* ============================================================
+   INPUTS — rounded, calm, white sheet on warm paper
+   ============================================================ */
+.field { margin-bottom: 14px; }
+.field .cap {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  letter-spacing: var(--track-label); color: var(--ink-3);
+  display: block; margin-bottom: 6px;
+}
+.field .hint { font-family: var(--sans); font-size: 11.5px; color: var(--ink-4); margin-top: 6px; }
+.f {
+  font-family: var(--sans);
+  font-size: 15px;
+  height: 46px;
+  width: 100%;
+  padding: 0 16px;
+  background: var(--sheet);
+  border: 1px solid var(--hair);
+  border-radius: var(--r-input);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 130ms ease, box-shadow 130ms ease;
+}
+.f::placeholder { color: var(--ink-4); }
+.f:focus { border-color: var(--ac); box-shadow: 0 0 0 4px var(--ac-soft); }
+.f-mono { font-family: var(--mono); font-feature-settings: "tnum" 1; letter-spacing: 0.02em; }
+.f-area { height: auto; min-height: 120px; padding: 12px 16px; line-height: 1.6; resize: vertical; }
+.f.err { border-color: var(--crit); }
+.f.err:focus { box-shadow: 0 0 0 4px var(--crit-soft); }
+.fselect { position: relative; }
+.fselect::after {
+  content: "▾"; position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%); color: var(--ink-3); font-size: 11px; pointer-events: none;
+}
+select.f { -webkit-appearance: none; appearance: none; padding-right: 32px; cursor: pointer; }
+
+/* ============================================================
+   BUBBLE ANSWER-MARKS (W2 graft) — the test made tactile & fair
+   A/B/C/D circles. on = chosen. right = the key. was = your wrong pick.
+   ============================================================ */
+.bubbles { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.bub {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid #CDBFB1;
+  font-family: var(--mono); font-size: 12.5px; font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-3); background: var(--sheet);
+  transition: all 120ms ease; cursor: pointer; user-select: none;
+}
+.bub:hover { border-color: var(--ac); color: var(--ac); }
+.bub.on    { background: var(--ac); color: #fff; border-color: var(--ac); }
+.bub.right { border-color: var(--good); color: var(--good); box-shadow: 0 0 0 3px var(--good-soft); }
+.bub.was   { border-color: var(--crit); color: var(--crit); text-decoration: line-through; }
+.bub-lg    { width: 40px; height: 40px; font-size: 14px; }
+
+/* ============================================================
+   PILLS / CHIPS / STATUS — hairline, text-coloured, never loud
+   ============================================================ */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 24px; padding: 0 11px; border-radius: var(--r-bub);
+  border: 1px solid var(--hair); background: var(--sheet);
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  color: var(--ink-2); letter-spacing: var(--track-label); white-space: nowrap;
+}
+.pill .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill-ac   { color: var(--ac); border-color: var(--ac-edge); background: var(--ac-soft); }
+.pill-good { color: var(--good); border-color: var(--good-edge); background: var(--good-soft); }
+.pill-warn { color: var(--warn); border-color: var(--warn-edge); background: var(--warn-soft); }
+.pill-crit { color: var(--crit); border-color: var(--crit-edge); background: var(--crit-soft); }
+.pill-ink  { color: #fff; border-color: var(--ink); background: var(--ink); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--sans); font-size: 12px; color: var(--ink-2);
+  padding: 3px 10px; border-radius: var(--r-bub); background: var(--paper-2);
+}
+
+/* tag for question sub-skill / family (mono, quiet) */
+.tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-4);
+}
+
+/* ============================================================
+   THE COACH VOICE — Fraunces, leading; the product's signature
+   ============================================================ */
+.lead {
+  font-family: var(--serif); font-weight: 500;
+  font-size: 21px; line-height: 1.3; letter-spacing: -0.005em; color: var(--ink);
+}
+.lead b { color: var(--ac); font-weight: 600; }
+.lead-sm { font-size: 17px; }
+.lead-lg { font-size: 26px; }
+/* the quiet score footnote beneath the coach voice */
+.footscore { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.footscore b { color: var(--ink); font-weight: 600; }
+
+/* ============================================================
+   NUMBERS — when a number must lead, it's Fraunces (warm), not
+   cold mono. Mono is for the RECORD (timers, IDs, raw tabular).
+   ============================================================ */
+.figure {
+  font-family: var(--serif); font-weight: 600;
+  color: var(--ac); letter-spacing: -0.03em; line-height: 0.85;
+  font-feature-settings: "tnum" 1;
+}
+.figure .den { font-family: var(--mono); font-size: 0.4em; color: var(--ink-3); font-weight: 500; }
+.figure-xl { font-size: 64px; }
+.figure-lg { font-size: 48px; }
+.figure-md { font-size: 34px; }
+
+/* the readout — raw record numbers, mono, tabular */
+.read {
+  font-family: var(--mono); font-feature-settings: "tnum" 1, "lnum" 1;
+  font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+}
+.read-lg { font-size: 30px; }
+.read-md { font-size: 20px; }
+
+/* ============================================================
+   THE LIVE TEST CLOCK — the one place crimson is allowed
+   ============================================================ */
+.clock {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1px solid var(--hair); border-radius: var(--r-bub);
+  background: var(--sheet); padding: 8px 14px;
+}
+.clock .ring { width: 9px; height: 9px; border-radius: 50%; background: var(--ac); flex-shrink: 0; }
+.clock .t { font-family: var(--mono); font-weight: 600; font-size: 16px; letter-spacing: 0.02em; font-feature-settings: "tnum" 1; }
+.clock .lab { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.clock.urgent { border-color: var(--crit); background: var(--crit-soft); }
+.clock.urgent .ring { background: var(--crit); animation: clockpulse 1s ease-in-out infinite; }
+.clock.urgent .t { color: var(--crit); }
+@keyframes clockpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .clock.urgent .ring { animation: none; } }
+
+/* ============================================================
+   METERS & PROGRESS — soft tracks, aubergine fill
+   ============================================================ */
+.track { height: 8px; background: var(--paper-2); border-radius: var(--r-bub); overflow: hidden; }
+.track > i { display: block; height: 100%; background: var(--ac); border-radius: var(--r-bub); transition: width 400ms cubic-bezier(0.2,0.7,0.3,1); }
+.track-good > i { background: var(--good); }
+.track-thin { height: 5px; }
+
+/* progress ring (conic) — friendly, Fraunces number inside */
+.pring { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+.pring .inner { width: 58px; height: 58px; border-radius: 50%; background: var(--sheet); display: grid; place-items: center; }
+
+/* ============================================================
+   AVATARS — round, initials, sober warm tints (people as people)
+   ============================================================ */
+.av {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--ac-soft); color: var(--ac);
+  font-family: var(--sans); font-weight: 600; font-size: 13px;
+  flex-shrink: 0; user-select: none; border: 1px solid var(--ac-edge);
+}
+.av-sm { width: 28px; height: 28px; font-size: 10px; }
+.av-lg { width: 56px; height: 56px; font-size: 18px; }
+
+/* ============================================================
+   THE QUESTION ROW — "a question you looked at" (W4)
+   ============================================================ */
+.qrow { padding: 15px 4px; border-bottom: 1px solid var(--hair); }
+.qrow .qstem { font-family: var(--serif); font-weight: 500; font-size: 15px; line-height: 1.32; color: var(--ink); }
+.qrow .meta { font-size: 11.5px; color: var(--ink-3); margin-top: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.qrow .meta .ok { color: var(--good); font-weight: 600; }
+.qrow .meta .no { color: var(--crit); font-weight: 600; }
+
+/* ----- scaffolding ----- */
+.row   { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.col-f { display: flex; flex-direction: column; gap: 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.spread { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.muted { color: var(--ink-3); }
+
+/* ----- selection ----- */
+::selection { background: var(--ac-soft); color: var(--ac-deep); }
+
+/* ----- scrollbar ----- */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: var(--hair); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-4); }
+
+hr.hair { border: 0; border-top: 1px solid var(--hair); margin: 0; }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Iconography</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 18px; }
+  .icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px,1fr)); gap: 18px; }
+  .ic { text-align: center; }
+  .ic svg { width: 28px; height: 28px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ic .nm { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 10px; }
+  .sizes { display: flex; align-items: flex-end; gap: 22px; }
+  .sizes svg { stroke: var(--ac); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">43</span><span class="ttl">Iconography</span><span class="meta">Overlays · line glyphs, no emoji, ever</span></div>
+
+  <div class="panel">
+    <div class="sh">Sizes — 16 / 20 / 28 / 40</div>
+    <div class="sizes">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>
+      <svg width="28" height="28" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>
+      <svg width="40" height="40" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">The domain set — line, single-weight, hand-set to the grid</div>
+    <div class="icons">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="nm">timer</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div class="nm">mock</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="6"/><circle cx="9" cy="9" r="2"/></svg><div class="nm">answer</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="13" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2"/></svg><div class="nm">video</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h6M9 15h4"/></svg><div class="nm">written</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 18V9M10 18V5M16 18v-6M22 18V8"/></svg><div class="nm">trend</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4-8 4-8-4 8-4zM4 11l8 4 8-4M4 15l8 4 8-4"/></svg><div class="nm">funnel</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg><div class="nm">you</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 4 1 5.5L12 16l-5 2.3 1-5.5-4-4 5.5-.8z"/></svg><div class="nm">ready</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div class="nm">correct</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><div class="nm">private</div></div>
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg><div class="nm">add</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">The rule</div>
+    <p class="note-i">Line icons, single weight, drawn to the same 24-grid, stroked in ink (or aubergine when interactive). No filled icons except inside a filled button. <strong>No emoji as icons</strong> — this is a serious instrument that respects its user, even when it's being kind. The decorative ◆ used as a section glyph is the one ornamental mark, borrowed from the “generated/verified” idea of a cut, faceted thing.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Improvement over time</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 18px; }
+  /* trend line */
+  .trend { position: relative; height: 160px; }
+  .trend svg { width: 100%; height: 100%; overflow: visible; }
+  .sub { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .subrow { display: grid; grid-template-columns: 150px 1fr 60px; gap: 14px; align-items: center; }
+  .subrow .nm { font-size: 13.5px; }
+  .subrow .v { font-family: var(--mono); font-size: 13px; font-weight: 600; text-align: right; font-feature-settings: "tnum" 1; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">22</span><span class="ttl">Improvement over time</span><span class="meta">Data · proof that practice pays</span></div>
+
+  <div class="panel">
+    <div class="spread" style="margin-bottom:6px"><div class="sh" style="margin:0">Numerical · last 6 mocks</div><span class="pill pill-good"><span class="dot"></span>▲ 12 points</span></div>
+    <div class="trend">
+      <svg viewBox="0 0 600 160" preserveAspectRatio="none">
+        <line x1="0" y1="40" x2="600" y2="40" stroke="var(--hair-2)" stroke-width="1"/>
+        <line x1="0" y1="80" x2="600" y2="80" stroke="var(--hair-2)" stroke-width="1"/>
+        <line x1="0" y1="120" x2="600" y2="120" stroke="var(--hair-2)" stroke-width="1"/>
+        <polyline points="20,128 130,118 240,96 350,84 460,58 575,44" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="128" r="4" fill="var(--ac)"/><circle cx="130" cy="118" r="4" fill="var(--ac)"/><circle cx="240" cy="96" r="4" fill="var(--ac)"/><circle cx="350" cy="84" r="4" fill="var(--ac)"/><circle cx="460" cy="58" r="4" fill="var(--ac)"/>
+        <circle cx="575" cy="44" r="5.5" fill="var(--ac)" stroke="#fff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="spread" style="margin-top:10px"><span class="mono" style="font-size:11px;color:var(--ink-4)">4/10 → start</span><span class="mono" style="font-size:11px;color:var(--ink-4)">7/10 → now</span></div>
+    <div class="lead lead-sm" style="margin-top:18px">You started at <b>4/10</b> and you're at <b>7/10</b>. That climb is real, and it's all you.</div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Where the points are — and aren't</div>
+    <div class="sub">
+      <div class="subrow"><span class="nm">Percentages &amp; ratio</span><span class="track"><i style="width:90%"></i></span><span class="v">9/10</span></div>
+      <div class="subrow"><span class="nm">Data tables &amp; charts</span><span class="track"><i style="width:70%"></i></span><span class="v">7/10</span></div>
+      <div class="subrow"><span class="nm">Number series</span><span class="track"><i style="width:30%;background:var(--warn)"></i></span><span class="v" style="color:var(--warn)">3/10</span></div>
+      <div class="subrow"><span class="nm">Speed under time</span><span class="track"><i style="width:55%"></i></span><span class="v">5/10</span></div>
+    </div>
+    <p class="note-i" style="margin-top:18px">The weakest line is amber, not red — a place to grow, not a failure. The diagnostic turns straight into action: the lowest bar gets the “drill this next” nudge on the dashboard.</p>
+  </div>
+</div>
+</body>
+</html>

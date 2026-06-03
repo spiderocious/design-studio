@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Motion</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .curves { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .cv { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 18px; }
+  .cv .nm { font-family: var(--sans); font-weight: 600; font-size: 14px; }
+  .cv .fn { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin: 4px 0 12px; }
+  .cv .use { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+  .demo { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 26px; margin-top: 14px; }
+  .dot-run { width: 18px; height: 18px; border-radius: 50%; background: var(--ac); }
+  .key { display: inline-block; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">04</span><span class="ttl">Motion</span><span class="meta">Foundation · calm, with one mechanical exception</span></div>
+
+  <div class="break"><span class="lbl">Three named curves</span></div>
+  <div class="curves">
+    <div class="cv"><div class="nm">Settle</div><div class="fn">cubic-bezier(.2,.7,.3,1) · 300ms</div><div class="use">Cards arrive, sheets fade in, the readiness number counts up. The default — long and soft, never abrupt. Fades dominate over slides.</div></div>
+    <div class="cv"><div class="nm">Key</div><div class="fn">cubic-bezier(.2,.7,.3,1) · 90ms</div><div class="use">The one fast, mechanical curve — only the button press. Snappy with a hint of overshoot so it feels like a real key, not a fade.</div></div>
+    <div class="cv"><div class="nm">Tick</div><div class="fn">linear · per-second</div><div class="use">The live test clock. It does not animate; it <em>ticks</em>, one second at a time, and pulses crimson in the final 30 seconds.</div></div>
+  </div>
+
+  <div class="break"><span class="lbl">Live — press the key, watch it land</span></div>
+  <div class="demo">
+    <div class="btns">
+      <button class="b b1">Start when ready</button>
+      <button class="b b2">Look back</button>
+      <button class="b b3">Drill this</button>
+      <button class="b bskip">Skip for now</button>
+    </div>
+    <p class="note-i" style="margin-top:16px">Each button sits raised on its own coloured edge. Hover lifts it 1px toward your finger; click drops it the full 3px to land. This is the system's single tactile flourish — everything else stays calm.</p>
+  </div>
+
+  <div class="break"><span class="lbl">Live — the clock in its final seconds</span></div>
+  <div class="demo row" style="gap:16px">
+    <span class="clock"><span class="ring"></span><span class="t">08:24</span><span class="lab">left</span></span>
+    <span class="clock urgent"><span class="ring"></span><span class="t">00:19</span><span class="lab">left</span></span>
+    <span class="note-i">Steady aubergine dot while there's time; pulsing crimson when the clock is the thing that matters most.</span>
+  </div>
+
+  <div class="break"><span class="lbl">Reduced motion</span></div>
+  <p class="note-i">When the operating system asks for reduced motion, the key press becomes an instant colour change, the clock stops pulsing, and all fades collapse to immediate. Nothing essential is ever carried by motion alone — on a flaky mid-range phone, motion is a courtesy, never load-bearing.</p>
+</div>
+</body>
+</html>

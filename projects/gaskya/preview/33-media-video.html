@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Video player</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .player { border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; max-width: 460px; }
+  .player .view { aspect-ratio: 16/10; background: linear-gradient(165deg,#2a2330,#3c3040); position: relative; display:grid; place-items:center; }
+  .player .silh { width: 88px; height: 88px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+  .player .playbtn { position: absolute; width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.92); display: grid; place-items: center; color: var(--ac); font-size: 20px; }
+  .player .ts { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 12px; color:#fff; background: rgba(0,0,0,0.5); padding: 4px 9px; border-radius: 999px; }
+  .controls { padding: 12px 14px; }
+  .scrubtrack { height: 6px; background: var(--paper-2); border-radius: 999px; position: relative; margin-bottom: 12px; }
+  .scrubtrack > i { position: absolute; left: 0; top: 0; bottom: 0; width: 42%; background: var(--ac); border-radius: 999px; }
+  .scrubtrack .knob { position: absolute; left: 42%; top: -3px; width: 12px; height: 12px; border-radius: 50%; background: var(--sheet); border: 2px solid var(--ac); transform: translateX(-50%); }
+  .scrubtrack .flagmk { position: absolute; top: -2px; width: 3px; height: 10px; border-radius: 2px; background: var(--warn); }
+  .ctrlrow { display: flex; align-items: center; gap: 14px; }
+  .ctrlrow .ic { color: var(--ink-2); font-size: 16px; cursor: pointer; }
+  .speed { margin-left: auto; font-family: var(--mono); font-size: 12px; border: 1px solid var(--hair); border-radius: 999px; padding: 3px 9px; cursor: pointer; }
+  /* frame strip — the cost model made visible */
+  .frames { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+  .frame { width: 84px; flex-shrink: 0; border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; }
+  .frame .img { height: 58px; background: linear-gradient(165deg,#2a2330,#3c3040); }
+  .frame .t { font-family: var(--mono); font-size: 10px; text-align: center; padding: 4px 0; color: var(--ink-3); border-top: 1px solid var(--hair); }
+  .frame.tied { border-color: var(--ac); }
+  .frame.tied .t { color: var(--ac); background: var(--ac-soft); }
+  /* transcript */
+  .transcript { font-size: 14px; line-height: 1.9; }
+  .transcript .seg { cursor: pointer; padding: 1px 3px; border-radius: 4px; }
+  .transcript .seg:hover { background: var(--ac-soft); }
+  .transcript .filler { color: var(--crit); text-decoration: underline dotted; }
+  .transcript .now { background: var(--ac-soft); color: var(--ac-deep); font-weight: 500; }
+  .transcript .stamp { font-family: var(--mono); font-size: 11px; color: var(--ink-4); margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">33</span><span class="ttl">Video player</span><span class="meta">Data · re-watch your own answer</span></div>
+
+  <div class="grid2" style="align-items:start">
+    <div class="panel">
+      <div class="sh">The player — with anchored markers</div>
+      <div class="player">
+        <div class="view"><div class="silh"></div><div class="playbtn">▶</div><span class="ts">0:42 / 1:00</span></div>
+        <div class="controls">
+          <div class="scrubtrack"><i></i><span class="flagmk" style="left:42%"></span><span class="flagmk" style="left:70%"></span><span class="knob"></span></div>
+          <div class="ctrlrow"><span class="ic">▶</span><span class="ic">⟲ 10</span><span class="ic">10 ⟳</span><span class="speed">1.0×</span></div>
+        </div>
+      </div>
+      <p class="note-i" style="margin-top:14px">Stored whole in S3 as a re-watchable artifact — the video is never processed whole. The amber ticks are the moments the coach references.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Frame strip — the ~8 frames we actually analyse</div>
+      <div class="frames">
+        <div class="frame"><div class="img"></div><div class="t">0:00</div></div>
+        <div class="frame tied"><div class="img"></div><div class="t">0:08 ◆</div></div>
+        <div class="frame"><div class="img"></div><div class="t">0:18</div></div>
+        <div class="frame tied"><div class="img"></div><div class="t">0:42 ◆</div></div>
+        <div class="frame"><div class="img"></div><div class="t">0:52</div></div>
+        <div class="frame"><div class="img"></div><div class="t">1:00</div></div>
+      </div>
+      <p class="note-i" style="margin-top:14px">The cost model, visible: only a handful of frames go to the vision model, and they're <em>timed to transcript events</em> (◆ = key moment). Storage is pennies; whole-video inference is forbidden.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Transcript — tap a line to jump the video there</div>
+    <div class="transcript">
+      <span class="seg"><span class="stamp">0:00</span>So, <span class="filler">erm</span>, there was a time during my final-year project when our data got corrupted two days before the deadline.</span>
+      <span class="seg now"><span class="stamp">0:18</span>I had to decide quickly whether to restart or recover it, <span class="filler">like</span>, under real pressure.</span>
+      <span class="seg"><span class="stamp">0:42</span>I, <span class="filler">erm</span>, wrote a script to rebuild the dataset from our backups and tested it overnight…</span>
+      <span class="seg"><span class="stamp">0:58</span>and yeah, it worked out in the end.</span>
+    </div>
+    <p class="note-i" style="margin-top:14px">90% of the coaching value lives here — words, pace, fillers (underlined crimson), structure. The transcript is the cheap signal; the highlighted line is what's playing.</p>
+  </div>
+</div>
+</body>
+</html>

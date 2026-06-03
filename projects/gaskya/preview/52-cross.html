@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Cross-record patterns</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .simrow { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair-2); }
+  .simrow:last-child { border: 0; }
+  .simrow .src { flex: 1; font-size: 13px; }
+  .simrow .pct { font-family: var(--mono); font-size: 13px; font-weight: 600; }
+  .aiblock { border: 1px solid var(--ac-edge); background: var(--ac-soft); border-radius: var(--r-input); padding: 16px; }
+  .aiblock .h { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .cohort { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .cstat { text-align: center; padding: 16px; border: 1px solid var(--hair); border-radius: var(--r-input); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">42</span><span class="ttl">Cross-record patterns</span><span class="meta">Overlays · originality · partner · AI · privacy</span></div>
+
+  <div class="panel">
+    <div class="sh">Originality check — coaching, never accusation</div>
+    <div class="aiblock" style="border-color:var(--warn-edge);background:var(--warn-soft)">
+      <div class="h"><span class="pill pill-warn"><span class="dot"></span>Heads up</span></div>
+      <div class="lead lead-sm" style="margin-bottom:10px">This opening is near-identical to a widely-circulated template.</div>
+      <p style="font-size:13px;color:var(--ink-2);line-height:1.5;margin:0">Employers' tools will flag it — and auto-reject it. Here's how to make it yours: lead with the specific thing <em>you</em> did, not the line everyone uses.</p>
+    </div>
+    <div style="margin-top:16px">
+      <div class="simrow"><span class="src">“WhatsApp model answer” template</span><span class="track" style="width:120px"><i style="width:84%;background:var(--warn)"></i></span><span class="pct" style="color:var(--warn)">84%</span></div>
+      <div class="simrow"><span class="src">Common AI-generated phrasing</span><span class="track" style="width:120px"><i style="width:40%"></i></span><span class="pct">40%</span></div>
+      <div class="simrow"><span class="src">Recycled cover-letter opener</span><span class="track" style="width:120px"><i style="width:22%;background:var(--good)"></i></span><span class="pct" style="color:var(--good)">22%</span></div>
+    </div>
+    <p class="note-i" style="margin-top:14px">A prep feature that protects the student — it teaches them to submit work that's genuinely theirs and will pass the tools real employers run. Never a verdict, always a fix. Their draft is never stored or shared beyond giving this feedback.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">AI assist — suggestions only, never auto-actions, always grounded</div>
+    <div class="aiblock">
+      <div class="h"><span class="pill pill-ac"><span class="dot"></span>Coach suggests</span></div>
+      <p style="font-size:13.5px;color:var(--ink-2);line-height:1.5;margin:0 0 12px">Your two weakest sub-skills are <strong>number series</strong> and <strong>video timing</strong>. Drilling number series for 15 minutes is your highest-leverage move before the Access Bank date.</p>
+      <div class="row"><button class="b b1 b-sm">Drill number series</button><button class="bskip b b-sm">Not now</button></div>
+    </div>
+    <p class="note-i" style="margin-top:12px">The coach proposes; the student decides. Every recommendation is built from their own history, never an invented number — and it's always one tap to act or dismiss.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Partner cohort — aggregate &amp; anonymous, no PII ever</div>
+    <div class="cohort">
+      <div class="cstat"><div class="figure figure-md">412</div><div class="muted" style="font-size:11.5px;margin-top:6px">students practised</div></div>
+      <div class="cstat"><div class="figure figure-md">+18</div><div class="muted" style="font-size:11.5px;margin-top:6px">avg numerical points, 3 mocks</div></div>
+      <div class="cstat"><div class="figure figure-md">63%</div><div class="muted" style="font-size:11.5px;margin-top:6px">reached mock-ready</div></div>
+    </div>
+    <p class="note-i" style="margin-top:14px">What a partner ever sees: counts and averages, never a single student's name, score, or recording. Privacy isn't a setting here — it's the only thing the partner view is allowed to contain.</p>
+  </div>
+</div>
+</body>
+</html>

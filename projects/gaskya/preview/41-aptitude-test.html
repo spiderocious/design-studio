@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · The timed mock</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  /* full-bleed test chrome — the test takes over the screen */
+  .testbar { display: flex; align-items: center; gap: 16px; padding: 14px 22px; border-bottom: 1px solid var(--ink); background: var(--sheet); border-radius: var(--r-card) var(--r-card) 0 0; }
+  .testbar .gap { flex: 1; }
+  .testbar .brand { font-family: var(--serif); font-weight: 600; font-size: 16px; }
+  .testbar .brand .ng { color: var(--ac); }
+  .stagewrap { border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; background: var(--sheet); }
+  .qbody { padding: 36px 40px; max-width: 720px; margin: 0 auto; }
+  .qfig { border: 1px solid var(--hair); border-radius: var(--r-input); background: var(--paper); padding: 18px; margin: 18px 0; }
+  .qfig table { width: 100%; border-collapse: collapse; }
+  .qfig th, .qfig td { padding: 8px 12px; font-size: 13px; text-align: right; border-bottom: 1px solid var(--hair-2); font-family: var(--mono); }
+  .qfig th { font-family: var(--sans); color: var(--ink-3); font-weight: 600; text-align: right; }
+  .qfig th:first-child, .qfig td:first-child { text-align: left; font-family: var(--sans); }
+  .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .opt { display: flex; align-items: center; gap: 13px; padding: 14px 16px; border: 1px solid var(--hair); border-radius: var(--r-input); cursor: pointer; font-size: 15px; transition: all 120ms ease; }
+  .opt:hover { border-color: var(--ac-edge); background: var(--ac-soft); }
+  .opt.on { border-color: var(--ac); background: var(--ac-soft); }
+  .testfoot { display: flex; align-items: center; gap: 14px; padding: 16px 22px; border-top: 1px solid var(--hair); background: var(--paper); }
+  .dots { display: flex; gap: 5px; flex-wrap: wrap; max-width: 280px; }
+  .qd { width: 16px; height: 16px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--hair); font-size: 8px; }
+  .qd.done { background: var(--ac); border-color: var(--ac); }
+  .qd.cur { border-color: var(--ac); border-width: 2px; }
+  .qd.flag { background: var(--warn-soft); border-color: var(--warn); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">31</span><span class="ttl">The timed mock</span><span class="meta">Surface · it must feel like the real test</span></div>
+
+  <div class="stagewrap">
+    <div class="testbar">
+      <span class="brand">GasKya<span class="ng">.</span></span>
+      <span class="pill pill-ink">Access Bank style · Numerical</span>
+      <span class="gap"></span>
+      <span class="mono" style="font-size:13px;color:var(--ink-3)">Q 17 / 40</span>
+      <span class="clock"><span class="ring"></span><span class="t">08:24</span><span class="lab">left</span></span>
+    </div>
+
+    <div class="qbody">
+      <div class="spread" style="margin-bottom:6px"><span class="tag">Data interpretation</span><button class="bskip b b-sm">⚑ Report a problem</button></div>
+      <p class="serif" style="font-size:20px;line-height:1.4;margin:8px 0 0">The table shows quarterly revenue (₦m) for three branches. By what percentage did Kano's revenue grow from Q1 to Q4?</p>
+
+      <div class="qfig">
+        <table>
+          <thead><tr><th>Branch</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr></thead>
+          <tbody>
+            <tr><td>Lagos</td><td>120</td><td>132</td><td>140</td><td>155</td></tr>
+            <tr><td>Kano</td><td>80</td><td>92</td><td>96</td><td>100</td></tr>
+            <tr><td>Port Harcourt</td><td>64</td><td>70</td><td>75</td><td>78</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="opts">
+        <div class="opt"><span class="bub">A</span> 20%</div>
+        <div class="opt on"><span class="bub on">B</span> 25%</div>
+        <div class="opt"><span class="bub">C</span> 30%</div>
+        <div class="opt"><span class="bub">D</span> 12.5%</div>
+      </div>
+    </div>
+
+    <div class="testfoot">
+      <button class="b b2 b-sm">← Previous</button>
+      <div class="dots">
+        <span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd flag"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd done"></span><span class="qd cur"></span><span class="qd"></span><span class="qd"></span><span class="qd"></span>
+      </div>
+      <button class="b b1 b-sm" style="margin-left:auto">Next →</button>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card pad"><div class="overline" style="margin-bottom:8px">Saved continuously</div><p class="muted" style="font-size:13px;margin:0">If her phone dies or the line drops at Q17, she resumes at Q17 — with the clock state honoured. Nothing in a 40-question mock is ever lost to a flaky connection.</p></div>
+    <div class="card pad"><div class="overline" style="margin-bottom:8px">Pan &amp; zoom on figures</div><p class="muted" style="font-size:13px;margin:0">Tables and diagrams render legibly on a small phone, with pinch-zoom — because a blurry figure on a cracked screen is its own kind of unfairness.</p></div>
+  </div>
+
+  <p class="note-i" style="margin-top:18px">The test chrome takes over: a hard countdown that auto-submits, a real question grid (done / current / flagged), one-question focus. This is the one surface that is deliberately serious and instrument-like — the gravity lives in the <em>content and the clock</em>, while the warmth waits for the moment she finishes.</p>
+</div>
+</body>
+</html>

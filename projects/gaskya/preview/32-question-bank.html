@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Question bank & review</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 22px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  /* item card */
+  .item { border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; }
+  .item .top { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--paper); border-bottom: 1px solid var(--hair); }
+  .item .body { padding: 16px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--hair-2); border-radius: var(--r-input); overflow: hidden; margin-top: 16px; }
+  .mg { padding: 12px 14px; border-right: 1px solid var(--hair-2); }
+  .mg:last-child { border-right: 0; }
+  .mg .k { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); }
+  .mg .v { font-size: 14px; font-weight: 600; margin-top: 4px; }
+  /* validity checklist */
+  .check { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13.5px; }
+  .check .b { width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; flex-shrink: 0; font-size: 12px; }
+  .check .b.ok { background: var(--good); color: #fff; }
+  .check .b.no { background: var(--crit); color: #fff; }
+  /* queue */
+  .qrow { display: grid; grid-template-columns: 1fr auto auto auto; gap: 14px; align-items: center; padding: 13px 4px; border-bottom: 1px solid var(--hair-2); }
+  .qrow:last-child { border: 0; }
+  .qrow .stem { font-size: 13.5px; }
+  .qrow .sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .disp { font-family: var(--mono); font-size: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">32</span><span class="ttl">Question bank &amp; review</span><span class="meta">Data · the engine, the quality gate, the provenance</span></div>
+  <p class="note-i" style="margin-bottom:8px">Mostly invisible to students, but the system's spine: extract → classify → generate → validity-gate → serve. No item reaches a student without passing the gate. Source provenance is kept internally; generated items are what go live.</p>
+
+  <div class="panel">
+    <div class="sh">A live item — full record</div>
+    <div class="item">
+      <div class="top">
+        <span class="pill pill-ac"><span class="dot"></span>Generated · live</span>
+        <span class="rec" style="font-family:var(--mono);font-size:12px;color:var(--ink-3)">#NS-4471</span>
+        <span class="pill" style="margin-left:auto"><span class="dot" style="background:var(--good)"></span>Verified answer</span>
+      </div>
+      <div class="body">
+        <div class="serif" style="font-size:16px;margin-bottom:6px">Find the next term: 2, 6, 12, 20, 30, …</div>
+        <div class="muted" style="font-size:13px">Answer: <b style="color:var(--good)">42</b> · worked solution attached</div>
+        <div class="meta-grid">
+          <div class="mg"><div class="k">Family</div><div class="v">Numerical</div></div>
+          <div class="mg"><div class="k">Sub-skill</div><div class="v">Number series</div></div>
+          <div class="mg"><div class="k">Difficulty</div><div class="v">Medium</div></div>
+          <div class="mg"><div class="k">Style of</div><div class="v">Access Bank</div></div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <span class="tag">Provenance (internal):</span>
+          <span class="chip">seed: dragnet-2023-pack · p.14</span>
+          <span class="muted" style="font-size:11.5px">never served verbatim</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">The validity gate — auto-checked before going live</div>
+    <div class="check"><span class="b ok">✓</span> Exactly one defensible correct answer</div>
+    <div class="check"><span class="b ok">✓</span> All distractors plausible (no give-aways)</div>
+    <div class="check"><span class="b ok">✓</span> Maths reconciles (re-computed independently)</div>
+    <div class="check"><span class="b ok">✓</span> Worked, teaching-grade solution present</div>
+    <div class="check"><span class="b no">✕</span> <span style="color:var(--crit)">Figure required but not yet generated</span> <span class="muted" style="font-size:12px;margin-left:auto">→ fell back to reviewed seed, flagged</span></div>
+    <p class="note-i" style="margin-top:12px">Failures are discarded or sent to review — never silently shipped. A figure that can't be generated falls back to a flagged curated seed, explicitly, not silently.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Review queue — low-confidence extractions &amp; disputed items</div>
+    <div class="qrow">
+      <div><div class="stem">“Which is the odd one out: 3, 5, 7, 9, 11?”</div><div class="sub">Generated #NS-5120 · flagged: ambiguous key</div></div>
+      <span class="disp" style="color:var(--crit)">dispute 14%</span>
+      <button class="b b3 b-sm">Review</button>
+      <button class="bdanger b b-sm">Retire</button>
+    </div>
+    <div class="qrow">
+      <div><div class="stem">Garbled OCR — “the rat3 per ann…m is”</div><div class="sub">Extraction #EX-882 · low confidence 0.41</div></div>
+      <span class="disp muted">unseen</span>
+      <button class="b b3 b-sm">Fix</button>
+      <button class="bdanger b b-sm">Reject</button>
+    </div>
+    <div class="qrow">
+      <div><div class="stem">“Doctor : Hospital :: Teacher : ___”</div><div class="sub">Generated #WR-3301 · 2 students reported</div></div>
+      <span class="disp" style="color:var(--warn)">dispute 6%</span>
+      <button class="b b3 b-sm">Review</button>
+      <button class="b b2 b-sm">Keep</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Bank health — at a glance</div>
+    <div class="grid3">
+      <div class="card pad" style="border-color:var(--hair-2)"><div class="figure figure-md">18.4k</div><div class="muted" style="font-size:12px;margin-top:6px">live generated items</div></div>
+      <div class="card pad" style="border-color:var(--hair-2)"><div class="figure figure-md" style="color:var(--warn)">214</div><div class="muted" style="font-size:12px;margin-top:6px">in review queue</div></div>
+      <div class="card pad" style="border-color:var(--hair-2)"><div class="figure figure-md">99.2%</div><div class="muted" style="font-size:12px;margin-top:6px">passed validity gate</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

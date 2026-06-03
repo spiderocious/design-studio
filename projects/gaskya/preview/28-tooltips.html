@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Tooltips & popovers</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 26px; margin-bottom: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 20px; }
+  /* tooltip */
+  .tip { position: relative; display: inline-block; }
+  .tip .bubble { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); font-size: 12px; padding: 7px 11px; border-radius: 9px; white-space: nowrap; }
+  .tip .bubble::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--ink); }
+  /* popover */
+  .pop { width: 280px; background: var(--sheet); border: 1px solid var(--hair); border-radius: var(--r-card); box-shadow: 0 8px 28px -12px rgba(44,38,32,0.25); padding: 16px; }
+  /* hovercard */
+  .hc { width: 300px; background: var(--sheet); border: 1px solid var(--hair); border-radius: var(--r-card); box-shadow: 0 8px 28px -12px rgba(44,38,32,0.25); overflow: hidden; }
+  .hc .top { padding: 16px; display: flex; gap: 12px; align-items: center; }
+  .hc .body { padding: 0 16px 16px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">28</span><span class="ttl">Tooltips · popovers · hovercards</span><span class="meta">Data · the only place a soft shadow is allowed</span></div>
+
+  <div class="panel">
+    <div class="sh">Tooltip — a quiet word</div>
+    <div class="row" style="gap:40px;padding:30px 0">
+      <span class="tip"><button class="b b2 b-sm">Why “generated”?</button><span class="bubble">No leaked set helps you — every item is fresh</span></span>
+      <span class="tip"><span class="pill pill-good"><span class="dot"></span>STAR ✓</span><span class="bubble">Situation · Task · Action · Result — all four covered</span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Popover — what does “mock-ready” mean?</div>
+    <div class="pop">
+      <div class="lead lead-sm" style="margin-bottom:8px">Mock-ready</div>
+      <p style="font-size:13px;color:var(--ink-2);line-height:1.55;margin:0 0 12px">You've scored 70%+ on this family, under time, across your last three mocks. It's a grounded read on your real history — never a hollow “you're ready!”.</p>
+      <button class="b b3 b-sm b-block">See the runs behind it</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Hovercard — a sub-skill at a glance</div>
+    <div class="hc">
+      <div class="top">
+        <div class="ring" style="width:52px;height:52px;border-radius:50%;background:conic-gradient(var(--warn) 0 30%, var(--paper-2) 30% 100%);display:grid;place-items:center"><div style="width:38px;height:38px;border-radius:50%;background:var(--sheet);display:grid;place-items:center"><span class="mono" style="font-size:12px;font-weight:600;color:var(--warn)">3/10</span></div></div>
+        <div><div class="serif" style="font-size:16px;font-weight:600">Number series</div><div class="muted" style="font-size:12px">Numerical · your weakest line</div></div>
+      </div>
+      <div class="body">
+        <p style="font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:0 0 12px">You keep stopping one layer of differences too early. 12 fresh items waiting, each with a worked method.</p>
+        <button class="b b1 b-sm b-block">Drill this next</button>
+      </div>
+    </div>
+  </div>
+  <p class="note-i" style="margin-top:6px">Overlays are the one exception to the no-shadow rule — a shallow soft shadow lifts them off the page. Even here it stays restrained.</p>
+</div>
+</body>
+</html>

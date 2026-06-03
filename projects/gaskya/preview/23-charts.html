@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Charts</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 20px; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 16px; }
+  .bars { display: flex; align-items: flex-end; gap: 14px; height: 130px; }
+  .bars .bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bars .bar .col { width: 100%; background: var(--ac); border-radius: 6px 6px 0 0; }
+  .bars .bar .lab { font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+  /* funnel */
+  .funnel { display: flex; flex-direction: column; gap: 8px; }
+  .frow { display: flex; align-items: center; gap: 12px; }
+  .frow .bar { height: 34px; background: var(--ac); border-radius: 8px; display: flex; align-items: center; padding: 0 12px; color: #fff; font-size: 12px; font-weight: 600; }
+  .frow .l { width: 110px; font-size: 12.5px; }
+  /* donut */
+  .donut { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--ac) 0 70%, var(--paper-2) 70% 100%); display: grid; place-items: center; }
+  .donut .inner { width: 86px; height: 86px; border-radius: 50%; background: var(--sheet); display: grid; place-items: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">23</span><span class="ttl">Charts</span><span class="meta">Data · hairline by default, aubergine fills</span></div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="sh">Score by family</div>
+      <div class="bars">
+        <div class="bar"><div class="col" style="height:90%"></div><div class="lab">NUM</div></div>
+        <div class="bar"><div class="col" style="height:55%"></div><div class="lab">VRB</div></div>
+        <div class="bar"><div class="col" style="height:40%;background:var(--ac-mid)"></div><div class="lab">DIA</div></div>
+        <div class="bar"><div class="col" style="height:65%"></div><div class="lab">ABS</div></div>
+        <div class="bar"><div class="col" style="height:75%"></div><div class="lab">CRT</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Readiness — numerical</div>
+      <div class="row" style="gap:18px">
+        <div class="donut"><div class="inner"><span class="figure figure-md">70<span class="den" style="font-size:14px">%</span></span></div></div>
+        <div><div class="lead lead-sm">Almost there</div><p class="muted" style="font-size:12.5px;margin:6px 0 0">70%+ under time = mock-ready. You're at the doorstep.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" style="grid-column:1/-1">
+      <div class="sh">Your funnel — where you stand</div>
+      <div class="funnel">
+        <div class="frow"><span class="l">Aptitude</span><div class="bar" style="width:70%">In progress · 70%</div></div>
+        <div class="frow"><span class="l">Video interview</span><div class="bar" style="width:35%;background:var(--ac-mid)">Started · 35%</div></div>
+        <div class="frow"><span class="l">Written / case</span><div class="bar" style="width:8%;background:var(--paper-2);color:var(--ink-3)">Not started</div></div>
+      </div>
+      <p class="note-i" style="margin-top:16px">A funnel that shows progress, not pressure. Each stage carries where you are; none of it is locked — you can practise any stage, any time.</p>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Sparkline — inline trend</div>
+      <div class="row" style="gap:14px"><svg width="120" height="36" viewBox="0 0 120 36"><polyline points="2,30 22,26 42,28 62,18 82,20 102,8 118,5" fill="none" stroke="var(--ac)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="figure figure-md" style="font-size:24px">7<span class="den" style="font-size:12px">/10</span></span><span class="pill pill-good" style="margin-left:auto"><span class="dot"></span>▲ steady climb</span></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Area + line — time spent vs score</div>
+      <svg width="100%" height="120" viewBox="0 0 400 120" preserveAspectRatio="none" style="overflow:visible">
+        <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--ac)" stop-opacity="0.18"/><stop offset="1" stop-color="var(--ac)" stop-opacity="0"/></linearGradient></defs>
+        <path d="M5,100 L70,86 L150,70 L240,52 L330,40 L395,30 L395,115 L5,115 Z" fill="url(#ag)"/>
+        <polyline points="5,100 70,86 150,70 240,52 330,40 395,30" fill="none" stroke="var(--ac)" stroke-width="2.5"/>
+      </svg>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Stacked bar — answers per mock</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="row" style="gap:10px"><span class="mono" style="font-size:11px;color:var(--ink-3);width:46px">Mock 1</span><div style="flex:1;display:flex;height:18px;border-radius:6px;overflow:hidden"><span style="width:40%;background:var(--good)"></span><span style="width:35%;background:var(--crit)"></span><span style="width:25%;background:var(--paper-2)"></span></div></div>
+        <div class="row" style="gap:10px"><span class="mono" style="font-size:11px;color:var(--ink-3);width:46px">Mock 3</span><div style="flex:1;display:flex;height:18px;border-radius:6px;overflow:hidden"><span style="width:62%;background:var(--good)"></span><span style="width:23%;background:var(--crit)"></span><span style="width:15%;background:var(--paper-2)"></span></div></div>
+        <div class="row" style="gap:10px"><span class="mono" style="font-size:11px;color:var(--ink-3);width:46px">Mock 6</span><div style="flex:1;display:flex;height:18px;border-radius:6px;overflow:hidden"><span style="width:78%;background:var(--good)"></span><span style="width:12%;background:var(--crit)"></span><span style="width:10%;background:var(--paper-2)"></span></div></div>
+      </div>
+      <div class="row" style="gap:14px;margin-top:14px"><span class="pill pill-good" style="height:20px"><span class="dot"></span>correct</span><span class="pill pill-crit" style="height:20px"><span class="dot"></span>missed</span><span class="pill" style="height:20px"><span class="dot" style="background:var(--ink-4)"></span>blank</span></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Heatmap — practice by day &amp; family</div>
+      <div style="display:grid;grid-template-columns:auto repeat(7,1fr);gap:4px;align-items:center">
+        <span></span>
+        <span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">M</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">T</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">W</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">T</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">F</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">S</span><span class="mono" style="font-size:9px;color:var(--ink-4);text-align:center">S</span>
+        <span class="mono" style="font-size:10px;color:var(--ink-3)">Num</span>
+        <span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.9"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.5"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.25"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--paper-2)"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.7"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac)"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.4"></span>
+        <span class="mono" style="font-size:10px;color:var(--ink-3)">Vrb</span>
+        <span style="aspect-ratio:1;border-radius:5px;background:var(--paper-2)"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.4"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.6"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--paper-2)"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.3"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--paper-2)"></span><span style="aspect-ratio:1;border-radius:5px;background:var(--ac);opacity:0.5"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Bullet — score vs the mock-ready target</div>
+      <div style="position:relative;height:26px;background:var(--paper-2);border-radius:7px;overflow:hidden">
+        <span style="position:absolute;left:0;top:0;bottom:0;width:70%;background:var(--ac);border-radius:7px"></span>
+        <span style="position:absolute;left:70%;top:-4px;bottom:-4px;width:3px;background:var(--ink)" title="target"></span>
+      </div>
+      <div class="spread" style="margin-top:8px"><span class="mono" style="font-size:11px;color:var(--ink-3)">you · 7.0</span><span class="mono" style="font-size:11px;color:var(--ink)">target · 7.0 ✓</span></div>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Radar — your shape across families</div>
+      <svg width="160" height="150" viewBox="0 0 160 150" style="display:block;margin:0 auto">
+        <polygon points="80,15 140,55 120,130 40,130 20,55" fill="none" stroke="var(--hair)" stroke-width="1"/>
+        <polygon points="80,45 118,62 105,112 55,108 45,62" fill="var(--ac)" fill-opacity="0.18" stroke="var(--ac)" stroke-width="2"/>
+        <text x="80" y="10" font-size="9" fill="var(--ink-3)" text-anchor="middle" font-family="monospace">NUM</text>
+        <text x="148" y="56" font-size="9" fill="var(--ink-3)" text-anchor="middle" font-family="monospace">VRB</text>
+        <text x="126" y="144" font-size="9" fill="var(--ink-3)" text-anchor="middle" font-family="monospace">DIA</text>
+        <text x="34" y="144" font-size="9" fill="var(--ink-3)" text-anchor="middle" font-family="monospace">ABS</text>
+        <text x="12" y="56" font-size="9" fill="var(--ink-3)" text-anchor="middle" font-family="monospace">CRT</text>
+      </svg>
+    </div>
+
+    <div class="panel">
+      <div class="sh">Distribution — where you sit in the cohort</div>
+      <svg width="100%" height="90" viewBox="0 0 400 90" preserveAspectRatio="none">
+        <path d="M5,85 C80,85 90,30 200,30 C310,30 320,85 395,85 Z" fill="var(--ac-soft)" stroke="var(--ac-edge)" stroke-width="1"/>
+        <line x1="280" y1="12" x2="280" y2="85" stroke="var(--ac)" stroke-width="2" stroke-dasharray="3 3"/>
+      </svg>
+      <p class="hint" style="margin-top:8px">You're above the cohort median — but the marker is for encouragement, never ranking. (Cohort comparison is opt-in.)</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

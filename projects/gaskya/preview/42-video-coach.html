@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Video coaching</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+  .player { border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; background: var(--sheet); }
+  .player .view { aspect-ratio: 9/12; background: linear-gradient(165deg,#2a2330,#3c3040); position: relative; display:flex;align-items:center;justify-content:center; }
+  .player .silh { width: 96px; height: 96px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+  .player .ts { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 12px; color:#fff; background: rgba(0,0,0,0.5); padding: 4px 9px; border-radius: 999px; }
+  .scrub { padding: 12px 14px; }
+  .scrubtrack { height: 6px; background: var(--paper-2); border-radius: 999px; position: relative; }
+  .scrubtrack > i { position: absolute; left: 0; top: 0; bottom: 0; width: 42%; background: var(--ac); border-radius: 999px; }
+  .scrubtrack .mk { position: absolute; top: -3px; width: 12px; height: 12px; border-radius: 50%; background: var(--sheet); border: 2px solid var(--ac); transform: translateX(-50%); }
+  .scrubtrack .flagmk { position: absolute; top: -2px; width: 3px; height: 10px; border-radius: 2px; background: var(--warn); }
+
+  .report { display: flex; flex-direction: column; gap: 16px; }
+  .block { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 18px; }
+  .block .h { display:flex; align-items:center; gap:10px; margin-bottom: 14px; }
+  .block .h .t { font-family: var(--serif); font-weight: 600; font-size: 16px; }
+  .metric { display: grid; grid-template-columns: 130px 1fr auto; gap: 14px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--hair-2); }
+  .metric:last-child { border: 0; }
+  .metric .k { font-size: 13px; }
+  .metric .v { font-family: var(--mono); font-size: 13px; font-weight: 600; text-align: right; }
+  .anchor { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px; color: var(--ac); background: var(--ac-soft); padding: 2px 7px; border-radius: 6px; }
+  .visual { display:flex; gap:10px; }
+  .vcoach { flex:1; padding: 12px 14px; border-radius: var(--r-input); border: 1px solid var(--hair); }
+  .vcoach .lab { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-bottom: 5px; }
+  .vcoach .fix { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">32</span><span class="ttl">Video coaching</span><span class="meta">Surface · the headline — fair, concrete, cheap to run</span></div>
+
+  <div class="layout">
+
+    <!-- the player -->
+    <div>
+      <div class="player">
+        <div class="view"><div class="silh"></div><span class="ts">0:42 / 1:00</span></div>
+        <div class="scrub">
+          <div class="scrubtrack"><i></i><span class="mk" style="left:42%"></span><span class="flagmk" style="left:42%"></span><span class="flagmk" style="left:70%"></span></div>
+          <div class="row" style="margin-top:12px;justify-content:space-between">
+            <button class="b b2 b-sm">↻ Re-watch</button>
+            <button class="b b1 b-sm">Retake</button>
+          </div>
+        </div>
+      </div>
+      <p class="note-i" style="margin-top:14px">She re-watches her own answer with the feedback anchored to the timeline. The amber ticks mark the two moments the coach references — feedback you can <em>see</em> against the recording, not a disconnected report.</p>
+    </div>
+
+    <!-- the report -->
+    <div class="report">
+
+      <div class="block" style="background:var(--ac);color:#fff;border-color:var(--ac-deep)">
+        <div class="overline" style="color:#E8D6E2;margin-bottom:8px">“Tell us about a time you solved a problem under pressure”</div>
+        <div class="lead lead-sm" style="color:#fff">Your story was real and your structure held — you just ran out of road before the result. Land the ending and this is a strong answer.</div>
+      </div>
+
+      <div class="block">
+        <div class="h"><span class="pill pill-ac"><span class="dot"></span>From your words</span><span class="t" style="font-size:14px;font-weight:600">Substance — the heart of it</span></div>
+        <div class="metric"><span class="k">Answered the question</span><span class="muted" style="font-size:12px">Yes — stayed on a real example</span><span class="v" style="color:var(--good)">✓</span></div>
+        <div class="metric"><span class="k">STAR structure</span><span class="muted" style="font-size:12px">Situation ✓ Task ✓ Action ✓ — Result missing</span><span class="v" style="color:var(--warn)">3/4</span></div>
+        <div class="metric"><span class="k">Pace</span><span class="muted" style="font-size:12px">142 wpm — a touch quick near the end</span><span class="v">142</span></div>
+        <div class="metric"><span class="k">Filler words</span><span class="muted" style="font-size:12px">“erm” ×8, “like” ×3 <span class="anchor">↳ 0:42</span></span><span class="v" style="color:var(--warn)">11</span></div>
+        <div class="metric"><span class="k">Time used</span><span class="muted" style="font-size:12px">Finished with 0:18 unspent</span><span class="v">0:42</span></div>
+      </div>
+
+      <div class="block">
+        <div class="h"><span class="pill"><span class="dot" style="background:var(--ink-4)"></span>From a few frames</span><span class="t" style="font-size:14px;font-weight:600">Setup — only what's fixable</span></div>
+        <div class="visual">
+          <div class="vcoach"><div class="lab">Eye contact <span class="anchor">↳ 0:42</span></div><div class="fix">You looked down for the second half — try glancing at the lens, not your notes.</div></div>
+          <div class="vcoach"><div class="lab">Lighting</div><div class="fix">A little dark — facing a window next time will lift it.</div></div>
+        </div>
+        <p class="muted" style="font-size:11.5px;margin:12px 0 0">We only ever read framing, eye line, and lighting — never “confidence” or “warmth.” A cheap camera in a dim room can't judge those fairly, so we don't.</p>
+      </div>
+
+      <div class="block">
+        <div class="spread"><div><div class="overline" style="margin-bottom:6px">Across your attempts</div><div class="lead lead-sm">Fillers down from 18 → 11. Pace steadier. Now: nail the <b>result</b>.</div></div></div>
+        <div class="row" style="margin-top:16px"><button class="b b1 b-sm">Retake this prompt</button><button class="b b3 b-sm">Compare with last attempt</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="note-i" style="margin-top:20px">The crown jewel, and the cost model made visible: 90% of the coaching comes from the cheap transcript; the visual layer is a handful of frames, timed to what she said, and phrased only as fixable instructions. Two reads, one shared timeline — it lands as a single patient coach, not two cheap tricks. The header speaks first, in Fraunces, because encouragement comes before critique.</p>
+</div>
+</body>
+</html>

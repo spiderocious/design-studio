@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Modals</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+  .lblmono { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 12px; }
+  .scrim { background: rgba(44,38,32,0.18); border-radius: var(--r-card); padding: 26px; display: flex; align-items: center; justify-content: center; }
+  .modal { width: 100%; max-width: 400px; background: var(--sheet); border: 1px solid var(--hair); border-radius: var(--r-lg); box-shadow: 0 24px 60px -24px rgba(44,38,32,0.4); overflow: hidden; }
+  .modal .body { padding: 24px; }
+  .modal .foot { display: flex; gap: 12px; padding: 0 24px 22px; }
+  .modal.crit { border-color: var(--crit-edge); }
+  .modal.crit .ribbon { background: var(--crit-soft); color: var(--crit); border-bottom: 1px solid var(--crit-edge); padding: 12px 24px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .holdbtn { position: relative; overflow: hidden; }
+  .holdbtn .fillbar { position: absolute; left: 0; top: 0; bottom: 0; width: 62%; background: rgba(255,255,255,0.22); }
+  .holdbtn span { position: relative; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">40</span><span class="ttl">Modals</span><span class="meta">Overlays · including the mandatory irreversible</span></div>
+
+  <div class="grid">
+
+    <div>
+      <div class="lblmono">Confirm — calm, the safe choice carries weight</div>
+      <div class="scrim">
+        <div class="modal">
+          <div class="body">
+            <div class="lead lead-sm" style="margin-bottom:8px">Submit this mock now?</div>
+            <p class="muted" style="font-size:13px;margin:0">You've answered 36 of 40. The 4 unanswered will be marked blank — same as the real test.</p>
+          </div>
+          <div class="foot"><button class="b b2">Keep going</button><button class="b b1" style="margin-left:auto">Submit mock</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="lblmono">Form — start a graded mock (opt in by intent)</div>
+      <div class="scrim">
+        <div class="modal">
+          <div class="body">
+            <div class="lead lead-sm" style="margin-bottom:14px">Graded video mock</div>
+            <div class="field"><label class="cap">Prompt pack</label><div class="fselect"><select class="f"><option>Shell-style competency</option><option>Big 4 motivational</option></select></div></div>
+            <p class="muted" style="font-size:12px;margin:4px 0 0">One shot, full visual + substance report. Want unlimited retakes instead? Use practice mode — it's free and instant.</p>
+          </div>
+          <div class="foot"><button class="b b2">Cancel</button><button class="b b1" style="margin-left:auto">Begin · one shot</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="grid-column:1/-1">
+      <div class="lblmono">⚠ The irreversible — delete account &amp; all data (hold-to-confirm)</div>
+      <div class="scrim">
+        <div class="modal crit">
+          <div class="ribbon">Can't be undone</div>
+          <div class="body">
+            <div class="lead lead-sm" style="margin-bottom:8px">Delete your account and everything in it?</div>
+            <p class="muted" style="font-size:13px;margin:0 0 16px">Your recordings, drafts, scores, and history will be permanently erased. Your data is yours — including the right to take it all back. There is no recovery after this.</p>
+            <div class="field" style="margin:0"><label class="cap">Type <b style="color:var(--crit)">DELETE</b> to confirm</label><input class="f f-mono" placeholder="DELETE" /></div>
+          </div>
+          <div class="foot">
+            <button class="b b2">Keep my account</button>
+            <button class="b bdanger holdbtn" style="margin-left:auto"><span class="fillbar"></span><span>Hold to delete…</span></button>
+          </div>
+        </div>
+      </div>
+      <p class="note-i" style="margin-top:14px">Every system has one irreversible action; here it's a student erasing their own data — a <em>right</em>, so it's offered plainly, but guarded with both a typed <span class="mono" style="font-size:12px">DELETE</span> and a press-and-hold. Crimson appears only now, where it's earned. There's no two-person verification — a student needs no one's permission to delete their own work.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

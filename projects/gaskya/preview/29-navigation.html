@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GasKya · Navigation</title>
+<link rel="stylesheet" href="_foundation.css" />
+<style>
+  .panel { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--sheet); padding: 0; margin-bottom: 20px; overflow: hidden; }
+  .panel .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); padding: 16px 18px 0; }
+  /* top bar */
+  .topbar { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--hair); }
+  .brand { font-family: var(--serif); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+  .brand .ng { color: var(--ac); }
+  .topbar .gap { flex: 1; }
+  .topnav { display: flex; gap: 4px; }
+  .topnav a { font-size: 13px; font-weight: 600; color: var(--ink-3); text-decoration: none; padding: 8px 14px; border-radius: 999px; }
+  .topnav a.on { background: var(--ac-soft); color: var(--ac); }
+  /* bottom bar (phone) */
+  .phone { max-width: 380px; margin: 0 auto; border: 1px solid var(--hair); border-radius: 28px; overflow: hidden; background: var(--paper); }
+  .phone .scr { height: 200px; padding: 22px; display: flex; flex-direction: column; justify-content: center; }
+  .tabbar { display: flex; border-top: 1px solid var(--hair); background: var(--sheet); }
+  .tabbar a { flex: 1; text-align: center; padding: 12px 0 14px; text-decoration: none; color: var(--ink-4); font-size: 10px; font-weight: 600; }
+  .tabbar a .ic { display: block; width: 22px; height: 22px; margin: 0 auto 5px; border-radius: 7px; background: currentColor; opacity: 0.55; }
+  .tabbar a.on { color: var(--ac); }
+  .tabbar a.on .ic { opacity: 1; }
+  /* command */
+  .cmd { max-width: 460px; background: var(--sheet); border: 1px solid var(--hair); border-radius: var(--r-card); box-shadow: 0 16px 40px -16px rgba(44,38,32,0.3); overflow: hidden; margin: 18px; }
+  .cmd .inp { padding: 16px 18px; border-bottom: 1px solid var(--hair); font-size: 15px; color: var(--ink-3); }
+  .cmd .item { padding: 12px 18px; font-size: 13.5px; display: flex; align-items: center; gap: 12px; }
+  .cmd .item.on { background: var(--ac-soft); }
+  .cmd .item .k { margin-left: auto; font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp"><span class="num">29</span><span class="ttl">Navigation · shell</span><span class="meta">Data · how a student moves through it</span></div>
+
+  <div class="panel">
+    <div class="topbar">
+      <span class="brand">GasKya<span class="ng">.</span></span>
+      <nav class="topnav"><a class="on">Funnel</a><a>Practise</a><a>History</a><a>Settings</a></nav>
+      <span class="gap"></span>
+      <span class="pill pill-good"><span class="dot"></span>Banks · 72 days</span>
+      <span class="av av-sm">HB</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sh" style="padding-bottom:14px">Phone — the bottom tab bar (the real surface)</div>
+    <div class="phone">
+      <div class="scr">
+        <div class="lead">Welcome back, Halima. You're <b>72 days</b> out — and ahead of where you were.</div>
+        <button class="b b1 b-sm" style="margin-top:16px;align-self:flex-start">Continue numerical</button>
+      </div>
+      <nav class="tabbar">
+        <a class="on"><span class="ic"></span>Funnel</a>
+        <a><span class="ic"></span>Practise</a>
+        <a><span class="ic"></span>Video</a>
+        <a><span class="ic"></span>History</a>
+      </nav>
+    </div>
+    <p class="note-i" style="padding:0 18px 18px">Phone-first means the bottom tab bar is the primary navigation, thumb-reachable. The desktop top bar is the secondary case.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sh">Quick jump</div>
+    <div class="cmd">
+      <div class="inp">Jump to a drill or sub-skill…</div>
+      <div class="item on">◆ Drill number series <span class="k">↵</span></div>
+      <div class="item">▶ Start a numerical mock</div>
+      <div class="item">◉ Record a video answer</div>
+      <div class="item">✎ Draft a “why this firm” answer</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

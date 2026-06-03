@@ -158,6 +158,21 @@
           "date": "2026-05-23"
         }
       ]
+    },
+    {
+      "slug": "gaskya",
+      "name": "GasKya",
+      "tagline": "Free, AI-powered mock-assessment practice for the whole Nigerian graduate-job funnel \u2014 timed aptitude, async video interviews, and written answers \u2014 with feedback that teaches, not just scores.",
+      "type": "Consumer \u00b7 edtech / civic",
+      "style": "The calm before the test",
+      "stylePrinciples": "Bespoke 26th stance \u2014 an examiner's instrument that's on your side. Warm coach paper #F6F1EC, deep aubergine #5A2A4D as the single 'truth/merit/earned' accent (dodging fintech blue/green and the shelf's forest/clay), spacious everywhere. Fraunces is the coach's thinking voice + achievement numbers; Inter is chrome; JetBrains Mono is the record (timers, IDs, raw scores). Hairlines not shadows; the one tactile flourish is the physical key-press button (raised, presses down on click). Crimson reserved for the live clock + irreversible actions only; amber for warn, sage for on-track. Voice is second-person, calm, always fixable; video feedback stays narrow and never judges what a cheap camera can't fairly measure. Built for a cracked mid-range Android on flaky 3G \u2014 offline/resuming/error states are first-class.",
+      "accent": "#5A2A4D",
+      "paper": "#F6F1EC",
+      "ink": "#2C2620",
+      "entry": "projects/gaskya/index.html",
+      "thumb": "projects/gaskya/thumb.html",
+      "createdAt": "2026-06-03",
+      "surfaceCount": 34
     }
   ]
 }
