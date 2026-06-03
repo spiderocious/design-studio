@@ -736,15 +736,6 @@
 
       searchEl.addEventListener("input", render);
 
-      newBtn.addEventListener("click", () => {
-        // Best-effort hint for users running outside Claude Code.
-        alert(
-          "To start a project, run /design-system-agent in this folder via Claude Code.\n\n" +
-            'You can pass a prompt — e.g. /design-system-agent "design a fintech app for traders" —\n' +
-            "or invoke it bare and the agent will ask the discovery questions.",
-        );
-      });
-
       load();
     </script>
 
